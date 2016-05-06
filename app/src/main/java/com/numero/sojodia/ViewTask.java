@@ -12,7 +12,7 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
 
     private Context context;
     private TimeList timeList;
-    private ArrayList<TimeTableFormat> tkTimeList, tndTimeList;
+    private ArrayList<TimeFormat> tkTimeList, tndTimeList;
     private TextView tkTimeText[], tndTimeText[], day;
     private Time tkTime, tndTime, nowTime, nextTime;
     private Holiday holiday;
@@ -122,7 +122,7 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
 
         for (tkPosition = 0; tkPosition < tkTimeList.size(); tkPosition++) {
             tkTime.setTime(tkTimeList.get(tkPosition).hour, tkTimeList.get(tkPosition).min, 0);
-            if (tkTime.getMinusFlg(nowTime)) {
+            if (tkTime.isMinus(nowTime)) {
                 break;
             }
         }
@@ -131,7 +131,7 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
         }
         for (tndPosition = 0; tndPosition < tndTimeList.size(); tndPosition++) {
             tndTime.setTime(tndTimeList.get(tndPosition).hour, tndTimeList.get(tndPosition).min, 0);
-            if (tndTime.getMinusFlg(nowTime)) {
+            if (tndTime.isMinus(nowTime)) {
                 break;
             }
         }

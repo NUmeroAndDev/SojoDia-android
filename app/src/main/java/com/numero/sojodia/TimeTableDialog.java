@@ -17,7 +17,7 @@ public class TimeTableDialog {
 
     private ArrayList<TableFormat> listTable;
     private TimeList timeList;
-    private ArrayList<TimeTableFormat> list;
+    private ArrayList<TimeFormat> list;
     private int route, round;
 
     TimeTableDialog(Context context, LayoutInflater inflater, int route, int round) {

@@ -54,7 +54,7 @@ public class Time {
         }
     }
 
-    public boolean getMinusFlg(Time after) {
+    public boolean isMinus(Time after) {
         sec = after.sec - sec;
         min = after.min - min;
         hour = after.hour - hour;
