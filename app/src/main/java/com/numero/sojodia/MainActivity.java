@@ -1,7 +1,5 @@
 package com.numero.sojodia;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,6 +13,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.numero.sojodia.Adapter.ReciprocatingFragmentPagerAdapter;
+import com.numero.sojodia.Utils.ApplicationPreferences;
+
 public class MainActivity extends AppCompatActivity {
 
     private AlertDialog dialog;
@@ -25,15 +26,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
+        ReciprocatingFragmentPagerAdapter fragmentPagerAdapter = new ReciprocatingFragmentPagerAdapter(getSupportFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setAdapter(mainPagerAdapter);
+        viewPager.setAdapter(fragmentPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        if(isFirstBoot()) {
+        if(ApplicationPreferences.isFirstBoot(this)) {
             showDescription();
-            saveFirstBoot();
+            ApplicationPreferences.setFirstBoot(this, false);
         }
     }
 
@@ -60,17 +61,5 @@ public class MainActivity extends AppCompatActivity {
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
-    }
-
-    private boolean isFirstBoot(){
-        SharedPreferences pref = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
-        return pref.getBoolean(Constants.FIRST_BOOT, true);
-    }
-
-    private void saveFirstBoot(){
-        SharedPreferences pref = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = pref.edit();
-        edit.putBoolean(Constants.FIRST_BOOT, false);
-        edit.apply();
     }
 }

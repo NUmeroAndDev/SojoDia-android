@@ -1,18 +1,20 @@
-package com.numero.sojodia;
+package com.numero.sojodia.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class MainPagerAdapter extends FragmentPagerAdapter {
+import com.numero.sojodia.ReciprocatingFragment;
 
-    public MainPagerAdapter(FragmentManager fm) {
+public class ReciprocatingFragmentPagerAdapter extends FragmentPagerAdapter {
+
+    public ReciprocatingFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        return RoundFragment.newInstance(position);
+        return ReciprocatingFragment.newInstance(position);
     }
 
     @Override
@@ -23,6 +25,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
+//            ToDo string resource
             case 0:
                 return "登校";
             case 1:

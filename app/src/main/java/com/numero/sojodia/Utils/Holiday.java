@@ -1,11 +1,12 @@
-package com.numero.sojodia;
+package com.numero.sojodia.Utils;
 
 import java.util.Calendar;
 
 public class Holiday {
+//    ToDo: refactor
     private Calendar calendar;
 
-    Holiday(){
+    public Holiday(){
         calendar = Calendar.getInstance();
     }
 
@@ -22,7 +23,7 @@ public class Holiday {
 
         switch (month) {
             case Calendar.JANUARY:
-                flg = (day == 1 || day == 2 && week == Calendar.MONDAY || weekInMonth(day, Calendar.MONDAY, 2));
+                flg = (day == 1 || day == 2 && week == Calendar.MONDAY || isDayOfWeekInMonth(day, Calendar.MONDAY, 2));
                 break;
             case Calendar.FEBRUARY:
                 flg = (day == 11 || day == 12 && week == Calendar.MONDAY);
@@ -54,7 +55,7 @@ public class Holiday {
             case Calendar.JUNE:
                 break;
             case Calendar.JULY:
-                flg = weekInMonth(day, Calendar.MONDAY, 3);
+                flg = isDayOfWeekInMonth(day, Calendar.MONDAY, 3);
                 break;
             case Calendar.AUGUST:
                 flg = (day == 11 || day == 12 && week == Calendar.MONDAY);
@@ -62,17 +63,17 @@ public class Holiday {
             case Calendar.SEPTEMBER:
                 switch (calendar.get(Calendar.YEAR)) {
                     case 2016:
-                        flg = (day == 22 || day == 23 && week == Calendar.MONDAY || weekInMonth(day, Calendar.MONDAY, 3));
+                        flg = (day == 22 || day == 23 && week == Calendar.MONDAY || isDayOfWeekInMonth(day, Calendar.MONDAY, 3));
                         break;
                     case 2017:
                     case 2018:
                     case 2019:
-                        flg = (day == 23 || day == 24 && week == Calendar.MONDAY || weekInMonth(day, Calendar.MONDAY, 3));
+                        flg = (day == 23 || day == 24 && week == Calendar.MONDAY || isDayOfWeekInMonth(day, Calendar.MONDAY, 3));
                         break;
                 }
                 break;
             case Calendar.OCTOBER:
-                flg = weekInMonth(day, Calendar.MONDAY, 2);
+                flg = isDayOfWeekInMonth(day, Calendar.MONDAY, 2);
                 break;
             case Calendar.NOVEMBER:
                 if(day == 3 || day == 4 && week == Calendar.MONDAY){
@@ -93,7 +94,6 @@ public class Holiday {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int week = calendar.get(Calendar.DAY_OF_WEEK);
 
-        boolean flg = false;
         switch (month) {
             case Calendar.JANUARY:
                 break;
@@ -102,37 +102,35 @@ public class Holiday {
             case Calendar.MARCH:
                 break;
             case Calendar.APRIL:
-                flg = (day == 29 || day == 30 && week == Calendar.MONDAY);
-                break;
+                return (day == 29 || day == 30 && week == Calendar.MONDAY);
             case Calendar.MAY:
                 break;
             case Calendar.JUNE:
                 break;
             case Calendar.JULY:
-                flg = weekInMonth(day, Calendar.MONDAY, 3);
-                break;
+                return isDayOfWeekInMonth(day, Calendar.MONDAY, 3);
             case Calendar.AUGUST:
                 break;
             case Calendar.SEPTEMBER:
                 break;
             case Calendar.OCTOBER:
-                flg = weekInMonth(day, Calendar.MONDAY, 2);
-                break;
+                return isDayOfWeekInMonth(day, Calendar.MONDAY, 2);
             case Calendar.NOVEMBER:
-                flg = (day == 3 || day == 4 && week == Calendar.MONDAY);
-                break;
+                return (day == 3 || day == 4 && week == Calendar.MONDAY);
             case Calendar.DECEMBER:
                 break;
+            default:
+                return false;
         }
-        return flg;
+        return false;
     }
 
-    private boolean weekInMonth(int toDay, int week, int count){
+    private boolean isDayOfWeekInMonth(int day, int week, int weekInMonth){
         Calendar calendar = Calendar.getInstance();
         calendar.set(this.calendar.get(Calendar.YEAR),this.calendar.get(Calendar.MONTH),this.calendar.get(Calendar.DAY_OF_MONTH));
-        calendar.set(Calendar.DAY_OF_WEEK_IN_MONTH, count);
+        calendar.set(Calendar.DAY_OF_WEEK_IN_MONTH, weekInMonth);
         calendar.set(Calendar.DAY_OF_WEEK, week);
 
-        return toDay == calendar.get(Calendar.DAY_OF_MONTH);
+        return day == calendar.get(Calendar.DAY_OF_MONTH);
     }
 }
