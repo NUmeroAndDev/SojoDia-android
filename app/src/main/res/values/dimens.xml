@@ -2,9 +2,23 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- ToDo: refactor text_size -->
     <dimen name="text_size_s">14sp</dimen>
     <dimen name="text_size_m">18sp</dimen>
     <dimen name="text_size_l">22sp</dimen>
     <dimen name="text_size_ll">25sp</dimen>
     <dimen name="text_size_x">32sp</dimen>
+
+    <dimen name="margin_s">4dp</dimen>
+    <dimen name="margin_m">8dp</dimen>
+    <dimen name="margin_l">16dp</dimen>
+
+
+    <dimen name="card_contents_margin">8dp</dimen>
+    <dimen name="card_margin">@dimen/margin_l</dimen>
+
+
+    <dimen name="title_card_margin">@dimen/margin_m</dimen>
+    <dimen name="title_station_card_margin">2dp</dimen>
+
 </resources>

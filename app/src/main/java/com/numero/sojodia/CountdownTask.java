@@ -5,31 +5,35 @@ import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.widget.TextView;
 
+import com.numero.sojodia.Model.Time;
+import com.numero.sojodia.Model.TimeTableItem;
+import com.numero.sojodia.Utils.Holiday;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class ViewTask extends AsyncTask<Void, Void, Void> {
+public class CountdownTask extends AsyncTask<Void, Void, Void> {
 
     private Context context;
-    private TimeList timeList;
-    private ArrayList<TimeTableFormat> tkTimeList, tndTimeList;
-    private TextView tkTimeText[], tndTimeText[], day;
+    private TimeData timeData;
+    private ArrayList<TimeTableItem> tkTimeList, tndTimeList;
+    private TextView tkTimeText[], tndTimeText[], dateTextView;
     private Time tkTime, tndTime, nowTime, nextTime;
     private Holiday holiday;
     private int tkPosition = 0, tndPosition = 0, nowDay;
-    private boolean isReload = true;
+    private boolean isTimeDataReload = true;
     private String date;
     private int round;
 
-    ViewTask(Context context, TextView tkTimeText[], TextView tndTimeText[], TextView day, int round) {
+    public CountdownTask(Context context, TextView tkTimeText[], TextView tndTimeText[], TextView dateTextView, int round) {
         this.context = context;
         this.tkTimeList = new ArrayList<>();
         this.tndTimeList = new ArrayList<>();
         this.tkTimeText = tkTimeText;
         this.tndTimeText = tndTimeText;
-        this.day = day;
+        this.dateTextView = dateTextView;
         this.round = round;
-        timeList = new TimeList();
+        timeData = new TimeData();
         tkTime = new Time();
         tndTime = new Time();
         nowTime = new Time();
@@ -42,12 +46,12 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         try {
             while (true) {
-                if (isReload) {
-                    timeList.setTK(tkTimeList, getWeek(), round);
-                    timeList.setTND(tndTimeList, getWeek(), round);
+                if (isTimeDataReload) {
+                    timeData.setTK(tkTimeList, getWeek(), round);
+                    timeData.setTND(tndTimeList, getWeek(), round);
                     date = setDate();
                     nowDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-                    isReload = false;
+                    isTimeDataReload = false;
                 }
                 if (this.isCancelled()) {
                     break;
@@ -77,7 +81,7 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
             nowTime.minus(tkTime);
             tkTimeText[0].setText(tkTime.getTime());
             tkTimeText[2].setText(nowTime.getTime());
-            setTimeColor(tkTimeText[2], nowTime.hour, nowTime.min);
+            changeColorTextView(tkTimeText[2], nowTime.hour, nowTime.min);
         } else {
             tkTime.setTime(tkTimeList.get(tkPosition).hour, tkTimeList.get(tkPosition).min, 0);
             nextTime.setTime(tkTimeList.get(tkPosition + 1).hour, tkTimeList.get(tkPosition + 1).min, 0);
@@ -86,7 +90,7 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
             tkTimeText[0].setText(tkTime.getTime());
             tkTimeText[1].setText("→" + nextTime.getTime());
             tkTimeText[2].setText(nowTime.getTime());
-            setTimeColor(tkTimeText[2], nowTime.hour, nowTime.min);
+            changeColorTextView(tkTimeText[2], nowTime.hour, nowTime.min);
         }
         if (tndPosition == -1) {
             tndTimeText[0].setText("本日のバスはありません");
@@ -99,7 +103,7 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
             nowTime.minus(tndTime);
             tndTimeText[0].setText(tndTime.getTime());
             tndTimeText[2].setText(nowTime.getTime());
-            setTimeColor(tndTimeText[2], nowTime.hour, nowTime.min);
+            changeColorTextView(tndTimeText[2], nowTime.hour, nowTime.min);
         } else {
             tndTime.setTime(tndTimeList.get(tndPosition).hour, tndTimeList.get(tndPosition).min, 0);
             nextTime.setTime(tndTimeList.get(tndPosition + 1).hour, tndTimeList.get(tndPosition + 1).min, 0);
@@ -108,9 +112,9 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
             tndTimeText[0].setText(tndTime.getTime());
             tndTimeText[1].setText("→" + nextTime.getTime());
             tndTimeText[2].setText(nowTime.getTime());
-            setTimeColor(tndTimeText[2], nowTime.hour, nowTime.min);
+            changeColorTextView(tndTimeText[2], nowTime.hour, nowTime.min);
         }
-        day.setText(date);
+        dateTextView.setText(date);
     }
 
     @Override
@@ -141,7 +145,7 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
     }
 
     private void checkChangeDate() {
-        isReload = (nowDay != Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        isTimeDataReload = (nowDay != Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
     }
 
     private int getWeek() {
@@ -165,17 +169,17 @@ public class ViewTask extends AsyncTask<Void, Void, Void> {
         int month = Calendar.getInstance().get(Calendar.MONTH);
         int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         int week = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-        String weeks[] = {"日", "月", "火", "水", "木", "金", "土"};
-        String holidays[] = {"", "", "", "・祝"};
+        String weekStrings[] = {"日", "月", "火", "水", "木", "金", "土"};
+        String holidayStrings[] = {"", "", "", "・祝"};
 
         if (getWeek() == 2 && holiday.isHoliday()) {
-            return "" + year + "/" + (month + 1) + "/" + day + "(" + weeks[week - 1] + holidays[3] + ")";
+            return "" + year + "/" + (month + 1) + "/" + day + "(" + weekStrings[week - 1] + holidayStrings[3] + ")";
         }
 
-        return "" + year + "/" + (month + 1) + "/" + day + "(" + weeks[week - 1] + holidays[getWeek()] + ")";
+        return "" + year + "/" + (month + 1) + "/" + day + "(" + weekStrings[week - 1] + holidayStrings[getWeek()] + ")";
     }
 
-    private void setTimeColor(TextView textView, int hour, int min) {
+    private void changeColorTextView(TextView textView, int hour, int min) {
         if (Calendar.getInstance().get(Calendar.SECOND) % 2 == 0) {
             textView.setTextColor(ContextCompat.getColor(context, R.color.textSecondary));
             return;
