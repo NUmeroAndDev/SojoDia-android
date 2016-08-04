@@ -21,12 +21,6 @@ public class TimeTableDialog {
 
     private AlertDialog.Builder builder;
 
-<<<<<<< HEAD
-    private ArrayList<TableFormat> listTable;
-    private TimeList timeList;
-    private ArrayList<TimeFormat> list;
-    private int route, round;
-=======
     private ArrayList<TimeTableRow> rows;
     private ArrayList<TimeTableItem> timeTableItems;
     private TimeTableRowAdapter adapter;
@@ -34,7 +28,6 @@ public class TimeTableDialog {
     private int route, reciprocating;
 
     public TimeTableDialog(Context context, int route, int reciprocating) {
->>>>>>> editing
 
         String reciprocatingStrings[] = {"登校", "下校"};
         String stationStrings[] = {"JR高槻駅北", "JR富田駅"};

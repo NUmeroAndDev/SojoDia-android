@@ -15,15 +15,9 @@ import java.util.Calendar;
 public class CountdownTask extends AsyncTask<Void, Void, Void> {
 
     private Context context;
-<<<<<<< HEAD:app/src/main/java/com/numero/sojodia/ViewTask.java
-    private TimeList timeList;
-    private ArrayList<TimeFormat> tkTimeList, tndTimeList;
-    private TextView tkTimeText[], tndTimeText[], day;
-=======
     private TimeData timeData;
     private ArrayList<TimeTableItem> tkTimeList, tndTimeList;
     private TextView tkTimeText[], tndTimeText[], dateTextView;
->>>>>>> editing:app/src/main/java/com/numero/sojodia/CountdownTask.java
     private Time tkTime, tndTime, nowTime, nextTime;
     private Holiday holiday;
     private int tkPosition = 0, tndPosition = 0, nowDay;
