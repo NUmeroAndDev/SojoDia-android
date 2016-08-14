@@ -12,11 +12,10 @@ public class TimeTableRowHolder extends RecyclerView.ViewHolder {
     public TimeTableRowHolder(View view) {
         super(view);
 
-        hourTextView = (TextView) view.findViewById(R.id.time);
-        timeWeekdayTextView = (TextView) view.findViewById(R.id.week_weekday);
-        timeSaturdayTextView = (TextView) view.findViewById(R.id.week_saturday);
-        timeSundayTextView = (TextView) view.findViewById(R.id.week_sunday);
-//        ToDo: refactor res ID
-        timeHolidayInSchoolTextView = (TextView) view.findViewById(R.id.week_sunday_sp);
+        hourTextView = (TextView) view.findViewById(R.id.hour);
+        timeWeekdayTextView = (TextView) view.findViewById(R.id.weekday);
+        timeSaturdayTextView = (TextView) view.findViewById(R.id.saturday);
+        timeSundayTextView = (TextView) view.findViewById(R.id.sunday);
+        timeHolidayInSchoolTextView = (TextView) view.findViewById(R.id.holiday_in_school);
     }
 }

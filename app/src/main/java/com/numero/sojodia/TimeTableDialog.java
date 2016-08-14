@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.numero.sojodia.Adapter.TimeTableRowAdapter;
 import com.numero.sojodia.Model.TimeTableItem;
 import com.numero.sojodia.Model.TimeTableRow;
+import com.numero.sojodia.Utils.Constants;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,6 @@ public class TimeTableDialog {
     private ArrayList<TimeTableRow> rows;
     private ArrayList<TimeTableItem> timeTableItems;
     private TimeTableRowAdapter adapter;
-    private TimeData timeData;
     private int route, reciprocating;
 
     public TimeTableDialog(Context context, int route, int reciprocating) {
@@ -42,7 +42,6 @@ public class TimeTableDialog {
         this.reciprocating = reciprocating;
 
         timeTableItems = new ArrayList<>();
-        timeData = new TimeData();
         rows = new ArrayList<>();
 
         TextView stationTextView = (TextView) view.findViewById(R.id.station);
@@ -78,7 +77,13 @@ public class TimeTableDialog {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                timeData.setAll(timeTableItems, route, reciprocating);
+                switch (route){
+                    case Constants.ROUTE_TK:
+                        TimeDataController.setTKTimeList(timeTableItems, reciprocating, TimeDataController.ALL);
+                        break;
+                    case Constants.ROUTE_TND:
+                        TimeDataController.setTNDTimeList(timeTableItems, reciprocating, TimeDataController.ALL);
+                }
                 setRowItem();
                 handler.sendMessage(Message.obtain());
             }
@@ -94,16 +99,16 @@ public class TimeTableDialog {
         }
         for (int i = 0; i < timeTableItems.size(); i++) {
             switch (timeTableItems.get(i).week) {
-                case 0:
+                case TimeDataController.WEEKDAY:
                     rows.get(timeTableItems.get(i).hour - 6).addStringTimeOnWeekday((timeTableItems.get(i).min > 9 ? "" + String.valueOf(timeTableItems.get(i).min) : "0" + String.valueOf(timeTableItems.get(i).min)));
                     break;
-                case 1:
+                case TimeDataController.SATURDAY:
                     rows.get(timeTableItems.get(i).hour - 6).addStringTimeOnSaturday((timeTableItems.get(i).min > 9 ? "" + String.valueOf(timeTableItems.get(i).min) : "0" + String.valueOf(timeTableItems.get(i).min)));
                     break;
-                case 2:
+                case TimeDataController.SUNDAY:
                     rows.get(timeTableItems.get(i).hour - 6).addStringTimeOnSunday((timeTableItems.get(i).min > 9 ? "" + String.valueOf(timeTableItems.get(i).min) : "0" + String.valueOf(timeTableItems.get(i).min)));
                     break;
-                case 3:
+                case TimeDataController.HOLIDAY_IN_SCHOOL:
                     rows.get(timeTableItems.get(i).hour - 6).addStringTimeOnHoliday((timeTableItems.get(i).min > 9 ? "" + String.valueOf(timeTableItems.get(i).min) : "0" + String.valueOf(timeTableItems.get(i).min)));
                     break;
             }

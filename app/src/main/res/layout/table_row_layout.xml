@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
+
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/hour"
         android:layout_width="30dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="2dp"
@@ -14,8 +15,9 @@
         android:gravity="center"
         android:textSize="@dimen/text_size_s"
         android:textColor="@color/textSecondary" />
+
     <TextView
-        android:id="@+id/week_weekday"
+        android:id="@+id/weekday"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -23,8 +25,9 @@
         android:layout_marginBottom="1dp"
         android:textSize="@dimen/text_size_s"
         android:textColor="@color/textSecondary" />
+
     <TextView
-        android:id="@+id/week_saturday"
+        android:id="@+id/saturday"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -32,8 +35,9 @@
         android:layout_marginBottom="1dp"
         android:textSize="@dimen/text_size_s"
         android:textColor="@color/textSecondary" />
+
     <TextView
-        android:id="@+id/week_sunday"
+        android:id="@+id/sunday"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -41,8 +45,9 @@
         android:layout_marginBottom="1dp"
         android:textSize="@dimen/text_size_s"
         android:textColor="@color/textSecondary" />
+
     <TextView
-        android:id="@+id/week_sunday_sp"
+        android:id="@+id/holiday_in_school"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -50,4 +55,5 @@
         android:layout_marginBottom="1dp"
         android:textSize="@dimen/text_size_s"
         android:textColor="@color/textSecondary" />
+
 </LinearLayout>

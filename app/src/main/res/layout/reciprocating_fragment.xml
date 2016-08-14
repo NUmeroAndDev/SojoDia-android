@@ -34,6 +34,7 @@
                 android:text="@string/station_tk"
                 android:textSize="@dimen/text_size_l"
                 android:textColor="@color/title_station_card_text"
+                android:gravity="center"
                 android:background="@color/title_station_card_background"/>
 
             <TextView
@@ -119,6 +120,7 @@
                 android:text="@string/station_tnd"
                 android:textSize="@dimen/text_size_l"
                 android:textColor="@color/title_station_card_text"
+                android:gravity="center"
                 android:background="@color/title_station_card_background"/>
 
             <TextView

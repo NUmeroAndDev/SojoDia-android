@@ -24,7 +24,7 @@ public class TimeTableRowAdapter extends RecyclerView.Adapter<TimeTableRowHolder
 
     @Override
     public TimeTableRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.table_row_layout,viewGroup,false);
         return new TimeTableRowHolder(view);
     }
 
