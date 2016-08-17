@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">バス時刻表</string>
+
+    <string name="next_time">Next Bus</string>
+    <string name="limit_time">Time Left</string>
+
+    <string name="weekday">平日</string>
+    <string name="saturday">土曜</string>
+    <string name="sunday">日曜祝</string>
+    <string name="holiday_in_school">祝日登校</string>
+    <string name="hour">時</string>
+    <string name="station_tk">JR高槻駅北</string>
+    <string name="station_tnd">JR富田駅</string>
+
+    <string name="no_bus">本日のバスはありません</string>
+    <string name="last_bus">最終バス</string>
+    
+    <string name="going_to_school">登校</string>
+    <string name="coming_home">下校</string>
+
+    <string name="update_info_title">更新情報</string>
+    <string name="update_info_message">・時刻表のデータを修正しました。\n・UIの一部を変更しました。</string>
+
+    <string-array name="weeks">
+        <item>日</item>
+        <item>月</item>
+        <item>火</item>
+        <item>水</item>
+        <item>木</item>
+        <item>金</item>
+        <item>土</item>
+    </string-array>
+</resources>

@@ -1,24 +1,26 @@
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-
-    <!-- ToDo: refactor text_size -->
-    <dimen name="text_size_s">14sp</dimen>
-    <dimen name="text_size_m">18sp</dimen>
-    <dimen name="text_size_l">22sp</dimen>
-    <dimen name="text_size_ll">25sp</dimen>
-    <dimen name="text_size_x">32sp</dimen>
-
-    <dimen name="margin_s">4dp</dimen>
-    <dimen name="margin_m">8dp</dimen>
-    <dimen name="margin_l">16dp</dimen>
-
-
+    <!--Fragment-->
     <dimen name="card_contents_margin">8dp</dimen>
-    <dimen name="card_margin">@dimen/margin_l</dimen>
+    <dimen name="card_margin">16dp</dimen>
+    <dimen name="date_margin">8dp</dimen>
 
-
-    <dimen name="title_card_margin">@dimen/margin_m</dimen>
+    <dimen name="title_card_margin">8dp</dimen>
     <dimen name="title_station_card_margin">2dp</dimen>
+
+    <dimen name="text_size_bus_station">22sp</dimen>
+    <dimen name="text_size_bus_time">25sp</dimen>
+    <dimen name="text_size_next_bus_time">18sp</dimen>
+    <dimen name="text_size_limit_bus_time">25sp</dimen>
+    <dimen name="text_size_title">18sp</dimen>
+    <dimen name="text_size_date">18sp</dimen>
+
+    <!--TimeTableDialog-->
+    <dimen name="layout_table_dialog_margin">8dp</dimen>
+    <dimen name="hour_table_dialog_width">32dp</dimen>
+    <dimen name="frame_border_table_dialog">2dp</dimen>
+    <dimen name="row_padding_table_dialog">1dp</dimen>
+
+    <dimen name="text_size_heading">14sp</dimen>
+    <dimen name="text_size_row_time">14sp</dimen>
 
 </resources>

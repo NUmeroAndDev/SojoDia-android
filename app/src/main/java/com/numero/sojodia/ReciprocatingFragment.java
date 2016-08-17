@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.numero.sojodia.Dialogs.TimeTableDialog;
 import com.numero.sojodia.Utils.Constants;
 
 public class ReciprocatingFragment extends Fragment implements CountdownTask.CallbackOnProgress {
@@ -34,6 +35,7 @@ public class ReciprocatingFragment extends Fragment implements CountdownTask.Cal
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
@@ -49,10 +51,11 @@ public class ReciprocatingFragment extends Fragment implements CountdownTask.Cal
         return view;
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
-        countdownTask = new CountdownTask(reciprocating);
+        countdownTask = new CountdownTask(getContext(), reciprocating);
         countdownTask.setCallbackOnProgress(this);
         countdownTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
@@ -64,8 +67,8 @@ public class ReciprocatingFragment extends Fragment implements CountdownTask.Cal
     }
 
     private void initTimeTextViews(View view) {
-        int tkTextViewIDs[] = {R.id.tk_next, R.id.tk_after_next, R.id.tk_limit};
-        int tndTextViewIDs[] = {R.id.tnd_next, R.id.tnd_after_next, R.id.tnd_limit};
+        int tkTextViewIDs[] = {R.id.text_bus_time_tk, R.id.text_next_bus_time_tk, R.id.text_limit_time_tk};
+        int tndTextViewIDs[] = {R.id.text_bus_time_tnd, R.id.text_next_bus_time_tnd, R.id.text_limit_time_tnd};
         for (int i = 0; i < tkTextViewIDs.length; i++) {
             tkBusTimeTextViews[i] = (TextView) view.findViewById(tkTextViewIDs[i]);
         }
@@ -98,7 +101,7 @@ public class ReciprocatingFragment extends Fragment implements CountdownTask.Cal
         tkBusTimeTextViews[0].setText(nextBusTimeString);
         tkBusTimeTextViews[1].setText(nextNextBusTimeString);
         tkBusTimeTextViews[2].setText(limitTimeString);
-        tkBusTimeTextViews[2].setTextColor(ContextCompat.getColor(getActivity(), resColor));
+        tkBusTimeTextViews[2].setTextColor(ContextCompat.getColor(getContext(), resColor));
     }
 
     @Override
@@ -106,7 +109,7 @@ public class ReciprocatingFragment extends Fragment implements CountdownTask.Cal
         tndBusTimeTextViews[0].setText(nextBusTimeString);
         tndBusTimeTextViews[1].setText(nextNextBusTimeString);
         tndBusTimeTextViews[2].setText(limitTimeString);
-        tndBusTimeTextViews[2].setTextColor(ContextCompat.getColor(getActivity(), resColor));
+        tndBusTimeTextViews[2].setTextColor(ContextCompat.getColor(getContext(), resColor));
     }
 
     @Override

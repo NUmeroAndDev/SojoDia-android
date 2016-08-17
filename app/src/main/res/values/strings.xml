@@ -1,14 +1,36 @@
 <resources>
-    <string name="app_name">バス時刻表</string>
+    <string name="app_name">Bus Schedule</string>
 
-    <string name="next_time">NEXT TIME</string>
-    <string name="limit_time">LIMIT TIME</string>
+    <string name="next_time">Next Bus</string>
+    <string name="limit_time">Time Left</string>
 
-    <string name="weekday">平日</string>
-    <string name="saturday">土曜</string>
-    <string name="sunday">日曜祝</string>
-    <string name="sunday_sp">祝日\n(登校)</string>
-    <string name="time">時</string>
-    <string name="station_tk">JR高槻駅北</string>
-    <string name="station_tnd">JR富田駅</string>
+    <string name="weekday">Weekdays</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="holiday_in_school">holiday in school</string>
+    <string name="hour">Hour</string>
+    <string name="station_tk">JR Takatsuki Station North</string>
+    <string name="station_tnd">JR Tonda Station</string>
+
+    <string name="no_bus">There is no bus at today</string>
+    <string name="last_bus">Last bus</string>
+
+    <string name="going_to_school">Going to school</string>
+    <string name="coming_home">Coming home</string>
+
+    <string name="update_info_title">What\'s new</string>
+    <string name="update_info_message">・Fixed bus schedule.\n・Changed UI.</string>
+
+    <!--ToDo: add date format-->
+
+    <string-array name="weeks">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+
 </resources>

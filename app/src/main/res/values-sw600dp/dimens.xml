@@ -1,9 +1,15 @@
 <resources>
-    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <!--Fragment-->
+    <dimen name="card_margin">64dp</dimen>
 
-    <dimen name="text_size_s">16sp</dimen>
-    <dimen name="text_size_m">18sp</dimen>
-    <dimen name="text_size_l">22sp</dimen>
-    <dimen name="text_size_ll">27sp</dimen>
-    <dimen name="text_size_x">32sp</dimen>
+    <dimen name="text_size_bus_station">28sp</dimen>
+    <dimen name="text_size_bus_time">32sp</dimen>
+    <dimen name="text_size_next_bus_time">22sp</dimen>
+    <dimen name="text_size_limit_bus_time">32sp</dimen>
+    <dimen name="text_size_title">22sp</dimen>
+    <dimen name="text_size_date">22sp</dimen>
+
+    <dimen name="text_size_heading">18sp</dimen>
+    <dimen name="text_size_row_time">18sp</dimen>
+
 </resources>

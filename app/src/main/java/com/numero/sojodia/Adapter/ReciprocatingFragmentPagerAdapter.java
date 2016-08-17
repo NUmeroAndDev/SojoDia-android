@@ -1,15 +1,20 @@
 package com.numero.sojodia.Adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.numero.sojodia.R;
 import com.numero.sojodia.ReciprocatingFragment;
 
 public class ReciprocatingFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    public ReciprocatingFragmentPagerAdapter(FragmentManager fm) {
-        super(fm);
+    private Context context;
+
+    public ReciprocatingFragmentPagerAdapter(Context context, FragmentManager fragmentManager) {
+        super(fragmentManager);
+        this.context = context;
     }
 
     @Override
@@ -25,11 +30,10 @@ public class ReciprocatingFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-//            ToDo string resource
             case 0:
-                return "登校";
+                return context.getString(R.string.going_to_school);
             case 1:
-                return "下校";
+                return context.getString(R.string.coming_home);
         }
         return null;
     }

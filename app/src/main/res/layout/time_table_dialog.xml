@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/layout_table_dialog_margin">
+
+    <TextView
+        android:id="@+id/station"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_bus_station"
+        android:textColor="@color/color_primary_dark"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/color_primary_dark">
+
+        <TextView
+            android:layout_width="@dimen/hour_table_dialog_width"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/frame_border_table_dialog"
+            android:text="@string/hour"
+            android:textSize="@dimen/text_size_row_time"
+            android:textColor="@color/color_primary"
+            android:gravity="center"
+            android:background="@color/color_table_row"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/frame_border_table_dialog"
+            android:layout_marginBottom="@dimen/frame_border_table_dialog"
+            android:layout_marginTop="@dimen/frame_border_table_dialog"
+            android:text="@string/weekday"
+            android:textSize="@dimen/text_size_heading"
+            android:textColor="@color/text_primary"
+            android:gravity="center"
+            android:background="@color/color_table_row"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/frame_border_table_dialog"
+            android:layout_marginBottom="@dimen/frame_border_table_dialog"
+            android:layout_marginTop="@dimen/frame_border_table_dialog"
+            android:text="@string/saturday"
+            android:textSize="@dimen/text_size_heading"
+            android:textColor="@color/text_saturday"
+            android:gravity="center"
+            android:background="@color/color_table_row"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/frame_border_table_dialog"
+            android:layout_marginBottom="@dimen/frame_border_table_dialog"
+            android:layout_marginTop="@dimen/frame_border_table_dialog"
+            android:text="@string/sunday"
+            android:textSize="@dimen/text_size_heading"
+            android:textColor="@color/text_sunday"
+            android:gravity="center"
+            android:background="@color/color_table_row" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/frame_border_table_dialog"
+            android:layout_marginBottom="@dimen/frame_border_table_dialog"
+            android:layout_marginTop="@dimen/frame_border_table_dialog"
+            android:text="@string/holiday_in_school"
+            android:textSize="@dimen/text_size_heading"
+            android:textColor="@color/text_holiday_in_school"
+            android:gravity="center"
+            android:background="@color/color_table_row"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

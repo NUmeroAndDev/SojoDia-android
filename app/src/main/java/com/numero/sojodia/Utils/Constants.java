@@ -2,8 +2,8 @@ package com.numero.sojodia.Utils;
 
 public class Constants {
 
-    public static final String PREFERENCES = "SAVE";
-    public static final String FIRST_BOOT = "FIRST_BOOT";
+    public static final String PREFERENCES = "PREFERENCES";
+    public static final String VERSION_CODE = "FIRST_BOOT";
 
     public static final String RECIPROCATING = "RECIPROCATING";
 

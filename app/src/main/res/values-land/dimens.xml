@@ -1,9 +1,0 @@
-<resources>
-    <dimen name="activity_horizontal_margin">8dp</dimen>
-
-    <dimen name="text_size_s">14sp</dimen>
-    <dimen name="text_size_m">18sp</dimen>
-    <dimen name="text_size_l">20sp</dimen>
-    <dimen name="text_size_ll">25sp</dimen>
-    <dimen name="text_size_x">32sp</dimen>
-</resources>
