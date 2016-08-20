@@ -1,9 +1,9 @@
-package com.numero.sojodia.Model;
+package com.numero.sojodia.Models;
 
-public class TimeTableItem {
+public class BusTime {
     public int hour, min, week;
 
-    public TimeTableItem(int hour, int min, int week){
+    public BusTime(int hour, int min, int week){
         this.hour = hour;
         this.min = min;
         this.week = week;

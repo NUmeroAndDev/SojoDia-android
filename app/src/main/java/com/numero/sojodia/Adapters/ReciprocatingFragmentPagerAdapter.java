@@ -1,4 +1,4 @@
-package com.numero.sojodia.Adapter;
+package com.numero.sojodia.Adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

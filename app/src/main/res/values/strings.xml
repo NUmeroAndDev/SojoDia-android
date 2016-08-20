@@ -18,8 +18,8 @@
     <string name="going_to_school">Going to school</string>
     <string name="coming_home">Coming home</string>
 
-    <string name="update_info_title">What\'s new</string>
-    <string name="update_info_message">・Fixed bus schedule.\n・Changed UI.</string>
+    <string name="message_update">There is a new timetable data.\nDo you want to update?</string>
+    <string name="positive_button_update">Update</string>
 
     <!--ToDo: add date format-->
 

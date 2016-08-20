@@ -18,8 +18,8 @@
     <string name="going_to_school">登校</string>
     <string name="coming_home">下校</string>
 
-    <string name="update_info_title">更新情報</string>
-    <string name="update_info_message">・時刻表のデータを修正しました。\n・UIの一部を変更しました。</string>
+    <string name="message_update">新しい時刻表データがあります。更新しますか?</string>
+    <string name="positive_button_update">更新</string>
 
     <string-array name="weeks">
         <item>日</item>

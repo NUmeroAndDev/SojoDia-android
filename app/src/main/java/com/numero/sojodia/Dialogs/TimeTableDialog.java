@@ -11,26 +11,26 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.numero.sojodia.Adapter.TimeTableRowAdapter;
-import com.numero.sojodia.Model.TimeTableItem;
-import com.numero.sojodia.Model.TimeTableRow;
+import com.numero.sojodia.Adapters.TimeTableRowAdapter;
+import com.numero.sojodia.Managers.BusDataManager;
+import com.numero.sojodia.Models.BusTime;
+import com.numero.sojodia.Models.TimeTableRow;
 import com.numero.sojodia.R;
-import com.numero.sojodia.TimeDataController;
 import com.numero.sojodia.Utils.Constants;
 
 import java.util.ArrayList;
 
 public class TimeTableDialog {
 
+    private Context context;
     private AlertDialog.Builder builder;
-
     private ArrayList<TimeTableRow> rows;
-    private ArrayList<TimeTableItem> timeTableItems;
+    private ArrayList<BusTime> busTimeList;
     private TimeTableRowAdapter adapter;
     private int route, reciprocating;
 
     public TimeTableDialog(Context context, int route, int reciprocating) {
-
+        this.context = context;
         String reciprocatingStrings[] = {context.getString(R.string.going_to_school), context.getString(R.string.coming_home)};
         String stationStrings[] = {context.getString(R.string.station_tk), context.getString(R.string.station_tnd)};
 
@@ -43,7 +43,7 @@ public class TimeTableDialog {
         this.route = route;
         this.reciprocating = reciprocating;
 
-        timeTableItems = new ArrayList<>();
+        busTimeList = new ArrayList<>();
         rows = new ArrayList<>();
 
         TextView stationTextView = (TextView) view.findViewById(R.id.station);
@@ -81,10 +81,10 @@ public class TimeTableDialog {
             public void run() {
                 switch (route){
                     case Constants.ROUTE_TK:
-                        TimeDataController.setTKTimeList(timeTableItems, reciprocating, TimeDataController.ALL);
+                        BusDataManager.initBusDataTK(context, busTimeList, reciprocating, BusDataManager.ALL);
                         break;
                     case Constants.ROUTE_TND:
-                        TimeDataController.setTNDTimeList(timeTableItems, reciprocating, TimeDataController.ALL);
+                        BusDataManager.initBusDataTND(context, busTimeList, reciprocating, BusDataManager.ALL);
                 }
                 setRowItem();
                 handler.sendMessage(Message.obtain());
@@ -99,19 +99,19 @@ public class TimeTableDialog {
             row.setHourString((i + 6 > 9 ? "" + String.valueOf(i + 6) : "0" + String.valueOf(i + 6)));
             rows.add(row);
         }
-        for (int i = 0; i < timeTableItems.size(); i++) {
-            switch (timeTableItems.get(i).week) {
-                case TimeDataController.WEEKDAY:
-                    rows.get(timeTableItems.get(i).hour - 6).addStringTimeOnWeekday((timeTableItems.get(i).min > 9 ? "" + String.valueOf(timeTableItems.get(i).min) : "0" + String.valueOf(timeTableItems.get(i).min)));
+        for (int i = 0; i < busTimeList.size(); i++) {
+            switch (busTimeList.get(i).week) {
+                case BusDataManager.WEEKDAY:
+                    rows.get(busTimeList.get(i).hour - 6).addStringTimeOnWeekday((busTimeList.get(i).min > 9 ? "" + String.valueOf(busTimeList.get(i).min) : "0" + String.valueOf(busTimeList.get(i).min)));
                     break;
-                case TimeDataController.SATURDAY:
-                    rows.get(timeTableItems.get(i).hour - 6).addStringTimeOnSaturday((timeTableItems.get(i).min > 9 ? "" + String.valueOf(timeTableItems.get(i).min) : "0" + String.valueOf(timeTableItems.get(i).min)));
+                case BusDataManager.SATURDAY:
+                    rows.get(busTimeList.get(i).hour - 6).addStringTimeOnSaturday((busTimeList.get(i).min > 9 ? "" + String.valueOf(busTimeList.get(i).min) : "0" + String.valueOf(busTimeList.get(i).min)));
                     break;
-                case TimeDataController.SUNDAY:
-                    rows.get(timeTableItems.get(i).hour - 6).addStringTimeOnSunday((timeTableItems.get(i).min > 9 ? "" + String.valueOf(timeTableItems.get(i).min) : "0" + String.valueOf(timeTableItems.get(i).min)));
+                case BusDataManager.SUNDAY:
+                    rows.get(busTimeList.get(i).hour - 6).addStringTimeOnSunday((busTimeList.get(i).min > 9 ? "" + String.valueOf(busTimeList.get(i).min) : "0" + String.valueOf(busTimeList.get(i).min)));
                     break;
-                case TimeDataController.HOLIDAY_IN_SCHOOL:
-                    rows.get(timeTableItems.get(i).hour - 6).addStringTimeOnHoliday((timeTableItems.get(i).min > 9 ? "" + String.valueOf(timeTableItems.get(i).min) : "0" + String.valueOf(timeTableItems.get(i).min)));
+                case BusDataManager.HOLIDAY_IN_SCHOOL:
+                    rows.get(busTimeList.get(i).hour - 6).addStringTimeOnHoliday((busTimeList.get(i).min > 9 ? "" + String.valueOf(busTimeList.get(i).min) : "0" + String.valueOf(busTimeList.get(i).min)));
                     break;
             }
         }

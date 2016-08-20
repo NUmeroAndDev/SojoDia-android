@@ -4,15 +4,10 @@ public class Constants {
 
     public static final String PREFERENCES = "PREFERENCES";
     public static final String VERSION_CODE = "FIRST_BOOT";
+    public static final String DATE = "DATE";
 
     public static final String RECIPROCATING = "RECIPROCATING";
 
     public static final int ROUTE_TK = 0;
     public static final int ROUTE_TND = 1;
-
-    public static final int WEEKDAY = 0;
-    public static final int SATURDAY = 1;
-    public static final int SUNDAY = 2;
-    public static final int HOLIDAY_IN_SCHOOL = 3;
-    public static final int TIME_TABLE_ALL = 4;
 }

@@ -1,4 +1,4 @@
-package com.numero.sojodia.Adapter;
+package com.numero.sojodia.Adapters;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.numero.sojodia.R;
-import com.numero.sojodia.Model.TimeTableRow;
+import com.numero.sojodia.Models.TimeTableRow;
 
 import java.util.ArrayList;
 import java.util.Calendar;

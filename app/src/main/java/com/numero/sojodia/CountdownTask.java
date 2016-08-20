@@ -5,8 +5,9 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 
-import com.numero.sojodia.Model.Time;
-import com.numero.sojodia.Model.TimeTableItem;
+import com.numero.sojodia.Managers.BusDataManager;
+import com.numero.sojodia.Models.BusTime;
+import com.numero.sojodia.Models.Time;
 import com.numero.sojodia.Utils.Holiday;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Calendar;
 
 public class CountdownTask extends AsyncTask<Void, Void, Void> {
 
-    private ArrayList<TimeTableItem> tkTimeList, tndTimeList;
+    private ArrayList<BusTime> tkTimeList, tndTimeList;
     private Handler handler;
     private Context context;
     private Time tkTime, tndTime, nowTime, nextTime;
@@ -54,8 +55,8 @@ public class CountdownTask extends AsyncTask<Void, Void, Void> {
         try {
             while (true) {
                 if (isDateChanged()) {
-                    TimeDataController.setTKTimeList(tkTimeList, reciprocating, getWeek());
-                    TimeDataController.setTNDTimeList(tndTimeList, reciprocating, getWeek());
+                    BusDataManager.initBusDataTK(context, tkTimeList, reciprocating, getWeek());
+                    BusDataManager.initBusDataTND(context, tndTimeList, reciprocating, getWeek());
                     nowDayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
                     handler.sendMessage(Message.obtain());
                 }
@@ -182,15 +183,15 @@ public class CountdownTask extends AsyncTask<Void, Void, Void> {
     private int getWeek() {
         holiday.setToday();
         if (holiday.isHoliday()) {
-            return (holiday.isSchool() ? TimeDataController.HOLIDAY_IN_SCHOOL : TimeDataController.SUNDAY);
+            return (holiday.isSchool() ? BusDataManager.HOLIDAY_IN_SCHOOL : BusDataManager.SUNDAY);
         } else {
             switch (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
                 case Calendar.SUNDAY:
-                    return TimeDataController.SUNDAY;
+                    return BusDataManager.SUNDAY;
                 case Calendar.SATURDAY:
-                    return TimeDataController.SATURDAY;
+                    return BusDataManager.SATURDAY;
                 default:
-                    return TimeDataController.WEEKDAY;
+                    return BusDataManager.WEEKDAY;
             }
         }
     }
