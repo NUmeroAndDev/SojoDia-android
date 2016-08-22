@@ -78,7 +78,7 @@ public class BusDataManager {
                 int minutesValue = Integer.valueOf(stringTokenizer.nextToken());
                 int weekValue = Integer.valueOf(stringTokenizer.nextToken());
 
-                if (week == ALL || Integer.valueOf(stringTokenizer.nextToken()) == week) {
+                if (week == ALL || weekValue == week) {
                     timeList.add(new BusTime(hourValue, minutesValue, weekValue));
                 }
             }
@@ -108,7 +108,7 @@ public class BusDataManager {
                 int minutesValue = Integer.valueOf(stringTokenizer.nextToken());
                 int weekValue = Integer.valueOf(stringTokenizer.nextToken());
 
-                if (week == ALL || Integer.valueOf(stringTokenizer.nextToken()) == week) {
+                if (week == ALL || weekValue == week) {
                     timeList.add(new BusTime(hourValue, minutesValue, weekValue));
                 }
             }
