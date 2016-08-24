@@ -1,11 +1,13 @@
 package com.numero.sojodia;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.numero.sojodia.Adapters.ReciprocatingFragmentPagerAdapter;
 import com.numero.sojodia.Dialogs.UpdateNotificationDialog;
@@ -16,7 +18,6 @@ import com.numero.sojodia.Utils.DateUtil;
 import com.numero.sojodia.Utils.NetworkUtil;
 
 public class MainActivity extends AppCompatActivity {
-//    ToDo: 更新確認のオンオフ
 
     private long versionCode = 0L;
 
@@ -24,7 +25,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        Configuration configuration = getResources().getConfiguration();
+        switch (configuration.orientation){
+            case Configuration.ORIENTATION_PORTRAIT:
+                toolbar.setVisibility(View.VISIBLE);
+                break;
+            case Configuration.ORIENTATION_LANDSCAPE:
+                toolbar.setVisibility(View.GONE);
+
+                break;
+        }
 
         ReciprocatingFragmentPagerAdapter fragmentPagerAdapter = new ReciprocatingFragmentPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);

@@ -51,7 +51,7 @@ public class BusDataManager {
 
 
     private static void parseBusData(Context context, String fileName, ArrayList<BusTime> timeList, int week){
-        if (ApplicationPreferences.getVersionCode(context) == 0){
+        if (ApplicationPreferences.getVersionCode(context) == 20160401){
             parseFromAssets(context, fileName, timeList, week);
         } else {
             parseFromDownloadedFiles(context, fileName, timeList, week);
