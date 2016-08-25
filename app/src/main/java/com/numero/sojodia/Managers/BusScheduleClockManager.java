@@ -1,4 +1,4 @@
-package com.numero.sojodia;
+package com.numero.sojodia.Managers;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -8,12 +8,13 @@ import android.os.Message;
 import com.numero.sojodia.Managers.BusDataManager;
 import com.numero.sojodia.Models.BusTime;
 import com.numero.sojodia.Models.Time;
+import com.numero.sojodia.R;
 import com.numero.sojodia.Utils.Holiday;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class CountdownTask extends AsyncTask<Void, Void, Void> {
+public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
 
     private ArrayList<BusTime> tkTimeList, tndTimeList;
     private Handler handler;
@@ -25,7 +26,7 @@ public class CountdownTask extends AsyncTask<Void, Void, Void> {
 
     private CallbackOnProgress callbackOnProgress;
 
-    public CountdownTask(Context context, int reciprocating) {
+    public BusScheduleClockManager(Context context, int reciprocating) {
         this.tkTimeList = new ArrayList<>();
         this.tndTimeList = new ArrayList<>();
         this.context = context;
@@ -221,7 +222,7 @@ public class CountdownTask extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    interface CallbackOnProgress {
+    public interface CallbackOnProgress {
         void onProgressTK(String nextBusTimeString, String nextNextBusTimeString, String limitTimeString, int resColor);
 
         void onProgressTND(String nextBusTimeString, String nextNextBusTimeString, String limitTimeString, int resColor);

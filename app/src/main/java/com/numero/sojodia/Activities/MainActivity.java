@@ -1,4 +1,4 @@
-package com.numero.sojodia;
+package com.numero.sojodia.Activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -9,9 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.numero.sojodia.Adapters.ReciprocatingFragmentPagerAdapter;
+import com.numero.sojodia.Adapters.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.Dialogs.UpdateNotificationDialog;
 import com.numero.sojodia.Network.UpdateChecker;
+import com.numero.sojodia.R;
 import com.numero.sojodia.Utils.ApplicationPreferences;
 import com.numero.sojodia.Utils.Constants;
 import com.numero.sojodia.Utils.DateUtil;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        ReciprocatingFragmentPagerAdapter fragmentPagerAdapter = new ReciprocatingFragmentPagerAdapter(this, getSupportFragmentManager());
+        BusScheduleFragmentPagerAdapter fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(fragmentPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);

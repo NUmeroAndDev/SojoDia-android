@@ -1,4 +1,4 @@
-package com.numero.sojodia;
+package com.numero.sojodia.Fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,22 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.numero.sojodia.Managers.BusScheduleClockManager;
 import com.numero.sojodia.Dialogs.TimeTableDialog;
+import com.numero.sojodia.R;
 import com.numero.sojodia.Utils.Constants;
 
-public class ReciprocatingFragment extends Fragment implements CountdownTask.CallbackOnProgress {
+public class BusScheduleFragment extends Fragment implements BusScheduleClockManager.CallbackOnProgress {
 
     private TextView tkBusTimeTextViews[] = new TextView[3];
     private TextView tndBusTimeTextViews[] = new TextView[3];
     private TextView dateTextView;
-    private CountdownTask countdownTask;
+    private BusScheduleClockManager busScheduleClockManager;
     private int reciprocating;
 
-    public ReciprocatingFragment() {
+    public BusScheduleFragment() {
     }
 
-    public static ReciprocatingFragment newInstance(int reciprocating) {
-        ReciprocatingFragment fragment = new ReciprocatingFragment();
+    public static BusScheduleFragment newInstance(int reciprocating) {
+        BusScheduleFragment fragment = new BusScheduleFragment();
         Bundle args = new Bundle();
         args.putInt(Constants.RECIPROCATING, reciprocating);
         fragment.setArguments(args);
@@ -40,7 +42,7 @@ public class ReciprocatingFragment extends Fragment implements CountdownTask.Cal
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.reciprocating_fragment, null);
+        View view = inflater.inflate(R.layout.bus_schedule_fragment, null);
 
         reciprocating = getArguments().getInt(Constants.RECIPROCATING);
         dateTextView = (TextView) view.findViewById(R.id.date);
@@ -55,15 +57,15 @@ public class ReciprocatingFragment extends Fragment implements CountdownTask.Cal
     @Override
     public void onStart() {
         super.onStart();
-        countdownTask = new CountdownTask(getContext(), reciprocating);
-        countdownTask.setCallbackOnProgress(this);
-        countdownTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        busScheduleClockManager = new BusScheduleClockManager(getContext(), reciprocating);
+        busScheduleClockManager.setCallbackOnProgress(this);
+        busScheduleClockManager.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        countdownTask.cancel(true);
+        busScheduleClockManager.cancel(true);
     }
 
     private void initTimeTextViews(View view) {

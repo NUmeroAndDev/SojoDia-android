@@ -6,20 +6,20 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.numero.sojodia.R;
-import com.numero.sojodia.ReciprocatingFragment;
+import com.numero.sojodia.Fragments.BusScheduleFragment;
 
-public class ReciprocatingFragmentPagerAdapter extends FragmentPagerAdapter {
+public class BusScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Context context;
 
-    public ReciprocatingFragmentPagerAdapter(Context context, FragmentManager fragmentManager) {
+    public BusScheduleFragmentPagerAdapter(Context context, FragmentManager fragmentManager) {
         super(fragmentManager);
         this.context = context;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return ReciprocatingFragment.newInstance(position);
+        return BusScheduleFragment.newInstance(position);
     }
 
     @Override

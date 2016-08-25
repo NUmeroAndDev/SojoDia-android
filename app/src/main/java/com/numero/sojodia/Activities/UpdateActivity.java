@@ -1,4 +1,4 @@
-package com.numero.sojodia;
+package com.numero.sojodia.Activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
