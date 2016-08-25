@@ -21,16 +21,6 @@
     <string name="message_update">There is a new timetable data.\nDo you want to update?</string>
     <string name="positive_button_update">Update</string>
 
-    <!--ToDo: add date format-->
-
-    <string-array name="weeks">
-        <item>Sun</item>
-        <item>Mon</item>
-        <item>Tue</item>
-        <item>Wed</item>
-        <item>Thu</item>
-        <item>Fri</item>
-        <item>Sat</item>
-    </string-array>
+    <string name="date_pattern">EEE, MMM d</string>
 
 </resources>

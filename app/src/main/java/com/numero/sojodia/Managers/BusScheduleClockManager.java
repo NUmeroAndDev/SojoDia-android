@@ -5,10 +5,10 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 
-import com.numero.sojodia.Managers.BusDataManager;
 import com.numero.sojodia.Models.BusTime;
 import com.numero.sojodia.Models.Time;
 import com.numero.sojodia.R;
+import com.numero.sojodia.Utils.DateUtil;
 import com.numero.sojodia.Utils.Holiday;
 
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
         handler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(Message msg) {
-                callbackOnProgress.onHandlerDateChanged(getTodayString());
+                callbackOnProgress.onHandlerDateChanged(DateUtil.getTodayString(BusScheduleClockManager.this.context));
                 return false;
             }
         });
@@ -195,20 +195,6 @@ public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
                     return BusDataManager.WEEKDAY;
             }
         }
-    }
-
-    private String getTodayString() {
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-        int week = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-
-        String yearString = String.valueOf(year);
-        String monthString = month < 10 ? "0" + String.valueOf(month) : String.valueOf(month);
-        String dayString = day < 10 ? "0" + String.valueOf(day) : String.valueOf(day);
-        String weekStrings[] = context.getResources().getStringArray(R.array.weeks);
-
-        return yearString + "/" + monthString + "/" + dayString + "(" + weekStrings[week - 1] + ")";
     }
 
     private int getLimitTimeTextResColor(int hour, int min) {

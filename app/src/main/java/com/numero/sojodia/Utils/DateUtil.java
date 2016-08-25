@@ -1,19 +1,19 @@
 package com.numero.sojodia.Utils;
 
+import android.content.Context;
+import android.text.format.DateFormat;
+
+import com.numero.sojodia.R;
+
 import java.util.Calendar;
 
 public class DateUtil {
 
-    public static String getDateString(){
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-
-        String yearString = String.valueOf(year);
-        String monthString = month < 10 ? "0" + String.valueOf(month) : String.valueOf(month);
-        String dayString = day < 10 ? "0" + String.valueOf(day) : String.valueOf(day);
-
-        return yearString + monthString + dayString;
+    public static String getTodayStringOnlyFigure(){
+        return DateFormat.format("yyyyMMdd", Calendar.getInstance()).toString();
     }
 
+    public static String getTodayString(Context context) {
+        return DateFormat.format(context.getString(R.string.date_pattern), Calendar.getInstance()).toString();
+    }
 }

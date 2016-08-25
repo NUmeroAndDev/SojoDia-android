@@ -30,13 +30,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Configuration configuration = getResources().getConfiguration();
-        switch (configuration.orientation){
+        switch (configuration.orientation) {
             case Configuration.ORIENTATION_PORTRAIT:
                 toolbar.setVisibility(View.VISIBLE);
                 break;
             case Configuration.ORIENTATION_LANDSCAPE:
                 toolbar.setVisibility(View.GONE);
-
                 break;
         }
 
@@ -50,10 +49,12 @@ public class MainActivity extends AppCompatActivity {
             if (isTodayCheckUpdate()) {
                 return;
             }
+
             UpdateChecker checker = new UpdateChecker() {
                 @Override
                 public void callbackOnPostExecute(int resultCode, long versionCode) {
                     if (resultCode == UpdateChecker.RESULT_OK) {
+                        ApplicationPreferences.setUpdatedDate(MainActivity.this, DateUtil.getTodayStringOnlyFigure());
                         if (canUpdate(versionCode)) {
                             MainActivity.this.versionCode = versionCode;
                             showUpdateNotificationDialog();
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isTodayCheckUpdate() {
         if (ApplicationPreferences.getPreviousUpdatedDate(this).equals("")) {
             return false;
-        } else if (!ApplicationPreferences.getPreviousUpdatedDate(this).equals(DateUtil.getDateString())) {
+        } else if (!ApplicationPreferences.getPreviousUpdatedDate(this).equals(DateUtil.getTodayStringOnlyFigure())) {
             return false;
         }
         return true;

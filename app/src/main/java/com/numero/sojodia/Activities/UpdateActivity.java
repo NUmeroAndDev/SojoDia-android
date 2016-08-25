@@ -9,7 +9,6 @@ import com.numero.sojodia.Models.BusDataFile;
 import com.numero.sojodia.Utils.ApplicationPreferences;
 import com.numero.sojodia.Network.BusDataDownloader;
 import com.numero.sojodia.Utils.Constants;
-import com.numero.sojodia.Utils.DateUtil;
 
 public class UpdateActivity extends Activity{
 
@@ -33,7 +32,6 @@ public class UpdateActivity extends Activity{
             @Override
             public void callbackOnPostExecute(int resultCode) {
                 if (resultCode == BusDataDownloader.RESULT_OK) {
-                    ApplicationPreferences.setUpdatedDate(UpdateActivity.this, DateUtil.getDateString());
                     ApplicationPreferences.setVersionCode(UpdateActivity.this, versionCode);
                 }
                 dialog.dismiss();
