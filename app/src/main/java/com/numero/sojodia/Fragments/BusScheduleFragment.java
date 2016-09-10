@@ -4,10 +4,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.numero.sojodia.Managers.BusScheduleClockManager;
@@ -48,7 +48,7 @@ public class BusScheduleFragment extends Fragment implements BusScheduleClockMan
         dateTextView = (TextView) view.findViewById(R.id.date);
 
         initTimeTextViews(view);
-        initCardClickListener(view);
+        initButtonClickListener(view);
 
         return view;
     }
@@ -79,17 +79,17 @@ public class BusScheduleFragment extends Fragment implements BusScheduleClockMan
         }
     }
 
-    private void initCardClickListener(View view) {
-        CardView tkCardView = (CardView) view.findViewById(R.id.card_tk);
-        CardView tndCardView = (CardView) view.findViewById(R.id.card_tnd);
-        tkCardView.setOnClickListener(new View.OnClickListener() {
+    private void initButtonClickListener(View view) {
+        ImageButton tkTimeTableButton = (ImageButton) view.findViewById(R.id.time_table_tk_button);
+        ImageButton tndTimeTableButton = (ImageButton) view.findViewById(R.id.time_table_tnd_button);
+        tkTimeTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimeTableDialog dialog = new TimeTableDialog(getActivity(), Constants.ROUTE_TK, reciprocating);
                 dialog.show();
             }
         });
-        tndCardView.setOnClickListener(new View.OnClickListener() {
+        tndTimeTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimeTableDialog dialog = new TimeTableDialog(getActivity(), Constants.ROUTE_TND, reciprocating);
