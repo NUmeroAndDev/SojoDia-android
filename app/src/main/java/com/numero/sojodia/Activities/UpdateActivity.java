@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.numero.sojodia.Models.BusDataFile;
+import com.numero.sojodia.R;
 import com.numero.sojodia.Utils.ApplicationPreferences;
 import com.numero.sojodia.Network.BusDataDownloader;
 import com.numero.sojodia.Utils.Constants;
@@ -28,12 +30,10 @@ public class UpdateActivity extends Activity{
 
         BusDataFile files[] = BusDataFile.init();
 
-        BusDataDownloader downloader = new BusDataDownloader(this) {
+        BusDataDownloader downloader = BusDataDownloader.init(this).setCallback(new BusDataDownloader.Callback() {
             @Override
-            public void callbackOnPostExecute(int resultCode) {
-                if (resultCode == BusDataDownloader.RESULT_OK) {
-                    ApplicationPreferences.setVersionCode(UpdateActivity.this, versionCode);
-                }
+            public void onSuccess() {
+                ApplicationPreferences.setVersionCode(UpdateActivity.this, versionCode);
                 dialog.dismiss();
                 Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -41,10 +41,19 @@ public class UpdateActivity extends Activity{
             }
 
             @Override
-            public void callbackOnProgressUpdate() {
+            public void onFailure() {
+                dialog.dismiss();
+                Toast.makeText(UpdateActivity.this, getString(R.string.message_error), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onLoading() {
 
             }
-        };
+        });
         downloader.execute(files[0], files[1], files[2], files[3]);
     }
 }

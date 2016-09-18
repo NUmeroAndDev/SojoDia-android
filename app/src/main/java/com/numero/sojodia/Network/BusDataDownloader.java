@@ -12,16 +12,26 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-public abstract class BusDataDownloader extends AsyncTask<BusDataFile, Void, Void> {
+public class BusDataDownloader extends AsyncTask<BusDataFile, Void, Void> {
 
     public final static int RESULT_OK = 0;
     public final static int RESULT_ERROR = 1;
 
     private Context context;
+    private Callback callback;
     private int resultCode;
 
-    public BusDataDownloader(Context context){
+    BusDataDownloader(Context context){
         this.context = context;
+    }
+
+    public static BusDataDownloader init(Context context) {
+        return new BusDataDownloader(context);
+    }
+
+    public BusDataDownloader setCallback(Callback callback) {
+        this.callback = callback;
+        return this;
     }
 
     @Override
@@ -34,12 +44,21 @@ public abstract class BusDataDownloader extends AsyncTask<BusDataFile, Void, Voi
 
     @Override
     protected void onProgressUpdate(Void... progress) {
-        callbackOnProgressUpdate();
+        if (callback != null) {
+            callback.onLoading();
+        }
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        callbackOnPostExecute(resultCode);
+        if (callback == null) {
+            return;
+        }
+        if (resultCode == RESULT_OK) {
+            callback.onSuccess();
+        } else {
+            callback.onFailure();
+        }
     }
 
     private void connectExecute(BusDataFile file) {
@@ -70,6 +89,11 @@ public abstract class BusDataDownloader extends AsyncTask<BusDataFile, Void, Voi
         }
     }
 
-    public abstract void callbackOnPostExecute(int resultCode);
-    public abstract void callbackOnProgressUpdate();
+    public interface Callback {
+        void onSuccess();
+
+        void onFailure();
+
+        void onLoading();
+    }
 }

@@ -50,18 +50,21 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            UpdateChecker checker = new UpdateChecker() {
+            UpdateChecker checker = UpdateChecker.init().setCallback(new UpdateChecker.Callback() {
                 @Override
-                public void callbackOnPostExecute(int resultCode, long versionCode) {
-                    if (resultCode == UpdateChecker.RESULT_OK) {
-                        ApplicationPreferences.setUpdatedDate(MainActivity.this, DateUtil.getTodayStringOnlyFigure());
-                        if (canUpdate(versionCode)) {
-                            MainActivity.this.versionCode = versionCode;
-                            showUpdateNotificationDialog();
-                        }
+                public void onSuccess(long versionCode) {
+                    ApplicationPreferences.setUpdatedDate(MainActivity.this, DateUtil.getTodayStringOnlyFigure());
+                    if (canUpdate(versionCode)) {
+                        MainActivity.this.versionCode = versionCode;
+                        showUpdateNotificationDialog();
                     }
                 }
-            };
+
+                @Override
+                public void onFailure() {
+
+                }
+            });
             checker.execute();
         }
     }

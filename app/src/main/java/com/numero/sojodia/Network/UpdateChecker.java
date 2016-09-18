@@ -8,29 +8,46 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public abstract class UpdateChecker extends AsyncTask<Void, Void, Void>{
+public class UpdateChecker extends AsyncTask<Void, Void, Void>{
 
     public final static int RESULT_OK = 0;
     public final static int RESULT_ERROR = 1;
 
+    private Callback callback;
     private long versionCode = 0L;
     private int resultCode;
 
-    public UpdateChecker(){
+    UpdateChecker(){
+    }
+
+    public static UpdateChecker init() {
+        return new UpdateChecker();
+    }
+
+    public UpdateChecker setCallback(Callback callback) {
+        this.callback = callback;
+        return this;
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
-        connectExecute("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt");
+        executeConnect("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt");
         return null;
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        callbackOnPostExecute(resultCode, versionCode);
+        if (callback == null) {
+            return;
+        }
+        if (resultCode == RESULT_OK) {
+            callback.onSuccess(versionCode);
+        } else {
+            callback.onFailure();
+        }
     }
 
-    private void connectExecute(String urlString) {
+    private void executeConnect(String urlString) {
         try {
             URL url = new URL(urlString);
             InputStream inputStream = url.openConnection().getInputStream();
@@ -53,5 +70,9 @@ public abstract class UpdateChecker extends AsyncTask<Void, Void, Void>{
         }
     }
 
-    public abstract void callbackOnPostExecute(int resultCode, long versionCode);
+    public interface Callback {
+        void onSuccess(long versionCode);
+
+        void onFailure();
+    }
 }
