@@ -7,8 +7,8 @@ android {
         applicationId "com.numero.sojodia"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 28
-        versionName '2016.5.0(β)'
+        versionCode 29
+        versionName '5.0'
     }
     buildTypes {
         release {
