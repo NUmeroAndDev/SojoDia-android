@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_table"
+                    android:src="@drawable/ic_bus_stop"
                     android:background="?attr/selectableItemBackgroundBorderless"/>
 
             </RelativeLayout>
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_table"
+                    android:src="@drawable/ic_bus_stop"
                     android:background="?attr/selectableItemBackgroundBorderless"/>
 
             </RelativeLayout>
