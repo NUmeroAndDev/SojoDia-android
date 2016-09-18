@@ -1,10 +1,10 @@
-package com.numero.sojodia.Managers;
+package com.numero.sojodia.Manager;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 
-import com.numero.sojodia.Models.BusTime;
-import com.numero.sojodia.Utils.ApplicationPreferences;
+import com.numero.sojodia.Model.BusTime;
+import com.numero.sojodia.Util.PreferenceUtil;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -51,7 +51,7 @@ public class BusDataManager {
 
 
     private static void parseBusData(Context context, String fileName, ArrayList<BusTime> timeList, int week){
-        if (ApplicationPreferences.getVersionCode(context) == 20160401){
+        if (PreferenceUtil.getVersionCode(context) == 20160401){
             parseFromAssets(context, fileName, timeList, week);
         } else {
             parseFromDownloadedFiles(context, fileName, timeList, week);

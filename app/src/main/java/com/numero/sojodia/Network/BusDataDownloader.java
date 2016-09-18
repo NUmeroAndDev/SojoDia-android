@@ -3,7 +3,7 @@ package com.numero.sojodia.Network;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.numero.sojodia.Models.BusDataFile;
+import com.numero.sojodia.Model.BusDataFile;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

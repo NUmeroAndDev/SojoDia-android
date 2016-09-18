@@ -1,4 +1,4 @@
-package com.numero.sojodia.Adapters;
+package com.numero.sojodia.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

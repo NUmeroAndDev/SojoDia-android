@@ -1,4 +1,4 @@
-package com.numero.sojodia.Activities;
+package com.numero.sojodia.Activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.numero.sojodia.Models.BusDataFile;
+import com.numero.sojodia.Model.BusDataFile;
 import com.numero.sojodia.R;
-import com.numero.sojodia.Utils.ApplicationPreferences;
+import com.numero.sojodia.Util.PreferenceUtil;
 import com.numero.sojodia.Network.BusDataDownloader;
-import com.numero.sojodia.Utils.Constants;
+import com.numero.sojodia.Util.Constants;
 
 public class UpdateActivity extends Activity{
 
@@ -33,7 +33,7 @@ public class UpdateActivity extends Activity{
         BusDataDownloader downloader = BusDataDownloader.init(this).setCallback(new BusDataDownloader.Callback() {
             @Override
             public void onSuccess() {
-                ApplicationPreferences.setVersionCode(UpdateActivity.this, versionCode);
+                PreferenceUtil.setVersionCode(UpdateActivity.this, versionCode);
                 dialog.dismiss();
                 Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
                 startActivity(intent);

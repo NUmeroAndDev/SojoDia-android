@@ -1,4 +1,4 @@
-package com.numero.sojodia.Activities;
+package com.numero.sojodia.Activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -9,14 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.numero.sojodia.Adapters.BusScheduleFragmentPagerAdapter;
-import com.numero.sojodia.Dialogs.UpdateNotificationDialog;
+import com.numero.sojodia.Adapter.BusScheduleFragmentPagerAdapter;
+import com.numero.sojodia.View.UpdateNotificationDialog;
 import com.numero.sojodia.Network.UpdateChecker;
 import com.numero.sojodia.R;
-import com.numero.sojodia.Utils.ApplicationPreferences;
-import com.numero.sojodia.Utils.Constants;
-import com.numero.sojodia.Utils.DateUtil;
-import com.numero.sojodia.Utils.NetworkUtil;
+import com.numero.sojodia.Util.PreferenceUtil;
+import com.numero.sojodia.Util.Constants;
+import com.numero.sojodia.Util.DateUtil;
+import com.numero.sojodia.Util.NetworkUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             UpdateChecker checker = UpdateChecker.init().setCallback(new UpdateChecker.Callback() {
                 @Override
                 public void onSuccess(long versionCode) {
-                    ApplicationPreferences.setUpdatedDate(MainActivity.this, DateUtil.getTodayStringOnlyFigure());
+                    PreferenceUtil.setUpdatedDate(MainActivity.this, DateUtil.getTodayStringOnlyFigure());
                     if (canUpdate(versionCode)) {
                         MainActivity.this.versionCode = versionCode;
                         showUpdateNotificationDialog();
@@ -87,15 +87,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isTodayCheckUpdate() {
-        if (ApplicationPreferences.getPreviousUpdatedDate(this).equals("")) {
+        if (PreferenceUtil.getPreviousUpdatedDate(this).equals("")) {
             return false;
-        } else if (!ApplicationPreferences.getPreviousUpdatedDate(this).equals(DateUtil.getTodayStringOnlyFigure())) {
+        } else if (!PreferenceUtil.getPreviousUpdatedDate(this).equals(DateUtil.getTodayStringOnlyFigure())) {
             return false;
         }
         return true;
     }
 
     private boolean canUpdate(long versionCode) {
-        return ApplicationPreferences.getVersionCode(this) < versionCode;
+        return PreferenceUtil.getVersionCode(this) < versionCode;
     }
 }

@@ -1,9 +1,9 @@
-package com.numero.sojodia.Utils;
+package com.numero.sojodia.Util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class ApplicationPreferences {
+public class PreferenceUtil {
 
     public static long getVersionCode(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);

@@ -1,4 +1,4 @@
-package com.numero.sojodia.Models;
+package com.numero.sojodia.Model;
 
 public class TimeTableRow {
 

@@ -1,4 +1,4 @@
-package com.numero.sojodia.Dialogs;
+package com.numero.sojodia.View;
 
 import android.content.Context;
 import android.content.DialogInterface;

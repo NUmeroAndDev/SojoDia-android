@@ -1,15 +1,15 @@
-package com.numero.sojodia.Managers;
+package com.numero.sojodia.Manager;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 
-import com.numero.sojodia.Models.BusTime;
-import com.numero.sojodia.Models.Time;
+import com.numero.sojodia.Model.BusTime;
+import com.numero.sojodia.Model.Time;
 import com.numero.sojodia.R;
-import com.numero.sojodia.Utils.DateUtil;
-import com.numero.sojodia.Utils.Holiday;
+import com.numero.sojodia.Util.DateUtil;
+import com.numero.sojodia.Util.Holiday;
 
 import java.util.ArrayList;
 import java.util.Calendar;
