@@ -1,4 +1,4 @@
-package com.numero.sojodia.Fragment;
+package com.numero.sojodia.fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.numero.sojodia.Manager.BusScheduleClockManager;
-import com.numero.sojodia.View.TimeTableDialog;
+import com.numero.sojodia.manager.BusScheduleClockManager;
+import com.numero.sojodia.view.TimeTableDialog;
 import com.numero.sojodia.R;
-import com.numero.sojodia.Util.Constants;
+import com.numero.sojodia.util.Constants;
 
 public class BusScheduleFragment extends Fragment implements BusScheduleClockManager.CallbackOnProgress {
 

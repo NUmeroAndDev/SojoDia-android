@@ -1,4 +1,4 @@
-package com.numero.sojodia.Util;
+package com.numero.sojodia.util;
 
 public class Constants {
 

@@ -1,4 +1,4 @@
-package com.numero.sojodia.Adapter;
+package com.numero.sojodia.adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.numero.sojodia.R;
-import com.numero.sojodia.Fragment.BusScheduleFragment;
+import com.numero.sojodia.fragment.BusScheduleFragment;
 
 public class BusScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
 

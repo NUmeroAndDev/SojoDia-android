@@ -1,9 +1,9 @@
-package com.numero.sojodia.Network;
+package com.numero.sojodia.network;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.numero.sojodia.Model.BusDataFile;
+import com.numero.sojodia.model.BusDataFile;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

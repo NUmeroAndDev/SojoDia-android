@@ -1,4 +1,4 @@
-package com.numero.sojodia.Activity;
+package com.numero.sojodia.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.numero.sojodia.Model.BusDataFile;
+import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.R;
-import com.numero.sojodia.Util.PreferenceUtil;
-import com.numero.sojodia.Network.BusDataDownloader;
-import com.numero.sojodia.Util.Constants;
+import com.numero.sojodia.util.PreferenceUtil;
+import com.numero.sojodia.network.BusDataDownloader;
+import com.numero.sojodia.util.Constants;
 
 public class UpdateActivity extends Activity{
 

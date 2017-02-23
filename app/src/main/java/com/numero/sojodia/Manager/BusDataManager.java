@@ -1,10 +1,10 @@
-package com.numero.sojodia.Manager;
+package com.numero.sojodia.manager;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 
-import com.numero.sojodia.Model.BusTime;
-import com.numero.sojodia.Util.PreferenceUtil;
+import com.numero.sojodia.model.BusTime;
+import com.numero.sojodia.util.PreferenceUtil;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

@@ -1,4 +1,4 @@
-package com.numero.sojodia.Model;
+package com.numero.sojodia.model;
 
 import java.util.Calendar;
 

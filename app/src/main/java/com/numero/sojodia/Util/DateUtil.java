@@ -1,4 +1,4 @@
-package com.numero.sojodia.Util;
+package com.numero.sojodia.util;
 
 import android.content.Context;
 import android.text.format.DateFormat;

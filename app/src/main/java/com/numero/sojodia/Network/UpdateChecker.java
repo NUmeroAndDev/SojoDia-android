@@ -1,4 +1,4 @@
-package com.numero.sojodia.Network;
+package com.numero.sojodia.network;
 
 import android.os.AsyncTask;
 

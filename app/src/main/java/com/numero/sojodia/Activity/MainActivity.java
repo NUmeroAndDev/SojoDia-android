@@ -1,4 +1,4 @@
-package com.numero.sojodia.Activity;
+package com.numero.sojodia.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -9,14 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.numero.sojodia.Adapter.BusScheduleFragmentPagerAdapter;
-import com.numero.sojodia.View.UpdateNotificationDialog;
-import com.numero.sojodia.Network.UpdateChecker;
+import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
+import com.numero.sojodia.view.UpdateNotificationDialog;
+import com.numero.sojodia.network.UpdateChecker;
 import com.numero.sojodia.R;
-import com.numero.sojodia.Util.PreferenceUtil;
-import com.numero.sojodia.Util.Constants;
-import com.numero.sojodia.Util.DateUtil;
-import com.numero.sojodia.Util.NetworkUtil;
+import com.numero.sojodia.util.PreferenceUtil;
+import com.numero.sojodia.util.Constants;
+import com.numero.sojodia.util.DateUtil;
+import com.numero.sojodia.util.NetworkUtil;
 
 public class MainActivity extends AppCompatActivity {
 

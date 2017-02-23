@@ -1,4 +1,4 @@
-package com.numero.sojodia.View;
+package com.numero.sojodia.view;
 
 import android.content.Context;
 import android.os.Handler;
@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.numero.sojodia.Adapter.TimeTableRowAdapter;
-import com.numero.sojodia.Manager.BusDataManager;
-import com.numero.sojodia.Model.BusTime;
-import com.numero.sojodia.Model.TimeTableRow;
+import com.numero.sojodia.adapter.TimeTableRowAdapter;
+import com.numero.sojodia.manager.BusDataManager;
+import com.numero.sojodia.model.BusTime;
+import com.numero.sojodia.model.TimeTableRow;
 import com.numero.sojodia.R;
-import com.numero.sojodia.Util.Constants;
+import com.numero.sojodia.util.Constants;
 
 import java.util.ArrayList;
 
