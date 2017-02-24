@@ -24,18 +24,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initViews();
+        checkUpdate();
+    }
+
+    private void initViews() {
         BusScheduleFragmentPagerAdapter fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(fragmentPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+    }
 
+    private void checkUpdate() {
         if (NetworkUtil.canNetworkConnect(this)) {
             if (isTodayCheckUpdate()) {
                 return;
             }
 
-            UpdateChecker checker = UpdateChecker.init().setCallback(new UpdateChecker.Callback() {
+            UpdateChecker.init().setCallback(new UpdateChecker.Callback() {
                 @Override
                 public void onSuccess(long versionCode) {
                     PreferenceUtil.setUpdatedDate(MainActivity.this, DateUtil.getTodayStringOnlyFigure());
@@ -48,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onFailure() {
                 }
-            });
-            checker.execute();
+            }).execute();
         }
     }
 
