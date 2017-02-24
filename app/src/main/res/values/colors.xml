@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#8BC34A</color>
-    <color name="color_primary_dark">#689F38</color>
-    <color name="color_primary_light">#DCEDC8</color>
-    <color name="color_accent">#FF4081</color>
+    <color name="color_primary">#F5F5F5</color>
+    <color name="color_primary_dark">#E0E0E0</color>
+    <color name="color_accent">#8BC34A</color>
     <color name="text_primary">#212121</color>
     <color name="text_secondary">#727272</color>
+
+    <!--MainActivity-->
+    <color name="background">#FAFAFA</color>
 
     <!--Fragment-->
     <color name="background_card_title">#8BC34A</color>

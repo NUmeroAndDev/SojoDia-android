@@ -1,13 +1,10 @@
 package com.numero.sojodia.activity;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.view.UpdateNotificationDialog;
@@ -26,18 +23,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        Configuration configuration = getResources().getConfiguration();
-        switch (configuration.orientation) {
-            case Configuration.ORIENTATION_PORTRAIT:
-                toolbar.setVisibility(View.VISIBLE);
-                break;
-            case Configuration.ORIENTATION_LANDSCAPE:
-                toolbar.setVisibility(View.GONE);
-                break;
-        }
 
         BusScheduleFragmentPagerAdapter fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.container);
