@@ -27,10 +27,10 @@ public class TimeTableRowHolder extends RecyclerView.ViewHolder {
         View view = itemView.findViewById(R.id.row_layout);
         Context context = itemView.getContext();
         if (isCurrentHour) {
-            view.setBackgroundColor(ContextCompat.getColor(context, R.color.color_table_row_highlight));
+            view.setBackgroundColor(ContextCompat.getColor(context, R.color.time_table_dialog_row_highlight));
         } else {
 //            Fixme setBackground(null)
-            view.setBackgroundColor(ContextCompat.getColor(context, R.color.color_table_row));
+            view.setBackgroundColor(ContextCompat.getColor(context, R.color.time_table_dialog_row_background));
         }
     }
 

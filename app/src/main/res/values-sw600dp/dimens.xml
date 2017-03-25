@@ -9,7 +9,7 @@
     <dimen name="text_size_title">22sp</dimen>
     <dimen name="text_size_date">22sp</dimen>
 
-    <dimen name="text_size_heading">18sp</dimen>
-    <dimen name="text_size_row_time">18sp</dimen>
+    <dimen name="time_table_dialog_header_text">18sp</dimen>
+    <dimen name="time_table_dialog_row_text">18sp</dimen>
 
 </resources>
