@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 import com.numero.sojodia.R;
 import com.numero.sojodia.model.TimeTableRow;
 
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class TimeTableRowAdapter extends RecyclerView.Adapter<TimeTableRowHolder> {
 
-    private ArrayList<TimeTableRow> rows;
+    private List<TimeTableRow> rows;
 
-    public TimeTableRowAdapter(ArrayList<TimeTableRow> rows) {
+    public TimeTableRowAdapter(List<TimeTableRow> rows) {
         this.rows = rows;
     }
 
@@ -26,7 +26,7 @@ public class TimeTableRowAdapter extends RecyclerView.Adapter<TimeTableRowHolder
     }
 
     @Override
-    public void onBindViewHolder(final TimeTableRowHolder holder, int position) {
+    public void onBindViewHolder(TimeTableRowHolder holder, int position) {
         holder.setTimeTableRow(rows.get(position));
         holder.setIsCurrentHour(position == (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) - 6));
     }
