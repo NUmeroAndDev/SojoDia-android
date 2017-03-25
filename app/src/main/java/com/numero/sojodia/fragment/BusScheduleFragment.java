@@ -85,15 +85,13 @@ public class BusScheduleFragment extends Fragment implements BusScheduleClockMan
         tkTimeTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimeTableDialog dialog = new TimeTableDialog(getActivity(), Constants.ROUTE_TK, reciprocating);
-                dialog.show();
+                TimeTableDialog.init(getActivity(), Constants.ROUTE_TK, reciprocating).show();
             }
         });
         tndTimeTableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimeTableDialog dialog = new TimeTableDialog(getActivity(), Constants.ROUTE_TND, reciprocating);
-                dialog.show();
+                TimeTableDialog.init(getActivity(), Constants.ROUTE_TND, reciprocating).show();
             }
         });
     }

@@ -1,59 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/color_primary_dark">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/hour"
-        android:layout_width="@dimen/hour_table_dialog_width"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/frame_border_table_dialog"
-        android:layout_marginRight="@dimen/frame_border_table_dialog"
-        android:layout_marginBottom="@dimen/row_padding_table_dialog"
-        android:gravity="center"
-        android:textSize="@dimen/text_size_row_time"
-        android:textColor="@color/text_secondary" />
-
-    <TextView
-        android:id="@+id/weekday"
+    <LinearLayout
+        android:id="@+id/row_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginRight="@dimen/frame_border_table_dialog"
-        android:layout_marginBottom="@dimen/row_padding_table_dialog"
-        android:textSize="@dimen/text_size_row_time"
-        android:textColor="@color/text_secondary" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/saturday"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginRight="@dimen/frame_border_table_dialog"
-        android:layout_marginBottom="@dimen/row_padding_table_dialog"
-        android:textSize="@dimen/text_size_row_time"
-        android:textColor="@color/text_secondary" />
+        <TextView
+            android:id="@+id/hour"
+            android:layout_width="@dimen/hour_table_dialog_width"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/time_table_dialog_text_margin"
+            android:paddingTop="@dimen/time_table_dialog_text_margin"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_row_time" />
 
-    <TextView
-        android:id="@+id/sunday"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginRight="@dimen/frame_border_table_dialog"
-        android:layout_marginBottom="@dimen/row_padding_table_dialog"
-        android:textSize="@dimen/text_size_row_time"
-        android:textColor="@color/text_secondary" />
+        <View
+            android:layout_width="@dimen/time_table_dialog_divider"
+            android:layout_height="match_parent"
+            android:background="@color/color_primary_dark" />
 
-    <TextView
-        android:id="@+id/holiday_in_school"
+        <TextView
+            android:id="@+id/weekday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/time_table_dialog_text_margin"
+            android:paddingTop="@dimen/time_table_dialog_text_margin"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_row_time" />
+
+        <View
+            android:layout_width="@dimen/time_table_dialog_divider"
+            android:layout_height="match_parent"
+            android:background="@color/color_primary_dark" />
+
+        <TextView
+            android:id="@+id/saturday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/time_table_dialog_text_margin"
+            android:paddingTop="@dimen/time_table_dialog_text_margin"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_row_time" />
+
+        <View
+            android:layout_width="@dimen/time_table_dialog_divider"
+            android:layout_height="match_parent"
+            android:background="@color/color_primary_dark" />
+
+        <TextView
+            android:id="@+id/sunday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/time_table_dialog_text_margin"
+            android:paddingTop="@dimen/time_table_dialog_text_margin"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_row_time" />
+
+        <View
+            android:layout_width="@dimen/time_table_dialog_divider"
+            android:layout_height="match_parent"
+            android:background="@color/color_primary_dark" />
+
+        <TextView
+            android:id="@+id/holiday_in_school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/time_table_dialog_text_margin"
+            android:paddingTop="@dimen/time_table_dialog_text_margin"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_row_time" />
+
+    </LinearLayout>
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginRight="@dimen/frame_border_table_dialog"
-        android:layout_marginBottom="@dimen/row_padding_table_dialog"
-        android:textSize="@dimen/text_size_row_time"
-        android:textColor="@color/text_secondary" />
+        android:layout_height="@dimen/time_table_dialog_divider"
+        android:background="@color/color_primary_dark" />
 
 </LinearLayout>

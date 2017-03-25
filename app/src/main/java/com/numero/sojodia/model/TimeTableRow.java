@@ -2,33 +2,37 @@ package com.numero.sojodia.model;
 
 public class TimeTableRow {
 
-    public String hourString, timeWeekday, timeSaturday, timeSunday, timeHolidayInSchool;
+    public String hourText;
+    public String timeTextOnWeekday;
+    public String timeTextOnSaturday;
+    public String timeTextOnSunday;
+    public String timeTextOnHolidayInSchool;
 
-    public TimeTableRow(){
-        hourString = "";
-        timeWeekday = "";
-        timeSaturday = "";
-        timeSunday = "";
-        timeHolidayInSchool = "";
+    public TimeTableRow() {
+        hourText = "";
+        timeTextOnWeekday = "";
+        timeTextOnSaturday = "";
+        timeTextOnSunday = "";
+        timeTextOnHolidayInSchool = "";
     }
 
-    public void setHourString(String str){
-        this.hourString = str;
+    public void setHourText(String text) {
+        this.hourText = text;
     }
 
-    public void addStringTimeOnWeekday(String str){
-        timeWeekday += str + " ";
+    public void addTimeTextOnWeekday(String text) {
+        timeTextOnWeekday += String.format("%s ", text);
     }
 
-    public void addStringTimeOnSaturday(String str){
-        timeSaturday += str + " ";
+    public void addTimeTextOnSaturday(String text) {
+        timeTextOnSaturday += String.format("%s ", text);
     }
 
-    public void addStringTimeOnSunday(String str){
-        timeSunday += str + " ";
+    public void addTimeTextOnSunday(String text) {
+        timeTextOnSunday += String.format("%s ", text);
     }
 
-    public void addStringTimeOnHoliday(String str){
-        timeHolidayInSchool += str + " ";
+    public void addTimeTextOnHolidayInSchool(String text) {
+        timeTextOnHolidayInSchool += String.format("%s ", text);
     }
 }
