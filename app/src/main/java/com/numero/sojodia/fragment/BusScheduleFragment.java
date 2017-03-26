@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.numero.sojodia.activity.MainActivity;
@@ -192,18 +191,28 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initTimeTableButton(View view) {
-        ImageButton tkTimeTableButton = (ImageButton) view.findViewById(R.id.time_table_tk_button);
-        ImageButton tndTimeTableButton = (ImageButton) view.findViewById(R.id.time_table_tnd_button);
-        tkTimeTableButton.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.time_table_tk_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimeTableDialog.init(getActivity(), Constants.ROUTE_TK, reciprocating).show();
+                TimeTableDialog.init(getActivity())
+                        .setReciprocating(reciprocating)
+                        .setRouteTk()
+                        .setBusTimeListOnWeekday(getTkBusTimeList(BusDataManager.WEEKDAY))
+                        .setBusTimeListOnSaturday(getTkBusTimeList(BusDataManager.SATURDAY))
+                        .setBusTimeListOnSunday(getTkBusTimeList(BusDataManager.SUNDAY))
+                        .show();
             }
         });
-        tndTimeTableButton.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.time_table_tnd_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimeTableDialog.init(getActivity(), Constants.ROUTE_TND, reciprocating).show();
+                TimeTableDialog.init(getActivity())
+                        .setReciprocating(reciprocating)
+                        .setRouteTnd()
+                        .setBusTimeListOnWeekday(getTndBusTimeList(BusDataManager.WEEKDAY))
+                        .setBusTimeListOnSaturday(getTndBusTimeList(BusDataManager.SATURDAY))
+                        .setBusTimeListOnSunday(getTndBusTimeList(BusDataManager.SUNDAY))
+                        .show();
             }
         });
     }
@@ -333,5 +342,21 @@ public class BusScheduleFragment extends Fragment {
 
     private boolean isTndLastBus() {
         return getCurrentTndBusTimePosition() == (tndTimeList.size() - 1);
+    }
+
+    private List<BusTime> getTkBusTimeList(int week) {
+        if (getActivity() instanceof MainActivity) {
+            MainActivity activity = (MainActivity) getActivity();
+            return activity.getTkBusTimeList(reciprocating, week);
+        }
+        return null;
+    }
+
+    private List<BusTime> getTndBusTimeList(int week) {
+        if (getActivity() instanceof MainActivity) {
+            MainActivity activity = (MainActivity) getActivity();
+            return activity.getTndBusTimeList(reciprocating, week);
+        }
+        return null;
     }
 }

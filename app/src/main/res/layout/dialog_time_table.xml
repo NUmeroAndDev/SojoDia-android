@@ -86,23 +86,6 @@
                 android:textColor="@color/time_table_dialog_text_sunday"
                 android:textSize="@dimen/time_table_dialog_header_text" />
 
-            <View
-                android:layout_width="@dimen/time_table_dialog_row_divider"
-                android:layout_height="match_parent"
-                android:background="@color/time_table_dialog_row_divider" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/time_table_dialog_row_background"
-                android:gravity="center"
-                android:paddingBottom="@dimen/time_table_dialog_text_margin"
-                android:paddingTop="@dimen/time_table_dialog_text_margin"
-                android:text="@string/holiday_in_school"
-                android:textColor="@color/time_table_dialog_text_holiday_in_school"
-                android:textSize="@dimen/time_table_dialog_header_text" />
-
         </LinearLayout>
 
         <View

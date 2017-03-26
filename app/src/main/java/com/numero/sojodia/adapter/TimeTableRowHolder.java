@@ -20,7 +20,6 @@ public class TimeTableRowHolder extends RecyclerView.ViewHolder {
         setTimeTextOnWeekday(row.timeTextOnWeekday);
         setTimeTextOnSaturday(row.timeTextOnSaturday);
         setTimeTextOnSunday(row.timeTextOnSunday);
-        setTimeTextOnHolidayInSchool(row.timeTextOnHolidayInSchool);
     }
 
     public void setIsCurrentHour(boolean isCurrentHour) {
@@ -51,11 +50,6 @@ public class TimeTableRowHolder extends RecyclerView.ViewHolder {
 
     private void setTimeTextOnSunday(String text) {
         TextView textView = (TextView) itemView.findViewById(R.id.sunday);
-        textView.setText(text);
-    }
-
-    private void setTimeTextOnHolidayInSchool(String text) {
-        TextView textView = (TextView) itemView.findViewById(R.id.holiday_in_school);
         textView.setText(text);
     }
 

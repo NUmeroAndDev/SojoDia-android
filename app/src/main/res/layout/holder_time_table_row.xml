@@ -65,21 +65,6 @@
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/time_table_dialog_row_text" />
 
-        <View
-            android:layout_width="@dimen/time_table_dialog_row_divider"
-            android:layout_height="match_parent"
-            android:background="@color/time_table_dialog_row_divider" />
-
-        <TextView
-            android:id="@+id/holiday_in_school"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingBottom="@dimen/time_table_dialog_text_margin"
-            android:paddingTop="@dimen/time_table_dialog_text_margin"
-            android:textColor="@color/text_secondary"
-            android:textSize="@dimen/time_table_dialog_row_text" />
-
     </LinearLayout>
 
     <View
