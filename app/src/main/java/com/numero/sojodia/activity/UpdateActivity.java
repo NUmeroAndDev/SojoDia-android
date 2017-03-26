@@ -12,9 +12,13 @@ import com.numero.sojodia.util.PreferenceUtil;
 import com.numero.sojodia.network.BusDataDownloader;
 import com.numero.sojodia.util.Constants;
 
-public class UpdateActivity extends Activity{
+import java.util.ArrayList;
+import java.util.List;
+
+public class UpdateActivity extends Activity {
 
     private long versionCode;
+    private List<BusDataFile> fileList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,9 @@ public class UpdateActivity extends Activity{
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
-        BusDataFile files[] = BusDataFile.init();
+        initBusDataFile();
 
-        BusDataDownloader downloader = BusDataDownloader.init(this).setCallback(new BusDataDownloader.Callback() {
+        BusDataDownloader.init(this).setBusDataFileList(fileList).setCallback(new BusDataDownloader.Callback() {
             @Override
             public void onSuccess() {
                 PreferenceUtil.setVersionCode(UpdateActivity.this, versionCode);
@@ -53,7 +57,13 @@ public class UpdateActivity extends Activity{
             public void onLoading() {
 
             }
-        });
-        downloader.execute(files[0], files[1], files[2], files[3]);
+        }).execute();
+    }
+
+    private void initBusDataFile() {
+        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/TkToKutc.csv", "TkToKutc.csv"));
+        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/TndToKutc.csv", "TndToKutc.csv"));
+        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/KutcToTk.csv", "KutcToTk.csv"));
+        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/KutcToTnd.csv", "KutcToTnd.csv"));
     }
 }

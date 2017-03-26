@@ -11,14 +11,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 
-public class BusDataDownloader extends AsyncTask<BusDataFile, Void, Void> {
+public class BusDataDownloader extends AsyncTask<Void, Void, Void> {
 
     public final static int RESULT_OK = 0;
     public final static int RESULT_ERROR = 1;
 
     private Context context;
     private Callback callback;
+    private List<BusDataFile> fileList;
     private int resultCode;
 
     BusDataDownloader(Context context){
@@ -29,15 +31,22 @@ public class BusDataDownloader extends AsyncTask<BusDataFile, Void, Void> {
         return new BusDataDownloader(context);
     }
 
+    public BusDataDownloader setBusDataFileList(List<BusDataFile> fileList) {
+        this.fileList = fileList;
+        return this;
+    }
+
     public BusDataDownloader setCallback(Callback callback) {
         this.callback = callback;
         return this;
     }
 
     @Override
-    protected Void doInBackground(BusDataFile... files) {
-        for(BusDataFile file : files){
-            connectExecute(file);
+    protected Void doInBackground(Void... params) {
+        if (fileList != null) {
+            for(BusDataFile file : fileList){
+                connectExecute(file);
+            }
         }
         return null;
     }
@@ -63,7 +72,7 @@ public class BusDataDownloader extends AsyncTask<BusDataFile, Void, Void> {
 
     private void connectExecute(BusDataFile file) {
         try {
-            URL url = new URL(file.URL);
+            URL url = new URL(file.url);
             InputStream inputStream = url.openConnection().getInputStream();
 
             DataInputStream dataInputStream = new DataInputStream(inputStream);
