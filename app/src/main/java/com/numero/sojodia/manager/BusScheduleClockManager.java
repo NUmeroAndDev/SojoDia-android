@@ -57,8 +57,6 @@ public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
         try {
             while (true) {
                 if (isDateChanged()) {
-                    BusDataManager.initBusDataTK(context, tkTimeList, reciprocating, getWeek());
-                    BusDataManager.initBusDataTND(context, tndTimeList, reciprocating, getWeek());
                     nowDayOfMonth = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
                     handler.sendMessage(Message.obtain());
                 }
@@ -182,21 +180,21 @@ public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
         return (nowDayOfMonth != Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
     }
 
-    private int getWeek() {
-        holiday.setToday();
-        if (holiday.isHoliday()) {
-            return (holiday.isSchool() ? BusDataManager.HOLIDAY_IN_SCHOOL : BusDataManager.SUNDAY);
-        } else {
-            switch (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
-                case Calendar.SUNDAY:
-                    return BusDataManager.SUNDAY;
-                case Calendar.SATURDAY:
-                    return BusDataManager.SATURDAY;
-                default:
-                    return BusDataManager.WEEKDAY;
-            }
-        }
-    }
+//    private int getWeek() {
+//        holiday.setToday();
+//        if (holiday.isHoliday()) {
+//            return (holiday.isSchool() ? BusDataManager.HOLIDAY_IN_SCHOOL : BusDataManager.SUNDAY);
+//        } else {
+//            switch (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
+//                case Calendar.SUNDAY:
+//                    return BusDataManager.SUNDAY;
+//                case Calendar.SATURDAY:
+//                    return BusDataManager.SATURDAY;
+//                default:
+//                    return BusDataManager.WEEKDAY;
+//            }
+//        }
+//    }
 
     private int getLimitTimeTextResColor(int hour, int min) {
         if (nowTime.sec % 2 == 0) {

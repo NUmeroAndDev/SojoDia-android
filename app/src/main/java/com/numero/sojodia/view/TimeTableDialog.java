@@ -72,10 +72,10 @@ public class TimeTableDialog {
         return this;
     }
 
-    public TimeTableDialog setReciprocating(int reciprocating) {
+    public TimeTableDialog setReciprocate(int reciprocate) {
         int reciprocatingStringRes[] = {R.string.going_to_school, R.string.coming_home};
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setSubtitle(reciprocatingStringRes[reciprocating]);
+        toolbar.setSubtitle(reciprocatingStringRes[reciprocate]);
         return this;
     }
 

@@ -9,6 +9,10 @@ import java.util.Calendar;
 
 public class DateUtil {
 
+    public static final int WEEKDAY = 0;
+    public static final int SATURDAY = 1;
+    public static final int SUNDAY = 2;
+
     public static String getTodayStringOnlyFigure(){
         return DateFormat.format("yyyyMMdd", Calendar.getInstance()).toString();
     }

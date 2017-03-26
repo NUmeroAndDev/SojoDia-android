@@ -8,13 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.helper.ParseHelper;
-import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.view.UpdateNotificationDialog;
 import com.numero.sojodia.network.UpdateChecker;
 import com.numero.sojodia.R;
 import com.numero.sojodia.util.PreferenceUtil;
-import com.numero.sojodia.util.Constants;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.util.NetworkUtil;
 
@@ -97,8 +95,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateExecute() {
+//        Fixme
         Intent intent = new Intent(this, UpdateActivity.class);
-        intent.putExtra(Constants.VERSION_CODE, versionCode);
+        intent.putExtra(PreferenceUtil.VERSION_CODE, versionCode);
         startActivity(intent);
         finish();
     }
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<BusTime> getTkBusTimeList(int reciprocate, int week) {
-        if (reciprocate == BusDataManager.RECIPROCATE_GOING) {
+        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
             return getTkBusTimeListGoing(week);
         }
         return getTkBusTimeListReturn(week);
@@ -125,9 +124,9 @@ public class MainActivity extends AppCompatActivity {
 
     private List<BusTime> getTkBusTimeListGoing(int week) {
         switch (week) {
-            case BusDataManager.SATURDAY:
+            case DateUtil.SATURDAY:
                 return tkBusTimeListOnSaturdayGoing;
-            case BusDataManager.SUNDAY:
+            case DateUtil.SUNDAY:
                 return tkBusTimeListOnSundayGoing;
         }
         return tkBusTimeListOnWeekdayGoing;
@@ -135,16 +134,16 @@ public class MainActivity extends AppCompatActivity {
 
     private List<BusTime> getTkBusTimeListReturn(int week) {
         switch (week) {
-            case BusDataManager.SATURDAY:
+            case DateUtil.SATURDAY:
                 return tkBusTimeListOnSaturdayReturn;
-            case BusDataManager.SUNDAY:
+            case DateUtil.SUNDAY:
                 return tkBusTimeListOnSundayReturn;
         }
         return tkBusTimeListOnWeekdayReturn;
     }
 
     public List<BusTime> getTndBusTimeList(int reciprocate, int week) {
-        if (reciprocate == BusDataManager.RECIPROCATE_GOING) {
+        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
             return getTndBusTimeListGoing(week);
         }
         return getTndBusTimeListReturn(week);
@@ -152,9 +151,9 @@ public class MainActivity extends AppCompatActivity {
 
     public List<BusTime> getTndBusTimeListGoing(int week) {
         switch (week) {
-            case BusDataManager.SATURDAY:
+            case DateUtil.SATURDAY:
                 return tndBusTimeListOnSaturdayGoing;
-            case BusDataManager.SUNDAY:
+            case DateUtil.SUNDAY:
                 return tndBusTimeListOnSundayGoing;
         }
         return tndBusTimeListOnWeekdayGoing;
@@ -162,9 +161,9 @@ public class MainActivity extends AppCompatActivity {
 
     public List<BusTime> getTndBusTimeListReturn(int week) {
         switch (week) {
-            case BusDataManager.SATURDAY:
+            case DateUtil.SATURDAY:
                 return tndBusTimeListOnSaturdayReturn;
-            case BusDataManager.SUNDAY:
+            case DateUtil.SUNDAY:
                 return tndBusTimeListOnSundayReturn;
         }
         return tndBusTimeListOnWeekdayReturn;

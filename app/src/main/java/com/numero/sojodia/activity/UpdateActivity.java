@@ -10,7 +10,6 @@ import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.R;
 import com.numero.sojodia.util.PreferenceUtil;
 import com.numero.sojodia.network.BusDataDownloader;
-import com.numero.sojodia.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,8 @@ public class UpdateActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        versionCode = getIntent().getLongExtra(Constants.VERSION_CODE, 0L);
+//        Fixme
+        versionCode = getIntent().getLongExtra(PreferenceUtil.VERSION_CODE, 0L);
 
         final ProgressDialog dialog = new ProgressDialog(this);
         dialog.setMessage("Downloading");

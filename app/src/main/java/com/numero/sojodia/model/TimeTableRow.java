@@ -32,6 +32,7 @@ public class TimeTableRow {
         timeTextOnSunday += String.format("%s ", text);
     }
 
+    @Deprecated
     public void addTimeTextOnHolidayInSchool(String text) {
         timeTextOnHolidayInSchool += String.format("%s ", text);
     }

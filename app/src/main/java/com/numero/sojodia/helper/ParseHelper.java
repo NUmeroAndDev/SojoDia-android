@@ -3,8 +3,8 @@ package com.numero.sojodia.helper;
 import android.content.Context;
 import android.content.res.AssetManager;
 
-import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
+import com.numero.sojodia.util.DateUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 
 public class ParseHelper {
 
-    public static void parse(Context context, String fileName, List<BusTime> timeListOnWeekday, List<BusTime> timeListOnSaturday, List<BusTime> timeListOnSunday){
+    public static void parse(Context context, String fileName, List<BusTime> timeListOnWeekday, List<BusTime> timeListOnSaturday, List<BusTime> timeListOnSunday) {
         timeListOnWeekday.clear();
         timeListOnSaturday.clear();
         timeListOnSaturday.clear();
@@ -41,7 +41,7 @@ public class ParseHelper {
             String tmp;
             boolean isFirstLine = true;
             while ((tmp = bufferedReader.readLine()) != null) {
-                if (isFirstLine){
+                if (isFirstLine) {
                     isFirstLine = false;
                     continue;
                 }
@@ -53,13 +53,13 @@ public class ParseHelper {
 
                 BusTime busTime = new BusTime(hourValue, minutesValue, weekValue);
                 switch (weekValue) {
-                    case BusDataManager.WEEKDAY:
+                    case DateUtil.WEEKDAY:
                         timeListOnWeekday.add(busTime);
                         break;
-                    case BusDataManager.SATURDAY:
+                    case DateUtil.SATURDAY:
                         timeListOnSaturday.add(busTime);
                         break;
-                    case BusDataManager.SUNDAY:
+                    case DateUtil.SUNDAY:
                         timeListOnSunday.add(busTime);
                         break;
                 }
