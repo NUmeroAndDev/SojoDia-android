@@ -2,12 +2,8 @@
     <!--Fragment-->
     <dimen name="card_margin">64dp</dimen>
 
-    <dimen name="text_size_bus_station">28sp</dimen>
-    <dimen name="text_size_bus_time">32sp</dimen>
-    <dimen name="text_size_next_bus_time">22sp</dimen>
-    <dimen name="text_size_limit_bus_time">32sp</dimen>
-    <dimen name="text_size_title">22sp</dimen>
-    <dimen name="text_size_date">22sp</dimen>
+    <!--ToDo support tablet-->
+    <dimen name="card_toolbar_text">28sp</dimen>
 
     <dimen name="time_table_dialog_header_text">18sp</dimen>
     <dimen name="time_table_dialog_row_text">18sp</dimen>
