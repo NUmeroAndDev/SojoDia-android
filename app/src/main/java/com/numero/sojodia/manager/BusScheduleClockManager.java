@@ -10,6 +10,7 @@ import com.numero.sojodia.model.Time;
 import com.numero.sojodia.R;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.util.Holiday;
+import com.numero.sojodia.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -64,7 +65,7 @@ public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
                 if (this.isCancelled()) {
                     break;
                 }
-                nowTime.setNowTime();
+                TimeUtil.setCurrentTime(nowTime);
                 Thread.sleep(100);
                 setTKPosition();
                 setTNDPosition();
@@ -96,20 +97,20 @@ public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
             nextBusTimeString = context.getString(R.string.no_bus);
         } else if (tkPosition == tkTimeList.size() - 1) {
             tkTime.setTime(tkTimeList.get(tkPosition).hour, tkTimeList.get(tkPosition).min, 0);
-            limitTime = Time.subtraction(tkTime, nowTime);
+            limitTime = TimeUtil.subtraction(tkTime, nowTime);
 
-            nextBusTimeString = tkTime.getTimeString();
+            nextBusTimeString = tkTime.toString(false);
             nextNextBusTimeString = context.getString(R.string.last_bus);
-            limitTimeString = limitTime.getTimeString();
+            limitTimeString = limitTime.toString();
             resColor = getLimitTimeTextResColor(limitTime.hour, limitTime.min);
         } else {
             tkTime.setTime(tkTimeList.get(tkPosition).hour, tkTimeList.get(tkPosition).min, 0);
             nextTime.setTime(tkTimeList.get(tkPosition + 1).hour, tkTimeList.get(tkPosition + 1).min, 0);
-            limitTime = Time.subtraction(tkTime, nowTime);
+            limitTime = TimeUtil.subtraction(tkTime, nowTime);
 
-            nextBusTimeString = tkTime.getTimeString();
-            nextNextBusTimeString = "→" + nextTime.getTimeString();
-            limitTimeString = limitTime.getTimeString();
+            nextBusTimeString = tkTime.toString(false);
+            nextNextBusTimeString = "→" + nextTime.toString(false);
+            limitTimeString = limitTime.toString();
             resColor = getLimitTimeTextResColor(limitTime.hour, limitTime.min);
         }
 
@@ -127,20 +128,20 @@ public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
             nextBusTimeString = context.getString(R.string.no_bus);
         } else if (tndPosition == tndTimeList.size() - 1) {
             tndTime.setTime(tndTimeList.get(tndPosition).hour, tndTimeList.get(tndPosition).min, 0);
-            limitTime = Time.subtraction(tndTime, nowTime);
+            limitTime = TimeUtil.subtraction(tndTime, nowTime);
 
-            nextBusTimeString = tndTime.getTimeString();
+            nextBusTimeString = tndTime.toString(false);
             nextNextBusTimeString = context.getString(R.string.last_bus);
-            limitTimeString = limitTime.getTimeString();
+            limitTimeString = limitTime.toString();
             resColor = getLimitTimeTextResColor(limitTime.hour, limitTime.min);
         } else {
             tndTime.setTime(tndTimeList.get(tndPosition).hour, tndTimeList.get(tndPosition).min, 0);
             nextTime.setTime(tndTimeList.get(tndPosition + 1).hour, tndTimeList.get(tndPosition + 1).min, 0);
-            limitTime = Time.subtraction(tndTime, nowTime);
+            limitTime = TimeUtil.subtraction(tndTime, nowTime);
 
-            nextBusTimeString = tndTime.getTimeString();
-            nextNextBusTimeString = "→" + nextTime.getTimeString();
-            limitTimeString = limitTime.getTimeString();
+            nextBusTimeString = tndTime.toString(false);
+            nextNextBusTimeString = "→" + nextTime.toString(false);
+            limitTimeString = limitTime.toString();
             resColor = getLimitTimeTextResColor(limitTime.hour, limitTime.min);
         }
 
@@ -148,12 +149,12 @@ public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
     }
 
     private void setTKPosition() {
-        if (tkPosition != -1 && Time.isOverTime(tkTime, nowTime)) {
+        if (tkPosition != -1 && TimeUtil.isOverTime(tkTime, nowTime)) {
             return;
         }
         for (tkPosition = 0; tkPosition < tkTimeList.size(); tkPosition++) {
             tkTime.setTime(tkTimeList.get(tkPosition).hour, tkTimeList.get(tkPosition).min, 0);
-            if (Time.isOverTime(tkTime, nowTime)) {
+            if (TimeUtil.isOverTime(tkTime, nowTime)) {
                 break;
             }
         }
@@ -163,12 +164,12 @@ public class BusScheduleClockManager extends AsyncTask<Void, Void, Void> {
     }
 
     private void setTNDPosition() {
-        if (tndPosition != -1 && Time.isOverTime(tndTime, nowTime)) {
+        if (tndPosition != -1 && TimeUtil.isOverTime(tndTime, nowTime)) {
             return;
         }
         for (tndPosition = 0; tndPosition < tndTimeList.size(); tndPosition++) {
             tndTime.setTime(tndTimeList.get(tndPosition).hour, tndTimeList.get(tndPosition).min, 0);
-            if (Time.isOverTime(tndTime, nowTime)) {
+            if (TimeUtil.isOverTime(tndTime, nowTime)) {
                 break;
             }
         }
