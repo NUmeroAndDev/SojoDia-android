@@ -124,7 +124,7 @@ public class BusScheduleFragment extends Fragment {
             if (TimeUtil.isOverTime(tkTime, currentTime)) {
                 setCurrentTkBusTime(position);
                 Time countTime = TimeUtil.getCountTime(tkTime);
-                setTkCountDownTime(countTime.hour, countTime.min, countTime.sec);
+                setTkCountDownTime(countTime.hour, countTime.min);
                 return;
             }
         }
@@ -140,7 +140,7 @@ public class BusScheduleFragment extends Fragment {
             if (TimeUtil.isOverTime(tndTime, currentTime)) {
                 setCurrentTndBusTime(position);
                 Time countTime = TimeUtil.getCountTime(tndTime);
-                setTndCountDownTime(countTime.hour, countTime.min, countTime.sec);
+                setTndCountDownTime(countTime.hour, countTime.min);
                 return;
             }
         }
@@ -158,7 +158,7 @@ public class BusScheduleFragment extends Fragment {
             public void onPageSelected(int position) {
                 Time tkTime = new Time(tkTimeList.get(position).hour, tkTimeList.get(position).min, 0);
                 Time countTime = TimeUtil.getCountTime(tkTime);
-                setTkCountDownTime(countTime.hour, countTime.min, countTime.sec);
+                setTkCountDownTime(countTime.hour, countTime.min);
                 setVisibleTkBeforeButton(!isTkFirstBus());
                 setVisibleTkNextButton(!isTkLastBus());
             }
@@ -180,7 +180,7 @@ public class BusScheduleFragment extends Fragment {
             public void onPageSelected(int position) {
                 Time tndTime = new Time(tndTimeList.get(position).hour, tndTimeList.get(position).min, 0);
                 Time countTime = TimeUtil.getCountTime(tndTime);
-                setTndCountDownTime(countTime.hour, countTime.min, countTime.sec);
+                setTndCountDownTime(countTime.hour, countTime.min);
                 setVisibleTndBeforeButton(!isTndFirstBus());
                 setVisibleTndNextButton(!isTndLastBus());
             }
@@ -277,14 +277,14 @@ public class BusScheduleFragment extends Fragment {
         return viewPager.getCurrentItem();
     }
 
-    private void setTkCountDownTime(int hour, int min, int sec) {
+    private void setTkCountDownTime(int hour, int min) {
         CountDownClockTextView countDownClockTextView = (CountDownClockTextView) view.findViewById(R.id.count_down_text_tk);
-        countDownClockTextView.setTime(hour, min, sec);
+        countDownClockTextView.setTime(hour, min);
     }
 
-    private void setTndCountDownTime(int hour, int min, int sec) {
+    private void setTndCountDownTime(int hour, int min) {
         CountDownClockTextView countDownClockTextViewTnd = (CountDownClockTextView) view.findViewById(R.id.count_down_text_tnd);
-        countDownClockTextViewTnd.setTime(hour, min, sec);
+        countDownClockTextViewTnd.setTime(hour, min);
     }
 
     private void setCurrentDateText(String date) {

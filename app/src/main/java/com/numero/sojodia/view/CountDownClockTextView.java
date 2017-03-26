@@ -2,20 +2,20 @@ package com.numero.sojodia.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.StrictMode;
-import android.os.SystemClock;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
 import com.numero.sojodia.R;
 
+import java.util.Calendar;
+
 public class CountDownClockTextView extends TextView {
 
     private boolean isAttached;
     private int hour;
     private int min;
-    private int sec;
+    private boolean flg = false;
 
     private OnTimeChangedListener onTimeChangedListener;
 
@@ -31,10 +31,9 @@ public class CountDownClockTextView extends TextView {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setTime(int hour, int min, int sec) {
+    public void setTime(int hour, int min) {
         this.hour = hour;
         this.min = min;
-        this.sec = sec;
     }
 
     public void setOnTimeChangedListener(OnTimeChangedListener onTimeChangedListener) {
@@ -48,12 +47,8 @@ public class CountDownClockTextView extends TextView {
             if (onTimeChangedListener != null) {
                 onTimeChangedListener.onTimeChanged();
             }
-
-//            Fixme 時間のずれ
-            long now = SystemClock.uptimeMillis();
-            long next = now + (1000 - now % 1000);
-
-            getHandler().postAtTime(mTicker, next);
+            
+            getHandler().postDelayed(mTicker, 200);
         }
     };
 
@@ -63,6 +58,7 @@ public class CountDownClockTextView extends TextView {
 
         if (!isAttached) {
             isAttached = true;
+            flg = false;
             mTicker.run();
         }
     }
@@ -80,9 +76,12 @@ public class CountDownClockTextView extends TextView {
 
     @SuppressLint("DefaultLocale")
     private void onTimeChanged() {
-        sec -= 1;
-        if (sec == -1) {
-            sec = 59;
+        int sec = 59 - getCurrentSec();
+        if (sec == 0) {
+            flg = true;
+        }
+        if (flg && sec == 59) {
+            flg = false;
             min -= 1;
         }
         if (min == -1) {
@@ -100,6 +99,11 @@ public class CountDownClockTextView extends TextView {
         }
         setTextColor(ContextCompat.getColor(getContext(), getCountTimeTextResColor(hour, min, sec)));
         setText(String.format("%02d:%02d:%02d", hour, min, sec));
+    }
+
+    private int getCurrentSec() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.SECOND);
     }
 
     //    Fixme int attr
