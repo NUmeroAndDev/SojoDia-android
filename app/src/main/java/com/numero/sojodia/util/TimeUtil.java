@@ -14,7 +14,15 @@ public class TimeUtil {
         return time;
     }
 
-    //    Fixme
+    public static Time initCurrentTime() {
+        Time time = new Time();
+        Calendar calendar = Calendar.getInstance();
+        time.hour = calendar.get(Calendar.HOUR_OF_DAY);
+        time.min = calendar.get(Calendar.MINUTE);
+        time.sec = calendar.get(Calendar.SECOND);
+        return time;
+    }
+
     public static Time addition(Time before, Time after) {
         Time time = new Time();
         time.sec = before.sec + after.sec;
@@ -30,7 +38,6 @@ public class TimeUtil {
         return time;
     }
 
-    //    Fixme
     public static Time subtraction(Time before, Time after) {
         Time time = new Time();
         time.sec = before.sec - after.sec;
@@ -53,22 +60,46 @@ public class TimeUtil {
         return time;
     }
 
+    public static Time getCountTime(Time before) {
+        Time time = new Time();
+        Time currentTime = initCurrentTime();
+        time.sec = before.sec - currentTime.sec;
+        time.min = before.min - currentTime.min;
+        time.hour = before.hour - currentTime.hour;
+
+        if (time.sec < 0) {
+            time.sec = 60 + time.sec;
+            time.min--;
+        }
+
+        if (time.min < 0) {
+            time.min = 60 + time.min;
+            time.hour--;
+        }
+
+        if (time.hour < 0) {
+            time.hour = 24 + time.hour;
+        }
+        return time;
+    }
+
     public static boolean isOverTime(Time before, Time after) {
-        before.sec -= after.sec;
-        before.min -= after.min;
-        before.hour -= after.hour;
+        Time time = new Time();
+        time.sec = before.sec - after.sec;
+        time.min = before.min - after.min;
+        time.hour = before.hour - after.hour;
 
-        if (before.sec < 0) {
-            before.sec = 60 + before.sec;
-            before.min--;
+        if (time.sec < 0) {
+            time.sec = 60 + time.sec;
+            time.min--;
         }
 
-        if (before.min < 0) {
-            before.min = 60 + before.min;
-            before.hour--;
+        if (time.min < 0) {
+            time.min = 60 + time.min;
+            time.hour--;
         }
 
-        return before.hour >= 0;
+        return time.hour >= 0;
     }
 
 

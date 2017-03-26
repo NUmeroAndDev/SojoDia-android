@@ -8,6 +8,12 @@ public class Time {
     public Time() {
     }
 
+    public Time(int hour, int min, int sec) {
+        this.hour = hour;
+        this.min = min;
+        this.sec = sec;
+    }
+
     public void setTime(int hour, int min, int sec) {
         this.hour = hour;
         this.min = min;

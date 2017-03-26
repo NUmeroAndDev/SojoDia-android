@@ -3,6 +3,7 @@ package com.numero.sojodia.manager;
 import android.content.Context;
 import android.content.res.AssetManager;
 
+import com.numero.sojodia.helper.ParseHelper;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.util.PreferenceUtil;
 
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class BusDataManager {
@@ -25,7 +27,7 @@ public class BusDataManager {
     public final static int RECIPROCATE_GOING = 0;
     public final static int RECIPROCATE_RETURN = 1;
 
-    public static void initBusDataTK(Context context, ArrayList<BusTime> timeList, int reciprocating, int week){
+    public static void initBusDataTK(Context context, ArrayList<BusTime> timeList, int reciprocating, int week) {
         timeList.clear();
         switch (reciprocating) {
             case RECIPROCATE_GOING:
@@ -37,7 +39,7 @@ public class BusDataManager {
         }
     }
 
-    public static void initBusDataTND(Context context, ArrayList<BusTime> timeList, int reciprocating, int week){
+    public static void initBusDataTND(Context context, ArrayList<BusTime> timeList, int reciprocating, int week) {
         timeList.clear();
         switch (reciprocating) {
             case RECIPROCATE_GOING:
@@ -49,16 +51,15 @@ public class BusDataManager {
         }
     }
 
-
-    private static void parseBusData(Context context, String fileName, ArrayList<BusTime> timeList, int week){
-        if (PreferenceUtil.getVersionCode(context) == 20160401){
+    private static void parseBusData(Context context, String fileName, ArrayList<BusTime> timeList, int week) {
+        if (PreferenceUtil.getVersionCode(context) == 20160401) {
             parseFromAssets(context, fileName, timeList, week);
         } else {
             parseFromDownloadedFiles(context, fileName, timeList, week);
         }
     }
 
-    private static void parseFromAssets(Context context, String fileName, ArrayList<BusTime> timeList, int week){
+    private static void parseFromAssets(Context context, String fileName, ArrayList<BusTime> timeList, int week) {
         try {
             AssetManager assetManager = context.getResources().getAssets();
             InputStream inputStream = assetManager.open(fileName);
@@ -67,7 +68,7 @@ public class BusDataManager {
             String tmp;
             boolean isFirstLine = true;
             while ((tmp = bufferedReader.readLine()) != null) {
-                if (isFirstLine){
+                if (isFirstLine) {
                     isFirstLine = false;
                     continue;
                 }
@@ -90,7 +91,7 @@ public class BusDataManager {
         }
     }
 
-    private static void parseFromDownloadedFiles(Context context, String fileName, ArrayList<BusTime> timeList, int week){
+    private static void parseFromDownloadedFiles(Context context, String fileName, ArrayList<BusTime> timeList, int week) {
         try {
             FileInputStream fileInputStream = context.openFileInput(fileName);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream, "UTF-8"));
@@ -98,7 +99,7 @@ public class BusDataManager {
             String tmp;
             boolean isFirstLine = true;
             while ((tmp = bufferedReader.readLine()) != null) {
-                if (isFirstLine){
+                if (isFirstLine) {
                     isFirstLine = false;
                     continue;
                 }

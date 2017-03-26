@@ -11,12 +11,10 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginTop="@dimen/card_margin"
         android:layout_marginLeft="@dimen/card_margin"
         android:layout_marginRight="@dimen/card_margin"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true">
+        android:layout_marginTop="@dimen/card_margin"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,20 +25,20 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/title_station_card_margin"
+                android:background="@color/background_card_title"
                 android:paddingBottom="@dimen/title_station_card_margin"
                 android:paddingRight="@dimen/title_card_margin"
-                android:background="@color/background_card_title">
+                android:paddingTop="@dimen/title_station_card_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/title_station_card_margin"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/title_station_card_margin"
+                    android:paddingTop="@dimen/title_station_card_margin"
                     android:text="@string/station_tk"
-                    android:textSize="@dimen/text_size_bus_station"
                     android:textColor="@color/text_card_title"
-                    android:gravity="center" />
+                    android:textSize="@dimen/text_size_bus_station" />
 
                 <ImageButton
                     android:id="@+id/time_table_tk_button"
@@ -48,38 +46,58 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_bus_stop"
-                    android:background="?attr/selectableItemBackgroundBorderless"/>
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_bus_stop" />
 
             </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/tk_bus_time_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.numero.sojodia.view.CountDownClockTextView
+                    android:id="@+id/count_down_text_tk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom" />
+
+            </FrameLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/title_card_margin"
                 android:text="@string/next_time"
-                android:textSize="@dimen/text_size_title"/>
+                android:textSize="@dimen/text_size_title"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/text_bus_time_tk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_bus_time"/>
+                    android:textSize="@dimen/text_size_bus_time" />
 
                 <TextView
                     android:id="@+id/text_next_bus_time_tk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_next_bus_time"/>
+                    android:textSize="@dimen/text_size_next_bus_time" />
 
             </LinearLayout>
 
@@ -88,7 +106,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/title_card_margin"
                 android:text="@string/limit_time"
-                android:textSize="@dimen/text_size_title"/>
+                android:textSize="@dimen/text_size_title"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/text_limit_time_tk"
@@ -96,7 +115,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="@dimen/text_size_limit_bus_time"/>
+                android:textSize="@dimen/text_size_limit_bus_time"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -107,18 +127,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/date_margin"
-        android:textSize="@dimen/text_size_date"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textSize="@dimen/text_size_date" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_marginBottom="@dimen/card_margin"
         android:layout_marginLeft="@dimen/card_margin"
         android:layout_marginRight="@dimen/card_margin"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true">
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -129,18 +147,18 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/title_station_card_margin"
+                android:background="@color/background_card_title"
                 android:paddingBottom="@dimen/title_station_card_margin"
                 android:paddingRight="@dimen/title_card_margin"
-                android:background="@color/background_card_title">
+                android:paddingTop="@dimen/title_station_card_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/station_tnd"
-                    android:textSize="@dimen/text_size_bus_station"
                     android:textColor="@color/text_card_title"
-                    android:gravity="center" />
+                    android:textSize="@dimen/text_size_bus_station" />
 
                 <ImageButton
                     android:id="@+id/time_table_tnd_button"
@@ -148,38 +166,58 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_bus_stop"
-                    android:background="?attr/selectableItemBackgroundBorderless"/>
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_bus_stop" />
 
             </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/tnd_bus_time_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.numero.sojodia.view.CountDownClockTextView
+                    android:id="@+id/count_down_text_tnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"/>
+
+            </FrameLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/title_card_margin"
                 android:text="@string/next_time"
-                android:textSize="@dimen/text_size_title"/>
+                android:textSize="@dimen/text_size_title"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/text_bus_time_tnd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_bus_time"/>
+                    android:textSize="@dimen/text_size_bus_time" />
 
                 <TextView
                     android:id="@+id/text_next_bus_time_tnd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_next_bus_time"/>
+                    android:textSize="@dimen/text_size_next_bus_time" />
 
             </LinearLayout>
 
@@ -188,7 +226,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/title_card_margin"
                 android:text="@string/limit_time"
-                android:textSize="@dimen/text_size_title"/>
+                android:textSize="@dimen/text_size_title"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/text_limit_time_tnd"
@@ -196,7 +235,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="@dimen/text_size_limit_bus_time"/>
+                android:textSize="@dimen/text_size_limit_bus_time"
+                android:visibility="gone" />
 
         </LinearLayout>
 
