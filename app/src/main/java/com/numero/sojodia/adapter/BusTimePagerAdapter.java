@@ -1,5 +1,6 @@
 package com.numero.sojodia.adapter;
 
+import android.annotation.SuppressLint;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +21,21 @@ public class BusTimePagerAdapter extends PagerAdapter {
         return this;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.pager_bus_time, null);
-        TextView textView = (TextView) view.findViewById(R.id.time_text);
-        textView.setText(String.format("%d:%d", busTimeList.get(position).hour, busTimeList.get(position).min));
+
+        TextView busTextView = (TextView) view.findViewById(R.id.bus_time_text);
+        busTextView.setText(String.format("%02d:%02d", busTimeList.get(position).hour, busTimeList.get(position).min));
+
+        TextView nextBusTextView = (TextView) view.findViewById(R.id.next_bus_time_text);
+        if (position == busTimeList.size() - 1) {
+            nextBusTextView.setText(R.string.last_bus);
+        } else {
+            nextBusTextView.setText(String.format("Next\n%02d:%02d", busTimeList.get(position + 1).hour, busTimeList.get(position + 1).min));
+        }
+
         container.addView(view);
         return view;
     }

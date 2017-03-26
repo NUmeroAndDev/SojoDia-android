@@ -4,8 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.StrictMode;
 import android.os.SystemClock;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import com.numero.sojodia.R;
 
 public class CountDownClockTextView extends TextView {
 
@@ -46,6 +49,7 @@ public class CountDownClockTextView extends TextView {
                 onTimeChangedListener.onTimeChanged();
             }
 
+//            Fixme 時間のずれ
             long now = SystemClock.uptimeMillis();
             long next = now + (1000 - now % 1000);
 
@@ -94,8 +98,20 @@ public class CountDownClockTextView extends TextView {
                 onTimeChangedListener.onTimeLimit();
             }
         }
-
+        setTextColor(ContextCompat.getColor(getContext(), getCountTimeTextResColor(hour, min, sec)));
         setText(String.format("%02d:%02d:%02d", hour, min, sec));
+    }
+
+    //    Fixme int attr
+    private int getCountTimeTextResColor(int hour, int min, int sec) {
+        if (sec % 2 == 0) {
+            return R.color.text_secondary;
+        }
+        if (hour == 0 && min <= 4) {
+            return R.color.text_count_attention;
+        } else {
+            return R.color.text_count_normal;
+        }
     }
 
     public interface OnTimeChangedListener {
