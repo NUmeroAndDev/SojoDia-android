@@ -16,13 +16,15 @@
     <color name="text_count_normal">#2196F3</color>
 
     <!--TimeTableDialog-->
+    <color name="time_table_dialog_background">#FFFFFF</color>
     <color name="time_table_dialog_toolbar_background">#8BC34A</color>
     <color name="time_table_dialog_toolbar_text">#FFFFFF</color>
-    <color name="time_table_dialog_text_saturday">#2196F3</color>
-    <color name="time_table_dialog_text_sunday">#E91E63</color>
-    <color name="time_table_dialog_text_holiday_in_school">#E91E63</color>
+    <color name="time_table_dialog_hour_text">#727272</color>
+    <color name="time_table_dialog_weekday_text">#727272</color>
+    <color name="time_table_dialog_saturday_text">#2196F3</color>
+    <color name="time_table_dialog_sunday_text">#E91E63</color>
+    <color name="time_table_dialog_time_text">#727272</color>
     <color name="time_table_dialog_row_divider">#BDBDBD</color>
     <color name="time_table_dialog_row_highlight">#FFFF7F</color>
-    <color name="time_table_dialog_row_background">#FFFFFF</color>
 
 </resources>

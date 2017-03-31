@@ -11,13 +11,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/hour"
+            android:id="@+id/hour_text"
             android:layout_width="@dimen/time_table_dialog_hour_text_width"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="@dimen/time_table_dialog_text_margin"
             android:paddingTop="@dimen/time_table_dialog_text_margin"
-            android:textColor="@color/text_secondary"
+            android:textColor="@color/time_table_dialog_time_text"
             android:textSize="@dimen/time_table_dialog_row_text" />
 
         <View
@@ -26,13 +26,12 @@
             android:background="@color/time_table_dialog_row_divider" />
 
         <TextView
-            android:id="@+id/weekday"
+            android:id="@+id/weekday_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingBottom="@dimen/time_table_dialog_text_margin"
-            android:paddingTop="@dimen/time_table_dialog_text_margin"
-            android:textColor="@color/text_secondary"
+            android:padding="@dimen/time_table_dialog_text_margin"
+            android:textColor="@color/time_table_dialog_time_text"
             android:textSize="@dimen/time_table_dialog_row_text" />
 
         <View
@@ -41,13 +40,12 @@
             android:background="@color/time_table_dialog_row_divider" />
 
         <TextView
-            android:id="@+id/saturday"
+            android:id="@+id/saturday_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingBottom="@dimen/time_table_dialog_text_margin"
-            android:paddingTop="@dimen/time_table_dialog_text_margin"
-            android:textColor="@color/text_secondary"
+            android:padding="@dimen/time_table_dialog_text_margin"
+            android:textColor="@color/time_table_dialog_time_text"
             android:textSize="@dimen/time_table_dialog_row_text" />
 
         <View
@@ -56,13 +54,12 @@
             android:background="@color/time_table_dialog_row_divider" />
 
         <TextView
-            android:id="@+id/sunday"
+            android:id="@+id/sunday_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingBottom="@dimen/time_table_dialog_text_margin"
-            android:paddingTop="@dimen/time_table_dialog_text_margin"
-            android:textColor="@color/text_secondary"
+            android:padding="@dimen/time_table_dialog_text_margin"
+            android:textColor="@color/time_table_dialog_time_text"
             android:textSize="@dimen/time_table_dialog_row_text" />
 
     </LinearLayout>

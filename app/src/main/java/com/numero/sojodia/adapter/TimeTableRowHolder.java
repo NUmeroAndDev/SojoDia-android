@@ -28,28 +28,27 @@ public class TimeTableRowHolder extends RecyclerView.ViewHolder {
         if (isCurrentHour) {
             view.setBackgroundColor(ContextCompat.getColor(context, R.color.time_table_dialog_row_highlight));
         } else {
-//            Fixme setBackground(null)
-            view.setBackgroundColor(ContextCompat.getColor(context, R.color.time_table_dialog_row_background));
+            view.setBackground(null);
         }
     }
 
     private void setHourText(String text) {
-        TextView textView = (TextView) itemView.findViewById(R.id.hour);
+        TextView textView = (TextView) itemView.findViewById(R.id.hour_text);
         textView.setText(text);
     }
 
     private void setTimeTextOnWeekday(String text) {
-        TextView textView = (TextView) itemView.findViewById(R.id.weekday);
+        TextView textView = (TextView) itemView.findViewById(R.id.weekday_text);
         textView.setText(text);
     }
 
     private void setTimeTextOnSaturday(String text) {
-        TextView textView = (TextView) itemView.findViewById(R.id.saturday);
+        TextView textView = (TextView) itemView.findViewById(R.id.saturday_text);
         textView.setText(text);
     }
 
     private void setTimeTextOnSunday(String text) {
-        TextView textView = (TextView) itemView.findViewById(R.id.sunday);
+        TextView textView = (TextView) itemView.findViewById(R.id.sunday_text);
         textView.setText(text);
     }
 
