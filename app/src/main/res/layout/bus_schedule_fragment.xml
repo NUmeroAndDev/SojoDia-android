@@ -64,6 +64,21 @@
                     android:layout_marginBottom="@dimen/card_count_time_text_margin"
                     android:textSize="@dimen/card_count_time_text" />
 
+                <FrameLayout
+                    android:id="@+id/tk_no_bus_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/no_bus" />
+
+                </FrameLayout>
+
                 <ImageButton
                     android:id="@+id/tk_before_bus_time_button"
                     android:layout_width="wrap_content"
@@ -153,6 +168,21 @@
                     android:layout_gravity="center|bottom"
                     android:layout_marginBottom="@dimen/card_count_time_text_margin"
                     android:textSize="@dimen/card_count_time_text" />
+
+                <FrameLayout
+                    android:id="@+id/tnd_no_bus_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/no_bus" />
+
+                </FrameLayout>
 
                 <ImageButton
                     android:id="@+id/tnd_before_bus_time_button"

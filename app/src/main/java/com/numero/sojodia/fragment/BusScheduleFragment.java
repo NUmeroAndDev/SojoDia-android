@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.numero.sojodia.activity.MainActivity;
 import com.numero.sojodia.adapter.BusTimePagerAdapter;
@@ -31,8 +32,8 @@ public class BusScheduleFragment extends Fragment {
     private BusTimePagerAdapter tndPagerAdapter;
     private View view;
 
-    private int tkCurrentNextBusPosition = 0;
-    private int tndCurrentNextBusPosition = 0;
+    private int tkCurrentNextBusPosition = -1;
+    private int tndCurrentNextBusPosition = -1;
     private int reciprocate;
     private String currentDateString;
 
@@ -134,6 +135,7 @@ public class BusScheduleFragment extends Fragment {
             }
         }
 //        Fixme その日のバスが無いとき
+        setVisibleTkNoBusLayout(true);
     }
 
     private void findCurrentTndBusTime() {
@@ -151,6 +153,7 @@ public class BusScheduleFragment extends Fragment {
             }
         }
 //        Fixme その日のバスが無いとき
+        setVisibleTndNoBusLayout(true);
     }
 
     private void initTkBusTimePagerView(View view) {
@@ -319,6 +322,12 @@ public class BusScheduleFragment extends Fragment {
         view.findViewById(R.id.tk_before_bus_time_button).setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
 
+    private void setVisibleTkNoBusLayout(boolean isVisible) {
+        view.findViewById(R.id.tk_no_bus_layout).setVisibility(isVisible ? View.VISIBLE : View.GONE);
+        setVisibleTkNextButton(!isVisible);
+        setVisibleTkBeforeButton(!isVisible);
+    }
+
     private void setVisibleTndNextButton(boolean isVisible) {
         view.findViewById(R.id.tnd_next_bus_time_button).setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
@@ -327,8 +336,14 @@ public class BusScheduleFragment extends Fragment {
         view.findViewById(R.id.tnd_before_bus_time_button).setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
 
+    private void setVisibleTndNoBusLayout(boolean isVisible) {
+        view.findViewById(R.id.tnd_no_bus_layout).setVisibility(isVisible ? View.VISIBLE : View.GONE);
+        setVisibleTndNextButton(!isVisible);
+        setVisibleTndBeforeButton(!isVisible);
+    }
+
     private void checkTkCurrentNextBus() {
-        if (tkTimeList == null) {
+        if (tkCurrentNextBusPosition == -1) {
             return;
         }
         Time tkTime = new Time();
@@ -336,7 +351,9 @@ public class BusScheduleFragment extends Fragment {
         tkTime.setTime(tkTimeList.get(tkCurrentNextBusPosition).hour, tkTimeList.get(tkCurrentNextBusPosition).min, 0);
         if (TimeUtil.isOverTime(tkTime, currentTime)) {
             if (isTkLastBus(tkCurrentNextBusPosition)) {
-//            Fixme その日のバスが無いとき
+//        Fixme その日のバスが無いとき
+                tkCurrentNextBusPosition = -1;
+                setVisibleTkNoBusLayout(true);
                 return;
             }
             tkCurrentNextBusPosition++;
@@ -345,7 +362,7 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void checkTndCurrentNextBus() {
-        if (tndTimeList == null) {
+        if (tndCurrentNextBusPosition == -1) {
             return;
         }
         Time tndTime = new Time();
@@ -353,7 +370,9 @@ public class BusScheduleFragment extends Fragment {
         tndTime.setTime(tndTimeList.get(tndCurrentNextBusPosition).hour, tndTimeList.get(tndCurrentNextBusPosition).min, 0);
         if (TimeUtil.isOverTime(tndTime, currentTime)) {
             if (isTndLastBus(tndCurrentNextBusPosition)) {
-//            Fixme その日のバスが無いとき
+//        Fixme その日のバスが無いとき
+                tndCurrentNextBusPosition = -1;
+                setVisibleTndNoBusLayout(true);
                 return;
             }
             tndCurrentNextBusPosition++;
