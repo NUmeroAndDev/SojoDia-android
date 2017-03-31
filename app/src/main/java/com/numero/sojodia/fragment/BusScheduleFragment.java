@@ -79,11 +79,17 @@ public class BusScheduleFragment extends Fragment {
             @Override
             public void onTimeChanged() {
                 checkDateChange();
+                if (tkCurrentNextBusPosition == -1 || tkTimeList == null) {
+                    return;
+                }
                 checkTkCurrentNextBus();
             }
 
             @Override
             public void onTimeLimit() {
+                if (tkCurrentNextBusPosition == -1) {
+                    return;
+                }
                 setCurrentTkBusTime(getCurrentTkBusTimePosition() + 1, true);
             }
         });
@@ -91,11 +97,17 @@ public class BusScheduleFragment extends Fragment {
         countDownClockTextViewTnd.setOnTimeChangedListener(new CountDownClockTextView.OnTimeChangedListener() {
             @Override
             public void onTimeChanged() {
+                if (tndCurrentNextBusPosition == -1 || tndTimeList == null) {
+                    return;
+                }
                 checkTndCurrentNextBus();
             }
 
             @Override
             public void onTimeLimit() {
+                if (tndCurrentNextBusPosition == -1) {
+                    return;
+                }
                 setCurrentTndBusTime(getCurrentTndBusTimePosition() + 1, true);
             }
         });
@@ -333,9 +345,6 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void checkTkCurrentNextBus() {
-        if (tkCurrentNextBusPosition == -1 || tkTimeList == null) {
-            return;
-        }
         Time tkTime = new Time();
         Time currentTime = TimeUtil.initCurrentTime();
         tkTime.setTime(tkTimeList.get(tkCurrentNextBusPosition).hour, tkTimeList.get(tkCurrentNextBusPosition).min, 0);
@@ -351,9 +360,6 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void checkTndCurrentNextBus() {
-        if (tndCurrentNextBusPosition == -1 || tndTimeList == null) {
-            return;
-        }
         Time tndTime = new Time();
         Time currentTime = TimeUtil.initCurrentTime();
         tndTime.setTime(tndTimeList.get(tndCurrentNextBusPosition).hour, tndTimeList.get(tndCurrentNextBusPosition).min, 0);
