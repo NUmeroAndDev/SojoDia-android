@@ -59,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(fragmentPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        String shortcutIntent = getIntent().getStringExtra("shortcut");
+        if (shortcutIntent != null) {
+            viewPager.setCurrentItem(shortcutIntent.equals("coming_home") ? 1 : 0);
+        }
     }
 
     private void checkUpdate() {
