@@ -15,6 +15,7 @@ import com.numero.sojodia.model.Time;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.util.TimeUtil;
 import com.numero.sojodia.view.CountDownClockTextView;
+import com.numero.sojodia.view.CustomViewPager;
 import com.numero.sojodia.view.TimeTableDialog;
 import com.numero.sojodia.R;
 
@@ -147,7 +148,8 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initTkBusTimePagerView(View view) {
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.tk_bus_time_pager);
+        CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tk_bus_time_pager);
+        viewPager.setSwipeEnable(false);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -169,7 +171,8 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initTndBusTimePagerView(View view) {
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.tnd_bus_time_pager);
+        CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tnd_bus_time_pager);
+        viewPager.setSwipeEnable(false);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -247,14 +250,14 @@ public class BusScheduleFragment extends Fragment {
     private void setListTkBusTimePagerView() {
         tkPagerAdapter = new BusTimePagerAdapter();
         tkPagerAdapter.setBusTimeList(tkTimeList);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.tk_bus_time_pager);
+        CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tk_bus_time_pager);
         viewPager.setAdapter(tkPagerAdapter);
     }
 
     private void setListTndBusTimePagerView() {
         tndPagerAdapter = new BusTimePagerAdapter();
         tndPagerAdapter.setBusTimeList(tndTimeList);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.tnd_bus_time_pager);
+        CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tnd_bus_time_pager);
         viewPager.setAdapter(tndPagerAdapter);
     }
 
@@ -263,12 +266,12 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void setCurrentTkBusTime(int position, boolean isAnimation) {
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.tk_bus_time_pager);
+        CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tk_bus_time_pager);
         viewPager.setCurrentItem(position, isAnimation);
     }
 
     private int getCurrentTkBusTimePosition() {
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.tk_bus_time_pager);
+        CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tk_bus_time_pager);
         return viewPager.getCurrentItem();
     }
 
@@ -277,12 +280,12 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void setCurrentTndBusTime(int position, boolean isAnimation) {
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.tnd_bus_time_pager);
+        CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tnd_bus_time_pager);
         viewPager.setCurrentItem(position, isAnimation);
     }
 
     private int getCurrentTndBusTimePosition() {
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.tnd_bus_time_pager);
+        CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tnd_bus_time_pager);
         return viewPager.getCurrentItem();
     }
 
