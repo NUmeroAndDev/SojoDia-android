@@ -74,7 +74,7 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initCountDownClockTextView(View view) {
-        CountDownClockTextView countDownClockTextViewTk = (CountDownClockTextView) view.findViewById(R.id.count_down_text_tk);
+        CountDownClockTextView countDownClockTextViewTk = (CountDownClockTextView) view.findViewById(R.id.tk_count_down_text);
         countDownClockTextViewTk.setOnTimeChangedListener(new CountDownClockTextView.OnTimeChangedListener() {
             @Override
             public void onTimeChanged() {
@@ -93,7 +93,7 @@ public class BusScheduleFragment extends Fragment {
                 setCurrentTkBusTime(getCurrentTkBusTimePosition() + 1, true);
             }
         });
-        CountDownClockTextView countDownClockTextViewTnd = (CountDownClockTextView) view.findViewById(R.id.count_down_text_tnd);
+        CountDownClockTextView countDownClockTextViewTnd = (CountDownClockTextView) view.findViewById(R.id.tnd_count_down_text);
         countDownClockTextViewTnd.setOnTimeChangedListener(new CountDownClockTextView.OnTimeChangedListener() {
             @Override
             public void onTimeChanged() {
@@ -206,7 +206,7 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initTimeTableButton(View view) {
-        view.findViewById(R.id.time_table_tk_button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.tk_time_table_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimeTableDialog.init(getActivity())
@@ -218,7 +218,7 @@ public class BusScheduleFragment extends Fragment {
                         .show();
             }
         });
-        view.findViewById(R.id.time_table_tnd_button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.tnd_time_table_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimeTableDialog.init(getActivity())
@@ -302,12 +302,12 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void setTkCountDownTime(int hour, int min) {
-        CountDownClockTextView countDownClockTextView = (CountDownClockTextView) view.findViewById(R.id.count_down_text_tk);
+        CountDownClockTextView countDownClockTextView = (CountDownClockTextView) view.findViewById(R.id.tk_count_down_text);
         countDownClockTextView.setTime(hour, min);
     }
 
     private void setTndCountDownTime(int hour, int min) {
-        CountDownClockTextView countDownClockTextViewTnd = (CountDownClockTextView) view.findViewById(R.id.count_down_text_tnd);
+        CountDownClockTextView countDownClockTextViewTnd = (CountDownClockTextView) view.findViewById(R.id.tnd_count_down_text);
         countDownClockTextViewTnd.setTime(hour, min);
     }
 

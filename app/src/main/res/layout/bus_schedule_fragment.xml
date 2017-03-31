@@ -35,7 +35,7 @@
                     android:textSize="@dimen/card_toolbar_text" />
 
                 <ImageButton
-                    android:id="@+id/time_table_tk_button"
+                    android:id="@+id/tk_time_table_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -57,7 +57,7 @@
                     android:layout_height="match_parent" />
 
                 <com.numero.sojodia.view.CountDownClockTextView
-                    android:id="@+id/count_down_text_tk"
+                    android:id="@+id/tk_count_down_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
@@ -140,7 +140,7 @@
                     android:textSize="@dimen/card_toolbar_text" />
 
                 <ImageButton
-                    android:id="@+id/time_table_tnd_button"
+                    android:id="@+id/tnd_time_table_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -162,7 +162,7 @@
                     android:layout_height="match_parent" />
 
                 <com.numero.sojodia.view.CountDownClockTextView
-                    android:id="@+id/count_down_text_tnd"
+                    android:id="@+id/tnd_count_down_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
