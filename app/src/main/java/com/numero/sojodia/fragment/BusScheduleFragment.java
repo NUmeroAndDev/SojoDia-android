@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.numero.sojodia.activity.MainActivity;
 import com.numero.sojodia.adapter.BusTimePagerAdapter;
@@ -59,6 +58,7 @@ public class BusScheduleFragment extends Fragment {
         view = inflater.inflate(R.layout.bus_schedule_fragment, null);
 
         reciprocate = getArguments().getInt(RECIPROCATE);
+        currentDateString = DateUtil.getTodayStringOnlyFigure();
 
         initCountDownClockTextView(view);
         initTimeTableButton(view);
@@ -72,13 +72,7 @@ public class BusScheduleFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        Fixme 曜日セット
-        initBusTimeList(DateUtil.WEEKDAY);
-        initTkBusPagerView();
-        initTndBusPagerView();
-        setCurrentDateText(DateUtil.getTodayString(getActivity()));
-        findCurrentTkBusTime();
-        findCurrentTndBusTime();
+        reset();
     }
 
     private void initCountDownClockTextView(View view) {
@@ -92,7 +86,6 @@ public class BusScheduleFragment extends Fragment {
 
             @Override
             public void onTimeLimit() {
-//                Fixme 次の時刻をセット
                 setCurrentTkBusTime(getCurrentTkBusTimePosition() + 1, true);
             }
         });
@@ -105,7 +98,6 @@ public class BusScheduleFragment extends Fragment {
 
             @Override
             public void onTimeLimit() {
-//                Fixme 次の時刻をセット
                 setCurrentTndBusTime(getCurrentTndBusTimePosition() + 1, true);
             }
         });
@@ -131,10 +123,11 @@ public class BusScheduleFragment extends Fragment {
                 setCurrentTkBusTime(position);
                 Time countTime = TimeUtil.getCountTime(tkTime);
                 setTkCountDownTime(countTime.hour, countTime.min);
+                setVisibleTkBeforeButton(!isTkFirstBus());
+                setVisibleTkNextButton(!isTkLastBus());
                 return;
             }
         }
-//        Fixme その日のバスが無いとき
         setVisibleTkNoBusLayout(true);
     }
 
@@ -149,10 +142,11 @@ public class BusScheduleFragment extends Fragment {
                 setCurrentTndBusTime(position);
                 Time countTime = TimeUtil.getCountTime(tndTime);
                 setTndCountDownTime(countTime.hour, countTime.min);
+                setVisibleTndBeforeButton(!isTndFirstBus());
+                setVisibleTndNextButton(!isTndLastBus());
                 return;
             }
         }
-//        Fixme その日のバスが無いとき
         setVisibleTndNoBusLayout(true);
     }
 
@@ -311,7 +305,6 @@ public class BusScheduleFragment extends Fragment {
     private void setCurrentDateText(String date) {
         TextView textView = (TextView) view.findViewById(R.id.date_text);
         textView.setText(date);
-        this.currentDateString = date;
     }
 
     private void setVisibleTkNextButton(boolean isVisible) {
@@ -382,12 +375,25 @@ public class BusScheduleFragment extends Fragment {
 
     private void checkDateChange() {
         if (isDateChanged()) {
-//            Fixme 初期化or更新処理
+            currentDateString = DateUtil.getTodayStringOnlyFigure();
+            reset();
         }
     }
 
+    private void reset() {
+        setVisibleTkNoBusLayout(false);
+        setVisibleTndNoBusLayout(false);
+        setCurrentDateText(DateUtil.getTodayString(getActivity()));
+//        Fixme 曜日セット
+        initBusTimeList(DateUtil.WEEKDAY);
+        initTkBusPagerView();
+        initTndBusPagerView();
+        findCurrentTkBusTime();
+        findCurrentTndBusTime();
+    }
+
     private boolean isDateChanged() {
-        return !DateUtil.getTodayString(getActivity()).equals(currentDateString);
+        return !DateUtil.getTodayStringOnlyFigure().equals(currentDateString);
     }
 
     private boolean isTkFirstBus() {
