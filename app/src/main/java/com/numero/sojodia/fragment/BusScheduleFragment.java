@@ -31,8 +31,8 @@ public class BusScheduleFragment extends Fragment {
     private BusTimePagerAdapter tndPagerAdapter;
     private View view;
 
-    private int tkCurrentNextBusPosition = -1;
-    private int tndCurrentNextBusPosition = -1;
+    private int tkCurrentNextBusPosition;
+    private int tndCurrentNextBusPosition;
     private int reciprocate;
     private String currentDateString;
 
@@ -344,7 +344,6 @@ public class BusScheduleFragment extends Fragment {
         tkTime.setTime(tkTimeList.get(tkCurrentNextBusPosition).hour, tkTimeList.get(tkCurrentNextBusPosition).min, 0);
         if (TimeUtil.isOverTime(tkTime, currentTime)) {
             if (isTkLastBus(tkCurrentNextBusPosition)) {
-//        Fixme その日のバスが無いとき
                 tkCurrentNextBusPosition = -1;
                 setVisibleTkNoBusLayout(true);
                 return;
@@ -363,7 +362,6 @@ public class BusScheduleFragment extends Fragment {
         tndTime.setTime(tndTimeList.get(tndCurrentNextBusPosition).hour, tndTimeList.get(tndCurrentNextBusPosition).min, 0);
         if (TimeUtil.isOverTime(tndTime, currentTime)) {
             if (isTndLastBus(tndCurrentNextBusPosition)) {
-//        Fixme その日のバスが無いとき
                 tndCurrentNextBusPosition = -1;
                 setVisibleTndNoBusLayout(true);
                 return;
@@ -381,6 +379,8 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void reset() {
+        tkCurrentNextBusPosition = -1;
+        tndCurrentNextBusPosition = -1;
         setVisibleTkNoBusLayout(false);
         setVisibleTndNoBusLayout(false);
         setCurrentDateText(DateUtil.getTodayString(getActivity()));
