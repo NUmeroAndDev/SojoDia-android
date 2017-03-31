@@ -54,7 +54,7 @@
                         android:layout_centerInParent="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:padding="@dimen/card_toolbar_button_margin"
-                        android:src="@drawable/ic_bus_stop" />
+                        android:src="@drawable/ic_schedule" />
 
                 </RelativeLayout>
 
@@ -149,7 +149,7 @@
                         android:layout_centerInParent="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:padding="@dimen/card_toolbar_button_margin"
-                        android:src="@drawable/ic_bus_stop" />
+                        android:src="@drawable/ic_schedule" />
 
                 </RelativeLayout>
 
