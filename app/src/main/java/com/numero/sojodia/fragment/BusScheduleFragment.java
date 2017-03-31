@@ -27,8 +27,6 @@ public class BusScheduleFragment extends Fragment {
 
     private List<BusTime> tkTimeList;
     private List<BusTime> tndTimeList;
-    private BusTimePagerAdapter tkPagerAdapter;
-    private BusTimePagerAdapter tndPagerAdapter;
     private View view;
 
     private int tkCurrentNextBusPosition;
@@ -104,7 +102,6 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initBusTimeList(int week) {
-//        Fixme 日付変更時のリスト
         if (getActivity() instanceof MainActivity) {
             MainActivity activity = (MainActivity) getActivity();
             tkTimeList = activity.getTkBusTimeList(reciprocate, week);
@@ -251,14 +248,14 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initTkBusPagerView() {
-        tkPagerAdapter = new BusTimePagerAdapter();
+        BusTimePagerAdapter tkPagerAdapter = new BusTimePagerAdapter();
         tkPagerAdapter.setBusTimeList(tkTimeList);
         CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tk_bus_time_pager);
         viewPager.setAdapter(tkPagerAdapter);
     }
 
     private void initTndBusPagerView() {
-        tndPagerAdapter = new BusTimePagerAdapter();
+        BusTimePagerAdapter tndPagerAdapter = new BusTimePagerAdapter();
         tndPagerAdapter.setBusTimeList(tndTimeList);
         CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tnd_bus_time_pager);
         viewPager.setAdapter(tndPagerAdapter);
@@ -336,7 +333,7 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void checkTkCurrentNextBus() {
-        if (tkCurrentNextBusPosition == -1) {
+        if (tkCurrentNextBusPosition == -1 || tkTimeList == null) {
             return;
         }
         Time tkTime = new Time();
@@ -354,7 +351,7 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void checkTndCurrentNextBus() {
-        if (tndCurrentNextBusPosition == -1) {
+        if (tndCurrentNextBusPosition == -1 || tndTimeList == null) {
             return;
         }
         Time tndTime = new Time();
@@ -384,8 +381,7 @@ public class BusScheduleFragment extends Fragment {
         setVisibleTkNoBusLayout(false);
         setVisibleTndNoBusLayout(false);
         setCurrentDateText(DateUtil.getTodayString(getActivity()));
-//        Fixme 曜日セット
-        initBusTimeList(DateUtil.WEEKDAY);
+        initBusTimeList(DateUtil.getWeek());
         initTkBusPagerView();
         initTndBusPagerView();
         findCurrentTkBusTime();
