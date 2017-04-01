@@ -3,7 +3,6 @@
     <color name="color_primary">#F5F5F5</color>
     <color name="color_primary_dark">#E0E0E0</color>
     <color name="color_accent">#8BC34A</color>
-    <color name="text_secondary">#727272</color>
 
     <!--MainActivity-->
     <color name="background">#FAFAFA</color>
@@ -12,7 +11,8 @@
     <color name="card_title_background">#8BC34A</color>
     <color name="card_title_text">#FFFFFF</color>
     <color name="count_attention_text">#E91E63</color>
-    <color name="count_normal_text">#2196F3</color>
+    <color name="count_safe_text">#2196F3</color>
+    <color name="count_default_text">#727272</color>
 
     <!--TimeTableDialog-->
     <color name="time_table_dialog_background">#FFFFFF</color>

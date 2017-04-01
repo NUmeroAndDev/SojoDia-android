@@ -2,7 +2,7 @@ package com.numero.sojodia.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -17,6 +17,10 @@ public class CountDownClockTextView extends TextView {
     private int min;
     private boolean flg = false;
 
+    private int defaultTextColor;
+    private int attentionTextColor;
+    private int safeTextColor;
+
     private OnTimeChangedListener onTimeChangedListener;
 
     public CountDownClockTextView(Context context) {
@@ -24,11 +28,16 @@ public class CountDownClockTextView extends TextView {
     }
 
     public CountDownClockTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public CountDownClockTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CountDownClockTextView);
+        defaultTextColor = array.getColor(R.styleable.CountDownClockTextView_defaultTextColor, 0);
+        attentionTextColor = array.getColor(R.styleable.CountDownClockTextView_attentionTextColor, 0);
+        safeTextColor = array.getColor(R.styleable.CountDownClockTextView_safeTextColor, 0);
+        array.recycle();
     }
 
     public void setTime(int hour, int min) {
@@ -47,7 +56,7 @@ public class CountDownClockTextView extends TextView {
             if (onTimeChangedListener != null) {
                 onTimeChangedListener.onTimeChanged();
             }
-            
+
             getHandler().postDelayed(mTicker, 200);
         }
     };
@@ -97,7 +106,7 @@ public class CountDownClockTextView extends TextView {
                 onTimeChangedListener.onTimeLimit();
             }
         }
-        setTextColor(ContextCompat.getColor(getContext(), getCountTimeTextResColor(hour, min, sec)));
+        setTextColor(getCountTimeTextColor(hour, min, sec));
         setText(String.format("%02d:%02d:%02d", hour, min, sec));
     }
 
@@ -106,15 +115,14 @@ public class CountDownClockTextView extends TextView {
         return calendar.get(Calendar.SECOND);
     }
 
-    //    Fixme int attr
-    private int getCountTimeTextResColor(int hour, int min, int sec) {
+    private int getCountTimeTextColor(int hour, int min, int sec) {
         if (sec % 2 == 0) {
-            return R.color.text_secondary;
+            return defaultTextColor;
         }
         if (hour == 0 && min <= 4) {
-            return R.color.count_attention_text;
+            return attentionTextColor;
         } else {
-            return R.color.count_normal_text;
+            return safeTextColor;
         }
     }
 

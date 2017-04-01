@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CountDownClockTextView">
+        <attr name="attentionTextColor" format="color" />
+        <attr name="defaultTextColor" format="color" />
+        <attr name="safeTextColor" format="color" />
+    </declare-styleable>
+</resources>
