@@ -10,7 +10,7 @@ import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.helper.ParseHelper;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.view.UpdateNotificationDialog;
-import com.numero.sojodia.network.UpdateChecker;
+import com.numero.sojodia.task.UpdateCheckTask;
 import com.numero.sojodia.R;
 import com.numero.sojodia.util.PreferenceUtil;
 import com.numero.sojodia.util.DateUtil;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            UpdateChecker.init().setCallback(new UpdateChecker.Callback() {
+            UpdateCheckTask.init().execute(new UpdateCheckTask.Callback() {
                 @Override
                 public void onSuccess(long versionCode) {
                     PreferenceUtil.setUpdatedDate(MainActivity.this, DateUtil.getTodayStringOnlyFigure());
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onFailure() {
                 }
-            }).execute();
+            });
         }
     }
 

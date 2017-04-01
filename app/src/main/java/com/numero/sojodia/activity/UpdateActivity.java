@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.R;
 import com.numero.sojodia.util.PreferenceUtil;
-import com.numero.sojodia.network.BusDataDownloader;
+import com.numero.sojodia.task.BusDataDownloaderTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class UpdateActivity extends Activity {
 
         initBusDataFile();
 
-        BusDataDownloader.init(this).setBusDataFileList(fileList).setCallback(new BusDataDownloader.Callback() {
+        BusDataDownloaderTask.init(this).setBusDataFileList(fileList).execute(new BusDataDownloaderTask.Callback() {
             @Override
             public void onSuccess() {
                 PreferenceUtil.setVersionCode(UpdateActivity.this, versionCode);
@@ -57,7 +57,7 @@ public class UpdateActivity extends Activity {
             public void onLoading() {
 
             }
-        }).execute();
+        });
     }
 
     private void initBusDataFile() {

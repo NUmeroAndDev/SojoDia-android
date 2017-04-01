@@ -1,4 +1,4 @@
-package com.numero.sojodia.network;
+package com.numero.sojodia.task;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -10,41 +10,47 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
-public class BusDataDownloader extends AsyncTask<Void, Void, Void> {
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+public class BusDataDownloaderTask extends AsyncTask<Void, Void, Void> {
 
     public final static int RESULT_OK = 0;
     public final static int RESULT_ERROR = 1;
 
     private Context context;
+    private OkHttpClient okHttpClient;
     private Callback callback;
     private List<BusDataFile> fileList;
     private int resultCode;
 
-    BusDataDownloader(Context context){
+    BusDataDownloaderTask(Context context) {
         this.context = context;
+        okHttpClient = new OkHttpClient();
     }
 
-    public static BusDataDownloader init(Context context) {
-        return new BusDataDownloader(context);
+    public static BusDataDownloaderTask init(Context context) {
+        return new BusDataDownloaderTask(context);
     }
 
-    public BusDataDownloader setBusDataFileList(List<BusDataFile> fileList) {
+    public BusDataDownloaderTask setBusDataFileList(List<BusDataFile> fileList) {
         this.fileList = fileList;
         return this;
     }
 
-    public BusDataDownloader setCallback(Callback callback) {
+    public BusDataDownloaderTask execute(Callback callback) {
         this.callback = callback;
+        super.execute();
         return this;
     }
 
     @Override
     protected Void doInBackground(Void... params) {
         if (fileList != null) {
-            for(BusDataFile file : fileList){
+            for (BusDataFile file : fileList) {
                 connectExecute(file);
             }
         }
@@ -70,11 +76,12 @@ public class BusDataDownloader extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    private void connectExecute(BusDataFile file) {
+    private void connectExecute(final BusDataFile file) {
+        Request request = new Request.Builder().url(file.url).build();
         try {
-            URL url = new URL(file.url);
-            InputStream inputStream = url.openConnection().getInputStream();
+            Response response = okHttpClient.newCall(request).execute();
 
+            InputStream inputStream = response.body().byteStream();
             DataInputStream dataInputStream = new DataInputStream(inputStream);
             FileOutputStream fileOutputStream = context.openFileOutput(file.name, Context.MODE_PRIVATE);
             DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
@@ -90,11 +97,12 @@ public class BusDataDownloader extends AsyncTask<Void, Void, Void> {
             fileOutputStream.close();
             dataInputStream.close();
             inputStream.close();
+            response.body().close();
 
-            resultCode = BusDataDownloader.RESULT_OK;
+            resultCode = BusDataDownloaderTask.RESULT_OK;
         } catch (IOException e) {
             e.printStackTrace();
-            resultCode = BusDataDownloader.RESULT_ERROR;
+            resultCode = BusDataDownloaderTask.RESULT_ERROR;
         }
     }
 

@@ -1,31 +1,34 @@
-package com.numero.sojodia.network;
+package com.numero.sojodia.task;
 
 import android.os.AsyncTask;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 
-public class UpdateChecker extends AsyncTask<Void, Void, Void>{
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+public class UpdateCheckTask extends AsyncTask<Void, Void, Void> {
 
     public final static int RESULT_OK = 0;
     public final static int RESULT_ERROR = 1;
 
     private Callback callback;
+    private OkHttpClient okHttpClient;
     private long versionCode = 0L;
     private int resultCode;
 
-    UpdateChecker(){
+    UpdateCheckTask() {
+        okHttpClient = new OkHttpClient();
     }
 
-    public static UpdateChecker init() {
-        return new UpdateChecker();
+    public static UpdateCheckTask init() {
+        return new UpdateCheckTask();
     }
 
-    public UpdateChecker setCallback(Callback callback) {
+    public UpdateCheckTask execute(Callback callback) {
         this.callback = callback;
+        super.execute();
         return this;
     }
 
@@ -48,25 +51,18 @@ public class UpdateChecker extends AsyncTask<Void, Void, Void>{
     }
 
     private void executeConnect(String urlString) {
+        Request request = new Request.Builder().url(urlString).build();
         try {
-            URL url = new URL(urlString);
-            InputStream inputStream = url.openConnection().getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            Response response = okHttpClient.newCall(request).execute();
 
-            StringBuilder stringBuilder = new StringBuilder();
-            String tmp;
-            while ((tmp = reader.readLine()) != null) {
-                stringBuilder.append(tmp);
-            }
+            String responseString = response.body().string();
+            versionCode = Long.valueOf(responseString);
 
-            versionCode = Long.valueOf(stringBuilder.toString());
-            reader.close();
-            inputStream.close();
-
-            resultCode = BusDataDownloader.RESULT_OK;
+            response.close();
+            resultCode = RESULT_OK;
         } catch (IOException e) {
             e.printStackTrace();
-            resultCode = BusDataDownloader.RESULT_ERROR;
+            resultCode = RESULT_ERROR;
         }
     }
 
