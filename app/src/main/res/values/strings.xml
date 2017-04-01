@@ -15,13 +15,11 @@
     <string name="going_to_school">Going to school</string>
     <string name="coming_home">Coming home</string>
 
-    <string name="message_need_update">時刻表データ更新のため、アプリを再起動します。</string>
+    <string name="message_need_update">Restart this application to update timetable data.</string>
     <string name="positive_button_need_update">Restart</string>
 
-    <string name="notification_update_title">時刻表データの更新</string>
-    <string name="notification_update_text">ダウンロード中</string>
-
-    <string name="message_error">Error</string>
+    <string name="notification_update_title">Update timetable data</string>
+    <string name="notification_update_text">Downloading</string>
 
     <string name="date_pattern">EEE, MMM d</string>
 

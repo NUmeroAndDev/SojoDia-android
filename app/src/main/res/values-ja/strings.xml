@@ -21,8 +21,6 @@
     <string name="notification_update_title">時刻表データの更新</string>
     <string name="notification_update_text">ダウンロード中</string>
 
-    <string name="message_error">Error</string>
-
     <string name="date_pattern">yyyy/MM/dd(E)</string>
 
 </resources>

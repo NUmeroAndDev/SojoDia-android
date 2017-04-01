@@ -2,7 +2,7 @@
     <!--Fragment-->
     <dimen name="card_margin">64dp</dimen>
 
-    <!--ToDo support tablet-->
+    <!--Fixme support tablet-->
     <dimen name="card_toolbar_text">28sp</dimen>
 
     <dimen name="time_table_dialog_header_text">18sp</dimen>
