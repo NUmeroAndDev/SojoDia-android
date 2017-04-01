@@ -33,7 +33,7 @@
                 android:paddingTop="@dimen/time_table_dialog_text_margin"
                 android:text="@string/hour"
                 android:textColor="@color/time_table_dialog_hour_text"
-                android:textSize="@dimen/time_table_dialog_row_text" />
+                android:textSize="@dimen/time_table_dialog_header_text" />
 
             <View
                 android:layout_width="@dimen/time_table_dialog_row_divider"

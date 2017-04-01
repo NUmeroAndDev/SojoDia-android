@@ -75,7 +75,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/no_bus" />
+                        android:text="@string/no_bus"
+                        android:textSize="@dimen/card_no_bus_text" />
 
                 </FrameLayout>
 
@@ -180,7 +181,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/no_bus" />
+                        android:text="@string/no_bus"
+                        android:textSize="@dimen/card_no_bus_text" />
 
                 </FrameLayout>
 
