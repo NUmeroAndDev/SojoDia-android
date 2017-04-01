@@ -38,7 +38,6 @@ public class UpdateBusDataService extends IntentService {
     public void onCreate() {
         super.onCreate();
         okHttpClient = new OkHttpClient();
-        showNotification();
         initBusDataFile();
     }
 
@@ -78,6 +77,7 @@ public class UpdateBusDataService extends IntentService {
         }
         PreferenceUtil.setUpdateCheckDate(this, DateUtil.getTodayStringOnlyFigure());
         if (UpdateCheckHelper.canUpdate(this, versionCode)) {
+            showNotification();
             if (downloadBusDataFile()) {
                 PreferenceUtil.setVersionCode(this, versionCode);
                 BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
