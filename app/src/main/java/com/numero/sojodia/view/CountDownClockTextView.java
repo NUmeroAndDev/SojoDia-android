@@ -112,9 +112,9 @@ public class CountDownClockTextView extends TextView {
             return R.color.text_secondary;
         }
         if (hour == 0 && min <= 4) {
-            return R.color.text_count_attention;
+            return R.color.count_attention_text;
         } else {
-            return R.color.text_count_normal;
+            return R.color.count_normal_text;
         }
     }
 

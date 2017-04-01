@@ -24,14 +24,14 @@
                 android:id="@+id/tk_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_card_title">
+                android:background="@color/card_title_background">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="@string/station_tk"
-                    android:textColor="@color/text_card_title"
+                    android:textColor="@color/card_title_text"
                     android:textSize="@dimen/card_toolbar_text" />
 
                 <ImageButton
@@ -130,14 +130,14 @@
                 android:id="@+id/tnd_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_card_title">
+                android:background="@color/card_title_background">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="@string/station_tnd"
-                    android:textColor="@color/text_card_title"
+                    android:textColor="@color/card_title_text"
                     android:textSize="@dimen/card_toolbar_text" />
 
                 <ImageButton
