@@ -102,5 +102,4 @@ public class TimeUtil {
         return time.hour >= 0;
     }
 
-
 }

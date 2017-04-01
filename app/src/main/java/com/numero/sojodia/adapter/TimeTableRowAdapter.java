@@ -15,8 +15,8 @@ public class TimeTableRowAdapter extends RecyclerView.Adapter<TimeTableRowHolder
 
     private List<TimeTableRow> rowList;
 
-    public TimeTableRowAdapter(List<TimeTableRow> rowLIst) {
-        this.rowList = rowLIst;
+    public TimeTableRowAdapter(List<TimeTableRow> rowList) {
+        this.rowList = rowList;
     }
 
     @Override

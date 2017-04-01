@@ -21,12 +21,12 @@ public class PreferenceUtil {
         edit.apply();
     }
 
-    public static String getPreviousUpdatedDate(Context context) {
+    public static String getPreviousUpdateCheckDate(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
         return sharedPreferences.getString(DATE, "");
     }
 
-    public static void setUpdatedDate(Context context, String date) {
+    public static void setUpdateCheckDate(Context context, String date) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString(DATE, date);

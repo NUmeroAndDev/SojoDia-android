@@ -1,20 +1,23 @@
 package com.numero.sojodia.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.helper.ParseHelper;
 import com.numero.sojodia.model.BusTime;
-import com.numero.sojodia.view.UpdateNotificationDialog;
-import com.numero.sojodia.task.UpdateCheckTask;
+import com.numero.sojodia.service.UpdateBusDataService;
+import com.numero.sojodia.util.BroadCastUtil;
+import com.numero.sojodia.view.NeedRestartDialog;
 import com.numero.sojodia.R;
-import com.numero.sojodia.util.PreferenceUtil;
 import com.numero.sojodia.util.DateUtil;
-import com.numero.sojodia.util.NetworkUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,12 @@ public class MainActivity extends AppCompatActivity {
     private List<BusTime> tndBusTimeListOnSaturdayReturn = new ArrayList<>();
     private List<BusTime> tndBusTimeListOnSundayReturn = new ArrayList<>();
 
-    private long versionCode = 0L;
+    private BroadcastReceiver finishDownloadReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            showNeedRestartDialog();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +51,15 @@ public class MainActivity extends AppCompatActivity {
 
         initBusData();
         initViews();
-        checkUpdate();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(finishDownloadReceiver, new IntentFilter(BroadCastUtil.ACTION_FINISH_DOWNLOAD));
+        startCheckUpdateService();
+    }
+
+    @Override
+    public void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(finishDownloadReceiver);
+        super.onDestroy();
     }
 
     private void initBusData() {
@@ -66,58 +82,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void checkUpdate() {
-        if (NetworkUtil.canNetworkConnect(this)) {
-            if (isTodayCheckUpdate()) {
-                return;
-            }
+    private void startCheckUpdateService() {
+        Intent intent = new Intent(MainActivity.this, UpdateBusDataService.class);
+        startService(intent);
+    }
 
-            UpdateCheckTask.init().execute(new UpdateCheckTask.Callback() {
-                @Override
-                public void onSuccess(long versionCode) {
-                    PreferenceUtil.setUpdatedDate(MainActivity.this, DateUtil.getTodayStringOnlyFigure());
-                    if (canUpdate(versionCode)) {
-                        MainActivity.this.versionCode = versionCode;
-                        showUpdateNotificationDialog();
+    private void showNeedRestartDialog() {
+        NeedRestartDialog.init(this)
+                .setOnPositiveButtonClickListener(new NeedRestartDialog.OnPositiveButtonClickListener() {
+                    @Override
+                    public void onClick() {
+                        recreate();
                     }
-                }
-
-                @Override
-                public void onFailure() {
-                }
-            });
-        }
-    }
-
-    private void showUpdateNotificationDialog() {
-        UpdateNotificationDialog dialog = new UpdateNotificationDialog(this) {
-            @Override
-            public void onClickPositiveButton() {
-                updateExecute();
-            }
-        };
-        dialog.show();
-    }
-
-    private void updateExecute() {
-//        Fixme
-        Intent intent = new Intent(this, UpdateActivity.class);
-        intent.putExtra(PreferenceUtil.VERSION_CODE, versionCode);
-        startActivity(intent);
-        finish();
-    }
-
-    private boolean isTodayCheckUpdate() {
-        if (PreferenceUtil.getPreviousUpdatedDate(this).equals("")) {
-            return false;
-        } else if (!PreferenceUtil.getPreviousUpdatedDate(this).equals(DateUtil.getTodayStringOnlyFigure())) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean canUpdate(long versionCode) {
-        return PreferenceUtil.getVersionCode(this) < versionCode;
+                }).show();
     }
 
     public List<BusTime> getTkBusTimeList(int reciprocate, int week) {
