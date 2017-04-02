@@ -3,7 +3,7 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_going_to_school"
         android:shortcutDisabledMessage="@string/going_to_school"
         android:shortcutId="going_to_school_shortcut"
         android:shortcutLongLabel="@string/going_to_school"
@@ -24,7 +24,7 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_coming_home"
         android:shortcutDisabledMessage="@string/coming_home"
         android:shortcutId="coming_home_shortcut"
         android:shortcutLongLabel="@string/coming_home"
