@@ -9,24 +9,22 @@
     tools:context=".activity.MainActivity">
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/date_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_margin="@dimen/card_margin"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true">
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,76 +33,87 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/tk_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/title_station_card_margin"
-                    android:paddingBottom="@dimen/title_station_card_margin"
-                    android:paddingRight="@dimen/title_card_margin"
-                    android:background="@color/background_card_title">
+                    android:background="@color/card_title_background">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:text="@string/station_tk"
-                        android:textSize="@dimen/text_size_bus_station"
-                        android:textColor="@color/text_card_title"
-                        android:gravity="center" />
+                        android:textColor="@color/card_title_text"
+                        android:textSize="@dimen/card_toolbar_text" />
 
                     <ImageButton
-                        android:id="@+id/time_table_tk_button"
+                        android:id="@+id/tk_time_table_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_bus_stop"
-                        android:background="?attr/selectableItemBackgroundBorderless"/>
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="@dimen/card_toolbar_button_margin"
+                        android:src="@drawable/ic_schedule" />
 
                 </RelativeLayout>
 
-                <TextView
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/title_card_margin"
-                    android:text="@string/next_time"
-                    android:textSize="@dimen/text_size_title"/>
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/text_bus_time_tk"
+                    <com.numero.sojodia.view.CustomViewPager
+                        android:id="@+id/tk_bus_time_pager"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_bus_time"/>
+                        android:layout_height="match_parent" />
 
-                    <TextView
-                        android:id="@+id/text_next_bus_time_tk"
+                    <com.numero.sojodia.view.CountDownClockTextView
+                        android:id="@+id/tk_count_down_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:layout_marginBottom="@dimen/card_count_time_text_margin"
+                        android:textSize="@dimen/card_count_time_text"
+                        app:attentionTextColor="@color/count_attention_text"
+                        app:defaultTextColor="@color/count_default_text"
+                        app:safeTextColor="@color/count_safe_text" />
+
+                    <FrameLayout
+                        android:id="@+id/tk_no_bus_layout"
                         android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/no_bus"
+                            android:textSize="@dimen/card_no_bus_text" />
+
+                    </FrameLayout>
+
+                    <ImageButton
+                        android:id="@+id/tk_before_bus_time_button"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_next_bus_time"/>
+                        android:layout_gravity="center|start"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="@dimen/card_arrow_button_margin"
+                        android:src="@drawable/ic_arrow_left" />
 
-                </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/tk_next_bus_time_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|end"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="@dimen/card_arrow_button_margin"
+                        android:src="@drawable/ic_arrow_right" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/title_card_margin"
-                    android:text="@string/limit_time"
-                    android:textSize="@dimen/text_size_title"/>
-
-                <TextView
-                    android:id="@+id/text_limit_time_tk"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_limit_bus_time"/>
+                </FrameLayout>
 
             </LinearLayout>
 
@@ -113,10 +122,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_margin="@dimen/card_margin"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true">
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -125,76 +132,87 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/tnd_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/title_station_card_margin"
-                    android:paddingBottom="@dimen/title_station_card_margin"
-                    android:paddingRight="@dimen/title_card_margin"
-                    android:background="@color/background_card_title">
+                    android:background="@color/card_title_background">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:text="@string/station_tnd"
-                        android:textSize="@dimen/text_size_bus_station"
-                        android:textColor="@color/text_card_title"
-                        android:gravity="center" />
+                        android:textColor="@color/card_title_text"
+                        android:textSize="@dimen/card_toolbar_text" />
 
                     <ImageButton
-                        android:id="@+id/time_table_tnd_button"
+                        android:id="@+id/tnd_time_table_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_bus_stop"
-                        android:background="?attr/selectableItemBackgroundBorderless"/>
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="@dimen/card_toolbar_button_margin"
+                        android:src="@drawable/ic_schedule" />
 
                 </RelativeLayout>
 
-                <TextView
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/title_card_margin"
-                    android:text="@string/next_time"
-                    android:textSize="@dimen/text_size_title"/>
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/text_bus_time_tnd"
+                    <com.numero.sojodia.view.CustomViewPager
+                        android:id="@+id/tnd_bus_time_pager"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_bus_time"/>
+                        android:layout_height="match_parent" />
 
-                    <TextView
-                        android:id="@+id/text_next_bus_time_tnd"
+                    <com.numero.sojodia.view.CountDownClockTextView
+                        android:id="@+id/tnd_count_down_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:layout_marginBottom="@dimen/card_count_time_text_margin"
+                        android:textSize="@dimen/card_count_time_text"
+                        app:attentionTextColor="@color/count_attention_text"
+                        app:defaultTextColor="@color/count_default_text"
+                        app:safeTextColor="@color/count_safe_text" />
+
+                    <FrameLayout
+                        android:id="@+id/tnd_no_bus_layout"
                         android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/no_bus"
+                            android:textSize="@dimen/card_no_bus_text" />
+
+                    </FrameLayout>
+
+                    <ImageButton
+                        android:id="@+id/tnd_before_bus_time_button"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_size_next_bus_time"/>
+                        android:layout_gravity="center|start"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="@dimen/card_arrow_button_margin"
+                        android:src="@drawable/ic_arrow_left" />
 
-                </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/tnd_next_bus_time_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|end"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="@dimen/card_arrow_button_margin"
+                        android:src="@drawable/ic_arrow_right" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/title_card_margin"
-                    android:text="@string/limit_time"
-                    android:textSize="@dimen/text_size_title"/>
-
-                <TextView
-                    android:id="@+id/text_limit_time_tnd"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_limit_bus_time"/>
+                </FrameLayout>
 
             </LinearLayout>
 

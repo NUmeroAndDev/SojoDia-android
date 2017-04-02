@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_going_to_school"
+        android:shortcutDisabledMessage="@string/going_to_school"
+        android:shortcutId="going_to_school_shortcut"
+        android:shortcutLongLabel="@string/going_to_school"
+        android:shortcutShortLabel="@string/going_to_school">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.numero.sojodia.activity.MainActivity"
+            android:targetPackage="com.numero.sojodia">
+            <extra
+                android:name="shortcut"
+                android:value="going_to_school" />
+        </intent>
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_coming_home"
+        android:shortcutDisabledMessage="@string/coming_home"
+        android:shortcutId="coming_home_shortcut"
+        android:shortcutLongLabel="@string/coming_home"
+        android:shortcutShortLabel="@string/coming_home">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.numero.sojodia.activity.MainActivity"
+            android:targetPackage="com.numero.sojodia">
+            <extra
+                android:name="shortcut"
+                android:value="coming_home" />
+        </intent>
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+</shortcuts>

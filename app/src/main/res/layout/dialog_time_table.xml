@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/time_table_dialog_background"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/time_table_dialog_toolbar_background"
+        app:navigationIcon="@drawable/ic_clear"
+        app:subtitleTextColor="@color/time_table_dialog_toolbar_text"
+        app:titleTextColor="@color/time_table_dialog_toolbar_text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/time_table_dialog_hour_text_width"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/time_table_dialog_text_margin"
+                android:paddingTop="@dimen/time_table_dialog_text_margin"
+                android:text="@string/hour"
+                android:textColor="@color/time_table_dialog_hour_text"
+                android:textSize="@dimen/time_table_dialog_header_text" />
+
+            <View
+                android:layout_width="@dimen/time_table_dialog_row_divider"
+                android:layout_height="match_parent"
+                android:background="@color/time_table_dialog_row_divider" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/time_table_dialog_text_margin"
+                android:paddingTop="@dimen/time_table_dialog_text_margin"
+                android:text="@string/weekday"
+                android:textColor="@color/time_table_dialog_weekday_text"
+                android:textSize="@dimen/time_table_dialog_header_text" />
+
+            <View
+                android:layout_width="@dimen/time_table_dialog_row_divider"
+                android:layout_height="match_parent"
+                android:background="@color/time_table_dialog_row_divider" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/time_table_dialog_text_margin"
+                android:paddingTop="@dimen/time_table_dialog_text_margin"
+                android:text="@string/saturday"
+                android:textColor="@color/time_table_dialog_saturday_text"
+                android:textSize="@dimen/time_table_dialog_header_text" />
+
+            <View
+                android:layout_width="@dimen/time_table_dialog_row_divider"
+                android:layout_height="match_parent"
+                android:background="@color/time_table_dialog_row_divider" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="@dimen/time_table_dialog_text_margin"
+                android:paddingTop="@dimen/time_table_dialog_text_margin"
+                android:text="@string/sunday"
+                android:textColor="@color/time_table_dialog_sunday_text"
+                android:textSize="@dimen/time_table_dialog_header_text" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/time_table_dialog_row_divider"
+            android:background="@color/time_table_dialog_row_divider" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never" />
+
+</LinearLayout>

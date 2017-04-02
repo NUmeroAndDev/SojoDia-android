@@ -12,6 +12,9 @@ public class BusScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Context context;
 
+    public final static int RECIPROCATE_GOING = 0;
+    public final static int RECIPROCATE_RETURN = 1;
+
     public BusScheduleFragmentPagerAdapter(Context context, FragmentManager fragmentManager) {
         super(fragmentManager);
         this.context = context;
@@ -30,9 +33,9 @@ public class BusScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0:
+            case RECIPROCATE_GOING:
                 return context.getString(R.string.going_to_school);
-            case 1:
+            case RECIPROCATE_RETURN:
                 return context.getString(R.string.coming_home);
         }
         return null;

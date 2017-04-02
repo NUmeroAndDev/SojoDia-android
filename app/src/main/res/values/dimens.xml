@@ -1,26 +1,25 @@
 <resources>
     <!--Fragment-->
-    <dimen name="card_contents_margin">8dp</dimen>
     <dimen name="card_margin">16dp</dimen>
-    <dimen name="date_margin">8dp</dimen>
+    <dimen name="card_toolbar_button_margin">12dp</dimen>
+    <dimen name="card_bus_time_text_margin">16dp</dimen>
+    <dimen name="card_next_bus_time_text_margin">16dp</dimen>
+    <dimen name="card_count_time_text_margin">28dp</dimen>
+    <dimen name="card_arrow_button_margin">16dp</dimen>
+    <dimen name="card_date_text_margin">8dp</dimen>
 
-    <dimen name="title_card_margin">8dp</dimen>
-    <dimen name="title_station_card_margin">2dp</dimen>
-
-    <dimen name="text_size_bus_station">22sp</dimen>
-    <dimen name="text_size_bus_time">25sp</dimen>
-    <dimen name="text_size_next_bus_time">18sp</dimen>
-    <dimen name="text_size_limit_bus_time">25sp</dimen>
-    <dimen name="text_size_title">18sp</dimen>
-    <dimen name="text_size_date">18sp</dimen>
+    <dimen name="card_toolbar_text">22sp</dimen>
+    <dimen name="card_bus_time_text">32sp</dimen>
+    <dimen name="card_next_bus_time_text">16sp</dimen>
+    <dimen name="card_count_time_text">56sp</dimen>
+    <dimen name="card_date_text">20sp</dimen>
+    <dimen name="card_no_bus_text">22sp</dimen>
 
     <!--TimeTableDialog-->
-    <dimen name="layout_table_dialog_margin">8dp</dimen>
-    <dimen name="hour_table_dialog_width">32dp</dimen>
-    <dimen name="frame_border_table_dialog">2dp</dimen>
-    <dimen name="row_padding_table_dialog">1dp</dimen>
-
-    <dimen name="text_size_heading">14sp</dimen>
-    <dimen name="text_size_row_time">14sp</dimen>
+    <dimen name="time_table_dialog_hour_text_width">36dp</dimen>
+    <dimen name="time_table_dialog_row_divider">1dp</dimen>
+    <dimen name="time_table_dialog_text_margin">2dp</dimen>
+    <dimen name="time_table_dialog_header_text">14sp</dimen>
+    <dimen name="time_table_dialog_row_text">16sp</dimen>
 
 </resources>

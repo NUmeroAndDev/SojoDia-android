@@ -1,120 +1,137 @@
 package com.numero.sojodia.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.numero.sojodia.adapter.TimeTableRowAdapter;
-import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.model.TimeTableRow;
 import com.numero.sojodia.R;
-import com.numero.sojodia.util.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TimeTableDialog {
 
     private Context context;
     private AlertDialog.Builder builder;
-    private ArrayList<TimeTableRow> rows;
-    private ArrayList<BusTime> busTimeList;
+    private AlertDialog dialog;
+    private List<TimeTableRow> timeTableRowList = new ArrayList<>();
+    private List<BusTime> busTimeListOnWeekday;
+    private List<BusTime> busTimeListOnSaturday;
+    private List<BusTime> busTimeListOnSunday;
     private TimeTableRowAdapter adapter;
-    private int route, reciprocating;
+    private View view;
 
-    public TimeTableDialog(Context context, int route, int reciprocating) {
+    TimeTableDialog(Context context) {
         this.context = context;
-        String reciprocatingStrings[] = {context.getString(R.string.going_to_school), context.getString(R.string.coming_home)};
-        String stationStrings[] = {context.getString(R.string.station_tk), context.getString(R.string.station_tnd)};
 
-        View view = LayoutInflater.from(context).inflate(R.layout.time_table_dialog, null);
+        view = LayoutInflater.from(context).inflate(R.layout.dialog_time_table, null);
         builder = new AlertDialog.Builder(context);
-        builder.setTitle(reciprocatingStrings[reciprocating]);
         builder.setView(view);
-        builder.setPositiveButton("Close", null);
 
-        this.route = route;
-        this.reciprocating = reciprocating;
+        initToolbar();
+        initListView();
+    }
 
-        busTimeList = new ArrayList<>();
-        rows = new ArrayList<>();
+    public static TimeTableDialog init(Context context) {
+        return new TimeTableDialog(context);
+    }
 
-        TextView stationTextView = (TextView) view.findViewById(R.id.station);
-        stationTextView.setText(stationStrings[route]);
+    public TimeTableDialog setBusTimeListOnWeekday(List<BusTime> busTimeList) {
+        this.busTimeListOnWeekday = busTimeList;
+        return this;
+    }
 
-        initListView(context, view);
+    public TimeTableDialog setBusTimeListOnSaturday(List<BusTime> busTimeList) {
+        this.busTimeListOnSaturday = busTimeList;
+        return this;
+    }
+
+    public TimeTableDialog setBusTimeListOnSunday(List<BusTime> busTimeList) {
+        this.busTimeListOnSunday = busTimeList;
+        return this;
+    }
+
+    public TimeTableDialog setRouteTk() {
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.station_tk);
+        return this;
+    }
+
+    public TimeTableDialog setRouteTnd() {
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.station_tnd);
+        return this;
+    }
+
+    public TimeTableDialog setReciprocate(int reciprocate) {
+        int reciprocatingStringRes[] = {R.string.going_to_school, R.string.coming_home};
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar.setSubtitle(reciprocatingStringRes[reciprocate]);
+        return this;
     }
 
     public void show() {
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        dialog = builder.show();
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        initTimeTable();
+        buildRow();
     }
 
-    private void initListView(Context context, View view) {
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+    }
+
+    private void initListView() {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter = new TimeTableRowAdapter(rows, context);
-
+        adapter = new TimeTableRowAdapter(timeTableRowList);
         recyclerView.setAdapter(adapter);
     }
 
-    private void initTimeTable() {
-        final Handler handler = new Handler(new Handler.Callback() {
-            @Override
-            public boolean handleMessage(Message msg) {
-                adapter.notifyDataSetChanged();
-                return false;
-            }
-        });
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                switch (route){
-                    case Constants.ROUTE_TK:
-                        BusDataManager.initBusDataTK(context, busTimeList, reciprocating, BusDataManager.ALL);
-                        break;
-                    case Constants.ROUTE_TND:
-                        BusDataManager.initBusDataTND(context, busTimeList, reciprocating, BusDataManager.ALL);
-                }
-                setRowItem();
-                handler.sendMessage(Message.obtain());
-            }
-        });
-        thread.start();
-    }
-
-    private void setRowItem() {
-        for (int i = 0; i < 18; i++) {
+    @SuppressLint("DefaultLocale")
+    private void buildRow() {
+        for (int hour = 6; hour < 24; hour++) {
             TimeTableRow row = new TimeTableRow();
-            row.setHourString((i + 6 > 9 ? "" + String.valueOf(i + 6) : "0" + String.valueOf(i + 6)));
-            rows.add(row);
+            row.setHourText(String.format("%02d", hour));
+            timeTableRowList.add(row);
         }
-        for (int i = 0; i < busTimeList.size(); i++) {
-            switch (busTimeList.get(i).week) {
-                case BusDataManager.WEEKDAY:
-                    rows.get(busTimeList.get(i).hour - 6).addStringTimeOnWeekday((busTimeList.get(i).min > 9 ? "" + String.valueOf(busTimeList.get(i).min) : "0" + String.valueOf(busTimeList.get(i).min)));
-                    break;
-                case BusDataManager.SATURDAY:
-                    rows.get(busTimeList.get(i).hour - 6).addStringTimeOnSaturday((busTimeList.get(i).min > 9 ? "" + String.valueOf(busTimeList.get(i).min) : "0" + String.valueOf(busTimeList.get(i).min)));
-                    break;
-                case BusDataManager.SUNDAY:
-                    rows.get(busTimeList.get(i).hour - 6).addStringTimeOnSunday((busTimeList.get(i).min > 9 ? "" + String.valueOf(busTimeList.get(i).min) : "0" + String.valueOf(busTimeList.get(i).min)));
-                    break;
-                case BusDataManager.HOLIDAY_IN_SCHOOL:
-                    rows.get(busTimeList.get(i).hour - 6).addStringTimeOnHoliday((busTimeList.get(i).min > 9 ? "" + String.valueOf(busTimeList.get(i).min) : "0" + String.valueOf(busTimeList.get(i).min)));
-                    break;
+        if (busTimeListOnWeekday != null) {
+            for (int i = 0; i < busTimeListOnWeekday.size(); i++) {
+                TimeTableRow row = timeTableRowList.get(busTimeListOnWeekday.get(i).hour - 6);
+                row.addTimeTextOnWeekday(String.format("%02d", busTimeListOnWeekday.get(i).min));
             }
         }
+        if (busTimeListOnSaturday != null) {
+            for (int i = 0; i < busTimeListOnSaturday.size(); i++) {
+                TimeTableRow row = timeTableRowList.get(busTimeListOnSaturday.get(i).hour - 6);
+                row.addTimeTextOnSaturday(String.format("%02d", busTimeListOnSaturday.get(i).min));
+            }
+        }
+
+        if (busTimeListOnSunday != null) {
+            for (int i = 0; i < busTimeListOnSunday.size(); i++) {
+                TimeTableRow row = timeTableRowList.get(busTimeListOnSunday.get(i).hour - 6);
+                row.addTimeTextOnSunday(String.format("%02d", busTimeListOnSunday.get(i).min));
+            }
+        }
+        adapter.notifyDataSetChanged();
     }
 
 }
