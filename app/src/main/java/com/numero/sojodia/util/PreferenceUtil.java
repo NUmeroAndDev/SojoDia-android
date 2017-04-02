@@ -11,7 +11,7 @@ public class PreferenceUtil {
 
     public static long getVersionCode(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
-        return sharedPreferences.getLong(VERSION_CODE, 20160401L);
+        return sharedPreferences.getLong(VERSION_CODE, 20170401L);
     }
 
     public static void setVersionCode(Context context, long code) {
