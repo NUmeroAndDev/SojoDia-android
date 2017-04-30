@@ -50,8 +50,9 @@ public class ParseHelper {
                 int hourValue = Integer.valueOf(stringTokenizer.nextToken());
                 int minutesValue = Integer.valueOf(stringTokenizer.nextToken());
                 int weekValue = Integer.valueOf(stringTokenizer.nextToken());
+                boolean isNonstop = Integer.valueOf(stringTokenizer.nextToken()) != 0 ? true : false;
 
-                BusTime busTime = new BusTime(hourValue, minutesValue, weekValue);
+                BusTime busTime = new BusTime(hourValue, minutesValue, weekValue, isNonstop);
                 switch (weekValue) {
                     case DateUtil.WEEKDAY:
                         timeListOnWeekday.add(busTime);

@@ -9,6 +9,9 @@
     <string name="station_tk">JR高槻駅北</string>
     <string name="station_tnd">JR富田駅</string>
 
+    <string name="bus_type_regular">通常便</string>
+    <string name="bus_type_nonstop">直行便</string>
+
     <string name="no_bus">本日のバスはありません</string>
     <string name="last_bus">最終バス</string>
     

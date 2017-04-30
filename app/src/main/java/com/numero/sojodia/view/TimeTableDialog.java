@@ -112,23 +112,27 @@ public class TimeTableDialog {
             row.setHourText(String.format("%02d", hour));
             timeTableRowList.add(row);
         }
+        String busType = "";
         if (busTimeListOnWeekday != null) {
             for (int i = 0; i < busTimeListOnWeekday.size(); i++) {
                 TimeTableRow row = timeTableRowList.get(busTimeListOnWeekday.get(i).hour - 6);
-                row.addTimeTextOnWeekday(String.format("%02d", busTimeListOnWeekday.get(i).min));
+                busType = busTimeListOnWeekday.get(i).isNonstop ? "直" : "";
+                row.addTimeTextOnWeekday(String.format("%s%02d", busType, busTimeListOnWeekday.get(i).min));
             }
         }
         if (busTimeListOnSaturday != null) {
             for (int i = 0; i < busTimeListOnSaturday.size(); i++) {
                 TimeTableRow row = timeTableRowList.get(busTimeListOnSaturday.get(i).hour - 6);
-                row.addTimeTextOnSaturday(String.format("%02d", busTimeListOnSaturday.get(i).min));
+                busType = busTimeListOnSaturday.get(i).isNonstop ? "直" : "";
+                row.addTimeTextOnSaturday(String.format("%s%02d", busType, busTimeListOnSaturday.get(i).min));
             }
         }
 
         if (busTimeListOnSunday != null) {
             for (int i = 0; i < busTimeListOnSunday.size(); i++) {
                 TimeTableRow row = timeTableRowList.get(busTimeListOnSunday.get(i).hour - 6);
-                row.addTimeTextOnSunday(String.format("%02d", busTimeListOnSunday.get(i).min));
+                busType = busTimeListOnSunday.get(i).isNonstop ? "直" : "";
+                row.addTimeTextOnSunday(String.format("%s%02d", busType, busTimeListOnSunday.get(i).min));
             }
         }
         adapter.notifyDataSetChanged();

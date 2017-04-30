@@ -260,14 +260,14 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initTkBusPagerView() {
-        BusTimePagerAdapter tkPagerAdapter = new BusTimePagerAdapter();
+        BusTimePagerAdapter tkPagerAdapter = new BusTimePagerAdapter(getContext());
         tkPagerAdapter.setBusTimeList(tkTimeList);
         CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tk_bus_time_pager);
         viewPager.setAdapter(tkPagerAdapter);
     }
 
     private void initTndBusPagerView() {
-        BusTimePagerAdapter tndPagerAdapter = new BusTimePagerAdapter();
+        BusTimePagerAdapter tndPagerAdapter = new BusTimePagerAdapter(getContext());
         tndPagerAdapter.setBusTimeList(tndTimeList);
         CustomViewPager viewPager = (CustomViewPager) view.findViewById(R.id.tnd_bus_time_pager);
         viewPager.setAdapter(tndPagerAdapter);
