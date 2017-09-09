@@ -9,17 +9,17 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
 
 import com.numero.sojodia.R;
+import com.numero.sojodia.api.ApiClient;
 import com.numero.sojodia.helper.DownloadHelper;
-import com.numero.sojodia.helper.UpdateCheckHelper;
+import com.numero.sojodia.manager.UpdateManager;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.util.BroadCastUtil;
-import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.util.NetworkUtil;
-import com.numero.sojodia.util.PreferenceUtil;
 
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 public class UpdateBusDataService extends IntentService {
 
@@ -27,6 +27,8 @@ public class UpdateBusDataService extends IntentService {
 
     private BusDataFile[] busDataFiles = BusDataFile.values();
     private OkHttpClient okHttpClient;
+    private ApiClient apiClient;
+    private UpdateManager updateManager;
 
     public UpdateBusDataService() {
         super(UpdateBusDataService.class.getSimpleName());
@@ -35,7 +37,8 @@ public class UpdateBusDataService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        okHttpClient = new OkHttpClient();
+        apiClient = new ApiClient();
+        updateManager = UpdateManager.getInstance(this);
     }
 
     @Override
@@ -58,37 +61,33 @@ public class UpdateBusDataService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        if (!NetworkUtil.canNetworkConnect(this)) {
-            stopSelf();
-            return;
-        }
-        if (UpdateCheckHelper.isTodayUpdateChecked(this)) {
+        if (!NetworkUtil.canNetworkConnect(this) ||
+                updateManager.isTodayUpdateChecked()) {
             stopSelf();
             return;
         }
 
-        long versionCode = checkVersionCode();
-        if (checkVersionCode() == -1) {
+        try {
+            checkUpdate();
+        } catch (IOException e) {
+            e.printStackTrace();
             stopSelf();
             return;
         }
-        PreferenceUtil.setUpdateCheckDate(this, DateUtil.getTodayStringOnlyFigure());
-        if (UpdateCheckHelper.canUpdate(this, versionCode)) {
+
+        if (updateManager.canUpdate()) {
             showNotification();
             if (downloadBusDataFile()) {
-                PreferenceUtil.setVersionCode(this, versionCode);
+                updateManager.updateVersionCode();
                 BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
             }
         }
     }
 
-    private long checkVersionCode() {
-        try {
-            return UpdateCheckHelper.executeCheck(okHttpClient);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return -1;
-        }
+    private void checkUpdate() throws IOException {
+        Request request = new Request.Builder().url("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt").build();
+        String data = apiClient.execute(request).string();
+        updateManager.setVersionCode(Long.valueOf(data));
     }
 
     private boolean downloadBusDataFile() {

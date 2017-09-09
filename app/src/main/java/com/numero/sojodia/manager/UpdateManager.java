@@ -9,8 +9,6 @@ import com.numero.sojodia.util.PreferenceUtil;
 
 public class UpdateManager extends ContextWrapper {
 
-    private static final long DEFAULT_VERSION_CODE = 20170401L;
-
     private static UpdateManager INSTANCE;
     private long versionCode = -1;
 
@@ -21,12 +19,18 @@ public class UpdateManager extends ContextWrapper {
         return INSTANCE;
     }
 
-    public void setVersionCode(long versionCode) {
-        this.versionCode = versionCode;
-    }
-
     public UpdateManager(Context context) {
         super(context);
+    }
+
+    public void setVersionCode(long versionCode) {
+        this.versionCode = versionCode;
+        // バージョンがセットされた時はチェックに成功した場合
+        PreferenceUtil.setUpdateCheckDate(getBaseContext(), DateUtil.getTodayStringOnlyFigure());
+    }
+
+    public void updateVersionCode() {
+        PreferenceUtil.setVersionCode(getBaseContext(), versionCode);
     }
 
     // アップデートの確認は1日1回
@@ -37,9 +41,5 @@ public class UpdateManager extends ContextWrapper {
 
     public boolean canUpdate() {
         return PreferenceUtil.getVersionCode(getBaseContext()) < versionCode;
-    }
-
-    public void clearVersionCode() {
-        PreferenceUtil.setVersionCode(this, DEFAULT_VERSION_CODE);
     }
 }
