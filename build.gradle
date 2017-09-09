@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.3'
 
     }
 }
@@ -11,5 +11,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        // FIXME AS3.0以上でgoogle()に変更
+        maven {
+            url "https://maven.google.com"
+        }
     }
 }
