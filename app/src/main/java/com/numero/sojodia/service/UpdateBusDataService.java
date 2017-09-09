@@ -18,8 +18,6 @@ import com.numero.sojodia.util.NetworkUtil;
 import com.numero.sojodia.util.PreferenceUtil;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.OkHttpClient;
 
@@ -27,7 +25,7 @@ public class UpdateBusDataService extends IntentService {
 
     public final static int UPDATE_NOTIFICATION_ID = 1;
 
-    private List<BusDataFile> fileList = new ArrayList<>();
+    private BusDataFile[] busDataFiles = BusDataFile.values();
     private OkHttpClient okHttpClient;
 
     public UpdateBusDataService() {
@@ -38,7 +36,6 @@ public class UpdateBusDataService extends IntentService {
     public void onCreate() {
         super.onCreate();
         okHttpClient = new OkHttpClient();
-        initBusDataFile();
     }
 
     @Override
@@ -85,13 +82,6 @@ public class UpdateBusDataService extends IntentService {
         }
     }
 
-    private void initBusDataFile() {
-        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/TkToKutc.csv", "TkToKutc.csv"));
-        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/TndToKutc.csv", "TndToKutc.csv"));
-        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/KutcToTk.csv", "KutcToTk.csv"));
-        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/KutcToTnd.csv", "KutcToTnd.csv"));
-    }
-
     private long checkVersionCode() {
         try {
             return UpdateCheckHelper.executeCheck(okHttpClient);
@@ -103,8 +93,8 @@ public class UpdateBusDataService extends IntentService {
 
     private boolean downloadBusDataFile() {
         try {
-            for (BusDataFile dataFile : fileList) {
-                DownloadHelper.executeDownload(this, okHttpClient, dataFile.url, dataFile.name);
+            for (BusDataFile dataFile : busDataFiles) {
+                DownloadHelper.executeDownload(this, okHttpClient, dataFile.getUrl(), dataFile.getFileName());
             }
         } catch (IOException e) {
             e.printStackTrace();
