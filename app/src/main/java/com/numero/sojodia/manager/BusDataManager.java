@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.model.BusTime;
-import com.numero.sojodia.util.DateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,10 +77,10 @@ public class BusDataManager extends ContextWrapper {
     }
 
     private void initBusTimeList() {
-        setBusTimeList(tkBusTimeListGoing, dataManager.getBusTimeData(BusDataFile.TK_TO_KUTC.getFileName()));
-        setBusTimeList(tkBusTimeListReturn, dataManager.getBusTimeData(BusDataFile.KUTC_TO_TK.getFileName()));
-        setBusTimeList(tndBusTimeListGoing, dataManager.getBusTimeData(BusDataFile.TND_TO_KUTC.getFileName()));
-        setBusTimeList(tndBusTimeListReturn, dataManager.getBusTimeData(BusDataFile.KUTC_TO_TND.getFileName()));
+        setBusTimeList(tkBusTimeListGoing, dataManager.getBusTimeDataSource(BusDataFile.TK_TO_KUTC.getFileName()));
+        setBusTimeList(tkBusTimeListReturn, dataManager.getBusTimeDataSource(BusDataFile.KUTC_TO_TK.getFileName()));
+        setBusTimeList(tndBusTimeListGoing, dataManager.getBusTimeDataSource(BusDataFile.TND_TO_KUTC.getFileName()));
+        setBusTimeList(tndBusTimeListReturn, dataManager.getBusTimeDataSource(BusDataFile.KUTC_TO_TND.getFileName()));
     }
 
     public List<BusTime> getTkGoingBusTimeList(int week) {
