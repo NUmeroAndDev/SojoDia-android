@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.numero.sojodia.activity.MainActivity;
-import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.adapter.BusTimePagerAdapter;
 import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
@@ -140,15 +139,9 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initBusTimeList(int week) {
-        tkTimeList.clear();
-        tndTimeList.clear();
-        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
-            tkTimeList.addAll(busDataManager.getTkGoingBusTimeList(week));
-            tndTimeList.addAll(busDataManager.getTndGoingBusTimeList(week));
-        } else {
-            tkTimeList.addAll(busDataManager.getTkReturnBusTimeList(week));
-            tndTimeList.addAll(busDataManager.getTndReturnBusTimeList(week));
-        }
+        busDataManager.setWeekAndReciprocate(week, reciprocate);
+        tkTimeList = busDataManager.getTkTimeList();
+        tndTimeList = busDataManager.getTndTimeList();
     }
 
     private void findCurrentTkBusTime() {
@@ -374,7 +367,7 @@ public class BusScheduleFragment extends Fragment {
         Time currentTime = TimeUtil.initCurrentTime();
         tkTime.setTime(tkTimeList.get(tkCurrentNextBusPosition).hour, tkTimeList.get(tkCurrentNextBusPosition).min, 0);
         if (TimeUtil.isOverTime(tkTime, currentTime)) {
-            if (isTkLastBus(tkCurrentNextBusPosition)) {
+            if (busDataManager.isTkLastBus(tkCurrentNextBusPosition)) {
                 tkCurrentNextBusPosition = -1;
                 setVisibleTkNoBusLayout(true);
                 return;
@@ -389,7 +382,7 @@ public class BusScheduleFragment extends Fragment {
         Time currentTime = TimeUtil.initCurrentTime();
         tndTime.setTime(tndTimeList.get(tndCurrentNextBusPosition).hour, tndTimeList.get(tndCurrentNextBusPosition).min, 0);
         if (TimeUtil.isOverTime(tndTime, currentTime)) {
-            if (isTndLastBus(tndCurrentNextBusPosition)) {
+            if (busDataManager.isTndLastBus(tndCurrentNextBusPosition)) {
                 tndCurrentNextBusPosition = -1;
                 setVisibleTndNoBusLayout(true);
                 return;
@@ -432,19 +425,11 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private boolean isTkLastBus() {
-        return isTkLastBus(getCurrentTkBusTimePosition());
-    }
-
-    private boolean isTkLastBus(int position) {
-        return (tkTimeList.size() - 1) == position;
+        return busDataManager.isTkLastBus(getCurrentTkBusTimePosition());
     }
 
     private boolean isTndLastBus() {
-        return isTndLastBus(getCurrentTndBusTimePosition());
-    }
-
-    private boolean isTndLastBus(int position) {
-        return (tndTimeList.size() - 1) == position;
+        return busDataManager.isTndLastBus(getCurrentTndBusTimePosition());
     }
 
     private List<BusTime> getTkBusTimeList(int week) {

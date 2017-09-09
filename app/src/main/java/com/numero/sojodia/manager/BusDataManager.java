@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.support.annotation.NonNull;
 
+import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.model.BusTime;
+import com.numero.sojodia.util.DateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +18,16 @@ import io.reactivex.functions.Predicate;
 
 public class BusDataManager extends ContextWrapper {
 
+    private List<BusTime> currentTkTimeList = new ArrayList<>();
+    private List<BusTime> currentTndTimeList = new ArrayList<>();
+
     private List<BusTime> tkBusTimeListGoing = new ArrayList<>();
     private List<BusTime> tkBusTimeListReturn = new ArrayList<>();
     private List<BusTime> tndBusTimeListGoing = new ArrayList<>();
     private List<BusTime> tndBusTimeListReturn = new ArrayList<>();
 
     private DataManager dataManager;
+    private int week;
 
     private static BusDataManager INSTANCE;
 
@@ -34,8 +40,41 @@ public class BusDataManager extends ContextWrapper {
 
     public BusDataManager(Context context) {
         super(context);
+
         dataManager = DataManager.getInstance(context);
+
         initBusTimeList();
+    }
+
+    public void setWeekAndReciprocate(int week, int reciprocate) {
+        if (this.week == week) {
+            return;
+        }
+        this.week = week;
+
+        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
+            currentTkTimeList = getTkGoingBusTimeList(week);
+            currentTndTimeList = getTndGoingBusTimeList(week);
+        } else {
+            currentTkTimeList = getTkReturnBusTimeList(week);
+            currentTndTimeList = getTndReturnBusTimeList(week);
+        }
+    }
+
+    public List<BusTime> getTkTimeList() {
+        return currentTkTimeList;
+    }
+
+    public List<BusTime> getTndTimeList() {
+        return currentTndTimeList;
+    }
+
+    public boolean isTkLastBus(int position) {
+        return (currentTkTimeList.size() - 1) == position;
+    }
+
+    public boolean isTndLastBus(int position) {
+        return (currentTndTimeList.size() - 1) == position;
     }
 
     private void initBusTimeList() {
