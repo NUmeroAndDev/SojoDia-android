@@ -10,7 +10,7 @@ import android.support.v7.app.NotificationCompat;
 
 import com.numero.sojodia.R;
 import com.numero.sojodia.api.ApiClient;
-import com.numero.sojodia.helper.DownloadHelper;
+import com.numero.sojodia.manager.DataManager;
 import com.numero.sojodia.manager.UpdateManager;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.util.BroadCastUtil;
@@ -18,7 +18,6 @@ import com.numero.sojodia.util.NetworkUtil;
 
 import java.io.IOException;
 
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
 
@@ -27,9 +26,9 @@ public class UpdateBusDataService extends IntentService {
     public final static int UPDATE_NOTIFICATION_ID = 1;
 
     private BusDataFile[] busDataFiles = BusDataFile.values();
-    private OkHttpClient okHttpClient;
     private ApiClient apiClient;
     private UpdateManager updateManager;
+    private DataManager dataManager;
 
     public UpdateBusDataService() {
         super(UpdateBusDataService.class.getSimpleName());
@@ -40,6 +39,7 @@ public class UpdateBusDataService extends IntentService {
         super.onCreate();
         apiClient = new ApiClient();
         updateManager = UpdateManager.getInstance(this);
+        dataManager = DataManager.getInstance(this);
     }
 
     @Override
@@ -86,6 +86,7 @@ public class UpdateBusDataService extends IntentService {
 
             @Override
             public void onFailed(Throwable e) {
+                e.printStackTrace();
                 stopSelf();
             }
         });
@@ -93,23 +94,23 @@ public class UpdateBusDataService extends IntentService {
 
     private void executeUpdate() {
         showNotification();
-        if (downloadBusDataFile()) {
-            updateManager.updateVersionCode();
-            BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
-        }
-    }
+        for (final BusDataFile busDataFile : busDataFiles) {
+            final Request request = new Request.Builder().url(busDataFile.getUrl()).build();
+            apiClient.execute(request, new ApiClient.Callback() {
+                @Override
+                public void onSuccess(ResponseBody responseBody) throws IOException {
+                    dataManager.saveDownLoadedData(busDataFile.getFileName(), responseBody.byteStream());
+                }
 
-    private boolean downloadBusDataFile() {
-        try {
-            for (BusDataFile dataFile : busDataFiles) {
-                DownloadHelper.executeDownload(this, okHttpClient, dataFile.getUrl(), dataFile.getFileName());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            stopSelf();
-            return false;
+                @Override
+                public void onFailed(Throwable e) {
+                    e.printStackTrace();
+                    stopSelf();
+                }
+            });
         }
-        return true;
+        updateManager.updateVersionCode();
+        BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
     }
 
     private void showNotification() {

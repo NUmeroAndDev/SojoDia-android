@@ -73,26 +73,22 @@ public class DataManager extends ContextWrapper {
         }
     }
 
-    public void saveDownLoadedData(String fileName, @NonNull InputStream inputStream) {
-        try {
-            DataInputStream dataInputStream = new DataInputStream(inputStream);
-            FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+    public void saveDownLoadedData(String fileName, @NonNull InputStream inputStream) throws IOException {
+        DataInputStream dataInputStream = new DataInputStream(inputStream);
+        FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
 
-            DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
+        DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
 
-            byte[] buffer = new byte[4096];
-            int readByte;
+        byte[] buffer = new byte[4096];
+        int readByte;
 
-            while ((readByte = dataInputStream.read(buffer)) != -1) {
-                dataOutputStream.write(buffer, 0, readByte);
-            }
-
-            dataOutputStream.close();
-            fileOutputStream.close();
-            dataInputStream.close();
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        while ((readByte = dataInputStream.read(buffer)) != -1) {
+            dataOutputStream.write(buffer, 0, readByte);
         }
+
+        dataOutputStream.close();
+        fileOutputStream.close();
+        dataInputStream.close();
+        inputStream.close();
     }
 }
