@@ -9,26 +9,26 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.NotificationCompat;
 
 import com.numero.sojodia.R;
-import com.numero.sojodia.helper.DownloadHelper;
-import com.numero.sojodia.helper.UpdateCheckHelper;
+import com.numero.sojodia.api.ApiClient;
+import com.numero.sojodia.manager.DataManager;
+import com.numero.sojodia.manager.UpdateManager;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.util.BroadCastUtil;
-import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.util.NetworkUtil;
-import com.numero.sojodia.util.PreferenceUtil;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
 
 public class UpdateBusDataService extends IntentService {
 
     public final static int UPDATE_NOTIFICATION_ID = 1;
 
-    private List<BusDataFile> fileList = new ArrayList<>();
-    private OkHttpClient okHttpClient;
+    private BusDataFile[] busDataFiles = BusDataFile.values();
+    private ApiClient apiClient;
+    private UpdateManager updateManager;
+    private DataManager dataManager;
 
     public UpdateBusDataService() {
         super(UpdateBusDataService.class.getSimpleName());
@@ -37,8 +37,9 @@ public class UpdateBusDataService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        okHttpClient = new OkHttpClient();
-        initBusDataFile();
+        apiClient = new ApiClient();
+        updateManager = UpdateManager.getInstance(this);
+        dataManager = DataManager.getInstance(this);
     }
 
     @Override
@@ -61,57 +62,55 @@ public class UpdateBusDataService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        if (!NetworkUtil.canNetworkConnect(this)) {
-            stopSelf();
-            return;
-        }
-        if (UpdateCheckHelper.isTodayUpdateChecked(this)) {
+        if (!NetworkUtil.canNetworkConnect(this) ||
+                updateManager.isTodayUpdateChecked()) {
             stopSelf();
             return;
         }
 
-        long versionCode = checkVersionCode();
-        if (checkVersionCode() == -1) {
-            stopSelf();
-            return;
-        }
-        PreferenceUtil.setUpdateCheckDate(this, DateUtil.getTodayStringOnlyFigure());
-        if (UpdateCheckHelper.canUpdate(this, versionCode)) {
-            showNotification();
-            if (downloadBusDataFile()) {
-                PreferenceUtil.setVersionCode(this, versionCode);
-                BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
+        checkUpdate();
+    }
+
+    private void checkUpdate() {
+        Request request = new Request.Builder().url("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt").build();
+        apiClient.execute(request, new ApiClient.Callback() {
+            @Override
+            public void onSuccess(ResponseBody responseBody) throws IOException {
+                String data = responseBody.string();
+                updateManager.setVersionCode(Long.valueOf(data));
+
+                if (updateManager.canUpdate()) {
+                    executeUpdate();
+                }
             }
-        }
-    }
 
-    private void initBusDataFile() {
-        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/TkToKutc.csv", "TkToKutc.csv"));
-        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/TndToKutc.csv", "TndToKutc.csv"));
-        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/KutcToTk.csv", "KutcToTk.csv"));
-        fileList.add(new BusDataFile("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/KutcToTnd.csv", "KutcToTnd.csv"));
-    }
-
-    private long checkVersionCode() {
-        try {
-            return UpdateCheckHelper.executeCheck(okHttpClient);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
-    private boolean downloadBusDataFile() {
-        try {
-            for (BusDataFile dataFile : fileList) {
-                DownloadHelper.executeDownload(this, okHttpClient, dataFile.url, dataFile.name);
+            @Override
+            public void onFailed(Throwable e) {
+                e.printStackTrace();
+                stopSelf();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            stopSelf();
-            return false;
+        });
+    }
+
+    private void executeUpdate() {
+        showNotification();
+        for (final BusDataFile busDataFile : busDataFiles) {
+            final Request request = new Request.Builder().url(busDataFile.getUrl()).build();
+            apiClient.execute(request, new ApiClient.Callback() {
+                @Override
+                public void onSuccess(ResponseBody responseBody) throws IOException {
+                    dataManager.saveDownLoadedData(busDataFile.getFileName(), responseBody.byteStream());
+                }
+
+                @Override
+                public void onFailed(Throwable e) {
+                    e.printStackTrace();
+                    stopSelf();
+                }
+            });
         }
-        return true;
+        updateManager.updateVersionCode();
+        BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
     }
 
     private void showNotification() {

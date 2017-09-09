@@ -37,12 +37,16 @@ public class MainActivity extends AppCompatActivity {
     private List<BusTime> tndBusTimeListOnSaturdayReturn = new ArrayList<>();
     private List<BusTime> tndBusTimeListOnSundayReturn = new ArrayList<>();
 
-    private BroadcastReceiver finishDownloadReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver finishDownloadReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             showNeedRestartDialog();
         }
     };
+
+    private ViewPager viewPager;
+    private BusScheduleFragmentPagerAdapter fragmentPagerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
         initBusData();
         initViews();
+
+        String shortcutIntent = getIntent().getStringExtra("shortcut");
+        if (shortcutIntent != null) {
+            viewPager.setCurrentItem(shortcutIntent.equals("coming_home") ? 1 : 0);
+        }
 
         LocalBroadcastManager.getInstance(this).registerReceiver(finishDownloadReceiver, new IntentFilter(BroadCastUtil.ACTION_FINISH_DOWNLOAD));
         startCheckUpdateService();
@@ -70,16 +79,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        BusScheduleFragmentPagerAdapter fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, getSupportFragmentManager());
+        viewPager = findViewById(R.id.container);
         viewPager.setAdapter(fragmentPagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-        String shortcutIntent = getIntent().getStringExtra("shortcut");
-        if (shortcutIntent != null) {
-            viewPager.setCurrentItem(shortcutIntent.equals("coming_home") ? 1 : 0);
-        }
     }
 
     private void startCheckUpdateService() {
