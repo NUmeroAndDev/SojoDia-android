@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.numero.sojodia.activity.MainActivity;
+import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.adapter.BusTimePagerAdapter;
 import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
@@ -433,18 +433,18 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private List<BusTime> getTkBusTimeList(int week) {
-        if (getActivity() instanceof MainActivity) {
-            MainActivity activity = (MainActivity) getActivity();
-            return activity.getTkBusTimeList(reciprocate, week);
+        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
+            return busDataManager.getTkGoingBusTimeList(week);
+        } else {
+            return busDataManager.getTkReturnBusTimeList(week);
         }
-        return null;
     }
 
     private List<BusTime> getTndBusTimeList(int week) {
-        if (getActivity() instanceof MainActivity) {
-            MainActivity activity = (MainActivity) getActivity();
-            return activity.getTndBusTimeList(reciprocate, week);
+        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
+            return busDataManager.getTndGoingBusTimeList(week);
+        } else {
+            return busDataManager.getTndReturnBusTimeList(week);
         }
-        return null;
     }
 }
