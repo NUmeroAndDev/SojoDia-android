@@ -28,13 +28,8 @@ public class BusDataManager extends ContextWrapper {
     private DataManager dataManager;
     private int week = -1;
 
-    private static BusDataManager INSTANCE;
-
     public static BusDataManager getInstance(@NonNull Context context) {
-        if (INSTANCE == null) {
-            INSTANCE = new BusDataManager(context);
-        }
-        return INSTANCE;
+        return new BusDataManager(context);
     }
 
     public BusDataManager(Context context) {
