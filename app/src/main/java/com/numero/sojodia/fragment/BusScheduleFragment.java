@@ -1,5 +1,6 @@
 package com.numero.sojodia.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -9,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.numero.sojodia.activity.MainActivity;
+import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.adapter.BusTimePagerAdapter;
+import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.model.Time;
 import com.numero.sojodia.util.DateUtil;
@@ -19,6 +22,7 @@ import com.numero.sojodia.view.CustomViewPager;
 import com.numero.sojodia.view.TimeTableDialog;
 import com.numero.sojodia.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BusScheduleFragment extends Fragment {
@@ -36,8 +40,9 @@ public class BusScheduleFragment extends Fragment {
     private View tkNoBusLayout;
     private View tndNoBusLayout;
 
-    private List<BusTime> tkTimeList;
-    private List<BusTime> tndTimeList;
+    private List<BusTime> tkTimeList = new ArrayList<>();
+    private List<BusTime> tndTimeList = new ArrayList<>();
+    private BusDataManager busDataManager;
     private View view;
 
     private int tkCurrentNextBusPosition;
@@ -57,6 +62,12 @@ public class BusScheduleFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        busDataManager = BusDataManager.getInstance(context);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
@@ -68,6 +79,8 @@ public class BusScheduleFragment extends Fragment {
 
         reciprocate = getArguments().getInt(RECIPROCATE);
         currentDateString = DateUtil.getTodayStringOnlyFigure();
+
+        initBusTimeList(DateUtil.getWeek());
 
         initCountDownClockTextView(view);
         initTimeTableButton(view);
@@ -127,10 +140,14 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initBusTimeList(int week) {
-        if (getActivity() instanceof MainActivity) {
-            MainActivity activity = (MainActivity) getActivity();
-            tkTimeList = activity.getTkBusTimeList(reciprocate, week);
-            tndTimeList = activity.getTndBusTimeList(reciprocate, week);
+        tkTimeList.clear();
+        tndTimeList.clear();
+        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
+            tkTimeList.addAll(busDataManager.getTkGoingBusTimeList(week));
+            tndTimeList.addAll(busDataManager.getTndGoingBusTimeList(week));
+        } else {
+            tkTimeList.addAll(busDataManager.getTkReturnBusTimeList(week));
+            tndTimeList.addAll(busDataManager.getTndReturnBusTimeList(week));
         }
     }
 
