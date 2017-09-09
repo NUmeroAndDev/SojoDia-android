@@ -11,5 +11,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        // FIXME AS3.0以上でgoogle()に変更
+        maven {
+            url "https://maven.google.com"
+        }
     }
 }
