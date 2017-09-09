@@ -1,5 +1,7 @@
 package com.numero.sojodia.api;
 
+import android.support.annotation.NonNull;
+
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
@@ -15,8 +17,19 @@ public class ApiClient {
         okHttpClient = new OkHttpClient();
     }
 
-    public ResponseBody execute(Request request) throws IOException {
-        Response response = okHttpClient.newCall(request).execute();
-        return response.body();
+    public void execute(@NonNull Request request, @NonNull Callback callback) {
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            callback.onSuccess(response.body());
+        } catch (IOException e) {
+            callback.onFailed(e);
+        }
+    }
+
+    // このコールバックはThreadで返される
+    public interface Callback {
+        void onSuccess(ResponseBody responseBody) throws IOException;
+
+        void onFailed(Throwable e);
     }
 }

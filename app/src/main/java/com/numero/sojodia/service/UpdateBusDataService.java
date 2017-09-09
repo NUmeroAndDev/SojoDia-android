@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.ResponseBody;
 
 public class UpdateBusDataService extends IntentService {
 
@@ -67,27 +68,35 @@ public class UpdateBusDataService extends IntentService {
             return;
         }
 
-        try {
-            checkUpdate();
-        } catch (IOException e) {
-            e.printStackTrace();
-            stopSelf();
-            return;
-        }
-
-        if (updateManager.canUpdate()) {
-            showNotification();
-            if (downloadBusDataFile()) {
-                updateManager.updateVersionCode();
-                BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
-            }
-        }
+        checkUpdate();
     }
 
-    private void checkUpdate() throws IOException {
+    private void checkUpdate() {
         Request request = new Request.Builder().url("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt").build();
-        String data = apiClient.execute(request).string();
-        updateManager.setVersionCode(Long.valueOf(data));
+        apiClient.execute(request, new ApiClient.Callback() {
+            @Override
+            public void onSuccess(ResponseBody responseBody) throws IOException {
+                String data = responseBody.string();
+                updateManager.setVersionCode(Long.valueOf(data));
+
+                if (updateManager.canUpdate()) {
+                    executeUpdate();
+                }
+            }
+
+            @Override
+            public void onFailed(Throwable e) {
+                stopSelf();
+            }
+        });
+    }
+
+    private void executeUpdate() {
+        showNotification();
+        if (downloadBusDataFile()) {
+            updateManager.updateVersionCode();
+            BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
+        }
     }
 
     private boolean downloadBusDataFile() {
