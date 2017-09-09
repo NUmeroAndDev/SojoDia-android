@@ -27,7 +27,7 @@ public class BusDataManager extends ContextWrapper {
     private List<BusTime> tndBusTimeListReturn = new ArrayList<>();
 
     private DataManager dataManager;
-    private int week;
+    private int week = -1;
 
     private static BusDataManager INSTANCE;
 
