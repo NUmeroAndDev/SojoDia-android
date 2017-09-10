@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.adapter.BusTimePagerAdapter;
 import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
@@ -18,7 +17,7 @@ import com.numero.sojodia.model.Time;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.util.TimeUtil;
 import com.numero.sojodia.view.CountDownClockTextView;
-import com.numero.sojodia.view.CustomViewPager;
+import com.numero.sojodia.view.NotSwipeViewPager;
 import com.numero.sojodia.view.TimeTableDialog;
 import com.numero.sojodia.R;
 
@@ -33,8 +32,8 @@ public class BusScheduleFragment extends Fragment {
     private View tkPreviewBusTimeButton;
     private View tndNextBusTimeButton;
     private View tndPreviewBusTimeButton;
-    private CustomViewPager tkBusTimePager;
-    private CustomViewPager tndBusTimePager;
+    private NotSwipeViewPager tkBusTimePager;
+    private NotSwipeViewPager tndBusTimePager;
     private View tkNoBusLayout;
     private View tndNoBusLayout;
 
@@ -183,7 +182,6 @@ public class BusScheduleFragment extends Fragment {
 
     private void initTkBusTimePagerView(View view) {
         tkBusTimePager = view.findViewById(R.id.tk_bus_time_pager);
-        tkBusTimePager.setSwipeEnable(false);
         tkBusTimePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -206,7 +204,6 @@ public class BusScheduleFragment extends Fragment {
 
     private void initTndBusTimePagerView(View view) {
         tndBusTimePager = view.findViewById(R.id.tnd_bus_time_pager);
-        tndBusTimePager.setSwipeEnable(false);
         tndBusTimePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

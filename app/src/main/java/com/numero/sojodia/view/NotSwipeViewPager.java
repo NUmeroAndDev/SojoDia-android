@@ -5,16 +5,15 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-//TODO リネーム
-public class CustomViewPager extends ViewPager {
+public class NotSwipeViewPager extends ViewPager {
 
-    private boolean isSwipeEnable = true;
+    private static boolean isSwipeEnable = false;
 
-    public CustomViewPager(Context context) {
+    public NotSwipeViewPager(Context context) {
         super(context);
     }
 
-    public CustomViewPager(Context context, AttributeSet attrs) {
+    public NotSwipeViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -26,9 +25,5 @@ public class CustomViewPager extends ViewPager {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
         return isSwipeEnable;
-    }
-
-    public void setSwipeEnable(boolean isSwipeEnable) {
-        this.isSwipeEnable = isSwipeEnable;
     }
 }
