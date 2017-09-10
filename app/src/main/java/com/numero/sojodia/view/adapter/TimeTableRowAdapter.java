@@ -1,4 +1,4 @@
-package com.numero.sojodia.adapter;
+package com.numero.sojodia.view.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.numero.sojodia.R;
 import com.numero.sojodia.model.TimeTableRow;
+import com.numero.sojodia.view.TimeTableRowHolder;
 
 import java.util.Calendar;
 import java.util.List;

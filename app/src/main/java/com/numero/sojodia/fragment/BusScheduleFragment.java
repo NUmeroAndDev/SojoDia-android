@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.numero.sojodia.adapter.BusTimePagerAdapter;
+import com.numero.sojodia.view.adapter.BusTimePagerAdapter;
 import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.model.Reciprocate;
