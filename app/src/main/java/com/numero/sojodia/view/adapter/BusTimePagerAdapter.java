@@ -1,4 +1,4 @@
-package com.numero.sojodia.adapter;
+package com.numero.sojodia.view.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

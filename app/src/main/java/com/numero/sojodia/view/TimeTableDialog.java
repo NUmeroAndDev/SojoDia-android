@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.numero.sojodia.adapter.TimeTableRowAdapter;
+import com.numero.sojodia.view.adapter.TimeTableRowAdapter;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.model.Reciprocate;
 import com.numero.sojodia.model.TimeTableRow;

@@ -10,7 +10,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
+import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.service.UpdateBusDataService;
 import com.numero.sojodia.util.BroadCastUtil;
 import com.numero.sojodia.view.NeedRestartDialog;
