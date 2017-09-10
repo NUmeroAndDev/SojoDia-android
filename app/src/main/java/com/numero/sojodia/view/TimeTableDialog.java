@@ -12,6 +12,7 @@ import android.view.WindowManager;
 
 import com.numero.sojodia.adapter.TimeTableRowAdapter;
 import com.numero.sojodia.model.BusTime;
+import com.numero.sojodia.model.Reciprocate;
 import com.numero.sojodia.model.TimeTableRow;
 import com.numero.sojodia.R;
 
@@ -72,10 +73,9 @@ public class TimeTableDialog {
         return this;
     }
 
-    public TimeTableDialog setReciprocate(int reciprocate) {
-        int reciprocatingStringRes[] = {R.string.going_to_school, R.string.coming_home};
+    public TimeTableDialog setReciprocate(Reciprocate reciprocate) {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setSubtitle(reciprocatingStringRes[reciprocate]);
+        toolbar.setSubtitle(reciprocate.getTitleStringRes());
         return this;
     }
 
