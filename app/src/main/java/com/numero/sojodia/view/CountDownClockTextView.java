@@ -3,19 +3,19 @@ package com.numero.sojodia.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import com.numero.sojodia.R;
 
 import java.util.Calendar;
 
-public class CountDownClockTextView extends TextView {
+public class CountDownClockTextView extends AppCompatTextView {
 
     private boolean isAttached;
     private int hour;
     private int min;
-    private boolean flg = false;
+    private boolean isBecomeZeroSecond = false;
 
     private int defaultTextColor;
     private int attentionTextColor;
@@ -23,8 +23,20 @@ public class CountDownClockTextView extends TextView {
 
     private OnTimeChangedListener onTimeChangedListener;
 
+    private final Runnable runnable = new Runnable() {
+        public void run() {
+            onTimeChanged();
+
+            if (onTimeChangedListener != null) {
+                onTimeChangedListener.onTimeChanged();
+            }
+
+            getHandler().postDelayed(runnable, 200);
+        }
+    };
+
     public CountDownClockTextView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public CountDownClockTextView(Context context, AttributeSet attrs) {
@@ -49,26 +61,14 @@ public class CountDownClockTextView extends TextView {
         this.onTimeChangedListener = onTimeChangedListener;
     }
 
-    private final Runnable mTicker = new Runnable() {
-        public void run() {
-            onTimeChanged();
-
-            if (onTimeChangedListener != null) {
-                onTimeChangedListener.onTimeChanged();
-            }
-
-            getHandler().postDelayed(mTicker, 200);
-        }
-    };
-
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
 
         if (!isAttached) {
             isAttached = true;
-            flg = false;
-            mTicker.run();
+            isBecomeZeroSecond = false;
+            runnable.run();
         }
     }
 
@@ -77,7 +77,7 @@ public class CountDownClockTextView extends TextView {
         super.onDetachedFromWindow();
         if (isAttached) {
 
-            getHandler().removeCallbacks(mTicker);
+            getHandler().removeCallbacks(runnable);
 
             isAttached = false;
         }
@@ -87,10 +87,10 @@ public class CountDownClockTextView extends TextView {
     private void onTimeChanged() {
         int sec = 59 - getCurrentSec();
         if (sec == 0) {
-            flg = true;
+            isBecomeZeroSecond = true;
         }
-        if (flg && sec == 59) {
-            flg = false;
+        if (isBecomeZeroSecond && sec == 59) {
+            isBecomeZeroSecond = false;
             min -= 1;
         }
         if (min == -1) {
