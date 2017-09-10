@@ -30,7 +30,7 @@ public class DataManager extends ContextWrapper {
         super(context);
     }
 
-    public String getBusTimeData(String fileName) {
+    public String getBusTimeDataSource(String fileName) {
         try {
             BufferedReader bufferedReader;
             FileInputStream fileInputStream = null;

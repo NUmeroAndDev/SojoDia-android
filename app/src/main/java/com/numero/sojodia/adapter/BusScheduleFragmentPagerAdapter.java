@@ -12,6 +12,7 @@ public class BusScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Context context;
 
+    // FIXME 宣言場所を変える
     public final static int RECIPROCATE_GOING = 0;
     public final static int RECIPROCATE_RETURN = 1;
 
