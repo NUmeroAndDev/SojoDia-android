@@ -51,7 +51,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1">
 
-                <com.numero.sojodia.view.CustomViewPager
+                <com.numero.sojodia.view.NotSwipeViewPager
                     android:id="@+id/tk_bus_time_pager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -160,7 +160,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1">
 
-                <com.numero.sojodia.view.CustomViewPager
+                <com.numero.sojodia.view.NotSwipeViewPager
                     android:id="@+id/tnd_bus_time_pager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
