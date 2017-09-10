@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.support.annotation.NonNull;
 
-import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.model.BusTime;
+import com.numero.sojodia.model.Reciprocate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,18 +40,21 @@ public class BusDataManager extends ContextWrapper {
         initBusTimeList();
     }
 
-    public void setWeekAndReciprocate(int week, int reciprocate) {
+    public void setWeekAndReciprocate(int week, Reciprocate reciprocate) {
         if (this.week == week) {
             return;
         }
         this.week = week;
 
-        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
-            currentTkTimeList = getTkGoingBusTimeList(week);
-            currentTndTimeList = getTndGoingBusTimeList(week);
-        } else {
-            currentTkTimeList = getTkReturnBusTimeList(week);
-            currentTndTimeList = getTndReturnBusTimeList(week);
+        switch (reciprocate) {
+            case GOING:
+                currentTkTimeList = getTkGoingBusTimeList(week);
+                currentTndTimeList = getTndGoingBusTimeList(week);
+                break;
+            case RETURN:
+                currentTkTimeList = getTkReturnBusTimeList(week);
+                currentTndTimeList = getTndReturnBusTimeList(week);
+                break;
         }
     }
 

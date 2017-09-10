@@ -13,6 +13,7 @@ import com.numero.sojodia.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.adapter.BusTimePagerAdapter;
 import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
+import com.numero.sojodia.model.Reciprocate;
 import com.numero.sojodia.model.Time;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.util.TimeUtil;
@@ -25,8 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BusScheduleFragment extends Fragment {
-
-    private static final String RECIPROCATE = "RECIPROCATE";
 
     private CountDownClockTextView tkCountDownClockTextView;
     private CountDownClockTextView tndCountDownClockTextView;
@@ -46,16 +45,16 @@ public class BusScheduleFragment extends Fragment {
 
     private int tkCurrentNextBusPosition;
     private int tndCurrentNextBusPosition;
-    private int reciprocate;
+    private Reciprocate reciprocate;
     private String currentDateString;
 
     public BusScheduleFragment() {
     }
 
-    public static BusScheduleFragment newInstance(int reciprocate) {
+    public static BusScheduleFragment newInstance(Reciprocate reciprocate) {
         BusScheduleFragment fragment = new BusScheduleFragment();
         Bundle args = new Bundle();
-        args.putInt(RECIPROCATE, reciprocate);
+        args.putSerializable(Reciprocate.class.getSimpleName(), reciprocate);
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,6 +68,7 @@ public class BusScheduleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        reciprocate = (Reciprocate) getArguments().getSerializable(Reciprocate.class.getSimpleName());
         setRetainInstance(true);
     }
 
@@ -76,7 +76,6 @@ public class BusScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bus_schedule_fragment, null);
 
-        reciprocate = getArguments().getInt(RECIPROCATE);
         currentDateString = DateUtil.getTodayStringOnlyFigure();
 
         initBusTimeList(DateUtil.getWeek());
@@ -433,18 +432,24 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private List<BusTime> getTkBusTimeList(int week) {
-        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
-            return busDataManager.getTkGoingBusTimeList(week);
-        } else {
-            return busDataManager.getTkReturnBusTimeList(week);
+        switch (reciprocate) {
+            case GOING:
+                return busDataManager.getTkGoingBusTimeList(week);
+            case RETURN:
+                return busDataManager.getTkReturnBusTimeList(week);
+            default:
+                return new ArrayList<>();
         }
     }
 
     private List<BusTime> getTndBusTimeList(int week) {
-        if (reciprocate == BusScheduleFragmentPagerAdapter.RECIPROCATE_GOING) {
-            return busDataManager.getTndGoingBusTimeList(week);
-        } else {
-            return busDataManager.getTndReturnBusTimeList(week);
+        switch (reciprocate) {
+            case GOING:
+                return busDataManager.getTndGoingBusTimeList(week);
+            case RETURN:
+                return busDataManager.getTndReturnBusTimeList(week);
+            default:
+                return new ArrayList<>();
         }
     }
 }
