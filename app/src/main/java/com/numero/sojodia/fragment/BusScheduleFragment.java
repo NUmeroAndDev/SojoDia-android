@@ -141,9 +141,7 @@ public class BusScheduleFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                Time time = new Time(tkTimeList.get(position).hour, tkTimeList.get(position).min, 0);
-                Time countTime = TimeUtil.getCountTime(time);
-                tkCountDownClockTextView.setTime(countTime.hour, countTime.min);
+                setupTkCountDown(tkTimeList.get(position));
                 setVisibleTkBeforeButton(busDataManager.canPreviewTkTime());
                 setVisibleTkNextButton(busDataManager.canNextTkTime());
                 setVisibleTkNoBusLayout(busDataManager.isNoTkBus());
@@ -164,9 +162,7 @@ public class BusScheduleFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                Time time = new Time(tndTimeList.get(position).hour, tndTimeList.get(position).min, 0);
-                Time countTime = TimeUtil.getCountTime(time);
-                tndCountDownClockTextView.setTime(countTime.hour, countTime.min);
+                setupTndCountDown(tndTimeList.get(position));
                 setVisibleTndBeforeButton(busDataManager.canPreviewTndTime());
                 setVisibleTndNextButton(busDataManager.canNextTndTime());
                 setVisibleTndNoBusLayout(busDataManager.isNoTndBus());
@@ -302,13 +298,26 @@ public class BusScheduleFragment extends Fragment {
         initBusTimeList(DateUtil.getWeek());
         initTkBusPagerView();
         initTndBusPagerView();
-        //TODO カウントダウンのセット
+        setupTkCountDown(tkTimeList.get(busDataManager.getTkBusPosition()));
+        setupTndCountDown(tndTimeList.get(busDataManager.getTndBusPosition()));
         setVisibleTkNoBusLayout(busDataManager.isNoTkBus());
         setVisibleTkBeforeButton(busDataManager.canPreviewTkTime());
         setVisibleTkNextButton(busDataManager.canNextTkTime());
         setVisibleTndNoBusLayout(busDataManager.isNoTndBus());
         setVisibleTndBeforeButton(busDataManager.canPreviewTndTime());
         setVisibleTndNextButton(busDataManager.canNextTndTime());
+    }
+
+    private void setupTkCountDown(BusTime busTime) {
+        Time time = new Time(busTime.hour, busTime.min, 0);
+        Time countTime = TimeUtil.getCountTime(time);
+        tkCountDownClockTextView.setTime(countTime.hour, countTime.min);
+    }
+
+    private void setupTndCountDown(BusTime busTime) {
+        Time time = new Time(busTime.hour, busTime.min, 0);
+        Time countTime = TimeUtil.getCountTime(time);
+        tndCountDownClockTextView.setTime(countTime.hour, countTime.min);
     }
 
     private boolean isDateChanged() {
