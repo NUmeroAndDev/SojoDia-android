@@ -74,14 +74,6 @@ public class BusDataManager extends ContextWrapper {
         return currentTndTimeList;
     }
 
-    public boolean isTkLastBus(int position) {
-        return (currentTkTimeList.size() - 1) == position;
-    }
-
-    public boolean isTndLastBus(int position) {
-        return (currentTndTimeList.size() - 1) == position;
-    }
-
     private void initBusTimeList() {
         setBusTimeList(tkBusTimeListGoing, dataManager.getBusTimeDataSource(BusDataFile.TK_TO_KUTC.getFileName()));
         setBusTimeList(tkBusTimeListReturn, dataManager.getBusTimeDataSource(BusDataFile.KUTC_TO_TK.getFileName()));
