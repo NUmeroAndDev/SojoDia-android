@@ -141,7 +141,7 @@ public class BusScheduleFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                setupTkCountDown(tkTimeList.get(position));
+                setupTkCountDown(position);
                 setVisibleTkBeforeButton(busDataManager.canPreviewTkTime());
                 setVisibleTkNextButton(busDataManager.canNextTkTime());
                 setVisibleTkNoBusLayout(busDataManager.isNoTkBus());
@@ -162,7 +162,7 @@ public class BusScheduleFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                setupTndCountDown(tndTimeList.get(position));
+                setupTndCountDown(position);
                 setVisibleTndBeforeButton(busDataManager.canPreviewTndTime());
                 setVisibleTndNextButton(busDataManager.canNextTndTime());
                 setVisibleTndNoBusLayout(busDataManager.isNoTndBus());
@@ -298,8 +298,8 @@ public class BusScheduleFragment extends Fragment {
         initBusTimeList(DateUtil.getWeek());
         initTkBusPagerView();
         initTndBusPagerView();
-        setupTkCountDown(tkTimeList.get(busDataManager.getTkBusPosition()));
-        setupTndCountDown(tndTimeList.get(busDataManager.getTndBusPosition()));
+        setupTkCountDown(busDataManager.getTkBusPosition());
+        setupTndCountDown(busDataManager.getTndBusPosition());
         setVisibleTkNoBusLayout(busDataManager.isNoTkBus());
         setVisibleTkBeforeButton(busDataManager.canPreviewTkTime());
         setVisibleTkNextButton(busDataManager.canNextTkTime());
@@ -308,13 +308,25 @@ public class BusScheduleFragment extends Fragment {
         setVisibleTndNextButton(busDataManager.canNextTndTime());
     }
 
-    private void setupTkCountDown(BusTime busTime) {
+    private void setupTkCountDown(int position) {
+        if (busDataManager.isNoTkBus()) {
+            setVisibleTkNoBusLayout(true);
+            return;
+        }
+        setVisibleTkNoBusLayout(false);
+        BusTime busTime = tkTimeList.get(position);
         Time time = new Time(busTime.hour, busTime.min, 0);
         Time countTime = TimeUtil.getCountTime(time);
         tkCountDownClockTextView.setTime(countTime.hour, countTime.min);
     }
 
-    private void setupTndCountDown(BusTime busTime) {
+    private void setupTndCountDown(int position) {
+        if (busDataManager.isNoTndBus()) {
+            setVisibleTndNoBusLayout(true);
+            return;
+        }
+        setVisibleTndNoBusLayout(false);
+        BusTime busTime = tndTimeList.get(position);
         Time time = new Time(busTime.hour, busTime.min, 0);
         Time countTime = TimeUtil.getCountTime(time);
         tndCountDownClockTextView.setTime(countTime.hour, countTime.min);
