@@ -83,6 +83,7 @@ public class TimeUtil {
         return time;
     }
 
+    // FIXME > 0に変更してみる
     public static boolean isOverTime(Time before, Time after) {
         Time time = new Time();
         time.sec = after.sec - before.sec;
