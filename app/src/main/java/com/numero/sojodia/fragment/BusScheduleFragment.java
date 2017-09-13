@@ -289,6 +289,7 @@ public class BusScheduleFragment extends Fragment {
     private void checkDateChange() {
         if (isDateChanged()) {
             currentDateString = DateUtil.getTodayStringOnlyFigure();
+            // TODO 日付変更時の修正
             reset();
         }
     }
