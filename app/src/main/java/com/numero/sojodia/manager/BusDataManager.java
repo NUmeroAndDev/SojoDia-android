@@ -48,9 +48,6 @@ public class BusDataManager extends ContextWrapper {
     }
 
     public void setWeekAndReciprocate(int week, Reciprocate reciprocate) {
-        if (this.week == week) {
-            return;
-        }
         this.week = week;
 
         switch (reciprocate) {
