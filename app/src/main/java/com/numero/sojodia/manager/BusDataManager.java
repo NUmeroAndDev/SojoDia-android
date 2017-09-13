@@ -125,6 +125,9 @@ public class BusDataManager extends ContextWrapper {
 
     public void nextTkBusTime() {
         tkBusPosition += 1;
+        if (tkBusPosition == currentTkTimeList.size()) {
+            tkBusPosition = NO_BUS_POSITION;
+        }
     }
 
     public boolean canPreviewTkTime() {
@@ -143,7 +146,7 @@ public class BusDataManager extends ContextWrapper {
     }
 
     public boolean isNoTkBus() {
-        return tkBusPosition == NO_BUS_POSITION || (!canNextTkTime() && !canPreviewTkTime());
+        return tkBusPosition == NO_BUS_POSITION;
     }
 
     public void previewTndBusTime() {
@@ -152,6 +155,9 @@ public class BusDataManager extends ContextWrapper {
 
     public void nextTndBusTime() {
         tndBusPosition += 1;
+        if (tndBusPosition == currentTndTimeList.size()) {
+            tndBusPosition = NO_BUS_POSITION;
+        }
     }
 
     public boolean canPreviewTndTime() {
@@ -170,7 +176,7 @@ public class BusDataManager extends ContextWrapper {
     }
 
     public boolean isNoTndBus() {
-        return tndBusPosition == NO_BUS_POSITION || (!canNextTndTime() && !canPreviewTndTime());
+        return tndBusPosition == NO_BUS_POSITION;
     }
 
     private int findBusPosition(List<BusTime> busTimeList) {
