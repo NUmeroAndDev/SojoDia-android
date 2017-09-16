@@ -97,6 +97,7 @@ public class BusScheduleFragment extends Fragment {
             @Override
             public void onTimeChanged() {
                 checkDateChange();
+                setVisibleTkBeforeButton(busDataManager.canPreviewTkTime());
             }
 
             @Override
@@ -113,6 +114,7 @@ public class BusScheduleFragment extends Fragment {
         tndCountDownClockTextView.setOnTimeChangedListener(new CountDownClockTextView.OnTimeChangedListener() {
             @Override
             public void onTimeChanged() {
+                setVisibleTndBeforeButton(busDataManager.canPreviewTndTime());
             }
 
             @Override
