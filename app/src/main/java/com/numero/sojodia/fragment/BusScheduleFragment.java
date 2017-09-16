@@ -178,24 +178,18 @@ public class BusScheduleFragment extends Fragment {
         view.findViewById(R.id.tk_time_table_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimeTableDialog.init(getActivity())
+                TimeTableDialog.init(getActivity(), busDataManager)
                         .setReciprocate(reciprocate)
                         .setRouteTk()
-                        .setBusTimeListOnWeekday(getTkBusTimeList(DateUtil.WEEKDAY))
-                        .setBusTimeListOnSaturday(getTkBusTimeList(DateUtil.SATURDAY))
-                        .setBusTimeListOnSunday(getTkBusTimeList(DateUtil.SUNDAY))
                         .show();
             }
         });
         view.findViewById(R.id.tnd_time_table_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimeTableDialog.init(getActivity())
+                TimeTableDialog.init(getActivity(), busDataManager)
                         .setReciprocate(reciprocate)
                         .setRouteTnd()
-                        .setBusTimeListOnWeekday(getTndBusTimeList(DateUtil.WEEKDAY))
-                        .setBusTimeListOnSaturday(getTndBusTimeList(DateUtil.SATURDAY))
-                        .setBusTimeListOnSunday(getTndBusTimeList(DateUtil.SUNDAY))
                         .show();
             }
         });
@@ -289,7 +283,6 @@ public class BusScheduleFragment extends Fragment {
     private void checkDateChange() {
         if (isDateChanged()) {
             currentDateString = DateUtil.getTodayStringOnlyFigure();
-            // TODO 日付変更時の修正
             reset();
         }
     }
@@ -335,27 +328,5 @@ public class BusScheduleFragment extends Fragment {
 
     private boolean isDateChanged() {
         return !DateUtil.getTodayStringOnlyFigure().equals(currentDateString);
-    }
-
-    private List<BusTime> getTkBusTimeList(int week) {
-        switch (reciprocate) {
-            case GOING:
-                return busDataManager.getTkGoingBusTimeList(week);
-            case RETURN:
-                return busDataManager.getTkReturnBusTimeList(week);
-            default:
-                return new ArrayList<>();
-        }
-    }
-
-    private List<BusTime> getTndBusTimeList(int week) {
-        switch (reciprocate) {
-            case GOING:
-                return busDataManager.getTndGoingBusTimeList(week);
-            case RETURN:
-                return busDataManager.getTndReturnBusTimeList(week);
-            default:
-                return new ArrayList<>();
-        }
     }
 }
