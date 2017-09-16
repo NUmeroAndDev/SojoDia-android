@@ -33,15 +33,42 @@ public class BusTimePagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.pager_bus_time, null);
 
-        TextView busTextView = (TextView) view.findViewById(R.id.bus_time_text);
+        if (position >= busTimeList.size()) {
+            return view;
+        }
 
-        busTextView.setText(String.format("%s\n%02d:%02d", getBusType(position), busTimeList.get(position).hour, busTimeList.get(position).min));
+        TextView busTextView = view.findViewById(R.id.bus_time_text);
+        TextView busDescriptionTextView = view.findViewById(R.id.bus_description_text);
 
-        TextView nextBusTextView = (TextView) view.findViewById(R.id.next_bus_time_text);
-        if (position == busTimeList.size() - 1) {
-            nextBusTextView.setText(R.string.last_bus);
+        BusTime busTime = busTimeList.get(position);
+        busTextView.setText(String.format("%02d:%02d", busTime.hour, busTime.min));
+        if (busTime.isNonstop) {
+            busDescriptionTextView.setVisibility(View.VISIBLE);
+            busDescriptionTextView.setText(R.string.bus_type_nonstop);
         } else {
-            nextBusTextView.setText(String.format("Next\n%s\n%02d:%02d", getBusType(position + 1), busTimeList.get(position + 1).hour, busTimeList.get(position + 1).min));
+            busDescriptionTextView.setVisibility(View.GONE);
+        }
+
+        View nextBusLayout = view.findViewById(R.id.next_bus_layout);
+        TextView nextBusTextView = view.findViewById(R.id.next_bus_time_text);
+        TextView nextDescriptionBusTextView = view.findViewById(R.id.next_bus_description_text);
+
+        if (position == busTimeList.size() - 1) {
+            // 最終バス
+            busDescriptionTextView.setVisibility(View.VISIBLE);
+            busDescriptionTextView.setText(R.string.last_bus);
+
+            nextBusLayout.setVisibility(View.GONE);
+        } else {
+            nextBusLayout.setVisibility(View.VISIBLE);
+            BusTime nextBusTime = busTimeList.get(position + 1);
+            nextBusTextView.setText(String.format("%02d:%02d", nextBusTime.hour, nextBusTime.min));
+            if (nextBusTime.isNonstop) {
+                nextDescriptionBusTextView.setVisibility(View.VISIBLE);
+                nextDescriptionBusTextView.setText(R.string.bus_type_nonstop);
+            } else {
+                nextDescriptionBusTextView.setVisibility(View.GONE);
+            }
         }
 
         container.addView(view);
@@ -51,7 +78,7 @@ public class BusTimePagerAdapter extends PagerAdapter {
     private String getBusType(int position) {
         if (busTimeList.get(position).isNonstop) {
             return resources.getString(R.string.bus_type_nonstop);
-        }  else {
+        } else {
             return resources.getString(R.string.bus_type_regular);
         }
     }
