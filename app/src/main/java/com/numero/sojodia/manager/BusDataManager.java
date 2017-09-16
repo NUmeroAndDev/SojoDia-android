@@ -133,9 +133,8 @@ public class BusDataManager extends ContextWrapper {
         }
         BusTime busTime = currentTkTimeList.get(tkBusPosition - 1);
         Time time = new Time();
-        Time currentTime = TimeUtil.initCurrentTime();
         time.setTime(busTime.hour, busTime.min, 0);
-        return TimeUtil.isOverTime(currentTime, time);
+        return TimeUtil.isOverTime(new Time(), time);
     }
 
     public boolean canNextTkTime() {
@@ -163,9 +162,8 @@ public class BusDataManager extends ContextWrapper {
         }
         BusTime busTime = currentTndTimeList.get(tndBusPosition - 1);
         Time time = new Time();
-        Time currentTime = TimeUtil.initCurrentTime();
         time.setTime(busTime.hour, busTime.min, 0);
-        return TimeUtil.isOverTime(currentTime, time);
+        return TimeUtil.isOverTime(new Time(), time);
     }
 
     public boolean canNextTndTime() {
@@ -179,10 +177,9 @@ public class BusDataManager extends ContextWrapper {
     private int findBusPosition(List<BusTime> busTimeList) {
         int position;
         Time time = new Time();
-        Time currentTime = TimeUtil.initCurrentTime();
         for (position = 0; position < busTimeList.size(); position++) {
             time.setTime(busTimeList.get(position).hour, busTimeList.get(position).min, 0);
-            if (TimeUtil.isOverTime(currentTime, time)) {
+            if (TimeUtil.isOverTime(new Time(), time)) {
                 return position;
             }
         }

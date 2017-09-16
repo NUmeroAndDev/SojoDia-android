@@ -2,10 +2,19 @@ package com.numero.sojodia.model;
 
 import android.annotation.SuppressLint;
 
+import java.util.Calendar;
+
 public class Time {
-    public int hour, min, sec;
+
+    private int hour;
+    private int min;
+    private int sec;
 
     public Time() {
+        Calendar calendar = Calendar.getInstance();
+        this.hour = calendar.get(Calendar.HOUR_OF_DAY);
+        this.min = calendar.get(Calendar.MINUTE);
+        this.sec = calendar.get(Calendar.SECOND);
     }
 
     public Time(int hour, int min, int sec) {
@@ -17,6 +26,30 @@ public class Time {
     public void setTime(int hour, int min, int sec) {
         this.hour = hour;
         this.min = min;
+        this.sec = sec;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public int getSec() {
+        return sec;
+    }
+
+    public void setSec(int sec) {
         this.sec = sec;
     }
 
