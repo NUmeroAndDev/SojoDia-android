@@ -120,32 +120,33 @@ public class TimeTableDialog extends ContextWrapper {
 
     @SuppressLint("DefaultLocale")
     private void buildRow() {
+        // バスは6時から23時しか動いていない
         for (int hour = 6; hour < 24; hour++) {
             TimeTableRow row = new TimeTableRow();
             row.setHourText(String.format("%02d", hour));
             timeTableRowList.add(row);
         }
-        String busType = "";
+        String busType;
         if (busTimeListOnWeekday != null) {
-            for (int i = 0; i < busTimeListOnWeekday.size(); i++) {
-                TimeTableRow row = timeTableRowList.get(busTimeListOnWeekday.get(i).hour - 6);
-                busType = busTimeListOnWeekday.get(i).isNonstop ? "直" : "";
-                row.addTimeTextOnWeekday(String.format("%s%02d", busType, busTimeListOnWeekday.get(i).min));
+            for (BusTime busTime : busTimeListOnWeekday) {
+                TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
+                busType = busTime.isNonstop ? "直" : "";
+                row.addTimeTextOnWeekday(String.format("%s%02d", busType, busTime.min));
             }
         }
         if (busTimeListOnSaturday != null) {
-            for (int i = 0; i < busTimeListOnSaturday.size(); i++) {
-                TimeTableRow row = timeTableRowList.get(busTimeListOnSaturday.get(i).hour - 6);
-                busType = busTimeListOnSaturday.get(i).isNonstop ? "直" : "";
-                row.addTimeTextOnSaturday(String.format("%s%02d", busType, busTimeListOnSaturday.get(i).min));
+            for (BusTime busTime : busTimeListOnSaturday) {
+                TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
+                busType = busTime.isNonstop ? "直" : "";
+                row.addTimeTextOnSaturday(String.format("%s%02d", busType, busTime.min));
             }
         }
 
         if (busTimeListOnSunday != null) {
-            for (int i = 0; i < busTimeListOnSunday.size(); i++) {
-                TimeTableRow row = timeTableRowList.get(busTimeListOnSunday.get(i).hour - 6);
-                busType = busTimeListOnSunday.get(i).isNonstop ? "直" : "";
-                row.addTimeTextOnSunday(String.format("%s%02d", busType, busTimeListOnSunday.get(i).min));
+            for (BusTime busTime : busTimeListOnSunday) {
+                TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
+                busType = busTime.isNonstop ? "直" : "";
+                row.addTimeTextOnSunday(String.format("%s%02d", busType, busTime.min));
             }
         }
         adapter.notifyDataSetChanged();
