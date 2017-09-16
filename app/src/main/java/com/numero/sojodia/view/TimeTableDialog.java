@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.numero.sojodia.manager.BusDataManager;
+import com.numero.sojodia.model.Route;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.view.adapter.TimeTableRowAdapter;
 import com.numero.sojodia.model.BusTime;
@@ -33,6 +34,8 @@ public class TimeTableDialog {
     private TimeTableRowAdapter adapter;
     private BusDataManager busDataManager;
     private Reciprocate reciprocate;
+    private Route route;
+    private Toolbar toolbar;
     private View view;
 
     TimeTableDialog(Context context, BusDataManager manager) {
@@ -43,7 +46,7 @@ public class TimeTableDialog {
         builder = new AlertDialog.Builder(context);
         builder.setView(view);
 
-        initToolbar();
+        initToolbar(view);
         initListView();
     }
 
@@ -51,29 +54,20 @@ public class TimeTableDialog {
         return new TimeTableDialog(context, busDataManager);
     }
 
-    public TimeTableDialog setRouteTk() {
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.station_tk);
-        return this;
-    }
-
-    public TimeTableDialog setRouteTnd() {
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.station_tnd);
+    public TimeTableDialog setRoute(Route route) {
+        this.route = route;
+        toolbar.setTitle(route.getStationStringRes());
         return this;
     }
 
     public TimeTableDialog setReciprocate(Reciprocate reciprocate) {
         this.reciprocate = reciprocate;
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setSubtitle(reciprocate.getTitleStringRes());
         return this;
     }
 
     public void show() {
-        // FIXME ルートをenum化
-        boolean route = true;
-        if (route) {
+        if (route.equals(Route.TK)) {
             setupTkBusTimeList();
         } else {
             setupTndBusTimeList();
@@ -107,8 +101,8 @@ public class TimeTableDialog {
         }
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+    private void initToolbar(View view) {
+        toolbar = view.findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
