@@ -107,20 +107,13 @@
 
     </android.support.v7.widget.CardView>
 
-    <TextView
-        android:id="@+id/date_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="@dimen/card_date_text_margin"
-        android:textSize="@dimen/card_date_text" />
-
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/card_margin"
         android:layout_marginLeft="@dimen/card_margin"
         android:layout_marginRight="@dimen/card_margin"
+        android:layout_marginTop="16dp"
         android:layout_weight="1">
 
         <LinearLayout
@@ -174,7 +167,7 @@
                     android:textSize="@dimen/card_count_time_text"
                     app:attentionTextColor="@color/count_attention_text"
                     app:defaultTextColor="@color/count_default_text"
-                    app:safeTextColor="@color/count_safe_text"/>
+                    app:safeTextColor="@color/count_safe_text" />
 
                 <FrameLayout
                     android:id="@+id/tnd_no_bus_layout"
