@@ -63,6 +63,9 @@ public class TimeUtil {
     public static Time getCountTime(Time before) {
         Time time = new Time();
         Time currentTime = initCurrentTime();
+        if (currentTime.hour == 0 && currentTime.min == 0 && currentTime.sec == 0) {
+            currentTime.sec = 1;
+        }
         time.sec = before.sec - currentTime.sec;
         time.min = before.min - currentTime.min;
         time.hour = before.hour - currentTime.hour;
@@ -99,6 +102,9 @@ public class TimeUtil {
             time.hour--;
         }
 
+        if (time.hour == 0 && time.min == 0 && time.sec == 0) {
+            return false;
+        }
         return time.hour >= 0;
     }
 

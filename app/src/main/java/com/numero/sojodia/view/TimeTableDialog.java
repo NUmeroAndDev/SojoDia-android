@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.numero.sojodia.manager.BusDataManager;
+import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.view.adapter.TimeTableRowAdapter;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.model.Reciprocate;
@@ -29,10 +31,13 @@ public class TimeTableDialog {
     private List<BusTime> busTimeListOnSaturday;
     private List<BusTime> busTimeListOnSunday;
     private TimeTableRowAdapter adapter;
+    private BusDataManager busDataManager;
+    private Reciprocate reciprocate;
     private View view;
 
-    TimeTableDialog(Context context) {
+    TimeTableDialog(Context context, BusDataManager manager) {
         this.context = context;
+        this.busDataManager = manager;
 
         view = LayoutInflater.from(context).inflate(R.layout.dialog_time_table, null);
         builder = new AlertDialog.Builder(context);
@@ -42,23 +47,8 @@ public class TimeTableDialog {
         initListView();
     }
 
-    public static TimeTableDialog init(Context context) {
-        return new TimeTableDialog(context);
-    }
-
-    public TimeTableDialog setBusTimeListOnWeekday(List<BusTime> busTimeList) {
-        this.busTimeListOnWeekday = busTimeList;
-        return this;
-    }
-
-    public TimeTableDialog setBusTimeListOnSaturday(List<BusTime> busTimeList) {
-        this.busTimeListOnSaturday = busTimeList;
-        return this;
-    }
-
-    public TimeTableDialog setBusTimeListOnSunday(List<BusTime> busTimeList) {
-        this.busTimeListOnSunday = busTimeList;
-        return this;
+    public static TimeTableDialog init(Context context, BusDataManager busDataManager) {
+        return new TimeTableDialog(context, busDataManager);
     }
 
     public TimeTableDialog setRouteTk() {
@@ -74,15 +64,47 @@ public class TimeTableDialog {
     }
 
     public TimeTableDialog setReciprocate(Reciprocate reciprocate) {
+        this.reciprocate = reciprocate;
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setSubtitle(reciprocate.getTitleStringRes());
         return this;
     }
 
     public void show() {
+        // FIXME ルートをenum化
+        boolean route = true;
+        if (route) {
+            setupTkBusTimeList();
+        } else {
+            setupTndBusTimeList();
+        }
         dialog = builder.show();
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         buildRow();
+    }
+
+    private void setupTkBusTimeList() {
+        if (reciprocate.equals(Reciprocate.GOING)) {
+            this.busTimeListOnWeekday = busDataManager.getTkGoingBusTimeList(DateUtil.WEEKDAY);
+            this.busTimeListOnSaturday = busDataManager.getTkGoingBusTimeList(DateUtil.SATURDAY);
+            this.busTimeListOnSunday = busDataManager.getTkGoingBusTimeList(DateUtil.SUNDAY);
+        } else {
+            this.busTimeListOnWeekday = busDataManager.getTkReturnBusTimeList(DateUtil.WEEKDAY);
+            this.busTimeListOnSaturday = busDataManager.getTkReturnBusTimeList(DateUtil.SATURDAY);
+            this.busTimeListOnSunday = busDataManager.getTkReturnBusTimeList(DateUtil.SUNDAY);
+        }
+    }
+
+    private void setupTndBusTimeList() {
+        if (reciprocate.equals(Reciprocate.GOING)) {
+            this.busTimeListOnWeekday = busDataManager.getTndGoingBusTimeList(DateUtil.WEEKDAY);
+            this.busTimeListOnSaturday = busDataManager.getTndGoingBusTimeList(DateUtil.SATURDAY);
+            this.busTimeListOnSunday = busDataManager.getTndGoingBusTimeList(DateUtil.SUNDAY);
+        } else {
+            this.busTimeListOnWeekday = busDataManager.getTndReturnBusTimeList(DateUtil.WEEKDAY);
+            this.busTimeListOnSaturday = busDataManager.getTndReturnBusTimeList(DateUtil.SATURDAY);
+            this.busTimeListOnSunday = busDataManager.getTndReturnBusTimeList(DateUtil.SUNDAY);
+        }
     }
 
     private void initToolbar() {
