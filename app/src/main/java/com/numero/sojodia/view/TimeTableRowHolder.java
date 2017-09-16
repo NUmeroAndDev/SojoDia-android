@@ -28,10 +28,10 @@ public class TimeTableRowHolder extends RecyclerView.ViewHolder {
     }
 
     public void setTimeTableRow(TimeTableRow row) {
-        hourTextView.setText(row.hourText);
-        weekdayTextView.setText(row.timeTextOnWeekday);
-        saturdayTextView.setText(row.timeTextOnSaturday);
-        sundayTextView.setText(row.timeTextOnSunday);
+        hourTextView.setText(row.getHourText());
+        weekdayTextView.setText(row.getTimeOnWeekdayText());
+        saturdayTextView.setText(row.getTimeOnSaturdayText());
+        sundayTextView.setText(row.getTimeOnSundayText());
     }
 
     public void setIsCurrentHour(boolean isCurrentHour) {
