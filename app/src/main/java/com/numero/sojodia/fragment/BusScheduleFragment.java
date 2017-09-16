@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.numero.sojodia.model.Route;
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter;
 import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
@@ -180,7 +181,7 @@ public class BusScheduleFragment extends Fragment {
             public void onClick(View v) {
                 TimeTableDialog.init(getActivity(), busDataManager)
                         .setReciprocate(reciprocate)
-                        .setRouteTk()
+                        .setRoute(Route.TK)
                         .show();
             }
         });
@@ -189,7 +190,7 @@ public class BusScheduleFragment extends Fragment {
             public void onClick(View v) {
                 TimeTableDialog.init(getActivity(), busDataManager)
                         .setReciprocate(reciprocate)
-                        .setRouteTnd()
+                        .setRoute(Route.TND)
                         .show();
             }
         });
