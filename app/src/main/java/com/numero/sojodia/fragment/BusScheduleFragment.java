@@ -179,19 +179,13 @@ public class BusScheduleFragment extends Fragment {
         view.findViewById(R.id.tk_time_table_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimeTableDialog.init(getActivity(), busDataManager)
-                        .setReciprocate(reciprocate)
-                        .setRoute(Route.TK)
-                        .show();
+                showTimeTableDialog(Route.TK);
             }
         });
         view.findViewById(R.id.tnd_time_table_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimeTableDialog.init(getActivity(), busDataManager)
-                        .setReciprocate(reciprocate)
-                        .setRoute(Route.TND)
-                        .show();
+                showTimeTableDialog(Route.TND);
             }
         });
     }
@@ -249,6 +243,13 @@ public class BusScheduleFragment extends Fragment {
         tndPagerAdapter.setBusTimeList(tndTimeList);
         tndBusTimePager.setAdapter(tndPagerAdapter);
         tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), false);
+    }
+
+    private void showTimeTableDialog(Route route) {
+        TimeTableDialog dialog = new TimeTableDialog(getActivity(), busDataManager);
+        dialog.setRoute(route);
+        dialog.setReciprocate(reciprocate);
+        dialog.show();
     }
 
     private void setCurrentDateText(String date) {

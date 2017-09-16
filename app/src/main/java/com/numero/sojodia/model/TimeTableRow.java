@@ -1,39 +1,57 @@
 package com.numero.sojodia.model;
 
+import android.annotation.SuppressLint;
+
+@SuppressLint("DefaultLocale")
 public class TimeTableRow {
 
-    public String hourText;
-    public String timeTextOnWeekday;
-    public String timeTextOnSaturday;
-    public String timeTextOnSunday;
-    public String timeTextOnHolidayInSchool;
+    private String hourText;
+
+    private StringBuilder timeOnWeekdayStringBuilder = new StringBuilder();
+    private StringBuilder timeOnSaturdayStringBuilder = new StringBuilder();
+    private StringBuilder timeOnSundayStringBuilder = new StringBuilder();
 
     public TimeTableRow() {
-        hourText = "";
-        timeTextOnWeekday = "";
-        timeTextOnSaturday = "";
-        timeTextOnSunday = "";
-        timeTextOnHolidayInSchool = "";
     }
 
-    public void setHourText(String text) {
-        this.hourText = text;
+    public void setHour(int hour) {
+        this.hourText = String.format("%02d", hour);
     }
 
-    public void addTimeTextOnWeekday(String text) {
-        timeTextOnWeekday += String.format("%s ", text);
+    public String getHourText() {
+        return hourText;
     }
 
-    public void addTimeTextOnSaturday(String text) {
-        timeTextOnSaturday += String.format("%s ", text);
+    public void addTimeOnWeekday(int time, boolean isNonStop) {
+        if (isNonStop) {
+            timeOnWeekdayStringBuilder.append("★");
+        }
+        timeOnWeekdayStringBuilder.append(String.format("%02d ", time));
     }
 
-    public void addTimeTextOnSunday(String text) {
-        timeTextOnSunday += String.format("%s ", text);
+    public String getTimeOnWeekdayText() {
+        return timeOnWeekdayStringBuilder.toString();
     }
 
-    @Deprecated
-    public void addTimeTextOnHolidayInSchool(String text) {
-        timeTextOnHolidayInSchool += String.format("%s ", text);
+    public void addTimeOnSaturday(int time, boolean isNonStop) {
+        if (isNonStop) {
+            timeOnSaturdayStringBuilder.append("★");
+        }
+        timeOnSaturdayStringBuilder.append(String.format("%02d ", time));
+    }
+
+    public String getTimeOnSaturdayText() {
+        return timeOnSaturdayStringBuilder.toString();
+    }
+
+    public void addTimeOnSunday(int time, boolean isNonStop) {
+        if (isNonStop) {
+            timeOnSundayStringBuilder.append("★");
+        }
+        timeOnSundayStringBuilder.append(String.format("%02d ", time));
+    }
+
+    public String getTimeOnSundayText() {
+        return timeOnSundayStringBuilder.toString();
     }
 }

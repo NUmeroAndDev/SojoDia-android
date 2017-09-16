@@ -1,7 +1,7 @@
 package com.numero.sojodia.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,51 +22,47 @@ import com.numero.sojodia.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimeTableDialog {
+public class TimeTableDialog extends ContextWrapper {
 
-    private Context context;
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
+    private TimeTableRowAdapter adapter;
+    private Toolbar toolbar;
+
     private List<TimeTableRow> timeTableRowList = new ArrayList<>();
     private List<BusTime> busTimeListOnWeekday;
     private List<BusTime> busTimeListOnSaturday;
     private List<BusTime> busTimeListOnSunday;
-    private TimeTableRowAdapter adapter;
     private BusDataManager busDataManager;
     private Reciprocate reciprocate;
     private Route route;
-    private Toolbar toolbar;
-    private View view;
 
-    TimeTableDialog(Context context, BusDataManager manager) {
-        this.context = context;
+    public TimeTableDialog(Context context, BusDataManager manager) {
+        super(context);
         this.busDataManager = manager;
 
-        view = LayoutInflater.from(context).inflate(R.layout.dialog_time_table, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_time_table, null);
         builder = new AlertDialog.Builder(context);
         builder.setView(view);
 
         initToolbar(view);
-        initListView();
+        initListView(view);
     }
 
-    public static TimeTableDialog init(Context context, BusDataManager busDataManager) {
-        return new TimeTableDialog(context, busDataManager);
-    }
-
-    public TimeTableDialog setRoute(Route route) {
+    public void setRoute(Route route) {
         this.route = route;
         toolbar.setTitle(route.getStationStringRes());
-        return this;
     }
 
-    public TimeTableDialog setReciprocate(Reciprocate reciprocate) {
+    public void setReciprocate(Reciprocate reciprocate) {
         this.reciprocate = reciprocate;
         toolbar.setSubtitle(reciprocate.getTitleStringRes());
-        return this;
     }
 
     public void show() {
+        if (route == null) {
+            return;
+        }
         if (route.equals(Route.TK)) {
             setupTkBusTimeList();
         } else {
@@ -113,42 +109,38 @@ public class TimeTableDialog {
         });
     }
 
-    private void initListView() {
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+    private void initListView(View view) {
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         adapter = new TimeTableRowAdapter(timeTableRowList);
         recyclerView.setAdapter(adapter);
     }
 
-    @SuppressLint("DefaultLocale")
     private void buildRow() {
+        // バスは6時から23時しか動いていない
         for (int hour = 6; hour < 24; hour++) {
             TimeTableRow row = new TimeTableRow();
-            row.setHourText(String.format("%02d", hour));
+            row.setHour(hour);
             timeTableRowList.add(row);
         }
-        String busType = "";
         if (busTimeListOnWeekday != null) {
-            for (int i = 0; i < busTimeListOnWeekday.size(); i++) {
-                TimeTableRow row = timeTableRowList.get(busTimeListOnWeekday.get(i).hour - 6);
-                busType = busTimeListOnWeekday.get(i).isNonstop ? "直" : "";
-                row.addTimeTextOnWeekday(String.format("%s%02d", busType, busTimeListOnWeekday.get(i).min));
+            for (BusTime busTime : busTimeListOnWeekday) {
+                TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
+                row.addTimeOnWeekday(busTime.min, busTime.isNonstop);
             }
         }
         if (busTimeListOnSaturday != null) {
-            for (int i = 0; i < busTimeListOnSaturday.size(); i++) {
-                TimeTableRow row = timeTableRowList.get(busTimeListOnSaturday.get(i).hour - 6);
-                busType = busTimeListOnSaturday.get(i).isNonstop ? "直" : "";
-                row.addTimeTextOnSaturday(String.format("%s%02d", busType, busTimeListOnSaturday.get(i).min));
+            for (BusTime busTime : busTimeListOnSaturday) {
+                TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
+                row.addTimeOnSaturday(busTime.min, busTime.isNonstop);
             }
         }
 
         if (busTimeListOnSunday != null) {
-            for (int i = 0; i < busTimeListOnSunday.size(); i++) {
-                TimeTableRow row = timeTableRowList.get(busTimeListOnSunday.get(i).hour - 6);
-                busType = busTimeListOnSunday.get(i).isNonstop ? "直" : "";
-                row.addTimeTextOnSunday(String.format("%s%02d", busType, busTimeListOnSunday.get(i).min));
+            for (BusTime busTime : busTimeListOnSunday) {
+                TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
+                row.addTimeOnSunday(busTime.min, busTime.isNonstop);
             }
         }
         adapter.notifyDataSetChanged();
