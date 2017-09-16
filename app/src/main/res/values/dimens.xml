@@ -9,7 +9,8 @@
     <dimen name="card_date_text_margin">8dp</dimen>
 
     <dimen name="card_toolbar_text">22sp</dimen>
-    <dimen name="card_bus_time_text">24sp</dimen>
+    <dimen name="card_bus_time_text">32sp</dimen>
+    <dimen name="card_bus_descripton_text">20sp</dimen>
     <dimen name="card_next_bus_time_text">16sp</dimen>
     <dimen name="card_count_time_text">56sp</dimen>
     <dimen name="card_date_text">20sp</dimen>

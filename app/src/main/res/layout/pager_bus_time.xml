@@ -1,22 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/card_bus_time_text_margin">
 
-    <TextView
-        android:id="@+id/bus_time_text"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:padding="@dimen/card_bus_time_text_margin"
-        android:textSize="@dimen/card_bus_time_text" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/next_bus_time_text"
+        <TextView
+            android:id="@+id/bus_description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="@dimen/card_bus_descripton_text"
+            tools:text="直行便" />
+
+        <TextView
+            android:id="@+id/bus_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/card_bus_time_text"
+            tools:text="00:00" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/next_bus_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|top"
-        android:padding="@dimen/card_next_bus_time_text_margin"
-        android:textSize="@dimen/card_next_bus_time_text" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/next_title"
+            android:textSize="@dimen/card_next_bus_time_text" />
+
+        <TextView
+            android:id="@+id/next_bus_description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:textSize="@dimen/card_next_bus_time_text"
+            tools:text="直行便" />
+
+        <TextView
+            android:id="@+id/next_bus_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/card_next_bus_time_text"
+            tools:text="00:00" />
+
+    </LinearLayout>
 
 </FrameLayout>
