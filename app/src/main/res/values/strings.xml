@@ -23,6 +23,7 @@
 
     <string name="notification_update_title">Update timetable data</string>
     <string name="notification_update_text">Downloading</string>
+    <string name="notification_channel_name">Downloading data notification</string>
 
     <string name="date_pattern">EEE, MMM d</string>
 

@@ -22,6 +22,7 @@
 
     <string name="notification_update_title">時刻表データの更新</string>
     <string name="notification_update_text">ダウンロード中</string>
+    <string name="notification_channel_name">時刻表データ更新中の通知</string>
 
     <string name="date_pattern">MM/dd (E)</string>
 
