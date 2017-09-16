@@ -308,7 +308,7 @@ public class BusScheduleFragment extends Fragment {
         BusTime busTime = tkTimeList.get(position);
         Time time = new Time(busTime.hour, busTime.min, 0);
         Time countTime = TimeUtil.getCountTime(time);
-        tkCountDownClockTextView.setTime(countTime.hour, countTime.min);
+        tkCountDownClockTextView.setTime(countTime.getHour(), countTime.getMin());
     }
 
     private void setupTndCountDown(int position) {
@@ -320,7 +320,7 @@ public class BusScheduleFragment extends Fragment {
         BusTime busTime = tndTimeList.get(position);
         Time time = new Time(busTime.hour, busTime.min, 0);
         Time countTime = TimeUtil.getCountTime(time);
-        tndCountDownClockTextView.setTime(countTime.hour, countTime.min);
+        tndCountDownClockTextView.setTime(countTime.getHour(), countTime.getMin());
     }
 
     private boolean isDateChanged() {
