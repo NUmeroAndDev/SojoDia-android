@@ -5,67 +5,67 @@ import com.numero.sojodia.model.Time;
 public class TimeUtil {
 
     public static Time addition(Time before, Time after) {
-        Time time = new Time(
-                before.getHour() + after.getHour(),
-                before.getMin() + after.getMin(),
-                before.getSec() + after.getSec()
-        );
+        int hour = before.getHour() + after.getHour();
+        int min = before.getMin() + after.getMin();
+        int sec = before.getSec() + after.getSec();
 
-        time.setMin(time.getMin() + time.getSec() / 60);
-        time.setSec(time.getSec() % 60);
-        time.setHour(time.getHour() + time.getMin() / 60);
-        time.setMin(time.getMin() % 60);
-        time.setHour(time.getHour() % 24);
+        min += sec / 60;
+        sec = sec % 60;
+        hour += min / 60;
+        min = min % 60;
+        hour = hour % 24;
 
-        return time;
+        return new Time(hour, min, sec);
     }
 
     public static Time subtraction(Time before, Time after) {
-        Time time = new Time(
-                before.getHour() - after.getHour(),
-                before.getMin() - after.getMin(),
-                before.getSec() - after.getSec()
-        );
+        int hour = before.getHour() - after.getHour();
+        int min = before.getMin() - after.getMin();
+        int sec = before.getSec() - after.getSec();
 
-        if (time.getSec() < 0) {
-            time.setSec(60 + time.getSec());
-            time.setMin(time.getMin() - 1);
+        if (sec < 0) {
+            sec = 60 + sec;
+            min -= 1;
         }
 
-        if (time.getMin() < 0) {
-            time.setMin(60 + time.getMin());
-            time.setHour(time.getHour() - 1);
+        if (min < 0) {
+            min = 60 + min;
+            hour -= 1;
         }
 
-        if (time.getHour() < 0) {
-            time.setHour(24 + time.getHour());
+        if (hour < 0) {
+            hour = 24 + hour;
         }
-        return time;
+        return new Time(hour, min, sec);
     }
 
     public static Time getCountTime(Time before) {
         Time time = new Time();
-        if (time.getHour() == 0 && time.getMin() == 0 && time.getSec() == 0) {
-            time.setSec(1);
-        }
-        time.setSec(before.getSec() - time.getSec());
-        time.setMin(before.getMin() - time.getMin());
-        time.setHour(before.getHour() - time.getHour());
+        int hour = time.getHour();
+        int min = time.getMin();
+        int sec= time.getSec();
 
-        if (time.getSec() < 0) {
-            time.setSec(60 + time.getSec());
-            time.setMin(time.getMin() - 1);
+        if (hour == 0 && min == 0 && sec == 0) {
+            sec = 1;
+        }
+        sec = before.getSec() - sec;
+        min = before.getMin() - min;
+        hour = before.getHour() - hour;
+
+        if (sec < 0) {
+            sec = 60 + sec;
+            min -= 1;
         }
 
-        if (time.getMin() < 0) {
-            time.setMin(60 + time.getMin());
-            time.setHour(time.getHour() - 1);
+        if (min < 0) {
+            min = 60 + min;
+            hour -= 1;
         }
 
-        if (time.getHour() < 0) {
-            time.setHour(24 + time.getHour());
+        if (hour < 0) {
+            hour = 24 + hour;
         }
-        return time;
+        return new Time(hour, min, sec);
     }
 
     public static boolean isOverTime(Time before, Time after) {
