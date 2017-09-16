@@ -33,7 +33,8 @@
                     android:layout_centerInParent="true"
                     android:text="@string/station_tk"
                     android:textColor="@color/card_title_text"
-                    android:textSize="@dimen/card_toolbar_text" />
+                    android:textSize="@dimen/bus_toolbar_text"
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/tk_time_table_button"
@@ -63,7 +64,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
                     android:layout_marginBottom="@dimen/card_count_time_text_margin"
-                    android:textSize="@dimen/card_count_time_text"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/count_time_text"
                     app:attentionTextColor="@color/count_attention_text"
                     app:defaultTextColor="@color/count_default_text"
                     app:safeTextColor="@color/count_safe_text" />
@@ -80,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/no_bus"
-                        android:textSize="@dimen/card_no_bus_text" />
+                        android:textSize="@dimen/no_bus_text" />
 
                 </FrameLayout>
 
@@ -132,7 +134,8 @@
                     android:layout_centerInParent="true"
                     android:text="@string/station_tnd"
                     android:textColor="@color/card_title_text"
-                    android:textSize="@dimen/card_toolbar_text" />
+                    android:textSize="@dimen/bus_toolbar_text"
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/tnd_time_table_button"
@@ -162,7 +165,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
                     android:layout_marginBottom="@dimen/card_count_time_text_margin"
-                    android:textSize="@dimen/card_count_time_text"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/count_time_text"
                     app:attentionTextColor="@color/count_attention_text"
                     app:defaultTextColor="@color/count_default_text"
                     app:safeTextColor="@color/count_safe_text" />
@@ -179,7 +183,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/no_bus"
-                        android:textSize="@dimen/card_no_bus_text" />
+                        android:textSize="@dimen/no_bus_text" />
 
                 </FrameLayout>
 

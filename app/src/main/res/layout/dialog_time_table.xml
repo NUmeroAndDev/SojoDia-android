@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/time_table_dialog_background"
@@ -33,7 +34,8 @@
                 android:paddingTop="@dimen/time_table_dialog_text_margin"
                 android:text="@string/hour"
                 android:textColor="@color/time_table_dialog_hour_text"
-                android:textSize="@dimen/time_table_dialog_header_text" />
+                android:textSize="@dimen/time_table_dialog_header_text"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="@dimen/time_table_dialog_row_divider"
@@ -49,7 +51,8 @@
                 android:paddingTop="@dimen/time_table_dialog_text_margin"
                 android:text="@string/weekday"
                 android:textColor="@color/time_table_dialog_weekday_text"
-                android:textSize="@dimen/time_table_dialog_header_text" />
+                android:textSize="@dimen/time_table_dialog_header_text"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="@dimen/time_table_dialog_row_divider"
@@ -65,7 +68,8 @@
                 android:paddingTop="@dimen/time_table_dialog_text_margin"
                 android:text="@string/saturday"
                 android:textColor="@color/time_table_dialog_saturday_text"
-                android:textSize="@dimen/time_table_dialog_header_text" />
+                android:textSize="@dimen/time_table_dialog_header_text"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="@dimen/time_table_dialog_row_divider"
@@ -81,7 +85,8 @@
                 android:paddingTop="@dimen/time_table_dialog_text_margin"
                 android:text="@string/sunday"
                 android:textColor="@color/time_table_dialog_sunday_text"
-                android:textSize="@dimen/time_table_dialog_header_text" />
+                android:textSize="@dimen/time_table_dialog_header_text"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -96,6 +101,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="never" />
+        android:overScrollMode="never"
+        tools:listitem="@layout/holder_time_table_row" />
 
 </LinearLayout>
