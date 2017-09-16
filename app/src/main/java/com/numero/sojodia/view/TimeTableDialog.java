@@ -2,6 +2,7 @@ package com.numero.sojodia.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,9 +23,8 @@ import com.numero.sojodia.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimeTableDialog {
+public class TimeTableDialog extends ContextWrapper {
 
-    private Context context;
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
     private List<TimeTableRow> timeTableRowList = new ArrayList<>();
@@ -39,7 +39,7 @@ public class TimeTableDialog {
     private View view;
 
     TimeTableDialog(Context context, BusDataManager manager) {
-        this.context = context;
+        super(context);
         this.busDataManager = manager;
 
         view = LayoutInflater.from(context).inflate(R.layout.dialog_time_table, null);
@@ -116,7 +116,7 @@ public class TimeTableDialog {
     private void initListView() {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         adapter = new TimeTableRowAdapter(timeTableRowList);
         recyclerView.setAdapter(adapter);
     }
