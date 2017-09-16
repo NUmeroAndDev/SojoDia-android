@@ -38,7 +38,7 @@ public class TimeTableDialog extends ContextWrapper {
     private Reciprocate reciprocate;
     private Route route;
 
-    TimeTableDialog(Context context, BusDataManager manager) {
+    public TimeTableDialog(Context context, BusDataManager manager) {
         super(context);
         this.busDataManager = manager;
 
@@ -50,23 +50,20 @@ public class TimeTableDialog extends ContextWrapper {
         initListView(view);
     }
 
-    public static TimeTableDialog init(Context context, BusDataManager busDataManager) {
-        return new TimeTableDialog(context, busDataManager);
-    }
-
-    public TimeTableDialog setRoute(Route route) {
+    public void setRoute(Route route) {
         this.route = route;
         toolbar.setTitle(route.getStationStringRes());
-        return this;
     }
 
-    public TimeTableDialog setReciprocate(Reciprocate reciprocate) {
+    public void setReciprocate(Reciprocate reciprocate) {
         this.reciprocate = reciprocate;
         toolbar.setSubtitle(reciprocate.getTitleStringRes());
-        return this;
     }
 
     public void show() {
+        if (route == null) {
+            return;
+        }
         if (route.equals(Route.TK)) {
             setupTkBusTimeList();
         } else {
