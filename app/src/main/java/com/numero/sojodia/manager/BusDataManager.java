@@ -30,7 +30,6 @@ public class BusDataManager extends ContextWrapper {
     private List<BusTime> tndBusTimeListReturn = new ArrayList<>();
 
     private DataManager dataManager;
-    private int week = -1;
 
     private int tkBusPosition = 0;
     private int tndBusPosition = 0;
@@ -48,8 +47,6 @@ public class BusDataManager extends ContextWrapper {
     }
 
     public void setWeekAndReciprocate(int week, Reciprocate reciprocate) {
-        this.week = week;
-
         switch (reciprocate) {
             case GOING:
                 currentTkTimeList = getTkGoingBusTimeList(week);

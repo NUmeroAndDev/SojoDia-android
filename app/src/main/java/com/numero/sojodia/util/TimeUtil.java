@@ -87,25 +87,24 @@ public class TimeUtil {
     }
 
     public static boolean isOverTime(Time before, Time after) {
-        Time time = new Time();
-        time.sec = after.sec - before.sec;
-        time.min = after.min - before.min;
-        time.hour = after.hour - before.hour;
+        int sec = after.sec - before.sec;
+        int min = after.min - before.min;
+        int hour = after.hour - before.hour;
 
-        if (time.sec < 0) {
-            time.sec = 60 + time.sec;
-            time.min--;
+        if (sec < 0) {
+            sec = 60 + sec;
+            min--;
         }
 
-        if (time.min < 0) {
-            time.min = 60 + time.min;
-            time.hour--;
+        if (min < 0) {
+            min = 60 + min;
+            hour--;
         }
 
-        if (time.hour == 0 && time.min == 0 && time.sec == 0) {
+        if (hour == 0 && min == 0 && sec == 0) {
             return false;
         }
-        return time.hour >= 0;
+        return hour >= 0;
     }
 
 }
