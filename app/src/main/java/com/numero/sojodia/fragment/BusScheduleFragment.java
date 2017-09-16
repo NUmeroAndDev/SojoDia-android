@@ -232,14 +232,14 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initTkBusPagerView() {
-        BusTimePagerAdapter tkPagerAdapter = new BusTimePagerAdapter(getContext());
+        BusTimePagerAdapter tkPagerAdapter = new BusTimePagerAdapter();
         tkPagerAdapter.setBusTimeList(tkTimeList);
         tkBusTimePager.setAdapter(tkPagerAdapter);
         tkBusTimePager.setCurrentItem(busDataManager.getTkBusPosition(), false);
     }
 
     private void initTndBusPagerView() {
-        BusTimePagerAdapter tndPagerAdapter = new BusTimePagerAdapter(getContext());
+        BusTimePagerAdapter tndPagerAdapter = new BusTimePagerAdapter();
         tndPagerAdapter.setBusTimeList(tndTimeList);
         tndBusTimePager.setAdapter(tndPagerAdapter);
         tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), false);

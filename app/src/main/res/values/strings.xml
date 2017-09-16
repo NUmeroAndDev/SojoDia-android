@@ -9,7 +9,6 @@
     <string name="station_tk">JR Takatsuki Station</string>
     <string name="station_tnd">JR Tonda Station</string>
 
-    <string name="bus_type_regular">Regular Bus</string>
     <string name="bus_type_nonstop">Nonstop Bus</string>
 
     <string name="no_bus">There is no bus at today</string>
