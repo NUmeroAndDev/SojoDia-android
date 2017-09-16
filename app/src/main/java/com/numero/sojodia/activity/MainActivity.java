@@ -27,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private final BroadcastReceiver changedDateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            toolbar.setSubtitle(DateUtil.getTodayString(MainActivity.this));
+        }
+    };
+
+    private Toolbar toolbar;
     private ViewPager viewPager;
     private BusScheduleFragmentPagerAdapter fragmentPagerAdapter;
 
@@ -42,21 +50,33 @@ public class MainActivity extends AppCompatActivity {
         if (shortcutIntent != null) {
             viewPager.setCurrentItem(shortcutIntent.equals("coming_home") ? 1 : 0);
         }
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(finishDownloadReceiver, new IntentFilter(BroadCastUtil.ACTION_FINISH_DOWNLOAD));
         startCheckUpdateService();
     }
 
     @Override
-    public void onDestroy() {
+    protected void onResume() {
+        super.onResume();
+        toolbar.setSubtitle(DateUtil.getTodayString(MainActivity.this));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(this).registerReceiver(finishDownloadReceiver, new IntentFilter(BroadCastUtil.ACTION_FINISH_DOWNLOAD));
+        LocalBroadcastManager.getInstance(this).registerReceiver(changedDateReceiver, new IntentFilter(BroadCastUtil.ACTION_CHANGED_DATE));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(finishDownloadReceiver);
-        super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(changedDateReceiver);
     }
 
     private void initViews() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setSubtitle(DateUtil.getTodayString(this));
+
         fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.container);
         viewPager.setAdapter(fragmentPagerAdapter);

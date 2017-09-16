@@ -8,6 +8,8 @@ public class BroadCastUtil {
 
     public final static String ACTION_FINISH_DOWNLOAD = "ACTION_FINISH_DOWNLOAD";
 
+    public final static String ACTION_CHANGED_DATE = "ACTION_CHANGED_DATE";
+
     public static void sendBroadCast(Context context, String action) {
         Intent intent = new Intent();
         intent.setAction(action);

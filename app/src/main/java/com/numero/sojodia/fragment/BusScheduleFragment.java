@@ -7,9 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.numero.sojodia.model.Route;
+import com.numero.sojodia.util.BroadCastUtil;
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter;
 import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
@@ -41,7 +41,6 @@ public class BusScheduleFragment extends Fragment {
     private List<BusTime> tkTimeList = new ArrayList<>();
     private List<BusTime> tndTimeList = new ArrayList<>();
     private BusDataManager busDataManager;
-    private View view;
 
     private Reciprocate reciprocate;
     private String currentDateString;
@@ -72,7 +71,7 @@ public class BusScheduleFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.bus_schedule_fragment, null);
+        View view = inflater.inflate(R.layout.bus_schedule_fragment, null);
 
         currentDateString = DateUtil.getTodayStringOnlyFigure();
 
@@ -252,12 +251,6 @@ public class BusScheduleFragment extends Fragment {
         dialog.show();
     }
 
-    private void setCurrentDateText(String date) {
-        //TODO 日付の表示機能は消す?
-        TextView textView = (TextView) view.findViewById(R.id.date_text);
-        textView.setText(date);
-    }
-
     private void setVisibleTkNextButton(boolean isVisible) {
         tkNextBusTimeButton.setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
@@ -285,12 +278,12 @@ public class BusScheduleFragment extends Fragment {
     private void checkDateChange() {
         if (isDateChanged()) {
             currentDateString = DateUtil.getTodayStringOnlyFigure();
+            BroadCastUtil.sendBroadCast(getActivity(), BroadCastUtil.ACTION_CHANGED_DATE);
             reset();
         }
     }
 
     private void reset() {
-        setCurrentDateText(DateUtil.getTodayString(getActivity()));
         initBusTimeList(DateUtil.getWeek());
         initTkBusPagerView();
         initTndBusPagerView();
