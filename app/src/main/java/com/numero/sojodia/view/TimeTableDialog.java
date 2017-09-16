@@ -27,27 +27,27 @@ public class TimeTableDialog extends ContextWrapper {
 
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
+    private TimeTableRowAdapter adapter;
+    private Toolbar toolbar;
+
     private List<TimeTableRow> timeTableRowList = new ArrayList<>();
     private List<BusTime> busTimeListOnWeekday;
     private List<BusTime> busTimeListOnSaturday;
     private List<BusTime> busTimeListOnSunday;
-    private TimeTableRowAdapter adapter;
     private BusDataManager busDataManager;
     private Reciprocate reciprocate;
     private Route route;
-    private Toolbar toolbar;
-    private View view;
 
     TimeTableDialog(Context context, BusDataManager manager) {
         super(context);
         this.busDataManager = manager;
 
-        view = LayoutInflater.from(context).inflate(R.layout.dialog_time_table, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_time_table, null);
         builder = new AlertDialog.Builder(context);
         builder.setView(view);
 
         initToolbar(view);
-        initListView();
+        initListView(view);
     }
 
     public static TimeTableDialog init(Context context, BusDataManager busDataManager) {
@@ -113,8 +113,8 @@ public class TimeTableDialog extends ContextWrapper {
         });
     }
 
-    private void initListView() {
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+    private void initListView(View view) {
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         adapter = new TimeTableRowAdapter(timeTableRowList);
