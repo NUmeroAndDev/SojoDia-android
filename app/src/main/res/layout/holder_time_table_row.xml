@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -14,11 +15,14 @@
             android:id="@+id/hour_text"
             android:layout_width="@dimen/time_table_dialog_hour_text_width"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:paddingBottom="@dimen/time_table_dialog_text_margin"
             android:paddingTop="@dimen/time_table_dialog_text_margin"
             android:textColor="@color/time_table_dialog_time_text"
-            android:textSize="@dimen/time_table_dialog_row_text" />
+            android:textSize="@dimen/time_table_dialog_row_text"
+            android:textStyle="bold"
+            tools:text="09" />
 
         <View
             android:layout_width="@dimen/time_table_dialog_row_divider"
@@ -30,9 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
             android:padding="@dimen/time_table_dialog_text_margin"
             android:textColor="@color/time_table_dialog_time_text"
-            android:textSize="@dimen/time_table_dialog_row_text" />
+            android:textSize="@dimen/time_table_dialog_row_text"
+            tools:text="04 12 ★57" />
 
         <View
             android:layout_width="@dimen/time_table_dialog_row_divider"
@@ -44,9 +50,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
             android:padding="@dimen/time_table_dialog_text_margin"
             android:textColor="@color/time_table_dialog_time_text"
-            android:textSize="@dimen/time_table_dialog_row_text" />
+            android:textSize="@dimen/time_table_dialog_row_text"
+            tools:text="04 12 ★57" />
 
         <View
             android:layout_width="@dimen/time_table_dialog_row_divider"
@@ -58,9 +66,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
             android:padding="@dimen/time_table_dialog_text_margin"
             android:textColor="@color/time_table_dialog_time_text"
-            android:textSize="@dimen/time_table_dialog_row_text" />
+            android:textSize="@dimen/time_table_dialog_row_text"
+            tools:text="04 12 ★57" />
 
     </LinearLayout>
 
