@@ -9,7 +9,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
+import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.service.UpdateBusDataService;
 import com.numero.sojodia.util.BroadCastUtil;
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setSubtitle(DateUtil.getTodayString(this));
         fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.container);
         viewPager.setAdapter(fragmentPagerAdapter);
