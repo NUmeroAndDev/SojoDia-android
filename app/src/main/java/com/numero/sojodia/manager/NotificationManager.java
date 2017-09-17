@@ -6,10 +6,13 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
 import com.numero.sojodia.R;
 
 public class NotificationManager extends ContextWrapper {
+
+    public final static int UPDATE_NOTIFICATION_ID = 1;
 
     private static final String CHANNEL_ID = "BUS_DIA_CHANNEL_ID";
 
@@ -23,10 +26,23 @@ public class NotificationManager extends ContextWrapper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             android.app.NotificationManager manager = (android.app.NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, getString(R.string.notification_channel_name), android.app.NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, getString(R.string.notification_channel_name), android.app.NotificationManager.IMPORTANCE_NONE);
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             manager.createNotificationChannel(channel);
         }
+    }
+
+    public void showNotification() {
+        Notification notification = buildNotification();
+        notification.flags = Notification.FLAG_ONGOING_EVENT;
+
+        NotificationManagerCompat manager = NotificationManagerCompat.from(getBaseContext());
+        manager.notify(UPDATE_NOTIFICATION_ID, notification);
+    }
+
+    public void cancelNotification() {
+        NotificationManagerCompat manager = NotificationManagerCompat.from(getBaseContext());
+        manager.cancel(UPDATE_NOTIFICATION_ID);
     }
 
     private Notification buildNotification() {

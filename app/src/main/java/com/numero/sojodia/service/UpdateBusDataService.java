@@ -1,16 +1,13 @@
 package com.numero.sojodia.service;
 
 import android.app.IntentService;
-import android.app.Notification;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.app.NotificationCompat;
 
-import com.numero.sojodia.R;
 import com.numero.sojodia.api.ApiClient;
 import com.numero.sojodia.manager.DataManager;
+import com.numero.sojodia.manager.NotificationManager;
 import com.numero.sojodia.manager.UpdateManager;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.util.BroadCastUtil;
@@ -23,12 +20,11 @@ import okhttp3.ResponseBody;
 
 public class UpdateBusDataService extends IntentService {
 
-    public final static int UPDATE_NOTIFICATION_ID = 1;
-
     private BusDataFile[] busDataFiles = BusDataFile.values();
     private ApiClient apiClient;
     private UpdateManager updateManager;
     private DataManager dataManager;
+    private NotificationManager notificationManager;
 
     public UpdateBusDataService() {
         super(UpdateBusDataService.class.getSimpleName());
@@ -40,6 +36,7 @@ public class UpdateBusDataService extends IntentService {
         apiClient = new ApiClient();
         updateManager = UpdateManager.getInstance(this);
         dataManager = DataManager.getInstance(this);
+        notificationManager = new NotificationManager(this);
     }
 
     @Override
@@ -50,8 +47,7 @@ public class UpdateBusDataService extends IntentService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        NotificationManagerCompat manager = NotificationManagerCompat.from(this);
-        manager.cancel(UPDATE_NOTIFICATION_ID);
+        notificationManager.cancelNotification();
     }
 
     @Nullable
@@ -93,7 +89,7 @@ public class UpdateBusDataService extends IntentService {
     }
 
     private void executeUpdate() {
-        showNotification();
+        notificationManager.showNotification();
         for (final BusDataFile busDataFile : busDataFiles) {
             final Request request = new Request.Builder().url(busDataFile.getUrl()).build();
             apiClient.execute(request, new ApiClient.Callback() {
@@ -111,20 +107,5 @@ public class UpdateBusDataService extends IntentService {
         }
         updateManager.updateVersionCode();
         BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
-    }
-
-    private void showNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setSmallIcon(R.drawable.ic_notification);
-
-        builder.setContentTitle(getString(R.string.notification_update_title));
-        builder.setContentText(getString(R.string.notification_update_text));
-        builder.setProgress(0, 0, true);
-
-        Notification notification = builder.build();
-        notification.flags = Notification.FLAG_ONGOING_EVENT;
-
-        NotificationManagerCompat manager = NotificationManagerCompat.from(this);
-        manager.notify(UPDATE_NOTIFICATION_ID, notification);
     }
 }
