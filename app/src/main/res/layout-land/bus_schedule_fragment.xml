@@ -74,7 +74,7 @@
                     android:id="@+id/tk_no_bus_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/background"
+                    android:background="@color/card_background"
                     android:visibility="gone">
 
                     <TextView
@@ -175,7 +175,7 @@
                     android:id="@+id/tnd_no_bus_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/background"
+                    android:background="@color/card_background"
                     android:visibility="gone">
 
                     <TextView

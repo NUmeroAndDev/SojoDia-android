@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/time_table_dialog_toolbar_background"
+        android:background="@color/accent"
         app:navigationIcon="@drawable/ic_clear"
         app:subtitleTextColor="@color/time_table_dialog_toolbar_text"
         app:titleTextColor="@color/time_table_dialog_toolbar_text" />
