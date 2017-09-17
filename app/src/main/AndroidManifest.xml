@@ -29,6 +29,10 @@
 
         </activity>
 
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service android:name=".service.UpdateBusDataService" />
 
     </application>
