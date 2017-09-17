@@ -10,9 +10,9 @@
     <string name="station_tnd">JR富田駅</string>
 
     <string name="bus_type_nonstop">直行便</string>
-
     <string name="no_bus">本日のバスはありません</string>
     <string name="last_bus">最終バス</string>
+    <string name="time_table_dialog_description">★ = 直行便</string>
     
     <string name="going_to_school">登校</string>
     <string name="coming_home">下校</string>

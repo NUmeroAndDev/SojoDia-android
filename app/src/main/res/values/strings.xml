@@ -10,10 +10,10 @@
     <string name="station_tnd">JR Tonda Station</string>
 
     <string name="bus_type_nonstop">Nonstop Bus</string>
-
     <string name="no_bus">There is no bus at today</string>
     <string name="last_bus">Last bus</string>
     <string name="next_title" translatable="false">Next</string>
+    <string name="time_table_dialog_description">★ = Non stop bus</string>
 
     <string name="going_to_school">Going to school</string>
     <string name="coming_home">Coming home</string>

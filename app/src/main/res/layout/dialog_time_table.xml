@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/time_table_dialog_background"
-    android:orientation="vertical">
+    android:background="@color/time_table_dialog_background">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="@color/accent"
         app:navigationIcon="@drawable/ic_clear"
         app:subtitleTextColor="@color/time_table_dialog_toolbar_text"
         app:titleTextColor="@color/time_table_dialog_toolbar_text" />
 
     <LinearLayout
+        android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
         android:orientation="vertical">
 
         <LinearLayout
@@ -101,7 +104,22 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_description_text"
+        android:layout_below="@+id/header_layout"
         android:overScrollMode="never"
         tools:listitem="@layout/holder_time_table_row" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/bottom_description_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="right"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:text="@string/time_table_dialog_description"
+        android:textColor="@color/text_secondary" />
+
+</RelativeLayout>
