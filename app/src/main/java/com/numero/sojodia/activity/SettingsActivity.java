@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.numero.sojodia.R;
+import com.numero.sojodia.fragment.SettingsFragment;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -27,7 +28,8 @@ public class SettingsActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-//        getFragmentManager().beginTransaction().replace(R.id.container, new SettingsFragment()).commit();
+
+        getFragmentManager().beginTransaction().replace(R.id.container, new SettingsFragment()).commit();
     }
 
     @Override

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <PreferenceScreen
+        android:key="timetable_version"
+        android:title="時刻表データ"
+        tools:summary="20170401" />
+
+    <PreferenceScreen
+        android:key="app_version"
+        android:title="バージョン"
+        tools:summary="6.0.0" />
+
+</PreferenceScreen>
