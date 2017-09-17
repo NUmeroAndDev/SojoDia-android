@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <PreferenceScreen
-        android:key="timetable_version"
-        android:title="時刻表データ"
+        android:key="data_version"
+        android:title="@string/settings_data_version_title"
         tools:summary="20170401" />
 
     <PreferenceScreen
         android:key="app_version"
-        android:title="バージョン"
+        android:title="@string/settings_app_version_title"
         tools:summary="6.0.0" />
 
 </PreferenceScreen>
