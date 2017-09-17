@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#F5F5F5</color>
-    <color name="color_primary_dark">#E0E0E0</color>
-    <color name="color_accent">#8BC34A</color>
-
-    <!--MainActivity-->
-    <color name="background">#FAFAFA</color>
+    <color name="primary">#F5F5F5</color>
+    <color name="primary_dark">#E0E0E0</color>
+    <color name="accent">#8BC34A</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="activity_background">#FAFAFA</color>
 
     <!--Fragment-->
+    <color name="card_background">#FFFFFF</color>
     <color name="card_title_background">#8BC34A</color>
     <color name="card_title_text">#FFFFFF</color>
     <color name="count_attention_text">#E91E63</color>
     <color name="count_safe_text">#2196F3</color>
-    <color name="count_default_text">#727272</color>
+    <color name="count_default_text">#757575</color>
 
     <!--TimeTableDialog-->
     <color name="time_table_dialog_background">#FFFFFF</color>
-    <color name="time_table_dialog_toolbar_background">#8BC34A</color>
     <color name="time_table_dialog_toolbar_text">#FFFFFF</color>
-    <color name="time_table_dialog_hour_text">#727272</color>
-    <color name="time_table_dialog_weekday_text">#727272</color>
+    <color name="time_table_dialog_hour_text">#212121</color>
+    <color name="time_table_dialog_weekday_text">#212121</color>
     <color name="time_table_dialog_saturday_text">#2196F3</color>
     <color name="time_table_dialog_sunday_text">#E91E63</color>
-    <color name="time_table_dialog_time_text">#727272</color>
+    <color name="time_table_dialog_time_text">#757575</color>
     <color name="time_table_dialog_row_divider">#BDBDBD</color>
     <color name="time_table_dialog_row_highlight">#FFFF7F</color>
 
