@@ -1,5 +1,14 @@
 apply plugin: 'com.android.application'
 
+def versionMajor = 7
+def versionMinor = 0
+def versionPatch = 0
+def versionBuild = 0
+def targetDevice = 0
+
+def appVersionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild * 10 + targetDevice
+def appVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.1'
@@ -7,8 +16,8 @@ android {
         applicationId "com.numero.sojodia"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 60000
-        versionName '6.0'
+        versionCode appVersionCode
+        versionName appVersionName
     }
 
     buildTypes {
