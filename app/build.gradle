@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.cookpad.android.licensetools'
 
 def versionMajor = 7
 def versionMinor = 0

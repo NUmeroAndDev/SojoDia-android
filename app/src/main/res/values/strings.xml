@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Bus Schedule</string>
     <string name="settings_label">Settings</string>
+    <string name="licenses_label">Licenses</string>
 
     <string name="weekday">Weekdays</string>
     <string name="saturday">Saturday</string>
@@ -30,5 +31,6 @@
 
     <string name="settings_data_version_title">Timetable data</string>
     <string name="settings_app_version_title">Version</string>
+    <string name="settings_licenses_title">Licenses</string>
 
 </resources>

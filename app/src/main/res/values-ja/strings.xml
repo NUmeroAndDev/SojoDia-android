@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">バス時刻表</string>
     <string name="settings_label">設定</string>
+    <string name="licenses_label">ライセンス</string>
 
     <string name="weekday">平日</string>
     <string name="saturday">土曜</string>
@@ -29,5 +30,6 @@
 
     <string name="settings_data_version_title">時刻表データ</string>
     <string name="settings_app_version_title">バージョン</string>
+    <string name="settings_licenses_title">ライセンス</string>
 
 </resources>

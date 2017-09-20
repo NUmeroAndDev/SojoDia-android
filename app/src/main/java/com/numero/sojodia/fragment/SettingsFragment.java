@@ -1,11 +1,13 @@
 package com.numero.sojodia.fragment;
 
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 
 import com.numero.sojodia.BuildConfig;
 import com.numero.sojodia.R;
+import com.numero.sojodia.activity.LicensesActivity;
 import com.numero.sojodia.util.PreferenceUtil;
 
 public class SettingsFragment extends PreferenceFragment {
@@ -20,5 +22,14 @@ public class SettingsFragment extends PreferenceFragment {
 
         PreferenceScreen appVersionScreen = (PreferenceScreen) findPreference("app_version");
         appVersionScreen.setSummary(BuildConfig.VERSION_NAME);
+
+        PreferenceScreen licensesScreen = (PreferenceScreen) findPreference("licenses");
+        licensesScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(LicensesActivity.createIntent(getActivity()));
+                return false;
+            }
+        });
     }
 }
