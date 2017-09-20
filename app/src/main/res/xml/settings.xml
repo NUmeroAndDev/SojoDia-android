@@ -12,4 +12,8 @@
         android:title="@string/settings_app_version_title"
         tools:summary="6.0.0" />
 
+    <PreferenceScreen
+        android:key="licenses"
+        android:title="@string/settings_licenses_title" />
+
 </PreferenceScreen>
