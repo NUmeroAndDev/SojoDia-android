@@ -16,8 +16,6 @@ API Level 17 ( Android 4.2 )
 |[Android License Tools Plugin](https://github.com/cookpad/license-tools-plugin)|0.23.0|
 
 ## History  
-
-###  変更履歴
 #### Ver 7.0(2017/09/21)  
 * 直行便の表示を追加しました  
 * レイアウトを変更しました  
