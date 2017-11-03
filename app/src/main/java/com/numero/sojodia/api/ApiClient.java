@@ -2,8 +2,8 @@ package com.numero.sojodia.api;
 
 import android.support.annotation.NonNull;
 
-import java.io.IOException;
-
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -17,19 +17,25 @@ public class ApiClient {
         okHttpClient = new OkHttpClient();
     }
 
-    public void execute(@NonNull Request request, @NonNull Callback callback) {
-        try {
+    // Serviceから呼ぶためUIスレッドにしない
+    public void execute(@NonNull Request request, @NonNull SuccessCallback successCallback, @NonNull ErrorCallback errorCallback) {
+        Observable.create((ObservableOnSubscribe<String>) e -> {
             Response response = okHttpClient.newCall(request).execute();
-            callback.onSuccess(response.body());
-        } catch (IOException e) {
-            callback.onFailed(e);
-        }
+            ResponseBody responseBody = response.body();
+            if (responseBody != null) {
+                e.onNext(responseBody.string());
+            } else {
+                e.onError(new Exception("Response data is null"));
+            }
+            e.onComplete();
+        }).subscribe(successCallback::onSuccess, errorCallback::onError);
     }
 
-    // このコールバックはThreadで返される
-    public interface Callback {
-        void onSuccess(ResponseBody responseBody) throws IOException;
+    public interface SuccessCallback {
+        void onSuccess(String data) throws Exception;
+    }
 
-        void onFailed(Throwable e);
+    public interface ErrorCallback {
+        void onError(Throwable e);
     }
 }

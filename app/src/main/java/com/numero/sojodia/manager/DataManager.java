@@ -6,8 +6,6 @@ import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -73,22 +71,9 @@ public class DataManager extends ContextWrapper {
         }
     }
 
-    public void saveDownLoadedData(String fileName, @NonNull InputStream inputStream) throws IOException {
-        DataInputStream dataInputStream = new DataInputStream(inputStream);
+    public void saveDownLoadData(String fileName, @NonNull String data) throws Exception {
         FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
-
-        DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
-
-        byte[] buffer = new byte[4096];
-        int readByte;
-
-        while ((readByte = dataInputStream.read(buffer)) != -1) {
-            dataOutputStream.write(buffer, 0, readByte);
-        }
-
-        dataOutputStream.close();
+        fileOutputStream.write(data.getBytes());
         fileOutputStream.close();
-        dataInputStream.close();
-        inputStream.close();
     }
 }
