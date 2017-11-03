@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.numero.sojodia.R;
 import com.numero.sojodia.api.ApiClient;
 import com.numero.sojodia.manager.DataManager;
 import com.numero.sojodia.manager.NotificationManager;
@@ -65,7 +66,7 @@ public class UpdateBusDataService extends IntentService {
     }
 
     private void checkUpdate() {
-        Request request = new Request.Builder().url("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt").build();
+        Request request = new Request.Builder().url(getString(R.string.version_url)).build();
         apiClient.execute(request, data -> {
             updateManager.setVersionCode(Long.valueOf(data));
 
