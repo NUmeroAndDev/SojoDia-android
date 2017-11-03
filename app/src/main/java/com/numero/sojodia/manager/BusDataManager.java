@@ -98,12 +98,7 @@ public class BusDataManager extends ContextWrapper {
 
     private List<BusTime> getFilteredBusTimeList(List<BusTime> busTimeList, final int week) {
         return Observable.fromIterable(busTimeList)
-                .filter(new Predicate<BusTime>() {
-                    @Override
-                    public boolean test(@io.reactivex.annotations.NonNull BusTime busTime) throws Exception {
-                        return busTime.week == week;
-                    }
-                })
+                .filter(busTime -> busTime.week == week)
                 .toList()
                 .blockingGet();
     }

@@ -19,12 +19,9 @@ public class NeedRestartDialog {
         dialogBuilder = new AlertDialog.Builder(context);
         dialogBuilder.setMessage(context.getString(R.string.message_need_update));
         dialogBuilder.setCancelable(false);
-        dialogBuilder.setPositiveButton(R.string.positive_button_need_update, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (onPositiveButtonClickListener != null) {
-                    onPositiveButtonClickListener.onClick();
-                }
+        dialogBuilder.setPositiveButton(R.string.positive_button_need_update, (dialogInterface, i) -> {
+            if (onPositiveButtonClickListener != null) {
+                onPositiveButtonClickListener.onClick();
             }
         });
     }
