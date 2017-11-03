@@ -99,12 +99,9 @@ public class TimeTableDialog extends ContextWrapper {
 
     private void initToolbar(View view) {
         toolbar = view.findViewById(R.id.toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (dialog != null) {
-                    dialog.dismiss();
-                }
+        toolbar.setNavigationOnClickListener(v -> {
+            if (dialog != null) {
+                dialog.dismiss();
             }
         });
     }

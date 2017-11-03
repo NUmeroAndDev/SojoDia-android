@@ -177,18 +177,8 @@ public class BusScheduleFragment extends Fragment {
     }
 
     private void initTimeTableButton(View view) {
-        view.findViewById(R.id.tk_time_table_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimeTableDialog(Route.TK);
-            }
-        });
-        view.findViewById(R.id.tnd_time_table_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimeTableDialog(Route.TND);
-            }
-        });
+        view.findViewById(R.id.tk_time_table_button).setOnClickListener(v -> showTimeTableDialog(Route.TK));
+        view.findViewById(R.id.tnd_time_table_button).setOnClickListener(v -> showTimeTableDialog(Route.TND));
     }
 
     private void initNextPreviewButton(View view) {
@@ -197,33 +187,21 @@ public class BusScheduleFragment extends Fragment {
         tndNextBusTimeButton = view.findViewById(R.id.tnd_next_bus_time_button);
         tndPreviewBusTimeButton = view.findViewById(R.id.tnd_before_bus_time_button);
 
-        tkNextBusTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                busDataManager.nextTkBusTime();
-                tkBusTimePager.setCurrentItem(busDataManager.getTkBusPosition(), true);
-            }
+        tkNextBusTimeButton.setOnClickListener(v -> {
+            busDataManager.nextTkBusTime();
+            tkBusTimePager.setCurrentItem(busDataManager.getTkBusPosition(), true);
         });
-        tkPreviewBusTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                busDataManager.previewTkBusTime();
-                tkBusTimePager.setCurrentItem(busDataManager.getTkBusPosition(), true);
-            }
+        tkPreviewBusTimeButton.setOnClickListener(v -> {
+            busDataManager.previewTkBusTime();
+            tkBusTimePager.setCurrentItem(busDataManager.getTkBusPosition(), true);
         });
-        tndNextBusTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                busDataManager.nextTndBusTime();
-                tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), true);
-            }
+        tndNextBusTimeButton.setOnClickListener(v -> {
+            busDataManager.nextTndBusTime();
+            tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), true);
         });
-        tndPreviewBusTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                busDataManager.previewTndBusTime();
-                tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), true);
-            }
+        tndPreviewBusTimeButton.setOnClickListener(v -> {
+            busDataManager.previewTndBusTime();
+            tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), true);
         });
     }
 

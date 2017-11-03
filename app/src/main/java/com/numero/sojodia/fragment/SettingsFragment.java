@@ -1,7 +1,6 @@
 package com.numero.sojodia.fragment;
 
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 
@@ -24,12 +23,9 @@ public class SettingsFragment extends PreferenceFragment {
         appVersionScreen.setSummary(BuildConfig.VERSION_NAME);
 
         PreferenceScreen licensesScreen = (PreferenceScreen) findPreference("licenses");
-        licensesScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                startActivity(LicensesActivity.createIntent(getActivity()));
-                return false;
-            }
+        licensesScreen.setOnPreferenceClickListener(preference -> {
+            startActivity(LicensesActivity.createIntent(getActivity()));
+            return false;
         });
     }
 }

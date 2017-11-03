@@ -109,11 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void showNeedRestartDialog() {
         NeedRestartDialog.init(this)
-                .setOnPositiveButtonClickListener(new NeedRestartDialog.OnPositiveButtonClickListener() {
-                    @Override
-                    public void onClick() {
-                        recreate();
-                    }
-                }).show();
+                .setOnPositiveButtonClickListener(this::recreate).show();
     }
 }
