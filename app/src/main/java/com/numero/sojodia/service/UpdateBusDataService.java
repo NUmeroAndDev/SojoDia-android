@@ -80,8 +80,8 @@ public class UpdateBusDataService extends IntentService {
 
     private void executeUpdate() {
         notificationManager.showNotification();
-        for (final BusDataFile busDataFile : busDataFiles) {
-            final Request request = new Request.Builder().url(busDataFile.getUrl()).build();
+        for (BusDataFile busDataFile : busDataFiles) {
+            Request request = new Request.Builder().url(busDataFile.getUrl()).build();
             apiClient.execute(request, data -> dataManager.saveDownLoadData(busDataFile.getFileName(), data), e -> {
                 e.printStackTrace();
                 stopSelf();

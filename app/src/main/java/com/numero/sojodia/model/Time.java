@@ -41,15 +41,8 @@ public class Time {
         return sec;
     }
 
-    public String toString() {
-        return toString(true);
-    }
-
     @SuppressLint("DefaultLocale")
-    public String toString(boolean isShowSec) {
-        if (isShowSec) {
-            return String.format("%02d:%02d:%02d", hour, min, sec);
-        }
-        return String.format("%02d:%02d", hour, min);
+    public String toString() {
+        return String.format("%02d:%02d:%02d", hour, min, sec);
     }
 }
