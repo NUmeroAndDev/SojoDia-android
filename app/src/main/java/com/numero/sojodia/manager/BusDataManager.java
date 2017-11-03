@@ -68,10 +68,10 @@ public class BusDataManager extends ContextWrapper {
     }
 
     private void initBusTimeList() {
-        setBusTimeList(tkBusTimeListGoing, dataManager.getBusTimeDataSource(BusDataFile.TK_TO_KUTC.getFileName()));
-        setBusTimeList(tkBusTimeListReturn, dataManager.getBusTimeDataSource(BusDataFile.KUTC_TO_TK.getFileName()));
-        setBusTimeList(tndBusTimeListGoing, dataManager.getBusTimeDataSource(BusDataFile.TND_TO_KUTC.getFileName()));
-        setBusTimeList(tndBusTimeListReturn, dataManager.getBusTimeDataSource(BusDataFile.KUTC_TO_TND.getFileName()));
+        tkBusTimeListGoing = getBusTimeList(dataManager.getBusTimeDataSource(BusDataFile.TK_TO_KUTC.getFileName()));
+        tkBusTimeListReturn = getBusTimeList(dataManager.getBusTimeDataSource(BusDataFile.KUTC_TO_TK.getFileName()));
+        tndBusTimeListGoing = getBusTimeList(dataManager.getBusTimeDataSource(BusDataFile.TND_TO_KUTC.getFileName()));
+        tndBusTimeListReturn = getBusTimeList(dataManager.getBusTimeDataSource(BusDataFile.KUTC_TO_TND.getFileName()));
     }
 
     private void initBusPosition() {
@@ -98,8 +98,7 @@ public class BusDataManager extends ContextWrapper {
     private List<BusTime> getFilteredBusTimeList(List<BusTime> busTimeList, final int week) {
         return Observable.fromIterable(busTimeList)
                 .filter(busTime -> busTime.week == week)
-                .toList()
-                .blockingGet();
+                .toList().blockingGet();
     }
 
     public int getTkBusPosition() {
@@ -181,19 +180,17 @@ public class BusDataManager extends ContextWrapper {
     }
 
     // テキストからマッピング処理
-    private void setBusTimeList(List<BusTime> busTimeList, String busTimeSource) {
-        busTimeList.clear();
-        String lines[] = busTimeSource.split("\n");
-        for (String line : lines) {
-            StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
+    private List<BusTime> getBusTimeList(@NonNull String busTimeDataSource) {
+        String lines[] = busTimeDataSource.split("\n");
+        return Observable.fromArray(lines)
+                .map(s -> new StringTokenizer(s, ","))
+                .map(stringTokenizer -> {
+                    int hour = Integer.valueOf(stringTokenizer.nextToken());
+                    int minutes = Integer.valueOf(stringTokenizer.nextToken());
+                    int week = Integer.valueOf(stringTokenizer.nextToken());
+                    boolean isNonstop = Integer.valueOf(stringTokenizer.nextToken()) != 0;
 
-            int hour = Integer.valueOf(stringTokenizer.nextToken());
-            int minutes = Integer.valueOf(stringTokenizer.nextToken());
-            int week = Integer.valueOf(stringTokenizer.nextToken());
-            boolean isNonstop = Integer.valueOf(stringTokenizer.nextToken()) != 0;
-
-            BusTime busTime = new BusTime(hour, minutes, week, isNonstop);
-            busTimeList.add(busTime);
-        }
+                    return new BusTime(hour, minutes, week, isNonstop);
+                }).toList().blockingGet();
     }
 }
