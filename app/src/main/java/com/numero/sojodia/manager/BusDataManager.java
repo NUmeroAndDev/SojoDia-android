@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Predicate;
 
 public class BusDataManager extends ContextWrapper {
 
