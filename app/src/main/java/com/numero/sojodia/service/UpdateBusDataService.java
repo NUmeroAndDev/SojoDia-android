@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.numero.sojodia.R;
 import com.numero.sojodia.api.ApiClient;
 import com.numero.sojodia.manager.DataManager;
 import com.numero.sojodia.manager.NotificationManager;
@@ -13,10 +14,7 @@ import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.util.BroadCastUtil;
 import com.numero.sojodia.util.NetworkUtil;
 
-import java.io.IOException;
-
 import okhttp3.Request;
-import okhttp3.ResponseBody;
 
 public class UpdateBusDataService extends IntentService {
 
@@ -68,41 +66,26 @@ public class UpdateBusDataService extends IntentService {
     }
 
     private void checkUpdate() {
-        Request request = new Request.Builder().url("https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt").build();
-        apiClient.execute(request, new ApiClient.Callback() {
-            @Override
-            public void onSuccess(ResponseBody responseBody) throws IOException {
-                String data = responseBody.string();
-                updateManager.setVersionCode(Long.valueOf(data));
+        Request request = new Request.Builder().url(getString(R.string.version_url)).build();
+        apiClient.execute(request, data -> {
+            updateManager.setVersionCode(Long.valueOf(data));
 
-                if (updateManager.canUpdate()) {
-                    executeUpdate();
-                }
+            if (updateManager.canUpdate()) {
+                executeUpdate();
             }
-
-            @Override
-            public void onFailed(Throwable e) {
-                e.printStackTrace();
-                stopSelf();
-            }
+        }, e -> {
+            e.printStackTrace();
+            stopSelf();
         });
     }
 
     private void executeUpdate() {
         notificationManager.showNotification();
-        for (final BusDataFile busDataFile : busDataFiles) {
-            final Request request = new Request.Builder().url(busDataFile.getUrl()).build();
-            apiClient.execute(request, new ApiClient.Callback() {
-                @Override
-                public void onSuccess(ResponseBody responseBody) throws IOException {
-                    dataManager.saveDownLoadedData(busDataFile.getFileName(), responseBody.byteStream());
-                }
-
-                @Override
-                public void onFailed(Throwable e) {
-                    e.printStackTrace();
-                    stopSelf();
-                }
+        for (BusDataFile busDataFile : busDataFiles) {
+            Request request = new Request.Builder().url(busDataFile.getUrl()).build();
+            apiClient.execute(request, data -> dataManager.saveDownLoadData(busDataFile.getFileName(), data), e -> {
+                e.printStackTrace();
+                stopSelf();
             });
         }
         updateManager.updateVersionCode();
