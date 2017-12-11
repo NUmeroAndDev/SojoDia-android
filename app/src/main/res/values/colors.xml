@@ -6,6 +6,8 @@
     <color name="text_primary">#212121</color>
     <color name="text_secondary">#757575</color>
     <color name="activity_background">#FAFAFA</color>
+    <color name="navigation_bar">#FFFFFF</color>
+    <color name="navigation_bar_divider">#1F000000</color>
 
     <!--Fragment-->
     <color name="card_background">#FFFFFF</color>
@@ -23,7 +25,7 @@
     <color name="time_table_dialog_saturday_text">#2196F3</color>
     <color name="time_table_dialog_sunday_text">#E91E63</color>
     <color name="time_table_dialog_time_text">#757575</color>
-    <color name="time_table_dialog_row_divider">#BDBDBD</color>
+    <color name="time_table_dialog_row_divider">#1F000000</color>
     <color name="time_table_dialog_row_highlight">#FFFF7F</color>
 
 </resources>
