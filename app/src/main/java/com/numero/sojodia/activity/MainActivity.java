@@ -15,12 +15,15 @@ import android.view.MenuItem;
 
 import com.numero.sojodia.SojoDiaApplication;
 import com.numero.sojodia.di.ApplicationComponent;
+import com.numero.sojodia.repository.BusDataRepository;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.service.UpdateBusDataService;
 import com.numero.sojodia.util.BroadCastUtil;
 import com.numero.sojodia.view.NeedRestartDialog;
 import com.numero.sojodia.R;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private BusScheduleFragmentPagerAdapter fragmentPagerAdapter;
 
+    @Inject
+    BusDataRepository busDataRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
