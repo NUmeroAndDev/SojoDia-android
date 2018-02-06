@@ -43,6 +43,35 @@
     list-style-type: lower-alpha;
     padding-left: 2em;
     }
+    input ~ .license {
+    max-height: 200px;
+    overflow: hidden;
+    }
+    input, label {
+    position: absolute;
+    right: 16px;
+    width: 12px;
+    height: 12px;
+    margin: 20px;
+    }
+    input {
+    opacity: 0;
+    z-index: 1;
+    }
+    label {
+    margin-top: 16px;
+    text-align: center;
+    font-weight: bold;
+    }
+    label::before {
+    content: "+";
+    }
+    input:checked + label::before {
+    content: "-";
+    }
+    input:checked ~ .license {
+    max-height: none;
+    }
   </style>
 </head>
 <body>
@@ -51,6 +80,7 @@
       <h1 class="title">Android Support Libraries</h1>
       <p class="notice">Copyright &copy; The Android Open Source Project. All rights reserved.</p>
       <p><a href="http://developer.android.com/tools/extras/support-library.html">http://developer.android.com/tools/extras/support-library.html</a></p>
+      <input type="checkbox"><label></label>
       <div class="license">
         <h2>
           Apache License
@@ -297,6 +327,7 @@
       <h1 class="title">OkHttp</h1>
       <p class="notice">Copyright &copy; Square, Inc. All rights reserved.</p>
       
+      <input type="checkbox"><label></label>
       <div class="license">
         <h2>
           Apache License
@@ -543,6 +574,7 @@
       <h1 class="title">Okio</h1>
       <p class="notice">Copyright &copy; Square, Inc. All rights reserved.</p>
       
+      <input type="checkbox"><label></label>
       <div class="license">
         <h2>
           Apache License
@@ -789,6 +821,7 @@
       <h1 class="title">RxAndroid</h1>
       <p class="notice">Copyright &copy; The RxAndroid authors. All rights reserved.</p>
       <p><a href="https://github.com/ReactiveX/RxAndroid">https://github.com/ReactiveX/RxAndroid</a></p>
+      <input type="checkbox"><label></label>
       <div class="license">
         <h2>
           Apache License
@@ -1035,6 +1068,7 @@
       <h1 class="title">rxjava</h1>
       <p class="notice">Copyright &copy; RxJava Contributors. All rights reserved.</p>
       <p><a href="https://github.com/ReactiveX/RxJava">https://github.com/ReactiveX/RxJava</a></p>
+      <input type="checkbox"><label></label>
       <div class="license">
         <h2>
           Apache License
