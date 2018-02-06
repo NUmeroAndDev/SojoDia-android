@@ -5,10 +5,10 @@ import com.numero.sojodia.model.BusTime;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 public interface IBusDataRepository {
 
-    Single<List<BusTime>> loadBusData(BusDataFile busDataFile);
+    Observable<List<BusTime>> loadBusData(BusDataFile busDataFile);
 
 }

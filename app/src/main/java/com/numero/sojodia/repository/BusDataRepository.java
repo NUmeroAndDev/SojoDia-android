@@ -11,12 +11,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Single;
 
 public class BusDataRepository implements IBusDataRepository {
 
@@ -27,8 +26,9 @@ public class BusDataRepository implements IBusDataRepository {
     }
 
     @Override
-    public Single<List<BusTime>> loadBusData(BusDataFile busDataFile) {
-        return Observable.create((ObservableOnSubscribe<String>) e -> {
+    public Observable<List<BusTime>> loadBusData(BusDataFile busDataFile) {
+        return Observable.create(e -> {
+            List<BusTime> dataList = new ArrayList<>();
             BufferedReader bufferedReader;
             FileInputStream fileInputStream = null;
             InputStream inputStream = null;
@@ -44,7 +44,6 @@ public class BusDataRepository implements IBusDataRepository {
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             }
 
-            StringBuilder builder = new StringBuilder();
             String lineString;
             boolean isFirstLine = true;
             while ((lineString = bufferedReader.readLine()) != null) {
@@ -53,8 +52,13 @@ public class BusDataRepository implements IBusDataRepository {
                     isFirstLine = false;
                     continue;
                 }
-                builder.append(lineString);
-                builder.append("\n");
+                StringTokenizer tokenizer = new StringTokenizer(lineString, ",");
+                int hour = Integer.valueOf(tokenizer.nextToken());
+                int minutes = Integer.valueOf(tokenizer.nextToken());
+                int week = Integer.valueOf(tokenizer.nextToken());
+                boolean isNonstop = Integer.valueOf(tokenizer.nextToken()) != 0;
+
+                dataList.add(new BusTime(hour, minutes, week, isNonstop));
             }
 
             bufferedReader.close();
@@ -64,17 +68,7 @@ public class BusDataRepository implements IBusDataRepository {
             if (inputStream != null) {
                 inputStream.close();
             }
-            e.onNext(builder.toString());
-        })
-                .flatMap(s -> Observable.fromArray(s.split("\n")))
-                .map(s -> new StringTokenizer(s, ","))
-                .map(stringTokenizer -> {
-                    int hour = Integer.valueOf(stringTokenizer.nextToken());
-                    int minutes = Integer.valueOf(stringTokenizer.nextToken());
-                    int week = Integer.valueOf(stringTokenizer.nextToken());
-                    boolean isNonstop = Integer.valueOf(stringTokenizer.nextToken()) != 0;
-
-                    return new BusTime(hour, minutes, week, isNonstop);
-                }).toList();
+            e.onNext(dataList);
+        });
     }
 }
