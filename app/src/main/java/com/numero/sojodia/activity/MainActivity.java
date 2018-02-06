@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.numero.sojodia.SojoDiaApplication;
+import com.numero.sojodia.di.ApplicationComponent;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.service.UpdateBusDataService;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getComponent().inject(this);
 
         initViews();
 
@@ -89,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private ApplicationComponent getComponent() {
+        return ((SojoDiaApplication) getApplication()).getComponent();
     }
 
     private void initViews() {
