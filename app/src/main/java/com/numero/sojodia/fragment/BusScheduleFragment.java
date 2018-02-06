@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.numero.sojodia.contract.BusScheduleContract;
 import com.numero.sojodia.model.Route;
 import com.numero.sojodia.util.BroadCastUtil;
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter;
@@ -26,7 +27,7 @@ import com.numero.sojodia.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusScheduleFragment extends Fragment {
+public class BusScheduleFragment extends Fragment implements BusScheduleContract.View {
 
     private CountDownClockTextView tkCountDownClockTextView;
     private CountDownClockTextView tndCountDownClockTextView;
@@ -38,6 +39,8 @@ public class BusScheduleFragment extends Fragment {
     private NotSwipeViewPager tndBusTimePager;
     private View tkNoBusLayout;
     private View tndNoBusLayout;
+
+    private BusScheduleContract.Presenter presenter;
 
     private List<BusTime> tkTimeList = new ArrayList<>();
     private List<BusTime> tndTimeList = new ArrayList<>();
@@ -90,6 +93,11 @@ public class BusScheduleFragment extends Fragment {
     public void onResume() {
         super.onResume();
         reset();
+    }
+
+    @Override
+    public void setPresenter(BusScheduleContract.Presenter presenter) {
+        this.presenter = presenter;
     }
 
     private void initCountDownClockTextView(View view) {

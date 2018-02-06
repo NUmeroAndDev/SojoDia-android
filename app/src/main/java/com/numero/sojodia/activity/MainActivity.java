@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ViewPager viewPager;
-    private BusScheduleFragmentPagerAdapter fragmentPagerAdapter;
 
     @Inject
     BusDataRepository busDataRepository;
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, getSupportFragmentManager());
+        BusScheduleFragmentPagerAdapter fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, busDataRepository, getSupportFragmentManager());
         viewPager = findViewById(R.id.container);
         viewPager.setAdapter(fragmentPagerAdapter);
         TabLayout tabLayout = findViewById(R.id.tabs);
