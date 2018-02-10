@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements BusScheduleFragme
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                startActivity(SettingsActivity.createIntent(this));
+                startActivity(SettingsActivity.Companion.createIntent(this));
                 break;
         }
         return super.onOptionsItemSelected(item);
