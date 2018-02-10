@@ -21,7 +21,7 @@ import io.reactivex.Observable
 class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName) {
 
     private val busDataFiles = BusDataFile.values()
-    private var notificationManager: NotificationManager? = null
+    private lateinit var notificationManager: NotificationManager
 
     @Inject
     lateinit var busDataApi: BusDataApi
@@ -44,7 +44,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     override fun onDestroy() {
         super.onDestroy()
-        notificationManager?.cancelNotification()
+        notificationManager.cancelNotification()
     }
 
     override fun onBind(intent: Intent): IBinder? {
@@ -76,7 +76,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
     }
 
     private fun executeUpdate() {
-        notificationManager?.showNotification()
+        notificationManager.showNotification()
         Observable.fromArray(*busDataFiles)
                 .flatMap { busDataFile ->
                     busDataApi.getBusData(busDataFile)
