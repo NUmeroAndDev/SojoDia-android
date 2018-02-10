@@ -40,7 +40,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         SettingsFragment fragment = (SettingsFragment) getFragmentManager().findFragmentById(R.id.container);
         if (fragment == null) {
-            fragment = SettingsFragment.newInstance();
+            fragment = SettingsFragment.Companion.newInstance();
             getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
         }
         new SettingsPresenter(fragment, configRepository);
