@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,14 @@ import com.numero.sojodia.contract.BusScheduleContract;
 import com.numero.sojodia.model.Route;
 import com.numero.sojodia.util.BroadCastUtil;
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter;
-import com.numero.sojodia.manager.BusDataManager;
 import com.numero.sojodia.model.BusTime;
-import com.numero.sojodia.model.Reciprocate;
 import com.numero.sojodia.model.Time;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.util.TimeUtil;
 import com.numero.sojodia.view.CountDownClockTextView;
 import com.numero.sojodia.view.NotSwipeViewPager;
-import com.numero.sojodia.view.TimeTableDialog;
 import com.numero.sojodia.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BusScheduleFragment extends Fragment implements BusScheduleContract.View {
@@ -42,48 +37,34 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
 
     private BusScheduleContract.Presenter presenter;
 
-    private List<BusTime> tkTimeList = new ArrayList<>();
-    private List<BusTime> tndTimeList = new ArrayList<>();
-    private BusDataManager busDataManager;
-
-    private Reciprocate reciprocate;
     private String currentDateString;
 
-    public BusScheduleFragment() {
-    }
-
-    public static BusScheduleFragment newInstance(Reciprocate reciprocate) {
-        BusScheduleFragment fragment = new BusScheduleFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(Reciprocate.class.getSimpleName(), reciprocate);
-        fragment.setArguments(args);
-        return fragment;
+    public static BusScheduleFragment newInstance() {
+        return new BusScheduleFragment();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        busDataManager = BusDataManager.getInstance(context);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        reciprocate = (Reciprocate) getArguments().getSerializable(Reciprocate.class.getSimpleName());
         setRetainInstance(true);
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bus_schedule_fragment, null);
+        View view = inflater.inflate(R.layout.bus_schedule_fragment, container, false);
 
         currentDateString = DateUtil.getTodayStringOnlyFigure();
 
         initCountDownClockTextView(view);
         initTimeTableButton(view);
         initNextPreviewButton(view);
-        initTkBusTimePagerView(view);
-        initTndBusTimePagerView(view);
+        tkBusTimePager = view.findViewById(R.id.tk_bus_time_pager);
+        tndBusTimePager = view.findViewById(R.id.tnd_bus_time_pager);
         initNoBusLayout(view);
 
         return view;
@@ -92,7 +73,14 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
     @Override
     public void onResume() {
         super.onResume();
-        reset();
+        presenter.subscribe();
+        presenter.onTimeChanged(DateUtil.getWeek());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.unSubscribe();
     }
 
     @Override
@@ -106,16 +94,11 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
             @Override
             public void onTimeChanged() {
                 checkDateChange();
-                setVisibleTkBeforeButton(busDataManager.canPreviewTkTime());
             }
 
             @Override
             public void onTimeLimit() {
-                if (busDataManager.isNoTkBus()) {
-                    return;
-                }
-                busDataManager.nextTkBusTime();
-                tkBusTimePager.setCurrentItem(busDataManager.getTkBusPosition(), true);
+                presenter.nextTkBus();
             }
         });
 
@@ -123,64 +106,11 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
         tndCountDownClockTextView.setOnTimeChangedListener(new CountDownClockTextView.OnTimeChangedListener() {
             @Override
             public void onTimeChanged() {
-                setVisibleTndBeforeButton(busDataManager.canPreviewTndTime());
             }
 
             @Override
             public void onTimeLimit() {
-                if (busDataManager.isNoTndBus()) {
-                    return;
-                }
-                busDataManager.nextTndBusTime();
-                tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), true);
-            }
-        });
-    }
-
-    private void initBusTimeList(int week) {
-        busDataManager.setWeekAndReciprocate(week, reciprocate);
-        tkTimeList = busDataManager.getTkTimeList();
-        tndTimeList = busDataManager.getTndTimeList();
-    }
-
-    private void initTkBusTimePagerView(View view) {
-        tkBusTimePager = view.findViewById(R.id.tk_bus_time_pager);
-        tkBusTimePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                setupTkCountDown(position);
-                setVisibleTkBeforeButton(busDataManager.canPreviewTkTime());
-                setVisibleTkNextButton(busDataManager.canNextTkTime());
-                setVisibleTkNoBusLayout(busDataManager.isNoTkBus());
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
-    }
-
-    private void initTndBusTimePagerView(View view) {
-        tndBusTimePager = view.findViewById(R.id.tnd_bus_time_pager);
-        tndBusTimePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                setupTndCountDown(position);
-                setVisibleTndBeforeButton(busDataManager.canPreviewTndTime());
-                setVisibleTndNextButton(busDataManager.canNextTndTime());
-                setVisibleTndNoBusLayout(busDataManager.isNoTndBus());
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
+                presenter.nextTndBus();
             }
         });
     }
@@ -196,22 +126,10 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
         tndNextBusTimeButton = view.findViewById(R.id.tnd_next_bus_time_button);
         tndPreviewBusTimeButton = view.findViewById(R.id.tnd_before_bus_time_button);
 
-        tkNextBusTimeButton.setOnClickListener(v -> {
-            busDataManager.nextTkBusTime();
-            tkBusTimePager.setCurrentItem(busDataManager.getTkBusPosition(), true);
-        });
-        tkPreviewBusTimeButton.setOnClickListener(v -> {
-            busDataManager.previewTkBusTime();
-            tkBusTimePager.setCurrentItem(busDataManager.getTkBusPosition(), true);
-        });
-        tndNextBusTimeButton.setOnClickListener(v -> {
-            busDataManager.nextTndBusTime();
-            tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), true);
-        });
-        tndPreviewBusTimeButton.setOnClickListener(v -> {
-            busDataManager.previewTndBusTime();
-            tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), true);
-        });
+        tkNextBusTimeButton.setOnClickListener(v -> presenter.nextTkBus());
+        tkPreviewBusTimeButton.setOnClickListener(v -> presenter.previewTkBus());
+        tndNextBusTimeButton.setOnClickListener(v -> presenter.nextTndBus());
+        tndPreviewBusTimeButton.setOnClickListener(v -> presenter.previewTndBus());
     }
 
     private void initNoBusLayout(View view) {
@@ -219,98 +137,120 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
         tndNoBusLayout = view.findViewById(R.id.tnd_no_bus_layout);
     }
 
-    private void initTkBusPagerView() {
-        BusTimePagerAdapter tkPagerAdapter = new BusTimePagerAdapter();
-        tkPagerAdapter.setBusTimeList(tkTimeList);
-        tkBusTimePager.setAdapter(tkPagerAdapter);
-        tkBusTimePager.setCurrentItem(busDataManager.getTkBusPosition(), false);
-    }
-
-    private void initTndBusPagerView() {
-        BusTimePagerAdapter tndPagerAdapter = new BusTimePagerAdapter();
-        tndPagerAdapter.setBusTimeList(tndTimeList);
-        tndBusTimePager.setAdapter(tndPagerAdapter);
-        tndBusTimePager.setCurrentItem(busDataManager.getTndBusPosition(), false);
-    }
-
     private void showTimeTableDialog(Route route) {
-        TimeTableDialog dialog = new TimeTableDialog(getActivity(), busDataManager);
-        dialog.setRoute(route);
-        dialog.setReciprocate(reciprocate);
-        dialog.show();
-    }
-
-    private void setVisibleTkNextButton(boolean isVisible) {
-        tkNextBusTimeButton.setVisibility(isVisible ? View.VISIBLE : View.GONE);
-    }
-
-    private void setVisibleTkBeforeButton(boolean isVisible) {
-        tkPreviewBusTimeButton.setVisibility(isVisible ? View.VISIBLE : View.GONE);
-    }
-
-    private void setVisibleTkNoBusLayout(boolean isVisible) {
-        tkNoBusLayout.setVisibility(isVisible ? View.VISIBLE : View.GONE);
-    }
-
-    private void setVisibleTndNextButton(boolean isVisible) {
-        tndNextBusTimeButton.setVisibility(isVisible ? View.VISIBLE : View.GONE);
-    }
-
-    private void setVisibleTndBeforeButton(boolean isVisible) {
-        tndPreviewBusTimeButton.setVisibility(isVisible ? View.VISIBLE : View.GONE);
-    }
-
-    private void setVisibleTndNoBusLayout(boolean isVisible) {
-        tndNoBusLayout.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+        // TimeTableDialog dialog = new TimeTableDialog(getActivity(), busDataManager);
+        // dialog.setRoute(route);
+        // dialog.setReciprocate(reciprocate);
+        // dialog.show();
     }
 
     private void checkDateChange() {
         if (isDateChanged()) {
             currentDateString = DateUtil.getTodayStringOnlyFigure();
             BroadCastUtil.sendBroadCast(getActivity(), BroadCastUtil.ACTION_CHANGED_DATE);
-            reset();
+            presenter.onTimeChanged(DateUtil.getWeek());
         }
     }
 
-    private void reset() {
-        initBusTimeList(DateUtil.getWeek());
-        initTkBusPagerView();
-        initTndBusPagerView();
-        setupTkCountDown(busDataManager.getTkBusPosition());
-        setupTndCountDown(busDataManager.getTndBusPosition());
-        setVisibleTkNoBusLayout(busDataManager.isNoTkBus());
-        setVisibleTkBeforeButton(busDataManager.canPreviewTkTime());
-        setVisibleTkNextButton(busDataManager.canNextTkTime());
-        setVisibleTndNoBusLayout(busDataManager.isNoTndBus());
-        setVisibleTndBeforeButton(busDataManager.canPreviewTndTime());
-        setVisibleTndNextButton(busDataManager.canNextTndTime());
+    private boolean isDateChanged() {
+        return !DateUtil.getTodayStringOnlyFigure().equals(currentDateString);
     }
 
-    private void setupTkCountDown(int position) {
-        if (busDataManager.isNoTkBus()) {
-            setVisibleTkNoBusLayout(true);
-            return;
-        }
-        setVisibleTkNoBusLayout(false);
-        BusTime busTime = tkTimeList.get(position);
+    @Override
+    public void showTkBusTimeList(List<BusTime> busTimeList) {
+        BusTimePagerAdapter tkPagerAdapter = new BusTimePagerAdapter();
+        tkPagerAdapter.setBusTimeList(busTimeList);
+        tkBusTimePager.setAdapter(tkPagerAdapter);
+    }
+
+    @Override
+    public void showTndBusTimeList(List<BusTime> busTimeList) {
+        BusTimePagerAdapter tndPagerAdapter = new BusTimePagerAdapter();
+        tndPagerAdapter.setBusTimeList(busTimeList);
+        tndBusTimePager.setAdapter(tndPagerAdapter);
+    }
+
+    @Override
+    public void selectTkCurrentBusPosition(int position) {
+        tkBusTimePager.setCurrentItem(position, false);
+    }
+
+    @Override
+    public void startTkCountDown(BusTime busTime) {
         Time time = new Time(busTime.hour, busTime.min, 0);
         Time countTime = TimeUtil.getCountTime(time);
         tkCountDownClockTextView.setTime(countTime.getHour(), countTime.getMin());
     }
 
-    private void setupTndCountDown(int position) {
-        if (busDataManager.isNoTndBus()) {
-            setVisibleTndNoBusLayout(true);
-            return;
-        }
-        setVisibleTndNoBusLayout(false);
-        BusTime busTime = tndTimeList.get(position);
+    @Override
+    public void selectTndCurrentBusPosition(int position) {
+        tndBusTimePager.setCurrentItem(position, false);
+    }
+
+    @Override
+    public void startTndCountDown(BusTime busTime) {
         Time time = new Time(busTime.hour, busTime.min, 0);
         Time countTime = TimeUtil.getCountTime(time);
         tndCountDownClockTextView.setTime(countTime.getHour(), countTime.getMin());
     }
 
-    private boolean isDateChanged() {
-        return !DateUtil.getTodayStringOnlyFigure().equals(currentDateString);
+    @Override
+    public void showTkNextButton() {
+        tkNextBusTimeButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showTkPreviewButton() {
+        tkPreviewBusTimeButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showTkNoBusLayout() {
+        tkNoBusLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showTndNextButton() {
+        tndNextBusTimeButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showTndPreviewButton() {
+        tndPreviewBusTimeButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showTndNoBusLayout() {
+        tndNoBusLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideTkNextButton() {
+        tkNextBusTimeButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideTkPreviewButton() {
+        tkPreviewBusTimeButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideTkNoBusLayout() {
+        tkNoBusLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideTndNextButton() {
+        tndNextBusTimeButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideTndPreviewButton() {
+        tndPreviewBusTimeButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideTndNoBusLayout() {
+        tndNoBusLayout.setVisibility(View.GONE);
     }
 }
