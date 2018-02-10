@@ -3,12 +3,15 @@ package com.numero.sojodia.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.numero.sojodia.contract.BusScheduleContract;
+import com.numero.sojodia.model.Reciprocate;
 import com.numero.sojodia.model.Route;
 import com.numero.sojodia.util.BroadCastUtil;
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter;
@@ -35,17 +38,33 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
     private View tkNoBusLayout;
     private View tndNoBusLayout;
 
+    private BusScheduleFragmentListener listener;
+
     private BusScheduleContract.Presenter presenter;
 
     private String currentDateString;
 
-    public static BusScheduleFragment newInstance() {
-        return new BusScheduleFragment();
+    public static BusScheduleFragment newInstance(Reciprocate reciprocate) {
+        BusScheduleFragment fragment = new BusScheduleFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(Reciprocate.class.getSimpleName(), reciprocate);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof BusScheduleFragmentListener) {
+            listener = (BusScheduleFragmentListener) context;
+        }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Reciprocate reciprocate = (Reciprocate) getArguments().getSerializable(Reciprocate.class.getSimpleName());
+        listener.onActivityCreated(this, reciprocate);
     }
 
     @Override
@@ -73,6 +92,10 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("Log", "resume");
+        if (presenter == null) {
+            return;
+        }
         presenter.subscribe();
         presenter.onTimeChanged(DateUtil.getWeek());
     }
@@ -172,7 +195,7 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
 
     @Override
     public void selectTkCurrentBusPosition(int position) {
-        tkBusTimePager.setCurrentItem(position, false);
+        tkBusTimePager.setCurrentItem(position, true);
     }
 
     @Override
@@ -184,7 +207,7 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
 
     @Override
     public void selectTndCurrentBusPosition(int position) {
-        tndBusTimePager.setCurrentItem(position, false);
+        tndBusTimePager.setCurrentItem(position, true);
     }
 
     @Override
@@ -252,5 +275,9 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
     @Override
     public void hideTndNoBusLayout() {
         tndNoBusLayout.setVisibility(View.GONE);
+    }
+
+    public interface BusScheduleFragmentListener {
+        void onActivityCreated(BusScheduleFragment fragment, Reciprocate reciprocate);
     }
 }

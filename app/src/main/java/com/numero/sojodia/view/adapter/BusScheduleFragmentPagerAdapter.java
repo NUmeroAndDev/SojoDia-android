@@ -7,25 +7,19 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.numero.sojodia.fragment.BusScheduleFragment;
 import com.numero.sojodia.model.Reciprocate;
-import com.numero.sojodia.presenter.BusSchedulePresenter;
-import com.numero.sojodia.repository.BusDataRepository;
 
 public class BusScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private final Context context;
-    private final BusDataRepository busDataRepository;
 
-    public BusScheduleFragmentPagerAdapter(Context context, BusDataRepository busDataRepository, FragmentManager fragmentManager) {
+    public BusScheduleFragmentPagerAdapter(Context context, FragmentManager fragmentManager) {
         super(fragmentManager);
         this.context = context;
-        this.busDataRepository = busDataRepository;
     }
 
     @Override
     public Fragment getItem(int position) {
-        BusScheduleFragment fragment = BusScheduleFragment.newInstance();
-        new BusSchedulePresenter(fragment, busDataRepository, Reciprocate.getReciprocate(position));
-        return fragment;
+        return BusScheduleFragment.newInstance(Reciprocate.getReciprocate(position));
     }
 
     @Override

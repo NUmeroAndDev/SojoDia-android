@@ -24,8 +24,11 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
     private final Reciprocate reciprocate;
     private int week = 0;
 
-    private Integer tkBusPosition;
-    private Integer tndBusPosition;
+    private int tkBusPosition = 0;
+    private int tndBusPosition = 0;
+
+    private List<BusTime> tkBusTimeList = new ArrayList<>();
+    private List<BusTime> tndBusTimeList = new ArrayList<>();
 
     private List<BusTime> tkBusTimeListGoing = new ArrayList<>();
     private List<BusTime> tkBusTimeListReturn = new ArrayList<>();
@@ -53,46 +56,66 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
     @Override
     public void onTimeChanged(int week) {
         this.week = week;
+        tkBusTimeList.clear();
+        tndBusTimeList.clear();
         view.showTkBusTimeList(getTkTimeList());
         view.showTndBusTimeList(getTndTimeList());
-        view.selectTkCurrentBusPosition(getTkBusPosition());
-        view.selectTndCurrentBusPosition(getTndBusPosition());
-        // TODO if で position = NO_BUSかで分岐させる
-        view.startTkCountDown(getTkTimeList().get(getTkBusPosition()));
-        view.startTndCountDown(getTndTimeList().get(getTndBusPosition()));
-        if (canPreviewTkTime()) {
-            view.showTkPreviewButton();
-        } else {
-            view.hideTkPreviewButton();
-        }
-        if (canPreviewTndTime()) {
-            view.showTndPreviewButton();
-        } else {
-            view.hideTndPreviewButton();
-        }
-        if (isNoTkBus()) {
+
+        tkBusPosition = findBusPosition(getTkTimeList());
+        tndBusPosition = findBusPosition(getTndTimeList());
+
+        if (tkBusPosition == NO_BUS_POSITION) {
             view.showTkNoBusLayout();
+            view.hideTkNextButton();
+            view.hideTkPreviewButton();
         } else {
             view.hideTkNoBusLayout();
+            view.selectTkCurrentBusPosition(tkBusPosition);
+            view.startTkCountDown(getTkTimeList().get(tkBusPosition));
+            if (tkBusPosition >= getTkTimeList().size() - 1) {
+                view.hideTkNextButton();
+            } else {
+                view.showTkNextButton();
+            }
+            if (canPreviewTkTime()) {
+                view.showTkPreviewButton();
+            } else {
+                view.hideTkPreviewButton();
+            }
         }
-        if (isNoTndBus()) {
+        if (tndBusPosition == NO_BUS_POSITION) {
             view.showTndNoBusLayout();
+            view.hideTndNextButton();
+            view.hideTndPreviewButton();
         } else {
             view.hideTndNoBusLayout();
+            view.selectTndCurrentBusPosition(tndBusPosition);
+            view.startTndCountDown(getTndTimeList().get(tndBusPosition));
+            if (tndBusPosition >= getTndTimeList().size() - 1) {
+                view.hideTndNextButton();
+            } else {
+                view.showTndNextButton();
+            }
+            if (canPreviewTndTime()) {
+                view.showTndPreviewButton();
+            } else {
+                view.hideTndPreviewButton();
+            }
         }
-
     }
 
     @Override
     public void nextTkBus() {
-        // getTkBusPosition でもいい?
+        if (tkBusPosition + 1 == getTkTimeList().size()) {
+            tkBusPosition = NO_BUS_POSITION;
+        }
         if (tkBusPosition == NO_BUS_POSITION) {
+            view.hideTkNextButton();
+            view.hideTkPreviewButton();
+            view.showTkNoBusLayout();
             return;
         }
         tkBusPosition += 1;
-        if (tkBusPosition == getTkTimeList().size()) {
-            tkBusPosition = NO_BUS_POSITION;
-        }
         if (tkBusPosition >= getTkTimeList().size() - 1) {
             view.hideTkNextButton();
         } else {
@@ -104,14 +127,14 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
             view.hideTkPreviewButton();
         }
         view.selectTkCurrentBusPosition(tkBusPosition);
-        view.startTkCountDown(getTkTimeList().get(getTkBusPosition()));
+        view.startTkCountDown(getTkTimeList().get(tkBusPosition));
     }
 
     @Override
     public void previewTkBus() {
         tkBusPosition -= 1;
         view.selectTkCurrentBusPosition(tkBusPosition);
-        view.startTkCountDown(getTkTimeList().get(getTkBusPosition()));
+        view.startTkCountDown(getTkTimeList().get(tkBusPosition));
         if (canPreviewTkTime()) {
             view.showTkPreviewButton();
         } else {
@@ -121,14 +144,16 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
 
     @Override
     public void nextTndBus() {
-        // FIXME
+        if (tndBusPosition + 1 == getTndTimeList().size()) {
+            tndBusPosition = NO_BUS_POSITION;
+        }
         if (tndBusPosition == NO_BUS_POSITION) {
+            view.hideTndNextButton();
+            view.hideTndPreviewButton();
+            view.showTndNoBusLayout();
             return;
         }
         tndBusPosition += 1;
-        if (tndBusPosition == getTndTimeList().size()) {
-            tndBusPosition = NO_BUS_POSITION;
-        }
         if (tndBusPosition >= getTndTimeList().size() - 1) {
             view.hideTndNextButton();
         } else {
@@ -139,15 +164,15 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
         } else {
             view.hideTndPreviewButton();
         }
-        view.selectTndCurrentBusPosition(getTndBusPosition());
-        view.startTndCountDown(getTndTimeList().get(getTndBusPosition()));
+        view.selectTndCurrentBusPosition(tndBusPosition);
+        view.startTndCountDown(getTndTimeList().get(tndBusPosition));
     }
 
     @Override
     public void previewTndBus() {
         tndBusPosition -= 1;
-        view.selectTndCurrentBusPosition(getTndBusPosition());
-        view.startTndCountDown(getTndTimeList().get(getTndBusPosition()));
+        view.selectTndCurrentBusPosition(tndBusPosition);
+        view.startTndCountDown(getTndTimeList().get(tndBusPosition));
         if (canPreviewTndTime()) {
             view.showTndPreviewButton();
         } else {
@@ -155,32 +180,18 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
         }
     }
 
-    public void setWeek(int week) {
-        this.week = week;
-    }
-
-    public int getTkBusPosition() {
-        if (tkBusPosition == null) {
-            tkBusPosition = findBusPosition(getTkTimeList());
+    private List<BusTime> getTkTimeList() {
+        if (tkBusTimeList.isEmpty()) {
+            tkBusTimeList = getTkBusTimeListObservable().blockingGet();
         }
-        return tkBusPosition;
+        return tkBusTimeList;
     }
 
-    public int getTndBusPosition() {
-        if (tndBusPosition == null) {
-            tndBusPosition = findBusPosition(getTndTimeList());
+    private List<BusTime> getTndTimeList() {
+        if (tndBusTimeList.isEmpty()) {
+            tndBusTimeList = getTndBusTimeListObservable().blockingGet();
         }
-        return tndBusPosition;
-    }
-
-    public List<BusTime> getTkTimeList() {
-        // TODO キャッシュさせる
-        return getTkBusTimeListObservable().blockingGet();
-    }
-
-    public List<BusTime> getTndTimeList() {
-        // TODO キャッシュさせる
-        return getTndBusTimeListObservable().blockingGet();
+        return tndBusTimeList;
     }
 
     private void initBusDataList() {
@@ -230,14 +241,6 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
         }
     }
 
-    private boolean isNoTkBus() {
-        return getTkBusPosition() == NO_BUS_POSITION;
-    }
-
-    private boolean isNoTndBus() {
-        return getTndBusPosition() == NO_BUS_POSITION;
-    }
-
     private boolean canPreviewTkTime() {
         if (tkBusPosition == NO_BUS_POSITION || tkBusPosition == 0) {
             return false;
@@ -248,10 +251,6 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
         return TimeUtil.isOverTime(new Time(), time);
     }
 
-    private boolean canNextTkTime() {
-        return tkBusPosition != NO_BUS_POSITION && !(tkBusPosition + 1 >= getTkTimeList().size());
-    }
-
     private boolean canPreviewTndTime() {
         if (tndBusPosition == NO_BUS_POSITION || tndBusPosition == 0) {
             return false;
@@ -260,9 +259,5 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
         Time time = new Time();
         time.setTime(busTime.hour, busTime.min, 0);
         return TimeUtil.isOverTime(new Time(), time);
-    }
-
-    public boolean canNextTndTime() {
-        return tndBusPosition != NO_BUS_POSITION && !(tndBusPosition + 1 >= getTndTimeList().size());
     }
 }

@@ -15,6 +15,9 @@ import android.view.MenuItem;
 
 import com.numero.sojodia.SojoDiaApplication;
 import com.numero.sojodia.di.ApplicationComponent;
+import com.numero.sojodia.fragment.BusScheduleFragment;
+import com.numero.sojodia.model.Reciprocate;
+import com.numero.sojodia.presenter.BusSchedulePresenter;
 import com.numero.sojodia.repository.BusDataRepository;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter;
@@ -25,7 +28,7 @@ import com.numero.sojodia.R;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BusScheduleFragment.BusScheduleFragmentListener {
 
     private final BroadcastReceiver finishDownloadReceiver = new BroadcastReceiver() {
         @Override
@@ -98,6 +101,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onActivityCreated(BusScheduleFragment fragment, Reciprocate reciprocate) {
+        new BusSchedulePresenter(fragment, busDataRepository, reciprocate);
+    }
+
     private ApplicationComponent getComponent() {
         return ((SojoDiaApplication) getApplication()).getComponent();
     }
@@ -106,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        BusScheduleFragmentPagerAdapter fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, busDataRepository, getSupportFragmentManager());
+        BusScheduleFragmentPagerAdapter fragmentPagerAdapter = new BusScheduleFragmentPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.container);
         viewPager.setAdapter(fragmentPagerAdapter);
         TabLayout tabLayout = findViewById(R.id.tabs);
