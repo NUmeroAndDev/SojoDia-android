@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,7 +91,6 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("Log", "resume");
         if (presenter == null) {
             return;
         }
@@ -139,8 +137,8 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
     }
 
     private void initTimeTableButton(View view) {
-        view.findViewById(R.id.tk_time_table_button).setOnClickListener(v -> showTimeTableDialog(Route.TK));
-        view.findViewById(R.id.tnd_time_table_button).setOnClickListener(v -> showTimeTableDialog(Route.TND));
+        view.findViewById(R.id.tk_time_table_button).setOnClickListener(v -> presenter.showTimeTableDialog(Route.TK));
+        view.findViewById(R.id.tnd_time_table_button).setOnClickListener(v -> presenter.showTimeTableDialog(Route.TND));
     }
 
     private void initNextPreviewButton(View view) {
@@ -158,13 +156,6 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
     private void initNoBusLayout(View view) {
         tkNoBusLayout = view.findViewById(R.id.tk_no_bus_layout);
         tndNoBusLayout = view.findViewById(R.id.tnd_no_bus_layout);
-    }
-
-    private void showTimeTableDialog(Route route) {
-        // TimeTableDialog dialog = new TimeTableDialog(getActivity(), busDataManager);
-        // dialog.setRoute(route);
-        // dialog.setReciprocate(reciprocate);
-        // dialog.show();
     }
 
     private void checkDateChange() {
@@ -277,7 +268,14 @@ public class BusScheduleFragment extends Fragment implements BusScheduleContract
         tndNoBusLayout.setVisibility(View.GONE);
     }
 
+    @Override
+    public void showTimeTableDialog(Route route, Reciprocate reciprocate) {
+        listener.showTimeTableDialog(route, reciprocate);
+    }
+
     public interface BusScheduleFragmentListener {
         void onActivityCreated(BusScheduleFragment fragment, Reciprocate reciprocate);
+
+        void showTimeTableDialog(Route route, Reciprocate reciprocate);
     }
 }

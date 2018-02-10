@@ -4,6 +4,7 @@ import com.numero.sojodia.contract.BusScheduleContract;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.model.Reciprocate;
+import com.numero.sojodia.model.Route;
 import com.numero.sojodia.model.Time;
 import com.numero.sojodia.repository.BusDataRepository;
 import com.numero.sojodia.util.TimeUtil;
@@ -178,6 +179,11 @@ public class BusSchedulePresenter implements BusScheduleContract.Presenter {
         } else {
             view.hideTndPreviewButton();
         }
+    }
+
+    @Override
+    public void showTimeTableDialog(Route route) {
+        view.showTimeTableDialog(route, reciprocate);
     }
 
     private List<BusTime> getTkTimeList() {

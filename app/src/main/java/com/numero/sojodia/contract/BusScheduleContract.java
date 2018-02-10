@@ -1,6 +1,8 @@
 package com.numero.sojodia.contract;
 
 import com.numero.sojodia.model.BusTime;
+import com.numero.sojodia.model.Reciprocate;
+import com.numero.sojodia.model.Route;
 import com.numero.sojodia.presenter.IPresenter;
 import com.numero.sojodia.view.IView;
 
@@ -46,6 +48,7 @@ public interface BusScheduleContract {
 
         void hideTndNoBusLayout();
 
+        void showTimeTableDialog(Route route, Reciprocate reciprocate);
     }
 
     interface Presenter extends IPresenter {
@@ -58,5 +61,7 @@ public interface BusScheduleContract {
         void nextTndBus();
 
         void previewTndBus();
+
+        void showTimeTableDialog(Route route);
     }
 }

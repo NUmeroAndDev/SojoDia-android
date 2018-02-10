@@ -17,9 +17,11 @@ import com.numero.sojodia.SojoDiaApplication;
 import com.numero.sojodia.di.ApplicationComponent;
 import com.numero.sojodia.fragment.BusScheduleFragment;
 import com.numero.sojodia.model.Reciprocate;
+import com.numero.sojodia.model.Route;
 import com.numero.sojodia.presenter.BusSchedulePresenter;
 import com.numero.sojodia.repository.BusDataRepository;
 import com.numero.sojodia.util.DateUtil;
+import com.numero.sojodia.view.TimeTableDialog;
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter;
 import com.numero.sojodia.service.UpdateBusDataService;
 import com.numero.sojodia.util.BroadCastUtil;
@@ -104,6 +106,14 @@ public class MainActivity extends AppCompatActivity implements BusScheduleFragme
     @Override
     public void onActivityCreated(BusScheduleFragment fragment, Reciprocate reciprocate) {
         new BusSchedulePresenter(fragment, busDataRepository, reciprocate);
+    }
+
+    @Override
+    public void showTimeTableDialog(Route route, Reciprocate reciprocate) {
+         TimeTableDialog dialog = new TimeTableDialog(this, busDataRepository);
+         dialog.setRoute(route);
+         dialog.setReciprocate(reciprocate);
+         dialog.show();
     }
 
     private ApplicationComponent getComponent() {

@@ -10,8 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.numero.sojodia.manager.BusDataManager;
+import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.model.Route;
+import com.numero.sojodia.repository.BusDataRepository;
 import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.view.adapter.TimeTableRowAdapter;
 import com.numero.sojodia.model.BusTime;
@@ -21,6 +22,8 @@ import com.numero.sojodia.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observable;
 
 public class TimeTableDialog extends ContextWrapper {
 
@@ -33,13 +36,18 @@ public class TimeTableDialog extends ContextWrapper {
     private List<BusTime> busTimeListOnWeekday;
     private List<BusTime> busTimeListOnSaturday;
     private List<BusTime> busTimeListOnSunday;
-    private BusDataManager busDataManager;
+    private BusDataRepository busDataRepository;
     private Reciprocate reciprocate;
     private Route route;
 
-    public TimeTableDialog(Context context, BusDataManager manager) {
+    private List<BusTime> tkBusTimeListGoing = new ArrayList<>();
+    private List<BusTime> tkBusTimeListReturn = new ArrayList<>();
+    private List<BusTime> tndBusTimeListGoing = new ArrayList<>();
+    private List<BusTime> tndBusTimeListReturn = new ArrayList<>();
+
+    public TimeTableDialog(Context context, BusDataRepository repository) {
         super(context);
-        this.busDataManager = manager;
+        this.busDataRepository = repository;
 
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_time_table, null);
         builder = new AlertDialog.Builder(context);
@@ -47,6 +55,15 @@ public class TimeTableDialog extends ContextWrapper {
 
         initToolbar(view);
         initListView(view);
+
+        initBusDataList();
+    }
+
+    private void initBusDataList() {
+        tkBusTimeListGoing = busDataRepository.loadBusData(BusDataFile.TK_TO_KUTC).blockingFirst();
+        tkBusTimeListReturn = busDataRepository.loadBusData(BusDataFile.KUTC_TO_TK).blockingFirst();
+        tndBusTimeListGoing = busDataRepository.loadBusData(BusDataFile.TND_TO_KUTC).blockingFirst();
+        tndBusTimeListReturn = busDataRepository.loadBusData(BusDataFile.KUTC_TO_TND).blockingFirst();
     }
 
     public void setRoute(Route route) {
@@ -74,26 +91,27 @@ public class TimeTableDialog extends ContextWrapper {
     }
 
     private void setupTkBusTimeList() {
+        // FIXME 非効率
         if (reciprocate.equals(Reciprocate.GOING)) {
-            this.busTimeListOnWeekday = busDataManager.getTkGoingBusTimeList(DateUtil.WEEKDAY);
-            this.busTimeListOnSaturday = busDataManager.getTkGoingBusTimeList(DateUtil.SATURDAY);
-            this.busTimeListOnSunday = busDataManager.getTkGoingBusTimeList(DateUtil.SUNDAY);
+            this.busTimeListOnWeekday = Observable.fromIterable(tkBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.WEEKDAY).toList().blockingGet();
+            this.busTimeListOnSaturday = Observable.fromIterable(tkBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.SATURDAY).toList().blockingGet();
+            this.busTimeListOnSunday = Observable.fromIterable(tkBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.SUNDAY).toList().blockingGet();
         } else {
-            this.busTimeListOnWeekday = busDataManager.getTkReturnBusTimeList(DateUtil.WEEKDAY);
-            this.busTimeListOnSaturday = busDataManager.getTkReturnBusTimeList(DateUtil.SATURDAY);
-            this.busTimeListOnSunday = busDataManager.getTkReturnBusTimeList(DateUtil.SUNDAY);
+            this.busTimeListOnWeekday = Observable.fromIterable(tkBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.WEEKDAY).toList().blockingGet();
+            this.busTimeListOnSaturday = Observable.fromIterable(tkBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.SATURDAY).toList().blockingGet();
+            this.busTimeListOnSunday = Observable.fromIterable(tkBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.SUNDAY).toList().blockingGet();
         }
     }
 
     private void setupTndBusTimeList() {
         if (reciprocate.equals(Reciprocate.GOING)) {
-            this.busTimeListOnWeekday = busDataManager.getTndGoingBusTimeList(DateUtil.WEEKDAY);
-            this.busTimeListOnSaturday = busDataManager.getTndGoingBusTimeList(DateUtil.SATURDAY);
-            this.busTimeListOnSunday = busDataManager.getTndGoingBusTimeList(DateUtil.SUNDAY);
+            this.busTimeListOnWeekday = Observable.fromIterable(tndBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.WEEKDAY).toList().blockingGet();
+            this.busTimeListOnSaturday = Observable.fromIterable(tndBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.SATURDAY).toList().blockingGet();
+            this.busTimeListOnSunday = Observable.fromIterable(tndBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.SUNDAY).toList().blockingGet();
         } else {
-            this.busTimeListOnWeekday = busDataManager.getTndReturnBusTimeList(DateUtil.WEEKDAY);
-            this.busTimeListOnSaturday = busDataManager.getTndReturnBusTimeList(DateUtil.SATURDAY);
-            this.busTimeListOnSunday = busDataManager.getTndReturnBusTimeList(DateUtil.SUNDAY);
+            this.busTimeListOnWeekday = Observable.fromIterable(tndBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.WEEKDAY).toList().blockingGet();
+            this.busTimeListOnSaturday = Observable.fromIterable(tndBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.SATURDAY).toList().blockingGet();
+            this.busTimeListOnSunday = Observable.fromIterable(tndBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.SUNDAY).toList().blockingGet();
         }
     }
 
