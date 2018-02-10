@@ -111,10 +111,10 @@ public class MainActivity extends AppCompatActivity implements BusScheduleFragme
 
     @Override
     public void showTimeTableDialog(Route route, Reciprocate reciprocate) {
-         TimeTableDialog dialog = new TimeTableDialog(this, busDataRepository);
-         dialog.setRoute(route);
-         dialog.setReciprocate(reciprocate);
-         dialog.show();
+        TimeTableDialog dialog = new TimeTableDialog(this, busDataRepository);
+        dialog.setRoute(route);
+        dialog.setReciprocate(reciprocate);
+        dialog.show();
     }
 
     private ApplicationComponent getComponent() {
@@ -139,6 +139,9 @@ public class MainActivity extends AppCompatActivity implements BusScheduleFragme
 
     private void showNeedRestartDialog() {
         NeedRestartDialog.init(this)
-                .setOnPositiveButtonClickListener(this::recreate).show();
+                .setOnPositiveButtonClickListener(() -> {
+                    busDataRepository.clearCache();
+                    recreate();
+                }).show();
     }
 }

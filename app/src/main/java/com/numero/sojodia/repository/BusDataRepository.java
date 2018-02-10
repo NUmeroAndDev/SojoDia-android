@@ -27,6 +27,12 @@ public class BusDataRepository implements IBusDataRepository {
     }
 
     @Override
+    public void clearCache() {
+        dataList.clear();
+        dataList = null;
+    }
+
+    @Override
     public Observable<List<BusTime>> loadBusData(BusDataFile busDataFile) {
         if (dataList != null) {
             return Observable.create(e -> e.onNext(dataList));

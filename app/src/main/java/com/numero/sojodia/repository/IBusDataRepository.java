@@ -11,4 +11,6 @@ public interface IBusDataRepository {
 
     Observable<List<BusTime>> loadBusData(BusDataFile busDataFile);
 
+    void clearCache();
+
 }
