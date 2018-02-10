@@ -9,9 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.numero.sojodia.R;
+import com.numero.sojodia.SojoDiaApplication;
+import com.numero.sojodia.di.ApplicationComponent;
 import com.numero.sojodia.fragment.SettingsFragment;
+import com.numero.sojodia.presenter.SettingsPresenter;
+import com.numero.sojodia.repository.ConfigRepository;
+
+import javax.inject.Inject;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    @Inject
+    ConfigRepository configRepository;
 
     public static Intent createIntent(@NonNull Context context) {
         Intent intent = new Intent(context, SettingsActivity.class);
@@ -23,12 +32,18 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         setSupportActionBar(findViewById(R.id.toolbar));
+        getComponent().inject(this);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        getFragmentManager().beginTransaction().replace(R.id.container, new SettingsFragment()).commit();
+        SettingsFragment fragment = (SettingsFragment) getFragmentManager().findFragmentById(R.id.container);
+        if (fragment == null) {
+            fragment = SettingsFragment.newInstance();
+            getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+        }
+        new SettingsPresenter(fragment, configRepository);
     }
 
     @Override
@@ -38,5 +53,9 @@ public class SettingsActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private ApplicationComponent getComponent() {
+        return ((SojoDiaApplication) getApplication()).getComponent();
     }
 }

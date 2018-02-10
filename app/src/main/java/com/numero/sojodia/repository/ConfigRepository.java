@@ -44,4 +44,8 @@ public class ConfigRepository implements IConfigRepository {
         edit.putString(DATE, DateUtil.getTodayStringOnlyFigure());
         edit.apply();
     }
+
+    public long getVersionCode() {
+        return sharedPreferences.getLong(VERSION_CODE, 20170401L);
+    }
 }
