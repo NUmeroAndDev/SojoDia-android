@@ -20,25 +20,15 @@ import io.reactivex.Observable;
 public class BusDataRepository implements IBusDataRepository {
 
     private Context context;
-    private List<BusTime> dataList;
 
     public BusDataRepository(Context context) {
         this.context = context;
     }
 
     @Override
-    public void clearCache() {
-        dataList.clear();
-        dataList = null;
-    }
-
-    @Override
     public Observable<List<BusTime>> loadBusData(BusDataFile busDataFile) {
-        if (dataList != null) {
-            return Observable.create(e -> e.onNext(dataList));
-        }
         return Observable.create(e -> {
-            dataList = new ArrayList<>();
+            List<BusTime> dataList = new ArrayList<>();
             BufferedReader bufferedReader;
             FileInputStream fileInputStream = null;
             InputStream inputStream = null;

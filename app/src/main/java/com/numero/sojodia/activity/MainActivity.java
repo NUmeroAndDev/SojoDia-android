@@ -139,9 +139,6 @@ public class MainActivity extends AppCompatActivity implements BusScheduleFragme
 
     private void showNeedRestartDialog() {
         NeedRestartDialog.init(this)
-                .setOnPositiveButtonClickListener(() -> {
-                    busDataRepository.clearCache();
-                    recreate();
-                }).show();
+                .setOnPositiveButtonClickListener(this::recreate).show();
     }
 }
