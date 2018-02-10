@@ -1,28 +1,35 @@
 package com.numero.sojodia.service;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.numero.sojodia.R;
-import com.numero.sojodia.api.ApiClient;
-import com.numero.sojodia.manager.DataManager;
+import com.numero.sojodia.SojoDiaApplication;
+import com.numero.sojodia.api.BusDataApi;
+import com.numero.sojodia.di.ApplicationComponent;
 import com.numero.sojodia.manager.NotificationManager;
 import com.numero.sojodia.manager.UpdateManager;
 import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.util.BroadCastUtil;
 import com.numero.sojodia.util.NetworkUtil;
 
-import okhttp3.Request;
+import java.io.FileOutputStream;
+
+import javax.inject.Inject;
+
+import io.reactivex.Observable;
 
 public class UpdateBusDataService extends IntentService {
 
     private BusDataFile[] busDataFiles = BusDataFile.values();
-    private ApiClient apiClient;
     private UpdateManager updateManager;
-    private DataManager dataManager;
     private NotificationManager notificationManager;
+
+    @Inject
+    BusDataApi busDataApi;
 
     public UpdateBusDataService() {
         super(UpdateBusDataService.class.getSimpleName());
@@ -31,9 +38,9 @@ public class UpdateBusDataService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        apiClient = new ApiClient();
+        getComponent().inject(this);
+
         updateManager = UpdateManager.getInstance(this);
-        dataManager = DataManager.getInstance(this);
         notificationManager = new NotificationManager(this);
     }
 
@@ -65,30 +72,43 @@ public class UpdateBusDataService extends IntentService {
         checkUpdate();
     }
 
-    private void checkUpdate() {
-        Request request = new Request.Builder().url(getString(R.string.version_url)).build();
-        apiClient.execute(request, data -> {
-            updateManager.setVersionCode(Long.valueOf(data));
+    private ApplicationComponent getComponent() {
+        return ((SojoDiaApplication) getApplication()).getComponent();
+    }
 
-            if (updateManager.canUpdate()) {
-                executeUpdate();
-            }
-        }, e -> {
-            e.printStackTrace();
-            stopSelf();
-        });
+    private void checkUpdate() {
+        busDataApi.getBusDataVersion()
+                .subscribe(s -> {
+                    updateManager.setVersionCode(Long.valueOf(s));
+
+                    if (updateManager.canUpdate()) {
+                        executeUpdate();
+                    }
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    stopSelf();
+                });
     }
 
     private void executeUpdate() {
         notificationManager.showNotification();
-        for (BusDataFile busDataFile : busDataFiles) {
-            Request request = new Request.Builder().url(busDataFile.getUrl()).build();
-            apiClient.execute(request, data -> dataManager.saveDownLoadData(busDataFile.getFileName(), data), e -> {
-                e.printStackTrace();
-                stopSelf();
-            });
-        }
-        updateManager.updateVersionCode();
-        BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
+        Observable.fromArray(busDataFiles)
+                .flatMap(busDataFile -> busDataApi.getBusData(busDataFile)
+                        .doOnNext(s -> saveDownLoadData(busDataFile.getFileName(), s)))
+                .subscribe(s -> {
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    stopSelf();
+                }, () -> {
+                    updateManager.updateVersionCode();
+                    BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
+                    stopSelf();
+                });
+    }
+
+    private void saveDownLoadData(String fileName, @NonNull String data) throws Exception {
+        FileOutputStream fileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+        fileOutputStream.write(data.getBytes());
+        fileOutputStream.close();
     }
 }
