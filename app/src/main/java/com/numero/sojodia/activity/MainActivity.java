@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements BusScheduleFragme
 
     @Override
     public void onActivityCreated(BusScheduleFragment fragment, Reciprocate reciprocate) {
+        // FIXME AdapterではActivity再生成時にPresenterを生成できないからこの実装している
         new BusSchedulePresenter(fragment, busDataRepository, reciprocate);
     }
 

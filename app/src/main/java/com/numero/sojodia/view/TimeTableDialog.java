@@ -33,17 +33,12 @@ public class TimeTableDialog extends ContextWrapper {
     private Toolbar toolbar;
 
     private List<TimeTableRow> timeTableRowList = new ArrayList<>();
-    private List<BusTime> busTimeListOnWeekday;
-    private List<BusTime> busTimeListOnSaturday;
-    private List<BusTime> busTimeListOnSunday;
+    private List<BusTime> busTimeListOnWeekday = new ArrayList<>();
+    private List<BusTime> busTimeListOnSaturday = new ArrayList<>();
+    private List<BusTime> busTimeListOnSunday = new ArrayList<>();
     private BusDataRepository busDataRepository;
     private Reciprocate reciprocate;
     private Route route;
-
-    private List<BusTime> tkBusTimeListGoing = new ArrayList<>();
-    private List<BusTime> tkBusTimeListReturn = new ArrayList<>();
-    private List<BusTime> tndBusTimeListGoing = new ArrayList<>();
-    private List<BusTime> tndBusTimeListReturn = new ArrayList<>();
 
     public TimeTableDialog(Context context, BusDataRepository repository) {
         super(context);
@@ -55,15 +50,6 @@ public class TimeTableDialog extends ContextWrapper {
 
         initToolbar(view);
         initListView(view);
-
-        initBusDataList();
-    }
-
-    private void initBusDataList() {
-        tkBusTimeListGoing = busDataRepository.loadBusData(BusDataFile.TK_TO_KUTC).blockingFirst();
-        tkBusTimeListReturn = busDataRepository.loadBusData(BusDataFile.KUTC_TO_TK).blockingFirst();
-        tndBusTimeListGoing = busDataRepository.loadBusData(BusDataFile.TND_TO_KUTC).blockingFirst();
-        tndBusTimeListReturn = busDataRepository.loadBusData(BusDataFile.KUTC_TO_TND).blockingFirst();
     }
 
     public void setRoute(Route route) {
@@ -91,28 +77,41 @@ public class TimeTableDialog extends ContextWrapper {
     }
 
     private void setupTkBusTimeList() {
-        // FIXME 非効率
-        if (reciprocate.equals(Reciprocate.GOING)) {
-            this.busTimeListOnWeekday = Observable.fromIterable(tkBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.WEEKDAY).toList().blockingGet();
-            this.busTimeListOnSaturday = Observable.fromIterable(tkBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.SATURDAY).toList().blockingGet();
-            this.busTimeListOnSunday = Observable.fromIterable(tkBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.SUNDAY).toList().blockingGet();
-        } else {
-            this.busTimeListOnWeekday = Observable.fromIterable(tkBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.WEEKDAY).toList().blockingGet();
-            this.busTimeListOnSaturday = Observable.fromIterable(tkBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.SATURDAY).toList().blockingGet();
-            this.busTimeListOnSunday = Observable.fromIterable(tkBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.SUNDAY).toList().blockingGet();
-        }
+        BusDataFile busDataFile = reciprocate.equals(Reciprocate.GOING) ? BusDataFile.TK_TO_KUTC : BusDataFile.KUTC_TO_TK;
+        busDataRepository.loadBusData(busDataFile)
+                .flatMap(Observable::fromIterable)
+                .subscribe(busTime -> {
+                    switch (busTime.week) {
+                        case DateUtil.WEEKDAY:
+                            busTimeListOnWeekday.add(busTime);
+                            break;
+                        case DateUtil.SATURDAY:
+                            busTimeListOnSaturday.add(busTime);
+                            break;
+                        case DateUtil.SUNDAY:
+                            busTimeListOnSunday.add(busTime);
+                            break;
+                    }
+                });
     }
 
     private void setupTndBusTimeList() {
-        if (reciprocate.equals(Reciprocate.GOING)) {
-            this.busTimeListOnWeekday = Observable.fromIterable(tndBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.WEEKDAY).toList().blockingGet();
-            this.busTimeListOnSaturday = Observable.fromIterable(tndBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.SATURDAY).toList().blockingGet();
-            this.busTimeListOnSunday = Observable.fromIterable(tndBusTimeListGoing).filter(busTime -> busTime.week == DateUtil.SUNDAY).toList().blockingGet();
-        } else {
-            this.busTimeListOnWeekday = Observable.fromIterable(tndBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.WEEKDAY).toList().blockingGet();
-            this.busTimeListOnSaturday = Observable.fromIterable(tndBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.SATURDAY).toList().blockingGet();
-            this.busTimeListOnSunday = Observable.fromIterable(tndBusTimeListReturn).filter(busTime -> busTime.week == DateUtil.SUNDAY).toList().blockingGet();
-        }
+        BusDataFile busDataFile = reciprocate.equals(Reciprocate.GOING) ? BusDataFile.TND_TO_KUTC : BusDataFile.KUTC_TO_TND;
+        busDataRepository.loadBusData(busDataFile)
+                .flatMap(Observable::fromIterable)
+                .subscribe(busTime -> {
+                    switch (busTime.week) {
+                        case DateUtil.WEEKDAY:
+                            busTimeListOnWeekday.add(busTime);
+                            break;
+                        case DateUtil.SATURDAY:
+                            busTimeListOnSaturday.add(busTime);
+                            break;
+                        case DateUtil.SUNDAY:
+                            busTimeListOnSunday.add(busTime);
+                            break;
+                    }
+                });
     }
 
     private void initToolbar(View view) {
@@ -139,24 +138,17 @@ public class TimeTableDialog extends ContextWrapper {
             row.setHour(hour);
             timeTableRowList.add(row);
         }
-        if (busTimeListOnWeekday != null) {
-            for (BusTime busTime : busTimeListOnWeekday) {
-                TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
-                row.addTimeOnWeekday(busTime.min, busTime.isNonstop);
-            }
+        for (BusTime busTime : busTimeListOnWeekday) {
+            TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
+            row.addTimeOnWeekday(busTime.min, busTime.isNonstop);
         }
-        if (busTimeListOnSaturday != null) {
-            for (BusTime busTime : busTimeListOnSaturday) {
-                TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
-                row.addTimeOnSaturday(busTime.min, busTime.isNonstop);
-            }
+        for (BusTime busTime : busTimeListOnSaturday) {
+            TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
+            row.addTimeOnSaturday(busTime.min, busTime.isNonstop);
         }
-
-        if (busTimeListOnSunday != null) {
-            for (BusTime busTime : busTimeListOnSunday) {
-                TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
-                row.addTimeOnSunday(busTime.min, busTime.isNonstop);
-            }
+        for (BusTime busTime : busTimeListOnSunday) {
+            TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
+            row.addTimeOnSunday(busTime.min, busTime.isNonstop);
         }
         adapter.notifyDataSetChanged();
     }
