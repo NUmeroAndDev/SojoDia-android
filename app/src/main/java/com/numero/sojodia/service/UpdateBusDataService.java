@@ -11,8 +11,8 @@ import com.numero.sojodia.SojoDiaApplication;
 import com.numero.sojodia.api.BusDataApi;
 import com.numero.sojodia.di.ApplicationComponent;
 import com.numero.sojodia.manager.NotificationManager;
-import com.numero.sojodia.manager.UpdateManager;
 import com.numero.sojodia.model.BusDataFile;
+import com.numero.sojodia.repository.ConfigRepository;
 import com.numero.sojodia.util.BroadCastUtil;
 import com.numero.sojodia.util.NetworkUtil;
 
@@ -25,11 +25,12 @@ import io.reactivex.Observable;
 public class UpdateBusDataService extends IntentService {
 
     private BusDataFile[] busDataFiles = BusDataFile.values();
-    private UpdateManager updateManager;
     private NotificationManager notificationManager;
 
     @Inject
     BusDataApi busDataApi;
+    @Inject
+    ConfigRepository configRepository;
 
     public UpdateBusDataService() {
         super(UpdateBusDataService.class.getSimpleName());
@@ -40,7 +41,6 @@ public class UpdateBusDataService extends IntentService {
         super.onCreate();
         getComponent().inject(this);
 
-        updateManager = UpdateManager.getInstance(this);
         notificationManager = new NotificationManager(this);
     }
 
@@ -64,7 +64,7 @@ public class UpdateBusDataService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         if (!NetworkUtil.canNetworkConnect(this) ||
-                updateManager.isTodayUpdateChecked()) {
+                configRepository.isTodayUpdateChecked()) {
             stopSelf();
             return;
         }
@@ -79,9 +79,9 @@ public class UpdateBusDataService extends IntentService {
     private void checkUpdate() {
         busDataApi.getBusDataVersion()
                 .subscribe(s -> {
-                    updateManager.setVersionCode(Long.valueOf(s));
+                    configRepository.setVersionCode(Long.valueOf(s));
 
-                    if (updateManager.canUpdate()) {
+                    if (configRepository.canUpdate()) {
                         executeUpdate();
                     }
                 }, throwable -> {
@@ -100,7 +100,7 @@ public class UpdateBusDataService extends IntentService {
                     throwable.printStackTrace();
                     stopSelf();
                 }, () -> {
-                    updateManager.updateVersionCode();
+                    configRepository.successUpdate();
                     BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD);
                     stopSelf();
                 });
