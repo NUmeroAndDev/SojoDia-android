@@ -20,8 +20,8 @@ class TimeTableRowAdapter(private val rowList: List<TimeTableRow>?) : RecyclerVi
     override fun onBindViewHolder(holder: TimeTableRowHolder, position: Int) {
         rowList ?: return
         holder.apply {
-            setTimeTableRow(rowList[position])
-            setIsCurrentHour(position == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) - 6)
+            timeTableRow = rowList[position]
+            isCurrentHour = position == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) - 6
         }
     }
 
