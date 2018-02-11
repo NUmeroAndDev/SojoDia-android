@@ -28,7 +28,7 @@ public class TimeTableRowHolder extends RecyclerView.ViewHolder {
     }
 
     public void setTimeTableRow(TimeTableRow row) {
-        hourTextView.setText(row.getHourText());
+        hourTextView.setText(String.format("%02d", row.getHour()));
         weekdayTextView.setText(row.getTimeOnWeekdayText());
         saturdayTextView.setText(row.getTimeOnSaturdayText());
         sundayTextView.setText(row.getTimeOnSundayText());

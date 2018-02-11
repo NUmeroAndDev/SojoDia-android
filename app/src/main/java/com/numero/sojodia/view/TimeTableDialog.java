@@ -79,7 +79,7 @@ public class TimeTableDialog extends ContextWrapper {
         List<BusTime> list = reciprocate.equals(Reciprocate.GOING) ? busDataRepository.getTkBusTimeListGoing() : busDataRepository.getTkBusTimeListReturn();
         Observable.fromIterable(list)
                 .subscribe(busTime -> {
-                    switch (busTime.week) {
+                    switch (busTime.getWeek()) {
                         case DateUtil.WEEKDAY:
                             busTimeListOnWeekday.add(busTime);
                             break;
@@ -97,7 +97,7 @@ public class TimeTableDialog extends ContextWrapper {
         List<BusTime> list = reciprocate.equals(Reciprocate.GOING) ? busDataRepository.getTndBusTimeListGoing() : busDataRepository.getTndBusTimeListReturn();
         Observable.fromIterable(list)
                 .subscribe(busTime -> {
-                    switch (busTime.week) {
+                    switch (busTime.getWeek()) {
                         case DateUtil.WEEKDAY:
                             busTimeListOnWeekday.add(busTime);
                             break;
@@ -131,21 +131,20 @@ public class TimeTableDialog extends ContextWrapper {
     private void buildRow() {
         // バスは6時から23時しか動いていない
         for (int hour = 6; hour < 24; hour++) {
-            TimeTableRow row = new TimeTableRow();
-            row.setHour(hour);
+            TimeTableRow row = new TimeTableRow(hour);
             timeTableRowList.add(row);
         }
         for (BusTime busTime : busTimeListOnWeekday) {
-            TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
-            row.addTimeOnWeekday(busTime.min, busTime.isNonstop);
+            TimeTableRow row = timeTableRowList.get(busTime.getHour() - 6);
+            row.addBusTimeOnWeekday(busTime);
         }
         for (BusTime busTime : busTimeListOnSaturday) {
-            TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
-            row.addTimeOnSaturday(busTime.min, busTime.isNonstop);
+            TimeTableRow row = timeTableRowList.get(busTime.getHour() - 6);
+            row.addBusTimeOnSaturday(busTime);
         }
         for (BusTime busTime : busTimeListOnSunday) {
-            TimeTableRow row = timeTableRowList.get(busTime.hour - 6);
-            row.addTimeOnSunday(busTime.min, busTime.isNonstop);
+            TimeTableRow row = timeTableRowList.get(busTime.getHour() - 6);
+            row.addBusTimeOnSunday(busTime);
         }
         adapter.notifyDataSetChanged();
     }
