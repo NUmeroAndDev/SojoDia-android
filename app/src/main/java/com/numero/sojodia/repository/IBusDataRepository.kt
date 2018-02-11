@@ -7,6 +7,14 @@ import io.reactivex.Observable
 
 interface IBusDataRepository {
 
-    fun loadBusData(busDataFile: BusDataFile): Observable<List<BusTime>>
+    var tkBusTimeListGoing: MutableList<BusTime>
+
+    var tkBusTimeListReturn: MutableList<BusTime>
+
+    var tndBusTimeListGoing: MutableList<BusTime>
+
+    var tndBusTimeListReturn: MutableList<BusTime>
+
+    fun clearCache()
 
 }

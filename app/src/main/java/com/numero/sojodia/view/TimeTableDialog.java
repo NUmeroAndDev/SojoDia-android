@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.numero.sojodia.model.BusDataFile;
 import com.numero.sojodia.model.Route;
 import com.numero.sojodia.repository.BusDataRepository;
 import com.numero.sojodia.util.DateUtil;
@@ -77,9 +76,8 @@ public class TimeTableDialog extends ContextWrapper {
     }
 
     private void setupTkBusTimeList() {
-        BusDataFile busDataFile = reciprocate.equals(Reciprocate.GOING) ? BusDataFile.TK_TO_KUTC : BusDataFile.KUTC_TO_TK;
-        busDataRepository.loadBusData(busDataFile)
-                .flatMap(Observable::fromIterable)
+        List<BusTime> list = reciprocate.equals(Reciprocate.GOING) ? busDataRepository.getTkBusTimeListGoing() : busDataRepository.getTkBusTimeListReturn();
+        Observable.fromIterable(list)
                 .subscribe(busTime -> {
                     switch (busTime.week) {
                         case DateUtil.WEEKDAY:
@@ -96,9 +94,8 @@ public class TimeTableDialog extends ContextWrapper {
     }
 
     private void setupTndBusTimeList() {
-        BusDataFile busDataFile = reciprocate.equals(Reciprocate.GOING) ? BusDataFile.TND_TO_KUTC : BusDataFile.KUTC_TO_TND;
-        busDataRepository.loadBusData(busDataFile)
-                .flatMap(Observable::fromIterable)
+        List<BusTime> list = reciprocate.equals(Reciprocate.GOING) ? busDataRepository.getTndBusTimeListGoing() : busDataRepository.getTndBusTimeListReturn();
+        Observable.fromIterable(list)
                 .subscribe(busTime -> {
                     switch (busTime.week) {
                         case DateUtil.WEEKDAY:

@@ -119,7 +119,8 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     private fun showNeedRestartDialog() {
         NeedRestartDialog.init(this).setOnPositiveButtonClickListener {
-                    this.recreate()
+            busDataRepository.clearCache()
+            this.recreate()
         }.show()
     }
 }

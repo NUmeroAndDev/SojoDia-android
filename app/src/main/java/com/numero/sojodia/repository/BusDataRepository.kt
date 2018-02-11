@@ -10,16 +10,67 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
 import java.io.InputStreamReader
-import java.util.ArrayList
 import java.util.StringTokenizer
 
 import io.reactivex.Observable
 
 class BusDataRepository(private val context: Context) : IBusDataRepository {
 
-    override fun loadBusData(busDataFile: BusDataFile): Observable<List<BusTime>> {
+    override var tkBusTimeListGoing: MutableList<BusTime> = mutableListOf()
+        get() {
+            return if (field.isEmpty()) {
+                loadBusData(BusDataFile.TK_TO_KUTC).blockingFirst().apply {
+                    field = this
+                }
+            } else {
+                field
+            }
+        }
+
+    override var tkBusTimeListReturn: MutableList<BusTime> = mutableListOf()
+        get() {
+            return if (field.isEmpty()) {
+                loadBusData(BusDataFile.KUTC_TO_TK).blockingFirst().apply {
+                    field = this
+                }
+            } else {
+                field
+            }
+        }
+
+    override var tndBusTimeListGoing: MutableList<BusTime> = mutableListOf()
+        get() {
+            return if (field.isEmpty()) {
+                loadBusData(BusDataFile.TND_TO_KUTC).blockingFirst().apply {
+                    field = this
+                }
+            } else {
+                field
+            }
+        }
+
+    override var tndBusTimeListReturn: MutableList<BusTime> = mutableListOf()
+        get() {
+            return if (field.isEmpty()) {
+                loadBusData(BusDataFile.KUTC_TO_TND).blockingFirst().apply {
+                    field = this
+                }
+            } else {
+                field
+            }
+        }
+
+
+    override fun clearCache() {
+        tkBusTimeListGoing.clear()
+        tkBusTimeListReturn.clear()
+        tndBusTimeListGoing.clear()
+        tndBusTimeListReturn.clear()
+    }
+
+    private fun loadBusData(busDataFile: BusDataFile): Observable<MutableList<BusTime>> {
         return Observable.create {
-            val dataList = ArrayList<BusTime>()
+            val dataList = mutableListOf<BusTime>()
             val bufferedReader: BufferedReader
             var fileInputStream: FileInputStream? = null
             var inputStream: InputStream? = null
