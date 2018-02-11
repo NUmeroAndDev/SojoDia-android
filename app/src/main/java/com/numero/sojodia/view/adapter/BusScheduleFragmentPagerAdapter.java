@@ -19,7 +19,7 @@ public class BusScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return BusScheduleFragment.newInstance(Reciprocate.getReciprocate(position));
+        return BusScheduleFragment.Companion.newInstance(Reciprocate.getReciprocate(position));
     }
 
     @Override
