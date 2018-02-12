@@ -198,15 +198,12 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
     }
 
     private fun findBusPosition(busTimeList: List<BusTime>): Int {
-        var position = 0
         val time = Time()
-        // FIXME
-        while (position < busTimeList.size) {
-            time.setTime(busTimeList[position].hour, busTimeList[position].min, 0)
+        busTimeList.forEachIndexed { index, busTime ->
+            time.setTime(busTime.hour, busTime.min, 0)
             if (Time().isOverTime(time)) {
-                return position
+                return index
             }
-            position++
         }
         return NO_BUS_POSITION
     }
