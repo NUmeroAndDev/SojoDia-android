@@ -8,6 +8,20 @@
   name: Android Support Libraries
   copyrightHolder: The Android Open Source Project
   license: apache2
+- artifact: org.jetbrains.kotlin:kotlin-stdlib:+
+  name: org.jetbrains.kotlin:kotlin-stdlib
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://kotlinlang.org/
+- artifact: org.jetbrains.kotlin:kotlin-stdlib-jre8:+
+  skip: true
+- artifact: org.jetbrains.kotlin:kotlin-android-extensions-runtime:+
+  skip: true
+- artifact: org.jetbrains:annotations:+
+  skip: true
+- artifact: org.jetbrains.kotlin:kotlin-stdlib-jre7:+
+  skip: true
 - artifact: com.squareup.okhttp3:okhttp:+
   name: OkHttp
   copyrightHolder: Square, Inc.
