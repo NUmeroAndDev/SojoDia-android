@@ -6,13 +6,13 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/row_layout"
+        android:id="@+id/rowLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/hour_text"
+            android:id="@+id/hourTextView"
             android:layout_width="@dimen/time_table_dialog_hour_text_width"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
@@ -30,7 +30,7 @@
             android:background="@color/time_table_dialog_row_divider" />
 
         <TextView
-            android:id="@+id/weekday_text"
+            android:id="@+id/weekdayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -46,7 +46,7 @@
             android:background="@color/time_table_dialog_row_divider" />
 
         <TextView
-            android:id="@+id/saturday_text"
+            android:id="@+id/saturdayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -62,7 +62,7 @@
             android:background="@color/time_table_dialog_row_divider" />
 
         <TextView
-            android:id="@+id/sunday_text"
+            android:id="@+id/sundayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

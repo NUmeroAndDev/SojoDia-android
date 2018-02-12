@@ -37,7 +37,7 @@
                     android:textStyle="bold" />
 
                 <ImageButton
-                    android:id="@+id/tk_time_table_button"
+                    android:id="@+id/tkTimeTableButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -54,12 +54,12 @@
                 android:layout_weight="1">
 
                 <com.numero.sojodia.view.NotSwipeViewPager
-                    android:id="@+id/tk_bus_time_pager"
+                    android:id="@+id/tkBusTimeViewPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
                 <com.numero.sojodia.view.CountDownClockTextView
-                    android:id="@+id/tk_count_down_text"
+                    android:id="@+id/tkCountdownTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
@@ -71,7 +71,7 @@
                     app:safeTextColor="@color/count_safe_text" />
 
                 <FrameLayout
-                    android:id="@+id/tk_no_bus_layout"
+                    android:id="@+id/tkNoBusLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/card_background"
@@ -87,7 +87,7 @@
                 </FrameLayout>
 
                 <ImageButton
-                    android:id="@+id/tk_before_bus_time_button"
+                    android:id="@+id/tkPreviewImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
@@ -96,7 +96,7 @@
                     android:src="@drawable/ic_arrow_left" />
 
                 <ImageButton
-                    android:id="@+id/tk_next_bus_time_button"
+                    android:id="@+id/tkNextImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|end"
@@ -138,7 +138,7 @@
                     android:textStyle="bold" />
 
                 <ImageButton
-                    android:id="@+id/tnd_time_table_button"
+                    android:id="@+id/tndTimeTableButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -155,12 +155,12 @@
                 android:layout_weight="1">
 
                 <com.numero.sojodia.view.NotSwipeViewPager
-                    android:id="@+id/tnd_bus_time_pager"
+                    android:id="@+id/tndBusTimeViewPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
                 <com.numero.sojodia.view.CountDownClockTextView
-                    android:id="@+id/tnd_count_down_text"
+                    android:id="@+id/tndCountdownTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
@@ -172,7 +172,7 @@
                     app:safeTextColor="@color/count_safe_text" />
 
                 <FrameLayout
-                    android:id="@+id/tnd_no_bus_layout"
+                    android:id="@+id/tndNoBusLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/card_background"
@@ -188,7 +188,7 @@
                 </FrameLayout>
 
                 <ImageButton
-                    android:id="@+id/tnd_before_bus_time_button"
+                    android:id="@+id/tndPreviewImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
@@ -197,7 +197,7 @@
                     android:src="@drawable/ic_arrow_left" />
 
                 <ImageButton
-                    android:id="@+id/tnd_next_bus_time_button"
+                    android:id="@+id/tndNextImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|end"

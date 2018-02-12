@@ -1,5 +1,10 @@
 buildscript {
 
+    ext.kotlin_version = '1.2.21'
+    ext.supportLibrary_version = '27.0.2'
+    ext.okhttp_version = '3.9.0'
+    ext.dagger_version = '2.14.1'
+
     repositories {
         jcenter()
         google()
@@ -7,6 +12,8 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
+
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath 'com.cookpad.android.licensetools:license-tools-plugin:1.2.0'
     }
