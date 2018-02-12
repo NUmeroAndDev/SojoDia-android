@@ -10,7 +10,13 @@ import com.numero.sojodia.view.TimeTableRowHolder
 
 import java.util.Calendar
 
-class TimeTableRowAdapter(private val rowList: List<TimeTableRow>?) : RecyclerView.Adapter<TimeTableRowHolder>() {
+class TimeTableRowAdapter : RecyclerView.Adapter<TimeTableRowHolder>() {
+
+    var tableRowList: MutableList<TimeTableRow>? = null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): TimeTableRowHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.holder_time_table_row, viewGroup, false)
@@ -18,14 +24,14 @@ class TimeTableRowAdapter(private val rowList: List<TimeTableRow>?) : RecyclerVi
     }
 
     override fun onBindViewHolder(holder: TimeTableRowHolder, position: Int) {
-        rowList ?: return
+        val list = tableRowList ?: return
         holder.apply {
-            timeTableRow = rowList[position]
+            timeTableRow = list[position]
             isCurrentHour = position == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) - 6
         }
     }
 
     override fun getItemCount(): Int {
-        return rowList?.size ?: 0
+        return tableRowList?.size ?: 0
     }
 }

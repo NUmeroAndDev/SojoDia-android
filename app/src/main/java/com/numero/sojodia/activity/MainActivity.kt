@@ -12,7 +12,6 @@ import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.presenter.BusSchedulePresenter
 import com.numero.sojodia.repository.BusDataRepository
-import com.numero.sojodia.view.TimeTableDialog
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter
 import com.numero.sojodia.service.UpdateBusDataService
 import com.numero.sojodia.util.BroadCastUtil
@@ -20,6 +19,8 @@ import com.numero.sojodia.R
 import com.numero.sojodia.extension.getApplicationComponent
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.extension.showDialog
+import com.numero.sojodia.fragment.TimeTableDialogFragment
+import com.numero.sojodia.presenter.TimeTablePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -86,10 +87,9 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
-        TimeTableDialog(this, busDataRepository).apply {
-            setRoute(route)
-            setReciprocate(reciprocate)
-            show()
+        TimeTableDialogFragment.newInstance().also {
+            TimeTablePresenter(it, busDataRepository, route, reciprocate)
+            it.show(supportFragmentManager, "")
         }
     }
 
