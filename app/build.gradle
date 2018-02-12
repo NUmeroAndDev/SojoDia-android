@@ -26,6 +26,9 @@ android {
         targetSdkVersion 27
         versionCode appVersionCode
         versionName appVersionName
+
+        buildConfigField("String", "UPDATE_URL", "\"https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt\"")
+        buildConfigField("String", "BUS_FILE_URL", "\"https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/%s\"")
     }
 
     buildTypes {

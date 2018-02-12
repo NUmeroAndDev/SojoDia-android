@@ -1,5 +1,7 @@
 package com.numero.sojodia.model
 
+import com.numero.sojodia.BuildConfig
+
 enum class BusDataFile(val fileName: String) {
 
     TK_TO_KUTC(
@@ -18,6 +20,6 @@ enum class BusDataFile(val fileName: String) {
             "KutcToTnd.csv"
     );
 
-    val url: String = "https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/$fileName"
+    val url: String = String.format(BuildConfig.BUS_FILE_URL, fileName)
 
 }

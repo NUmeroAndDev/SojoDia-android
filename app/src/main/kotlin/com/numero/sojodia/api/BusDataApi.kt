@@ -1,5 +1,6 @@
 package com.numero.sojodia.api
 
+import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.model.BusDataFile
 
 import io.reactivex.Observable
@@ -8,7 +9,7 @@ import okhttp3.Request
 
 class BusDataApi(private val okHttpClient: OkHttpClient) {
 
-    fun getBusDataVersion(): Observable<String> = createObservable(Request.Builder().url(UPDATE_URL).build())
+    fun getBusDataVersion(): Observable<String> = createObservable(Request.Builder().url(BuildConfig.UPDATE_URL).build())
 
     fun getBusData(busDataFile: BusDataFile): Observable<String> = createObservable(Request.Builder().url(busDataFile.url).build())
 
@@ -26,9 +27,5 @@ class BusDataApi(private val okHttpClient: OkHttpClient) {
                 it.onError(Exception("Response data is null"))
             }
         }
-    }
-
-    companion object {
-        private const val UPDATE_URL = "https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt"
     }
 }
