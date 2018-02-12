@@ -1,9 +1,6 @@
 package com.numero.sojodia.activity
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.app.AppCompatActivity
@@ -19,10 +16,10 @@ import com.numero.sojodia.view.TimeTableDialog
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter
 import com.numero.sojodia.service.UpdateBusDataService
 import com.numero.sojodia.util.BroadCastUtil
-import com.numero.sojodia.view.NeedRestartDialog
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.getApplicationComponent
 import com.numero.sojodia.extension.getTodayString
+import com.numero.sojodia.extension.showDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -106,9 +103,13 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     private fun showNeedRestartDialog() {
-        NeedRestartDialog.init(this).setOnPositiveButtonClickListener {
-            busDataRepository.clearCache()
-            this.recreate()
-        }.show()
+        showDialog(
+                R.string.message_need_update,
+                R.string.positive_button_need_update,
+                { _, _ ->
+                    busDataRepository.clearCache()
+                    this.recreate()
+                }
+        )
     }
 }
