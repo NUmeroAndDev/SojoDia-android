@@ -26,6 +26,7 @@ android {
         targetSdkVersion 27
         versionCode appVersionCode
         versionName appVersionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "UPDATE_URL", "\"https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt\"")
         buildConfigField("String", "BUS_FILE_URL", "\"https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/%s\"")
@@ -62,6 +63,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 
     implementation "com.android.support:design:$supportLibrary_version"

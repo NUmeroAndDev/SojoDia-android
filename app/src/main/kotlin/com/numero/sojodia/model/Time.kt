@@ -27,8 +27,4 @@ class Time {
         this.min = min
         this.sec = sec
     }
-
-    override fun toString(): String {
-        return String.format(Locale.ENGLISH, "%02d:%02d:%02d", hour, min, sec)
-    }
 }
