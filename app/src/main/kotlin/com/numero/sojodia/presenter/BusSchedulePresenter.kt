@@ -145,6 +145,11 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
         } else {
             view.hideTkPreviewButton()
         }
+        if (tkBusPosition >= tkTimeList.size - 1) {
+            view.hideTkNextButton()
+        } else {
+            view.showTkNextButton()
+        }
     }
 
     override fun nextTndBus() {
@@ -180,6 +185,11 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
             view.showTndPreviewButton()
         } else {
             view.hideTndPreviewButton()
+        }
+        if (tndBusPosition >= tndTimeList.size - 1) {
+            view.hideTndNextButton()
+        } else {
+            view.showTndNextButton()
         }
     }
 
