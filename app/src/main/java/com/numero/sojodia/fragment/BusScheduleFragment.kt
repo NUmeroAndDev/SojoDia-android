@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.numero.sojodia.contract.BusScheduleContract
-import com.numero.sojodia.util.BroadCastUtil
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
 import com.numero.sojodia.view.CountDownClockTextView
 import com.numero.sojodia.R
@@ -121,8 +120,8 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
     private fun checkDateChange() {
         if (isDateChanged) {
+            listener?.onDataChanged()
             currentDateString = Calendar.getInstance().getTodayStringOnlyFigure()
-            BroadCastUtil.sendBroadCast(activity, BroadCastUtil.ACTION_CHANGED_DATE)
             presenter.onTimeChanged(Week.getCurrentWeek())
         }
     }
@@ -217,6 +216,8 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
     interface BusScheduleFragmentListener {
         fun onActivityCreated(fragment: BusScheduleFragment, reciprocate: Reciprocate)
+
+        fun onDataChanged()
 
         fun showTimeTableDialog(route: Route, reciprocate: Reciprocate)
     }

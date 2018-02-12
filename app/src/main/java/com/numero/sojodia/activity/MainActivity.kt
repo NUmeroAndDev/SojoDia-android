@@ -36,12 +36,6 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         }
     }
 
-    private val changedDateReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            toolbar.subtitle = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
-        }
-    }
-
     @Inject
     lateinit var busDataRepository: BusDataRepository
 
@@ -65,18 +59,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     override fun onStart() {
         super.onStart()
-        LocalBroadcastManager.getInstance(this).apply {
-            registerReceiver(finishDownloadReceiver, IntentFilter(BroadCastUtil.ACTION_FINISH_DOWNLOAD))
-            registerReceiver(changedDateReceiver, IntentFilter(BroadCastUtil.ACTION_CHANGED_DATE))
-        }
+        LocalBroadcastManager.getInstance(this).registerReceiver(finishDownloadReceiver, IntentFilter(BroadCastUtil.ACTION_FINISH_DOWNLOAD))
     }
 
     public override fun onStop() {
         super.onStop()
-        LocalBroadcastManager.getInstance(this).apply {
-            unregisterReceiver(finishDownloadReceiver)
-            unregisterReceiver(changedDateReceiver)
-        }
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(finishDownloadReceiver)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -96,6 +84,10 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         BusSchedulePresenter(fragment, busDataRepository, reciprocate)
     }
 
+    override fun onDataChanged() {
+        toolbar.subtitle = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
+    }
+
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
         TimeTableDialog(this, busDataRepository).apply {
             setRoute(route)
@@ -105,13 +97,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     private fun initViews() {
-        val fragmentPagerAdapter = BusScheduleFragmentPagerAdapter(this, supportFragmentManager)
-        viewPager.adapter = fragmentPagerAdapter
+        viewPager.adapter = BusScheduleFragmentPagerAdapter(this, supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
     }
 
     private fun startCheckUpdateService() {
-        startService(Intent(this@MainActivity, UpdateBusDataService::class.java))
+        startService(Intent(this, UpdateBusDataService::class.java))
     }
 
     private fun showNeedRestartDialog() {

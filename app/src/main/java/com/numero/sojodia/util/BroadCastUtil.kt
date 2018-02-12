@@ -8,8 +8,6 @@ object BroadCastUtil {
 
     const val ACTION_FINISH_DOWNLOAD = "ACTION_FINISH_DOWNLOAD"
 
-    const val ACTION_CHANGED_DATE = "ACTION_CHANGED_DATE"
-
     fun sendBroadCast(context: Context?, action: String) {
         context ?: return
         LocalBroadcastManager.getInstance(context).sendBroadcast(Intent().also {
