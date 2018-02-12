@@ -12,7 +12,6 @@ import android.view.WindowManager;
 
 import com.numero.sojodia.model.Route;
 import com.numero.sojodia.repository.BusDataRepository;
-import com.numero.sojodia.util.DateUtil;
 import com.numero.sojodia.view.adapter.TimeTableRowAdapter;
 import com.numero.sojodia.model.BusTime;
 import com.numero.sojodia.model.Reciprocate;
@@ -80,13 +79,13 @@ public class TimeTableDialog extends ContextWrapper {
         Observable.fromIterable(list)
                 .subscribe(busTime -> {
                     switch (busTime.getWeek()) {
-                        case DateUtil.WEEKDAY:
+                        case WEEKDAY:
                             busTimeListOnWeekday.add(busTime);
                             break;
-                        case DateUtil.SATURDAY:
+                        case SATURDAY:
                             busTimeListOnSaturday.add(busTime);
                             break;
-                        case DateUtil.SUNDAY:
+                        case SUNDAY:
                             busTimeListOnSunday.add(busTime);
                             break;
                     }
@@ -98,13 +97,13 @@ public class TimeTableDialog extends ContextWrapper {
         Observable.fromIterable(list)
                 .subscribe(busTime -> {
                     switch (busTime.getWeek()) {
-                        case DateUtil.WEEKDAY:
+                        case WEEKDAY:
                             busTimeListOnWeekday.add(busTime);
                             break;
-                        case DateUtil.SATURDAY:
+                        case SATURDAY:
                             busTimeListOnSaturday.add(busTime);
                             break;
-                        case DateUtil.SUNDAY:
+                        case SUNDAY:
                             busTimeListOnSunday.add(busTime);
                             break;
                     }

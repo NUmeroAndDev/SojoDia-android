@@ -12,7 +12,6 @@ import com.numero.sojodia.manager.NotificationManager
 import com.numero.sojodia.model.BusDataFile
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.util.BroadCastUtil
-import com.numero.sojodia.util.NetworkUtil
 
 import javax.inject.Inject
 
@@ -52,7 +51,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
     }
 
     override fun onHandleIntent(intent: Intent?) {
-        if (!NetworkUtil.canNetworkConnect(this) or configRepository.isTodayUpdateChecked) {
+        if (configRepository.isTodayUpdateChecked) {
             stopSelf()
             return
         }

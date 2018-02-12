@@ -8,17 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.numero.sojodia.contract.BusScheduleContract
-import com.numero.sojodia.model.Reciprocate
-import com.numero.sojodia.model.Route
 import com.numero.sojodia.util.BroadCastUtil
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
-import com.numero.sojodia.model.BusTime
-import com.numero.sojodia.model.Time
-import com.numero.sojodia.util.DateUtil
-import com.numero.sojodia.util.TimeUtil
 import com.numero.sojodia.view.CountDownClockTextView
 import com.numero.sojodia.R
+import com.numero.sojodia.extension.countTime
+import com.numero.sojodia.extension.getTodayStringOnlyFigure
+import com.numero.sojodia.model.*
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
+import java.util.*
 
 class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
@@ -29,7 +27,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     private var currentDateString: String? = null
 
     private val isDateChanged: Boolean
-        get() = DateUtil.getTodayStringOnlyFigure() != currentDateString
+        get() = Calendar.getInstance().getTodayStringOnlyFigure() != currentDateString
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -51,7 +49,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        currentDateString = DateUtil.getTodayStringOnlyFigure()
+        currentDateString = Calendar.getInstance().getTodayStringOnlyFigure()
         return inflater.inflate(R.layout.bus_schedule_fragment, container, false)
     }
 
@@ -65,7 +63,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     override fun onResume() {
         super.onResume()
         presenter.subscribe()
-        presenter.onTimeChanged(DateUtil.getWeek())
+        presenter.onTimeChanged(Week.getCurrentWeek())
     }
 
     override fun onPause() {
@@ -123,9 +121,9 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
     private fun checkDateChange() {
         if (isDateChanged) {
-            currentDateString = DateUtil.getTodayStringOnlyFigure()
+            currentDateString = Calendar.getInstance().getTodayStringOnlyFigure()
             BroadCastUtil.sendBroadCast(activity, BroadCastUtil.ACTION_CHANGED_DATE)
-            presenter.onTimeChanged(DateUtil.getWeek())
+            presenter.onTimeChanged(Week.getCurrentWeek())
         }
     }
 
@@ -151,8 +149,8 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
     override fun startTkCountDown(busTime: BusTime) {
         val time = Time(busTime.hour, busTime.min, 0)
-        val countTime = TimeUtil.getCountTime(time)
-        tkCountdownTextView.setTime(countTime.hour, countTime.min)
+        time.countTime()
+        tkCountdownTextView.setTime(time.hour, time.min)
     }
 
     override fun selectTndCurrentBusPosition(position: Int) {
@@ -161,8 +159,8 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
     override fun startTndCountDown(busTime: BusTime) {
         val time = Time(busTime.hour, busTime.min, 0)
-        val countTime = TimeUtil.getCountTime(time)
-        tndCountdownTextView.setTime(countTime.hour, countTime.min)
+        time.countTime()
+        tndCountdownTextView.setTime(time.hour, time.min)
     }
 
     override fun showTkNextButton() {

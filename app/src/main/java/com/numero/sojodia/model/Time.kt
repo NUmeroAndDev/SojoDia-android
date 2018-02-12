@@ -5,11 +5,8 @@ import java.util.*
 class Time {
 
     var hour: Int = 0
-        private set
     var min: Int = 0
-        private set
     var sec: Int = 0
-        private set
 
     constructor() {
         Calendar.getInstance().let {

@@ -10,21 +10,21 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 
-import com.numero.sojodia.SojoDiaApplication
-import com.numero.sojodia.di.ApplicationComponent
 import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.presenter.BusSchedulePresenter
 import com.numero.sojodia.repository.BusDataRepository
-import com.numero.sojodia.util.DateUtil
 import com.numero.sojodia.view.TimeTableDialog
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter
 import com.numero.sojodia.service.UpdateBusDataService
 import com.numero.sojodia.util.BroadCastUtil
 import com.numero.sojodia.view.NeedRestartDialog
 import com.numero.sojodia.R
+import com.numero.sojodia.extension.getApplicationComponent
+import com.numero.sojodia.extension.getTodayString
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 import javax.inject.Inject
 
@@ -38,21 +38,18 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     private val changedDateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            toolbar.subtitle = DateUtil.getTodayString(this@MainActivity)
+            toolbar.subtitle = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
         }
     }
 
     @Inject
     lateinit var busDataRepository: BusDataRepository
 
-    private val component: ApplicationComponent
-        get() = (application as SojoDiaApplication).component
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        component.inject(this)
+        getApplicationComponent()?.inject(this)
 
         initViews()
 
@@ -63,7 +60,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     override fun onResume() {
         super.onResume()
-        toolbar.subtitle = DateUtil.getTodayString(this@MainActivity)
+        toolbar.subtitle = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
     }
 
     override fun onStart() {

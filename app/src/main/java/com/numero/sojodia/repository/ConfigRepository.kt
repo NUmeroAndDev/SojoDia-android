@@ -2,8 +2,9 @@ package com.numero.sojodia.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.numero.sojodia.extension.getTodayStringOnlyFigure
 
-import com.numero.sojodia.util.DateUtil
+import java.util.*
 
 class ConfigRepository(context: Context) : IConfigRepository {
 
@@ -13,14 +14,14 @@ class ConfigRepository(context: Context) : IConfigRepository {
         set(value) {
             field = value
             sharedPreferences.edit().apply {
-                putString(DATE, DateUtil.getTodayStringOnlyFigure())
+                putString(DATE, Calendar.getInstance().getTodayStringOnlyFigure())
             }.apply()
         }
         get() = sharedPreferences.getLong(VERSION_CODE, 20170401L)
 
     override val isTodayUpdateChecked: Boolean
         get() {
-            return DateUtil.getTodayStringOnlyFigure() == sharedPreferences.getString(DATE, "")
+            return Calendar.getInstance().getTodayStringOnlyFigure() == sharedPreferences.getString(DATE, "")
         }
 
     init {

@@ -7,8 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 
 import com.numero.sojodia.R
-import com.numero.sojodia.SojoDiaApplication
-import com.numero.sojodia.di.ApplicationComponent
+import com.numero.sojodia.extension.getApplicationComponent
 import com.numero.sojodia.fragment.SettingsFragment
 import com.numero.sojodia.presenter.SettingsPresenter
 import com.numero.sojodia.repository.ConfigRepository
@@ -21,14 +20,11 @@ class SettingsActivity : AppCompatActivity() {
     @Inject
     lateinit var configRepository: ConfigRepository
 
-    private val component: ApplicationComponent
-        get() = (application as SojoDiaApplication).component
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         setSupportActionBar(toolbar)
-        component.inject(this)
+        getApplicationComponent()?.inject(this)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

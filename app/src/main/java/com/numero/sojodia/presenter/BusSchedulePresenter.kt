@@ -1,17 +1,14 @@
 package com.numero.sojodia.presenter
 
 import com.numero.sojodia.contract.BusScheduleContract
-import com.numero.sojodia.model.BusTime
-import com.numero.sojodia.model.Reciprocate
-import com.numero.sojodia.model.Route
-import com.numero.sojodia.model.Time
+import com.numero.sojodia.extension.isOverTime
+import com.numero.sojodia.model.*
 import com.numero.sojodia.repository.BusDataRepository
-import com.numero.sojodia.util.TimeUtil
 
 class BusSchedulePresenter(private val view: BusScheduleContract.View,
                            private val busDataRepository: BusDataRepository,
                            private val reciprocate: Reciprocate) : BusScheduleContract.Presenter {
-    private var week = 0
+    private lateinit var week: Week
 
     private var tkBusPosition = 0
     private var tndBusPosition = 0
@@ -64,7 +61,7 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
 
     override fun unSubscribe() {}
 
-    override fun onTimeChanged(week: Int) {
+    override fun onTimeChanged(week: Week) {
         this.week = week
         tkTimeList.clear()
         tndTimeList.clear()
@@ -196,7 +193,7 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
         // FIXME
         while (position < busTimeList.size) {
             time.setTime(busTimeList[position].hour, busTimeList[position].min, 0)
-            if (TimeUtil.isOverTime(Time(), time)) {
+            if (Time().isOverTime(time)) {
                 return position
             }
             position++
@@ -211,7 +208,7 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
         val busTime = tkTimeList[tkBusPosition - 1]
         val time = Time()
         time.setTime(busTime.hour, busTime.min, 0)
-        return TimeUtil.isOverTime(Time(), time)
+        return Time().isOverTime(time)
     }
 
     private fun canPreviewTndTime(): Boolean {
@@ -221,7 +218,7 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
         val busTime = tndTimeList[tndBusPosition - 1]
         val time = Time()
         time.setTime(busTime.hour, busTime.min, 0)
-        return TimeUtil.isOverTime(Time(), time)
+        return Time().isOverTime(time)
     }
 
     companion object {
