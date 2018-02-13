@@ -15,8 +15,6 @@ import com.numero.sojodia.util.BroadCastUtil
 
 import javax.inject.Inject
 
-import io.reactivex.Observable
-
 class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName) {
 
     private val busDataFiles = BusDataFile.values()
@@ -68,7 +66,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
                             executeUpdate()
                         }
                     }
-                },{
+                }, {
                     it.printStackTrace()
                     stopSelf()
                 })
@@ -76,19 +74,19 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     private fun executeUpdate() {
         notificationManager.showNotification()
-        Observable.fromArray(*busDataFiles)
-                .flatMap { busDataFile ->
-                    busDataApi.getBusData(busDataFile)
-                            .doOnNext {saveDownLoadData(busDataFile.fileName, it)}
-                }
-                .subscribe({ }, {
-                    it.printStackTrace()
-                    stopSelf()
-                }, {
-                    configRepository.successUpdate()
-                    BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD)
-                    stopSelf()
-                })
+        busDataFiles.forEach { busDataFile ->
+            busDataApi.getBusData(busDataFile)
+                    .subscribe({
+                        saveDownLoadData(busDataFile.fileName, it)
+                    }, {
+                        it.printStackTrace()
+                        stopSelf()
+                    }, {
+                        configRepository.successUpdate()
+                        BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD)
+                        stopSelf()
+                    })
+        }
     }
 
     @Throws(Exception::class)
