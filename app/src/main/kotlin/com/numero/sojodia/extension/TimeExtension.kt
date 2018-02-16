@@ -20,7 +20,7 @@ fun Time.addition(after: Time) {
     hour %= 24
 
     this.hour = hour
-    this.min =min
+    this.min = min
     this.sec = sec
 }
 

@@ -17,7 +17,7 @@ class LicensesActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        
+
         webView.apply {
             settings.loadWithOverviewMode = true
             settings.useWideViewPort = true

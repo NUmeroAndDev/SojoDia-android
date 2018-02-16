@@ -6,14 +6,13 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import com.numero.sojodia.contract.BusScheduleContract
-import com.numero.sojodia.view.adapter.BusTimePagerAdapter
-import com.numero.sojodia.view.CountDownClockTextView
 import com.numero.sojodia.R
+import com.numero.sojodia.contract.BusScheduleContract
 import com.numero.sojodia.extension.countTime
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.model.*
+import com.numero.sojodia.view.CountDownClockTextView
+import com.numero.sojodia.view.adapter.BusTimePagerAdapter
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
 

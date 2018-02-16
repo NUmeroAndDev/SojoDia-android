@@ -1,19 +1,12 @@
 package com.numero.sojodia.repository
 
 import android.content.Context
-
 import com.numero.sojodia.model.BusDataFile
 import com.numero.sojodia.model.BusTime
 import com.numero.sojodia.model.Week
-
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileInputStream
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.util.StringTokenizer
-
 import io.reactivex.Observable
+import java.io.*
+import java.util.*
 
 class BusDataRepository(private val context: Context) : IBusDataRepository {
 

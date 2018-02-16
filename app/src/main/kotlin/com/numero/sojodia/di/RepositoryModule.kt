@@ -1,14 +1,11 @@
 package com.numero.sojodia.di
 
 import android.content.Context
-
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
-
-import javax.inject.Singleton
-
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class RepositoryModule {

@@ -2,13 +2,11 @@ package com.numero.sojodia.di
 
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.api.BusDataApi
-
-import javax.inject.Singleton
-
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import javax.inject.Singleton
 
 @Module
 class ApiModule {
