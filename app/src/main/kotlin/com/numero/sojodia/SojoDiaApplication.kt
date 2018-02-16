@@ -1,10 +1,7 @@
 package com.numero.sojodia
 
 import android.app.Application
-import com.numero.sojodia.di.ApiModule
-import com.numero.sojodia.di.ApplicationComponent
-import com.numero.sojodia.di.ApplicationModule
-import com.numero.sojodia.di.RepositoryModule
+import com.numero.sojodia.di.*
 
 class SojoDiaApplication : Application() {
 
