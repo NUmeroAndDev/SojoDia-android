@@ -7,9 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import com.numero.sojodia.SojoDiaApplication
 import com.numero.sojodia.di.ApplicationComponent
 
-fun AppCompatActivity.getApplicationComponent(): ApplicationComponent? {
-    return (application as? SojoDiaApplication)?.component
-}
+val AppCompatActivity.component: ApplicationComponent?
+    get() = (application as? SojoDiaApplication)?.component
 
 fun AppCompatActivity.showDialog(@StringRes message: Int, @StringRes positiveButton: Int, listener: (DialogInterface, Int) -> Unit) {
     AlertDialog.Builder(this).apply {

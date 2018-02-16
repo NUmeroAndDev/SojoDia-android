@@ -1,9 +1,9 @@
 package com.numero.sojodia.presenter
 
 import com.numero.sojodia.contract.SettingsContract
-import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.repository.IConfigRepository
 
-class SettingsPresenter(private val view: SettingsContract.View, private val configRepository: ConfigRepository) : SettingsContract.Presenter {
+class SettingsPresenter(private val view: SettingsContract.View, private val configRepository: IConfigRepository) : SettingsContract.Presenter {
 
     init {
         this.view.setPresenter(this)

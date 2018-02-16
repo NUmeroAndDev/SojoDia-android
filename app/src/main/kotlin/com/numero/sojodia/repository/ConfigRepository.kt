@@ -24,6 +24,9 @@ class ConfigRepository(context: Context) : IConfigRepository {
             return Calendar.getInstance().getTodayStringOnlyFigure() == sharedPreferences.getString(DATE, "")
         }
 
+    override val canUpdate: Boolean
+        get() = sharedPreferences.getLong(VERSION_CODE, 20170401L) < versionCode
+
     init {
         sharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
     }
@@ -32,10 +35,6 @@ class ConfigRepository(context: Context) : IConfigRepository {
         sharedPreferences.edit().apply {
             putLong(VERSION_CODE, versionCode)
         }.apply()
-    }
-
-    override fun canUpdate(): Boolean {
-        return sharedPreferences.getLong(VERSION_CODE, 20170401L) < versionCode
     }
 
     companion object {

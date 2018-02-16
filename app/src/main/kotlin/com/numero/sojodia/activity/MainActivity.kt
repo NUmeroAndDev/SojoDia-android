@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.getApplicationComponent
+import com.numero.sojodia.extension.component
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.extension.showDialog
 import com.numero.sojodia.fragment.BusScheduleFragment
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        getApplicationComponent()?.inject(this)
+        component?.inject(this)
 
         initViews()
 

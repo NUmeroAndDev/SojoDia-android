@@ -6,7 +6,7 @@ interface IConfigRepository {
 
     val isTodayUpdateChecked: Boolean
 
-    fun successUpdate()
+    val canUpdate: Boolean
 
-    fun canUpdate(): Boolean
+    fun successUpdate()
 }

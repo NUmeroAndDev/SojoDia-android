@@ -62,7 +62,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
                 .subscribe({
                     configRepository.apply {
                         versionCode = it.toLong()
-                        if (canUpdate()) {
+                        if (canUpdate) {
                             executeUpdate()
                         }
                     }
