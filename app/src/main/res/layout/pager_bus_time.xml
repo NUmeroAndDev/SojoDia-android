@@ -13,14 +13,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/bus_description_text"
+            android:id="@+id/busDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/bus_description_text"
             tools:text="直行便" />
 
         <TextView
-            android:id="@+id/bus_time_text"
+            android:id="@+id/busTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/next_bus_layout"
+        android:id="@+id/nextBusLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|top"
@@ -44,7 +44,7 @@
             android:textSize="@dimen/next_bus_title_text" />
 
         <TextView
-            android:id="@+id/next_bus_description_text"
+            android:id="@+id/nextBusDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|top"
@@ -52,7 +52,7 @@
             tools:text="直行便" />
 
         <TextView
-            android:id="@+id/next_bus_time_text"
+            android:id="@+id/nextBusTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

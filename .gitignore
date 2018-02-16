@@ -10,3 +10,4 @@
 /captures
 .externalNativeBuild
 *.apk
+output.json

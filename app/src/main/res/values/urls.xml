@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="version_url">https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt</string>
-</resources>
