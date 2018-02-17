@@ -2,8 +2,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/card_bus_time_text_margin">
+    android:layout_height="wrap_content"
+    android:paddingBottom="12dp"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp"
+    android:paddingTop="12dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -39,6 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginBottom="4dp"
             android:text="@string/next_title"
             android:textSize="@dimen/next_bus_title_text" />
@@ -47,7 +51,7 @@
             android:id="@+id/nextBusDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|top"
+            android:layout_gravity="end"
             android:textSize="@dimen/next_bus_description_text"
             tools:text="直行便" />
 
@@ -55,7 +59,7 @@
             android:id="@+id/nextBusTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="end"
             android:fontFamily="sans-serif-light"
             android:textSize="@dimen/next_bus_time_text"
             tools:text="00:00" />
