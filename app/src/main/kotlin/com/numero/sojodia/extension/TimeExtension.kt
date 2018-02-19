@@ -3,6 +3,9 @@ package com.numero.sojodia.extension
 import android.support.annotation.VisibleForTesting
 import com.numero.sojodia.model.Time
 
+/**
+ * @return 現在時刻からのカウント
+ */
 fun Time.createCountTime(): Time {
     val time = Time()
     var hour = this.hour - time.hour
