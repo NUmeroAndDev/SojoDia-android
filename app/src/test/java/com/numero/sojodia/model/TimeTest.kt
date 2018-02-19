@@ -33,14 +33,14 @@ class TimeTest {
     @Test
     fun overTime() {
         Time(10, 30).apply {
-            assertFalse(isOverTime(Time(10, 29)))
-            assertFalse(isOverTime(Time(10, 30)))
-            assertTrue(isOverTime(Time(10, 31)))
+            assertFalse(Time(10, 29).isOverTime(this))
+            assertFalse(Time(10, 30).isOverTime(this))
+            assertTrue(Time(10, 31).isOverTime(this))
         }
 
         Time(23, 59).apply {
-            assertFalse(isOverTime(Time(23, 58)))
-            assertFalse(isOverTime(Time(0, 0)))
+            assertFalse(Time(23, 58).isOverTime(this))
+            assertFalse(Time(0, 0).isOverTime(this))
         }
     }
 
