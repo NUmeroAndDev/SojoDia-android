@@ -43,21 +43,15 @@ fun Time.countTime(currentTime: Time) {
 }
 
 fun Time.isOverTime(after: Time): Boolean {
-    var sec = after.sec - this.sec
     var min = after.min - this.min
     var hour = after.hour - this.hour
-
-    if (sec < 0) {
-        sec += 60
-        min--
-    }
 
     if (min < 0) {
         min += 60
         hour--
     }
 
-    return if (hour == 0 && min == 0 && sec == 0) {
+    return if (hour == 0 && min == 0) {
         false
     } else hour >= 0
 }
