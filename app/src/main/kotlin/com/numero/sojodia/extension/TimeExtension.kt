@@ -3,11 +3,6 @@ package com.numero.sojodia.extension
 import android.support.annotation.VisibleForTesting
 import com.numero.sojodia.model.Time
 
-/**
- * FIXME
- * 秒は使用していないので、きちんと計算できていない
- */
-
 fun Time.countTime() {
     val time = Time()
     var hour = this.hour - time.hour

@@ -146,7 +146,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     override fun startTkCountDown(busTime: BusTime) {
-        val time = Time(busTime.hour, busTime.min, 0)
+        val time = Time(busTime.hour, busTime.min)
         time.countTime()
         tkCountdownTextView.setTime(time.hour, time.min)
     }
@@ -156,7 +156,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     override fun startTndCountDown(busTime: BusTime) {
-        val time = Time(busTime.hour, busTime.min, 0)
+        val time = Time(busTime.hour, busTime.min)
         time.countTime()
         tndCountdownTextView.setTime(time.hour, time.min)
     }
