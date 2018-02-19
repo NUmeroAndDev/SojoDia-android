@@ -28,7 +28,7 @@ class BusTimePagerAdapter : PagerAdapter() {
         }
 
         val busTime = busTimeList[position]
-        view.busTimeTextView.text = String.format(Locale.ENGLISH, "%02d:%02d", busTime.hour, busTime.min)
+        view.busTimeTextView.text = String.format(Locale.ENGLISH, "%02d:%02d", busTime.time.hour, busTime.time.min)
         view.busDescriptionTextView.apply {
             if (busTime.isNonstop) {
                 visibility = View.VISIBLE
@@ -49,7 +49,7 @@ class BusTimePagerAdapter : PagerAdapter() {
         } else {
             nextBusLayout.visibility = View.VISIBLE
             val nextBusTime = busTimeList[position + 1]
-            view.nextBusTimeTextView.text = String.format(Locale.ENGLISH, "%02d:%02d", nextBusTime.hour, nextBusTime.min)
+            view.nextBusTimeTextView.text = String.format(Locale.ENGLISH, "%02d:%02d", nextBusTime.time.hour, nextBusTime.time.min)
             view.nextBusDescriptionTextView.apply {
                 if (nextBusTime.isNonstop) {
                     visibility = View.VISIBLE

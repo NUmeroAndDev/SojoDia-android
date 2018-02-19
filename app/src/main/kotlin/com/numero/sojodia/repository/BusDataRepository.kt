@@ -3,6 +3,7 @@ package com.numero.sojodia.repository
 import android.content.Context
 import com.numero.sojodia.model.BusDataFile
 import com.numero.sojodia.model.BusTime
+import com.numero.sojodia.model.Time
 import com.numero.sojodia.model.Week
 import io.reactivex.Observable
 import java.io.*
@@ -94,7 +95,7 @@ class BusDataRepository(private val context: Context) : IBusDataRepository {
                 val week = Week.getWeek(tokenizer.nextToken().toInt()) ?: continue
                 val isNonstop = tokenizer.nextToken().toInt() != 0
 
-                dataList.add(BusTime(hour, minutes, week, isNonstop))
+                dataList.add(BusTime(Time(hour, minutes), week, isNonstop))
             }
 
             bufferedReader.close()
