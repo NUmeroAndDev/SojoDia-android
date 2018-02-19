@@ -1,9 +1,8 @@
 package com.numero.sojodia.model
 
 import com.numero.sojodia.extension.countTime
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class TimeTest {
 
@@ -16,28 +15,28 @@ class TimeTest {
             countTime(Time(0, 0, 0))
 
             assertEquals(hour, 10)
-            assertEquals(min, 29)
+            assertEquals(min, 30)
         }
 
         Time(8, 25, 0).apply {
             countTime(Time(8, 10, 0))
 
             assertEquals(hour, 0)
-            assertEquals(min, 14)
+            assertEquals(min, 15)
         }
 
         Time(12, 25, 0).apply {
             countTime(Time(11, 10, 0))
 
             assertEquals(hour, 1)
-            assertEquals(min, 14)
+            assertEquals(min, 15)
         }
 
         Time(12, 25, 0).apply {
             countTime(Time(11, 10, 0))
 
             assertEquals(hour, 1)
-            assertEquals(min, 14)
+            assertEquals(min, 15)
         }
     }
 
