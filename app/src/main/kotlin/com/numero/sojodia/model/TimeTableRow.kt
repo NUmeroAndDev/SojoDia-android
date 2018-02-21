@@ -21,20 +21,20 @@ class TimeTableRow(val hour: Int) {
         if (busTime.isNonstop) {
             timeOnWeekdayStringBuilder.append("★")
         }
-        timeOnWeekdayStringBuilder.append(String.format(Locale.ENGLISH, "%02d ", busTime.min))
+        timeOnWeekdayStringBuilder.append(String.format(Locale.ENGLISH, "%02d ", busTime.time.min))
     }
 
     fun addBusTimeOnSaturday(busTime: BusTime) {
         if (busTime.isNonstop) {
             timeOnSaturdayStringBuilder.append("★")
         }
-        timeOnSaturdayStringBuilder.append(String.format(Locale.ENGLISH, "%02d ", busTime.min))
+        timeOnSaturdayStringBuilder.append(String.format(Locale.ENGLISH, "%02d ", busTime.time.min))
     }
 
     fun addBusTimeOnSunday(busTime: BusTime) {
         if (busTime.isNonstop) {
             timeOnSundayStringBuilder.append("★")
         }
-        timeOnSundayStringBuilder.append(String.format(Locale.ENGLISH, "%02d ", busTime.min))
+        timeOnSundayStringBuilder.append(String.format(Locale.ENGLISH, "%02d ", busTime.time.min))
     }
 }

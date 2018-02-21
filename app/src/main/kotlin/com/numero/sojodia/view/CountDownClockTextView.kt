@@ -44,9 +44,15 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         }.recycle()
     }
 
+    /**
+     * @param hour
+     * @param min
+     *
+     * hh:(mm - 1):59 からスタートするので min - 1 する
+     */
     fun setTime(hour: Int, min: Int) {
         this.hour = hour
-        this.min = min
+        this.min = min - 1
     }
 
     fun setOnTimeChangedListener(onTimeChangedListener: OnTimeChangedListener) {

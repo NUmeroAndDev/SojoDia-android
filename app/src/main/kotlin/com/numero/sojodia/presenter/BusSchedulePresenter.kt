@@ -198,10 +198,8 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
     }
 
     private fun findBusPosition(busTimeList: List<BusTime>): Int {
-        val time = Time()
         busTimeList.forEachIndexed { index, busTime ->
-            time.setTime(busTime.hour, busTime.min, 0)
-            if (Time().isOverTime(time)) {
+            if (busTime.time.isOverTime(Time())) {
                 return index
             }
         }
@@ -213,9 +211,7 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
             return false
         }
         val busTime = tkTimeList[tkBusPosition - 1]
-        val time = Time()
-        time.setTime(busTime.hour, busTime.min, 0)
-        return Time().isOverTime(time)
+        return busTime.time.isOverTime(Time())
     }
 
     private fun canPreviewTndTime(): Boolean {
@@ -223,9 +219,7 @@ class BusSchedulePresenter(private val view: BusScheduleContract.View,
             return false
         }
         val busTime = tndTimeList[tndBusPosition - 1]
-        val time = Time()
-        time.setTime(busTime.hour, busTime.min, 0)
-        return Time().isOverTime(time)
+        return busTime.time.isOverTime(Time())
     }
 
     companion object {

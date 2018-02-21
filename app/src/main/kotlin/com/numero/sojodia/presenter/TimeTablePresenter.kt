@@ -45,10 +45,11 @@ class TimeTablePresenter(private val view: TimeTableContract.View,
 
     private fun mapTimeTableRow(list: MutableList<BusTime>) {
         list.forEach {
+            val hour = it.time.hour - 6
             when (it.week) {
-                Week.WEEKDAY -> timeTableRowList[it.hour - 6].addBusTimeOnWeekday(it)
-                Week.SATURDAY -> timeTableRowList[it.hour - 6].addBusTimeOnSaturday(it)
-                Week.SUNDAY -> timeTableRowList[it.hour - 6].addBusTimeOnSunday(it)
+                Week.WEEKDAY -> timeTableRowList[hour].addBusTimeOnWeekday(it)
+                Week.SATURDAY -> timeTableRowList[hour].addBusTimeOnSaturday(it)
+                Week.SUNDAY -> timeTableRowList[hour].addBusTimeOnSunday(it)
             }
         }
     }
