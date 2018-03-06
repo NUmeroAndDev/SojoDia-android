@@ -56,6 +56,8 @@ class BusDataRepository(private val context: Context, private val busDataApi: Bu
             }
         }
 
+    override fun loadBusDataVersion(): Observable<String> = busDataApi.getBusDataVersion()
+
     override fun loadAndSaveBusData(busDataFile: BusDataFile): Observable<String> {
         return busDataApi.getBusData(busDataFile)
                 .doOnNext({

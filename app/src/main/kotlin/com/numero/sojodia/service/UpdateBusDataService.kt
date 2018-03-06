@@ -4,7 +4,6 @@ import android.app.IntentService
 import android.content.Intent
 import android.os.IBinder
 import com.numero.sojodia.SojoDiaApplication
-import com.numero.sojodia.api.BusDataApi
 import com.numero.sojodia.di.ApplicationComponent
 import com.numero.sojodia.manager.NotificationManager
 import com.numero.sojodia.model.BusDataFile
@@ -19,8 +18,6 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     private lateinit var notificationManager: NotificationManager
 
-    @Inject
-    lateinit var busDataApi: BusDataApi
     @Inject
     lateinit var busDataRepository: BusDataRepository
     @Inject
@@ -59,7 +56,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
     }
 
     private fun checkUpdate() {
-        busDataApi.getBusDataVersion()
+        busDataRepository.loadBusDataVersion()
                 .subscribe({
                     configRepository.apply {
                         versionCode = it.toLong()

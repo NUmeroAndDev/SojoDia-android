@@ -14,6 +14,8 @@ interface IBusDataRepository {
 
     var tndBusTimeListReturn: MutableList<BusTime>
 
+    fun loadBusDataVersion(): Observable<String>
+
     fun loadAndSaveBusData(busDataFile: BusDataFile): Observable<String>
 
     fun clearCache()
