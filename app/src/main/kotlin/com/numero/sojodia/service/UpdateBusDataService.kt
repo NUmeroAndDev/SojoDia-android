@@ -53,10 +53,10 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
     }
 
     private fun checkUpdate() {
-        busDataRepository.loadBusDataVersion()
+        busDataRepository.loadBusDataConfig()
                 .subscribe({
                     configRepository.apply {
-                        versionCode = it.toLong()
+                        versionCode = it.version
                         if (canUpdate) {
                             executeUpdate()
                         }

@@ -2,16 +2,16 @@ package com.numero.sojodia.repository
 
 import android.content.Context
 import com.numero.sojodia.api.ApplicationJsonAdapterFactory
-import com.numero.sojodia.api.BusDataApi
 import com.numero.sojodia.api.BusDataApi2
 import com.numero.sojodia.api.response.BusDataResponse
 import com.numero.sojodia.extension.readAssetsFile
 import com.numero.sojodia.model.BusTime
+import com.numero.sojodia.model.Config
 import com.squareup.moshi.Moshi
 import io.reactivex.Observable
 import java.io.File
 
-class BusDataRepository(private val context: Context, private val busDataApi: BusDataApi, private val busDataApi2: BusDataApi2) : IBusDataRepository {
+class BusDataRepository(private val context: Context, private val busDataApi2: BusDataApi2) : IBusDataRepository {
 
     private val moshi = Moshi.Builder().add(ApplicationJsonAdapterFactory.INSTANCE).build()
 
@@ -47,7 +47,7 @@ class BusDataRepository(private val context: Context, private val busDataApi: Bu
             return field
         }
 
-    override fun loadBusDataVersion(): Observable<String> = busDataApi.getBusDataVersion()
+    override fun loadBusDataConfig(): Observable<Config> = busDataApi2.getConfig()
 
     override fun loadAndSaveBusData(): Observable<String> {
         return busDataApi2.getBusData()
