@@ -16,7 +16,7 @@ interface IBusDataRepository {
 
     fun loadBusDataVersion(): Observable<String>
 
-    fun loadAndSaveBusData(busDataFile: BusDataFile): Observable<String>
+    fun loadAndSaveBusData(): Observable<String>
 
     fun clearCache()
 

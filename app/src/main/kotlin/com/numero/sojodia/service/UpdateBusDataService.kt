@@ -6,12 +6,9 @@ import android.os.IBinder
 import com.numero.sojodia.SojoDiaApplication
 import com.numero.sojodia.di.ApplicationComponent
 import com.numero.sojodia.manager.NotificationManager
-import com.numero.sojodia.model.BusDataFile
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.util.BroadCastUtil
-import io.reactivex.Observable
-import io.reactivex.functions.Function4
 import javax.inject.Inject
 
 class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName) {
@@ -72,14 +69,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     private fun executeUpdate() {
         notificationManager.showNotification()
-        val stream = Observable.zip(
-                busDataRepository.loadAndSaveBusData(BusDataFile.TK_TO_KUTC),
-                busDataRepository.loadAndSaveBusData(BusDataFile.TND_TO_KUTC),
-                busDataRepository.loadAndSaveBusData(BusDataFile.KUTC_TO_TK),
-                busDataRepository.loadAndSaveBusData(BusDataFile.KUTC_TO_TND),
-                Function4<String, String, String, String, String> { _, _, _, t4 -> t4 }
-        )
-        stream.subscribe({
+        busDataRepository.loadAndSaveBusData().subscribe({
         }, {
             it.printStackTrace()
             stopSelf()

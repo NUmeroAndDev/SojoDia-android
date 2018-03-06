@@ -6,7 +6,6 @@ import com.numero.sojodia.api.BusDataApi
 import com.numero.sojodia.api.BusDataApi2
 import com.numero.sojodia.api.response.BusDataResponse
 import com.numero.sojodia.extension.readAssetsFile
-import com.numero.sojodia.model.BusDataFile
 import com.numero.sojodia.model.BusTime
 import com.squareup.moshi.Moshi
 import io.reactivex.Observable
@@ -50,10 +49,11 @@ class BusDataRepository(private val context: Context, private val busDataApi: Bu
 
     override fun loadBusDataVersion(): Observable<String> = busDataApi.getBusDataVersion()
 
-    override fun loadAndSaveBusData(busDataFile: BusDataFile): Observable<String> {
-        return busDataApi.getBusData(busDataFile)
+    override fun loadAndSaveBusData(): Observable<String> {
+        return busDataApi2.getBusData()
+                .map { moshi.adapter(BusDataResponse::class.java).toJson(it) }
                 .doOnNext({
-                    saveDownLoadData(busDataFile.fileName, it)
+                    saveDownLoadData(BUS_DATA_FILE_NAME, it)
                 })
     }
 
