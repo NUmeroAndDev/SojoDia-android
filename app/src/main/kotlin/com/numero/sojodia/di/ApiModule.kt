@@ -3,7 +3,6 @@ package com.numero.sojodia.di
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.api.ApplicationJsonAdapterFactory
 import com.numero.sojodia.api.BusDataApi
-import com.numero.sojodia.api.BusDataApi2
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -40,10 +39,6 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideBusDataApi(okHttpClient: OkHttpClient): BusDataApi = BusDataApi(okHttpClient)
-
-    @Provides
-    @Singleton
-    fun provideBusDataApi2(retrofit: Retrofit): BusDataApi2 = retrofit.create(BusDataApi2::class.java)
+    fun provideBusDataApi(retrofit: Retrofit): BusDataApi = retrofit.create(BusDataApi::class.java)
 
 }
