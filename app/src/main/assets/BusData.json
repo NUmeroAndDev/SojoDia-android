@@ -2,1008 +2,1008 @@
   "KutcToTk": [
     {
       "hour": 7,
-      "minutes": 4,
+      "minute": 4,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 33,
+      "minute": 33,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 3,
+      "minute": 3,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 48,
+      "minute": 48,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 13,
+      "minute": 13,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 28,
+      "minute": 28,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 4,
+      "minute": 4,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 23,
+      "minute": 23,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 42,
+      "minute": 42,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 3,
+      "minute": 3,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 19,
+      "minute": 19,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 51,
+      "minute": 51,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 12,
-      "minutes": 30,
+      "minute": 30,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 40,
+      "minute": 40,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 12,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 4,
+      "minute": 4,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 24,
+      "minute": 24,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 44,
+      "minute": 44,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 4,
+      "minute": 4,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 24,
+      "minute": 24,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 37,
+      "minute": 37,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 41,
+      "minute": 41,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 14,
-      "minutes": 45,
+      "minute": 45,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 14,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 15,
+      "minute": 15,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 36,
+      "minute": 36,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 15,
-      "minutes": 51,
+      "minute": 51,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": true,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 16,
-      "minutes": 15,
+      "minute": 15,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 16,
-      "minutes": 24,
+      "minute": 24,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 16,
-      "minutes": 28,
+      "minute": 28,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 16,
-      "minutes": 36,
+      "minute": 36,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 51,
+      "minute": 51,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 15,
+      "minute": 15,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 17,
-      "minutes": 25,
+      "minute": 25,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 43,
+      "minute": 43,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 55,
+      "minute": 55,
       "week": 0,
       "isNonstop": true,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 17,
-      "minutes": 59,
+      "minute": 59,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 3,
+      "minute": 3,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 18,
-      "minutes": 8,
+      "minute": 8,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 18,
-      "minutes": 14,
+      "minute": 14,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 34,
+      "minute": 34,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 40,
+      "minute": 40,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 55,
+      "minute": 55,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 49,
+      "minute": 49,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 22,
-      "minutes": 19,
+      "minute": 19,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 49,
+      "minute": 49,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 19,
+      "minute": 19,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 39,
+      "minute": 39,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 58,
+      "minute": 58,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 17,
+      "minute": 17,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 37,
+      "minute": 37,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 57,
+      "minute": 57,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 17,
+      "minute": 17,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 37,
+      "minute": 37,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 57,
+      "minute": 57,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 17,
+      "minute": 17,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 37,
+      "minute": 37,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 57,
+      "minute": 57,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 17,
+      "minute": 17,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 37,
+      "minute": 37,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 57,
+      "minute": 57,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 17,
+      "minute": 17,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 37,
+      "minute": 37,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 57,
+      "minute": 57,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 17,
+      "minute": 17,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 37,
+      "minute": 37,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 57,
+      "minute": 57,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 17,
+      "minute": 17,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 37,
+      "minute": 37,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 57,
+      "minute": 57,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 17,
+      "minute": 17,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 37,
+      "minute": 37,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 57,
+      "minute": 57,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 17,
+      "minute": 17,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 37,
+      "minute": 37,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 57,
+      "minute": 57,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 44,
+      "minute": 44,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 59,
+      "minute": 59,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 41,
+      "minute": 41,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 9,
+      "minute": 9,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 41,
+      "minute": 41,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 11,
+      "minute": 11,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 41,
+      "minute": 41,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 11,
+      "minute": 11,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 41,
+      "minute": 41,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 11,
+      "minute": 11,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 41,
+      "minute": 41,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 11,
+      "minute": 11,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 41,
+      "minute": 41,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 11,
+      "minute": 11,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 41,
+      "minute": 41,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 11,
+      "minute": 11,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 41,
+      "minute": 41,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 11,
+      "minute": 11,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 41,
+      "minute": 41,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 11,
+      "minute": 11,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 59,
+      "minute": 59,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 41,
+      "minute": 41,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 9,
+      "minute": 9,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 41,
+      "minute": 41,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 11,
+      "minute": 11,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 41,
+      "minute": 41,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 11,
+      "minute": 11,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 41,
+      "minute": 41,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 50,
+      "minute": 50,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 11,
+      "minute": 11,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 20,
+      "minute": 20,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 41,
+      "minute": 41,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 11,
+      "minute": 11,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 41,
+      "minute": 41,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 11,
+      "minute": 11,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 41,
+      "minute": 41,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 45,
+      "minute": 45,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 50,
+      "minute": 50,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 11,
+      "minute": 11,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 41,
+      "minute": 41,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 11,
+      "minute": 11,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 15,
+      "minute": 15,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 25,
+      "minute": 25,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 41,
+      "minute": 41,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 11,
+      "minute": 11,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 20,
+      "minute": 20,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 50,
+      "minute": 50,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 0,
+      "minute": 0,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 20,
+      "minute": 20,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 0,
+      "minute": 0,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
@@ -1012,581 +1012,581 @@
   "KutcToTnd": [
     {
       "hour": 6,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 1,
+      "minute": 1,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 44,
+      "minute": 44,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 9,
-      "minutes": 18,
+      "minute": 18,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 30,
+      "minute": 30,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 9,
-      "minutes": 45,
+      "minute": 45,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 40,
+      "minute": 40,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 3,
+      "minute": 3,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 40,
+      "minute": 40,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 39,
+      "minute": 39,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 7,
+      "minute": 7,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 43,
+      "minute": 43,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 41,
+      "minute": 41,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 25,
+      "minute": 25,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 16,
-      "minutes": 31,
+      "minute": 31,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 49,
+      "minute": 49,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 38,
+      "minute": 38,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 1,
+      "minute": 1,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 30,
+      "minute": 30,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 36,
+      "minute": 36,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 45,
+      "minute": 45,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 20,
-      "minutes": 16,
+      "minute": 16,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 45,
+      "minute": 45,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 21,
-      "minutes": 30,
+      "minute": 30,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 22,
-      "minutes": 31,
+      "minute": 31,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 4,
+      "minute": 4,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 46,
+      "minute": 46,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 10,
+      "minute": 10,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 14,
+      "minute": 14,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 48,
+      "minute": 48,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 48,
+      "minute": 48,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 49,
+      "minute": 49,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 42,
+      "minute": 42,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 48,
+      "minute": 48,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 39,
+      "minute": 39,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 22,
+      "minute": 22,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 35,
+      "minute": 35,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 28,
+      "minute": 28,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 2,
+      "minute": 2,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 29,
+      "minute": 29,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 12,
+      "minute": 12,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 41,
+      "minute": 41,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 51,
+      "minute": 51,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 22,
-      "minutes": 8,
+      "minute": 8,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 46,
+      "minute": 46,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 48,
+      "minute": 48,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 27,
+      "minute": 27,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 37,
+      "minute": 37,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 29,
+      "minute": 29,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 37,
+      "minute": 37,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 46,
+      "minute": 46,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 51,
+      "minute": 51,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 2,
+      "minute": 2,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 49,
+      "minute": 49,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 13,
+      "minute": 13,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 31,
+      "minute": 31,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 40,
+      "minute": 40,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 22,
-      "minutes": 2,
+      "minute": 2,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 46,
+      "minute": 46,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 48,
+      "minute": 48,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 27,
+      "minute": 27,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 37,
+      "minute": 37,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 0,
+      "minute": 0,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 29,
+      "minute": 29,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 37,
+      "minute": 37,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 46,
+      "minute": 46,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 51,
+      "minute": 51,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 20,
+      "minute": 20,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 2,
+      "minute": 2,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 49,
+      "minute": 49,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 55,
+      "minute": 55,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 13,
+      "minute": 13,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 31,
+      "minute": 31,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 45,
+      "minute": 45,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 22,
-      "minutes": 2,
+      "minute": 2,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
@@ -1595,1113 +1595,1113 @@
   "TkToKutc": [
     {
       "hour": 6,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 23,
+      "minute": 23,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 55,
+      "minute": 55,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 8,
+      "minute": 8,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 13,
+      "minute": 13,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 8,
-      "minutes": 18,
+      "minute": 18,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 8,
-      "minutes": 22,
+      "minute": 22,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 26,
+      "minute": 26,
       "week": 0,
       "isNonstop": true,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 8,
-      "minutes": 29,
+      "minute": 29,
       "week": 0,
       "isNonstop": true,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 8,
-      "minutes": 32,
+      "minute": 32,
       "week": 0,
       "isNonstop": true,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 8,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 40,
+      "minute": 40,
       "week": 0,
       "isNonstop": true,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 8,
-      "minutes": 45,
+      "minute": 45,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 8,
-      "minutes": 55,
+      "minute": 55,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 15,
+      "minute": 15,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 25,
+      "minute": 25,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 9,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 47,
+      "minute": 47,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 9,
-      "minutes": 55,
+      "minute": 55,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 0,
+      "minute": 0,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 10,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": true,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 10,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 10,
-      "minutes": 15,
+      "minute": 15,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 25,
+      "minute": 25,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 10,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 43,
+      "minute": 43,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 10,
-      "minutes": 55,
+      "minute": 55,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 15,
+      "minute": 15,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 30,
+      "minute": 30,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": true,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 12,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 40,
+      "minute": 40,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 30,
+      "minute": 30,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 23,
-      "minutes": 1,
+      "minute": 1,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 0,
+      "minute": 0,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 14,
+      "minute": 14,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 28,
+      "minute": 28,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 44,
+      "minute": 44,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 2,
+      "minute": 2,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 20,
+      "minute": 20,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 38,
+      "minute": 38,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 55,
+      "minute": 55,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 10,
+      "minute": 10,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 50,
+      "minute": 50,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 10,
+      "minute": 10,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 50,
+      "minute": 50,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 10,
+      "minute": 10,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 50,
+      "minute": 50,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 10,
+      "minute": 10,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 50,
+      "minute": 50,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 10,
+      "minute": 10,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 50,
+      "minute": 50,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 10,
+      "minute": 10,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 50,
+      "minute": 50,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 10,
+      "minute": 10,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 50,
+      "minute": 50,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 10,
+      "minute": 10,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 50,
+      "minute": 50,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 0,
+      "minute": 0,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 5,
+      "minute": 5,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 33,
+      "minute": 33,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 50,
+      "minute": 50,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 40,
+      "minute": 40,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 40,
+      "minute": 40,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 40,
+      "minute": 40,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 40,
+      "minute": 40,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 40,
+      "minute": 40,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 40,
+      "minute": 40,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 40,
+      "minute": 40,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 40,
+      "minute": 40,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 5,
+      "minute": 5,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 15,
+      "minute": 15,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 20,
+      "minute": 20,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 25,
+      "minute": 25,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 33,
+      "minute": 33,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 36,
+      "minute": 36,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 50,
+      "minute": 50,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 55,
+      "minute": 55,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 20,
+      "minute": 20,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 50,
+      "minute": 50,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 55,
+      "minute": 55,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 0,
+      "minute": 0,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 5,
+      "minute": 5,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 20,
+      "minute": 20,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 0,
+      "minute": 0,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 20,
+      "minute": 20,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 40,
+      "minute": 40,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
@@ -2710,602 +2710,602 @@
   "TndToKutc": [
     {
       "hour": 6,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 3,
+      "minute": 3,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 29,
+      "minute": 29,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 20,
+      "minute": 20,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 25,
+      "minute": 25,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 8,
-      "minutes": 31,
+      "minute": 31,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 34,
+      "minute": 34,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 8,
-      "minutes": 38,
+      "minute": 38,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 9,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 55,
+      "minute": 55,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": true
     },
     {
       "hour": 10,
-      "minutes": 22,
+      "minute": 22,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 56,
+      "minute": 56,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 30,
+      "minute": 30,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 2,
+      "minute": 2,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 22,
+      "minute": 22,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 58,
+      "minute": 58,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 15,
+      "minute": 15,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 45,
+      "minute": 45,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 10,
+      "minute": 10,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 58,
+      "minute": 58,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 45,
+      "minute": 45,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 18,
+      "minute": 18,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 38,
+      "minute": 38,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 40,
+      "minute": 40,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 5,
+      "minute": 5,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 35,
+      "minute": 35,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 45,
+      "minute": 45,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 50,
+      "minute": 50,
       "week": 0,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 6,
-      "minutes": 23,
+      "minute": 23,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 5,
+      "minute": 5,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 29,
+      "minute": 29,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 5,
+      "minute": 5,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 5,
+      "minute": 5,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 12,
+      "minute": 12,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 1,
+      "minute": 1,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 25,
+      "minute": 25,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 7,
+      "minute": 7,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 7,
+      "minute": 7,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 39,
+      "minute": 39,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 7,
+      "minute": 7,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 47,
+      "minute": 47,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 21,
+      "minute": 21,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 30,
+      "minute": 30,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 55,
+      "minute": 55,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 20,
-      "minutes": 9,
+      "minute": 9,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 27,
+      "minute": 27,
       "week": 1,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 5,
+      "minute": 5,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 5,
+      "minute": 5,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 55,
+      "minute": 55,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 55,
+      "minute": 55,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 48,
+      "minute": 48,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 55,
+      "minute": 55,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 30,
+      "minute": 30,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 0,
+      "minute": 0,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 10,
+      "minute": 10,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 21,
+      "minute": 21,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 30,
+      "minute": 30,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 50,
+      "minute": 50,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 59,
+      "minute": 59,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 21,
+      "minute": 21,
       "week": 2,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 7,
-      "minutes": 5,
+      "minute": 5,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 20,
+      "minute": 20,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 8,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 5,
+      "minute": 5,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 9,
-      "minutes": 55,
+      "minute": 55,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 15,
+      "minute": 15,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 10,
-      "minutes": 55,
+      "minute": 55,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 11,
-      "minutes": 48,
+      "minute": 48,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 12,
-      "minutes": 55,
+      "minute": 55,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 13,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 14,
-      "minutes": 0,
+      "minute": 0,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 15,
-      "minutes": 10,
+      "minute": 10,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 16,
-      "minutes": 21,
+      "minute": 21,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 17,
-      "minutes": 30,
+      "minute": 30,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 18,
-      "minutes": 50,
+      "minute": 50,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 19,
-      "minutes": 59,
+      "minute": 59,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false
     },
     {
       "hour": 21,
-      "minutes": 21,
+      "minute": 21,
       "week": 3,
       "isNonstop": false,
       "isOnlyOnSchooldays": false

@@ -6,13 +6,13 @@ import se.ansman.kotshi.JsonSerializable
 @JsonSerializable
 data class BusTime(
         val hour: Int,
-        val minutes: Int,
+        val minute: Int,
         @Json(name = "week")
         val weekId: Int,
         val isNonstop: Boolean,
         val isOnlyOnSchooldays: Boolean) {
 
-    val time: Time = Time(hour, minutes)
+    val time: Time = Time(hour, minute)
 
     val week: Week? = Week.getWeek(weekId)
 }
