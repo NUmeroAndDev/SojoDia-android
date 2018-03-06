@@ -1,6 +1,7 @@
 package com.numero.sojodia.repository
 
 import android.content.Context
+import com.numero.sojodia.api.BusDataApi
 import com.numero.sojodia.model.BusDataFile
 import com.numero.sojodia.model.BusTime
 import com.numero.sojodia.model.Time
@@ -9,7 +10,7 @@ import io.reactivex.Observable
 import java.io.*
 import java.util.*
 
-class BusDataRepository(private val context: Context) : IBusDataRepository {
+class BusDataRepository(private val context: Context, private val busDataApi: BusDataApi) : IBusDataRepository {
 
     override var tkBusTimeListGoing: MutableList<BusTime> = mutableListOf()
         get() {
@@ -55,12 +56,25 @@ class BusDataRepository(private val context: Context) : IBusDataRepository {
             }
         }
 
+    override fun loadAndSaveBusData(busDataFile: BusDataFile): Observable<String> {
+        return busDataApi.getBusData(busDataFile)
+                .doOnNext({
+                    saveDownLoadData(busDataFile.fileName, it)
+                })
+    }
 
     override fun clearCache() {
         tkBusTimeListGoing.clear()
         tkBusTimeListReturn.clear()
         tndBusTimeListGoing.clear()
         tndBusTimeListReturn.clear()
+    }
+
+    @Throws(Exception::class)
+    private fun saveDownLoadData(fileName: String, data: String) {
+        context.openFileOutput(fileName, Context.MODE_PRIVATE).apply {
+            write(data.toByteArray())
+        }.close()
     }
 
     private fun loadBusData(busDataFile: BusDataFile): Observable<MutableList<BusTime>> {

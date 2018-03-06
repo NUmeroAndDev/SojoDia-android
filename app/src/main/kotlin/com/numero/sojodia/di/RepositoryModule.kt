@@ -1,6 +1,7 @@
 package com.numero.sojodia.di
 
 import android.content.Context
+import com.numero.sojodia.api.BusDataApi
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import dagger.Module
@@ -12,7 +13,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideBusDataRepository(context: Context): BusDataRepository = BusDataRepository(context)
+    fun provideBusDataRepository(context: Context, busDataApi: BusDataApi): BusDataRepository = BusDataRepository(context, busDataApi)
 
     @Provides
     @Singleton
