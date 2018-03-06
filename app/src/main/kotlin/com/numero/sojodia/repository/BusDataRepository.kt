@@ -1,8 +1,10 @@
 package com.numero.sojodia.repository
 
 import android.content.Context
+import android.util.Log
 import com.numero.sojodia.api.ApplicationJsonAdapterFactory
 import com.numero.sojodia.api.BusDataApi
+import com.numero.sojodia.api.BusDataApi2
 import com.numero.sojodia.api.response.BusDataResponse
 import com.numero.sojodia.model.BusDataFile
 import com.numero.sojodia.model.BusTime
@@ -12,7 +14,7 @@ import io.reactivex.Observable
 import java.io.*
 import java.util.*
 
-class BusDataRepository(private val context: Context, private val busDataApi: BusDataApi) : IBusDataRepository {
+class BusDataRepository(private val context: Context, private val busDataApi: BusDataApi, private val busDataApi2: BusDataApi2) : IBusDataRepository {
 
     private val moshi = Moshi.Builder().add(ApplicationJsonAdapterFactory.INSTANCE).build()
 

@@ -9,7 +9,8 @@ data class BusTime(
         val minutes: Int,
         @Json(name = "week")
         val weekId: Int,
-        val isNonstop: Boolean) {
+        val isNonstop: Boolean,
+        val isOnlyOnSchooldays: Boolean) {
 
     val time: Time = Time(hour, minutes)
 

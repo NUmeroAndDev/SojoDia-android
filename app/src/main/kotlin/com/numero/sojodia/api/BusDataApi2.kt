@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface BusDataApi2 {
 
-    @GET("/BusData.json")
+    @GET("/NUmeroAndDev/SojoDia-BusDate/v2/BusData.json")
     fun getBusData(): Observable<BusDataResponse>
 }
