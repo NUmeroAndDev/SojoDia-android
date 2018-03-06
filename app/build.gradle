@@ -30,6 +30,7 @@ android {
 
         buildConfigField("String", "UPDATE_URL", "\"https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/version.txt\"")
         buildConfigField("String", "BUS_FILE_URL", "\"https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/master/%s\"")
+        buildConfigField("String", "BUS_DATA_URL", "\"https://raw.githubusercontent.com/NUmeroAndDev/SojoDia-BusDate/v2\"")
     }
 
     buildTypes {

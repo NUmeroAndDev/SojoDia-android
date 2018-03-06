@@ -1,11 +1,17 @@
 package com.numero.sojodia.di
 
 import com.numero.sojodia.BuildConfig
+import com.numero.sojodia.api.ApplicationJsonAdapterFactory
 import com.numero.sojodia.api.BusDataApi
+import com.numero.sojodia.api.BusDataApi2
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -21,6 +27,23 @@ class ApiModule {
 
     @Provides
     @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+                .baseUrl(BuildConfig.BUS_DATA_URL)
+                .client(okHttpClient)
+                .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder()
+                        .add(ApplicationJsonAdapterFactory.INSTANCE)
+                        .build()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+                .build()
+    }
+
+    @Provides
+    @Singleton
     fun provideBusDataApi(okHttpClient: OkHttpClient): BusDataApi = BusDataApi(okHttpClient)
+
+    @Provides
+    @Singleton
+    fun provideBusDataApi2(retrofit: Retrofit): BusDataApi2 = retrofit.create(BusDataApi2::class.java)
 
 }

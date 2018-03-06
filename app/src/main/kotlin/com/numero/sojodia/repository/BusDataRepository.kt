@@ -1,59 +1,72 @@
 package com.numero.sojodia.repository
 
 import android.content.Context
+import com.numero.sojodia.api.ApplicationJsonAdapterFactory
 import com.numero.sojodia.api.BusDataApi
+import com.numero.sojodia.api.response.BusDataResponse
 import com.numero.sojodia.model.BusDataFile
 import com.numero.sojodia.model.BusTime
-import com.numero.sojodia.model.Time
 import com.numero.sojodia.model.Week
+import com.squareup.moshi.Moshi
 import io.reactivex.Observable
 import java.io.*
 import java.util.*
 
 class BusDataRepository(private val context: Context, private val busDataApi: BusDataApi) : IBusDataRepository {
 
+    private val moshi = Moshi.Builder().add(ApplicationJsonAdapterFactory.INSTANCE).build()
+
     override var tkBusTimeListGoing: MutableList<BusTime> = mutableListOf()
         get() {
-            return if (field.isEmpty()) {
-                loadBusData(BusDataFile.TK_TO_KUTC).blockingFirst().apply {
-                    field = this
-                }
-            } else {
-                field
+            if (field.isEmpty()) {
+                initList()
             }
+            return field
         }
 
     override var tkBusTimeListReturn: MutableList<BusTime> = mutableListOf()
         get() {
-            return if (field.isEmpty()) {
-                loadBusData(BusDataFile.KUTC_TO_TK).blockingFirst().apply {
-                    field = this
-                }
-            } else {
-                field
+            if (field.isEmpty()) {
+                initList()
             }
+            return field
+//            return if (field.isEmpty()) {
+//                loadBusData(BusDataFile.KUTC_TO_TK).blockingFirst().apply {
+//                    field = this
+//                }
+//            } else {
+//                field
+//            }
         }
 
     override var tndBusTimeListGoing: MutableList<BusTime> = mutableListOf()
         get() {
-            return if (field.isEmpty()) {
-                loadBusData(BusDataFile.TND_TO_KUTC).blockingFirst().apply {
-                    field = this
-                }
-            } else {
-                field
+            if (field.isEmpty()) {
+                initList()
             }
+            return field
+//            return if (field.isEmpty()) {
+//                loadBusData(BusDataFile.TND_TO_KUTC).blockingFirst().apply {
+//                    field = this
+//                }
+//            } else {
+//                field
+//            }
         }
 
     override var tndBusTimeListReturn: MutableList<BusTime> = mutableListOf()
         get() {
-            return if (field.isEmpty()) {
-                loadBusData(BusDataFile.KUTC_TO_TND).blockingFirst().apply {
-                    field = this
-                }
-            } else {
-                field
+            if (field.isEmpty()) {
+                initList()
             }
+            return field
+//            return if (field.isEmpty()) {
+//                loadBusData(BusDataFile.KUTC_TO_TND).blockingFirst().apply {
+//                    field = this
+//                }
+//            } else {
+//                field
+//            }
         }
 
     override fun loadBusDataVersion(): Observable<String> = busDataApi.getBusDataVersion()
@@ -77,6 +90,17 @@ class BusDataRepository(private val context: Context, private val busDataApi: Bu
         context.openFileOutput(fileName, Context.MODE_PRIVATE).apply {
             write(data.toByteArray())
         }.close()
+    }
+
+    private fun initList() {
+        val json = context.readAssetsFile("BusData.json")
+        val busDataResponse = moshi.adapter(BusDataResponse::class.java).fromJson(json)
+        if (busDataResponse != null) {
+            tkBusTimeListGoing = busDataResponse.tkToKutcDataList.toMutableList()
+            tkBusTimeListReturn = busDataResponse.kutcToTkDataList.toMutableList()
+            tndBusTimeListGoing = busDataResponse.tndToKutcDataList.toMutableList()
+            tndBusTimeListReturn = busDataResponse.kutcToTndDataList.toMutableList()
+        }
     }
 
     private fun loadBusData(busDataFile: BusDataFile): Observable<MutableList<BusTime>> {
@@ -111,7 +135,7 @@ class BusDataRepository(private val context: Context, private val busDataApi: Bu
                 val week = Week.getWeek(tokenizer.nextToken().toInt()) ?: continue
                 val isNonstop = tokenizer.nextToken().toInt() != 0
 
-                dataList.add(BusTime(Time(hour, minutes), week, isNonstop))
+//                dataList.add(BusTime(Time(hour, minutes), week, isNonstop))
             }
 
             bufferedReader.close()
@@ -120,4 +144,13 @@ class BusDataRepository(private val context: Context, private val busDataApi: Bu
             it.onNext(dataList)
         }
     }
+}
+
+/**
+ * @param fileName assetsに入っているファイルの名前
+ *
+ * @return String
+ */
+fun Context.readAssetsFile(fileName: String): String {
+    return assets.open(fileName).reader(charset = Charsets.UTF_8).use { it.readText() }
 }
