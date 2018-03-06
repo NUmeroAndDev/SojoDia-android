@@ -20,6 +20,6 @@ enum class BusDataFile(val fileName: String) {
             "KutcToTnd.csv"
     );
 
-    val url: String = String.format(BuildConfig.BUS_FILE_URL, fileName)
+    val url: String = BuildConfig.BUS_FILE_URL.format(fileName)
 
 }
