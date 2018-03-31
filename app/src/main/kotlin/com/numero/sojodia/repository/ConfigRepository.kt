@@ -10,14 +10,21 @@ class ConfigRepository(context: Context) : IConfigRepository {
 
     private val sharedPreferences: SharedPreferences
 
-    override var versionCode: Long = -1
+    override var versionCode: Long
+        set(value) {
+            sharedPreferences.edit().apply {
+                putLong(VERSION_CODE, value)
+            }.apply()
+        }
+        get() = sharedPreferences.getLong(VERSION_CODE, 20170401L)
+
+    override var masterVersionCode: Long = -1
         set(value) {
             field = value
             sharedPreferences.edit().apply {
                 putString(DATE, Calendar.getInstance().getTodayStringOnlyFigure())
             }.apply()
         }
-        get() = sharedPreferences.getLong(VERSION_CODE, 20170401L)
 
     override val isTodayUpdateChecked: Boolean
         get() {
@@ -25,16 +32,10 @@ class ConfigRepository(context: Context) : IConfigRepository {
         }
 
     override val canUpdate: Boolean
-        get() = sharedPreferences.getLong(VERSION_CODE, 20170401L) < versionCode
+        get() = versionCode < masterVersionCode
 
     init {
         sharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
-    }
-
-    override fun successUpdate() {
-        sharedPreferences.edit().apply {
-            putLong(VERSION_CODE, versionCode)
-        }.apply()
     }
 
     companion object {

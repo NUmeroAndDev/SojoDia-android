@@ -56,7 +56,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
         busDataRepository.loadBusDataConfig()
                 .subscribe({
                     configRepository.apply {
-                        versionCode = it.version
+                        masterVersionCode = it.version
                         if (canUpdate) {
                             executeUpdate()
                         }
@@ -74,7 +74,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
             it.printStackTrace()
             stopSelf()
         }, {
-            configRepository.successUpdate()
+            configRepository.versionCode = configRepository.masterVersionCode
             BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD)
             stopSelf()
         })
