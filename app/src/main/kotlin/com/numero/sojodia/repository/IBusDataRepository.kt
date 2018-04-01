@@ -1,6 +1,8 @@
 package com.numero.sojodia.repository
 
 import com.numero.sojodia.model.BusTime
+import com.numero.sojodia.model.Config
+import io.reactivex.Observable
 
 interface IBusDataRepository {
 
@@ -11,6 +13,10 @@ interface IBusDataRepository {
     var tndBusTimeListGoing: MutableList<BusTime>
 
     var tndBusTimeListReturn: MutableList<BusTime>
+
+    fun loadBusDataConfig(): Observable<Config>
+
+    fun loadAndSaveBusData(): Observable<String>
 
     fun clearCache()
 
