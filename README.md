@@ -19,4 +19,5 @@ API Level 17 ( Android 4.2 )
 |[Dagger](https://github.com/google/dagger)|2.15|
 |[Kotshi](https://github.com/ansman/kotshi)|1.0.2|
 |[Retrofit](https://github.com/square/retrofit)|2.3.0|
+|[Android-ktx](https://github.com/android/android-ktx)|0.3|
 |[Android License Tools Plugin](https://github.com/cookpad/license-tools-plugin)|1.2.0|

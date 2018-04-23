@@ -1,13 +1,16 @@
 buildscript {
 
-    ext.kotlin_version = '1.2.40'
-    ext.supportLibrary_version = '27.1.1'
-    ext.okhttp_version = '3.9.0'
-    ext.kotshi_version = '1.0.2'
-    ext.retrofit_version = '2.3.0'
-    ext.dagger_version = '2.15'
-    ext.rxjava_version = '2.1.7'
-    ext.rx_android_version = '2.0.2'
+    ext {
+        kotlin_version = '1.2.40'
+        ktx_version = '0.3'
+        supportLibrary_version = '27.1.1'
+        okhttp_version = '3.9.0'
+        kotshi_version = '1.0.2'
+        retrofit_version = '2.3.0'
+        dagger_version = '2.15'
+        rxjava_version = '2.1.7'
+        rx_android_version = '2.0.2'
+    }
 
     repositories {
         jcenter()

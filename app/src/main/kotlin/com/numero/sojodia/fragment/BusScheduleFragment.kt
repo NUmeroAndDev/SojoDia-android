@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.BusScheduleContract
 import com.numero.sojodia.extension.component
@@ -49,7 +50,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
         retainInstance = true
 
         val arguments = arguments ?: return
-        val reciprocate = arguments.getSerializable(Reciprocate::class.java.simpleName) as Reciprocate
+        val reciprocate = arguments.getSerializable(ARG_RECIPROCATE) as Reciprocate
         BusSchedulePresenter(this, busDataRepository, reciprocate)
     }
 
@@ -225,10 +226,11 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     companion object {
+
+        private const val ARG_RECIPROCATE = "ARG_RECIPROCATE"
+
         fun newInstance(reciprocate: Reciprocate): BusScheduleFragment = BusScheduleFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable(Reciprocate::class.java.simpleName, reciprocate)
-            }
+            arguments = bundleOf(ARG_RECIPROCATE to reciprocate)
         }
     }
 }

@@ -3,6 +3,7 @@ package com.numero.sojodia.view
 import android.content.Context
 import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
+import androidx.core.content.withStyledAttributes
 
 import com.numero.sojodia.R
 import java.util.*
@@ -37,11 +38,11 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         }
 
     init {
-        context.obtainStyledAttributes(attrs, R.styleable.CountDownClockTextView).apply {
+        context.withStyledAttributes(attrs, R.styleable.CountDownClockTextView) {
             defaultTextColor = getColor(R.styleable.CountDownClockTextView_defaultTextColor, 0)
             attentionTextColor = getColor(R.styleable.CountDownClockTextView_attentionTextColor, 0)
             safeTextColor = getColor(R.styleable.CountDownClockTextView_safeTextColor, 0)
-        }.recycle()
+        }
     }
 
     /**
@@ -62,7 +63,7 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        if (!isAttached) {
+        if (isAttached.not()) {
             isAttached = true
             isBecomeZeroSecond = false
             runnable.run()
