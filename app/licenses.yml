@@ -1,27 +1,38 @@
-- artifact: android.arch.core:common:+
-  skip: true
-- artifact: android.arch.lifecycle:common:+
-  skip: true
-- artifact: android.arch.lifecycle:runtime:+
-  skip: true
+# SupportLibrary
 - artifact: com.android.support:+:+
   name: Android Support Libraries
   copyrightHolder: The Android Open Source Project
   license: apache2
+
+# Kotlin
 - artifact: org.jetbrains.kotlin:kotlin-stdlib:+
   name: org.jetbrains.kotlin:kotlin-stdlib
   copyrightHolder: JetBrains s.r.o.
   license: The Apache License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://kotlinlang.org/
-- artifact: org.jetbrains.kotlin:kotlin-stdlib-jre8:+
-  skip: true
 - artifact: org.jetbrains.kotlin:kotlin-android-extensions-runtime:+
   skip: true
 - artifact: org.jetbrains:annotations:+
   skip: true
 - artifact: org.jetbrains.kotlin:kotlin-stdlib-jre7:+
   skip: true
+
+# arch
+- artifact: android.arch.core:common:+
+  skip: true
+- artifact: android.arch.lifecycle:common:+
+  skip: true
+- artifact: android.arch.lifecycle:runtime:+
+  skip: true
+- artifact: android.arch.lifecycle:viewmodel:+
+  skip: true
+- artifact: android.arch.core:runtime:+
+  skip: true
+- artifact: android.arch.lifecycle:livedata-core:+
+  skip: true
+
+# Okhttp
 - artifact: com.squareup.okhttp3:okhttp:+
   name: OkHttp
   copyrightHolder: Square, Inc.
@@ -32,6 +43,8 @@
   license: apache2
 - artifact: com.squareup.okhttp3:logging-interceptor:+
   skip: true
+
+# Rxjava
 - artifact: io.reactivex.rxjava2:rxandroid:+
   name: RxAndroid
   copyrightHolder: The RxAndroid authors
@@ -46,6 +59,8 @@
   url: https://github.com/ReactiveX/RxJava
 - artifact: org.reactivestreams:reactive-streams:+
   skip: true
+
+# Dagger
 - artifact: com.google.dagger:dagger:+
   name: Dagger
   copyrightHolder: The Dagger Authors
@@ -58,27 +73,35 @@
   skip: true
 - artifact: javax.inject:javax.inject:+
   skip: true
+
+# Retrofit
 - artifact: com.squareup.retrofit2:retrofit:+
   name: Retrofit
   copyrightHolder: Square, Inc.
   license: Apache 2.0
+- artifact: com.squareup.retrofit2:converter-moshi:+
+  skip: true
+- artifact: com.squareup.retrofit2:adapter-rxjava2:+
+  skip: true
+
+# Kotshi
 - artifact: se.ansman.kotshi:+:+
   name: Kotshi
   copyrightHolder: Nicklas Ansman Giertz.
   license: The Apache Software License, Version 2.0
   licenseUrl: https://github.com/ansman/kotshi/blob/master/LICENSE.txt
   url: https://github.com/ansman/kotshi
-- artifact: com.squareup.retrofit2:converter-moshi:+
-  skip: true
+
+# Moshi
 - artifact: com.squareup.moshi:moshi:+
   name: Moshi
   copyrightHolder: Square, Inc.
   license: Apache 2.0
-- artifact: android.arch.lifecycle:viewmodel:+
-  skip: true
-- artifact: android.arch.core:runtime:+
-  skip: true
-- artifact: com.squareup.retrofit2:adapter-rxjava2:+
-  skip: true
-- artifact: android.arch.lifecycle:livedata-core:+
-  skip: true
+
+# Android-ktx
+- artifact: androidx.core:core-ktx:+
+  name: Android KTX Core
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/android/android-ktx
