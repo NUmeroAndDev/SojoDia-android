@@ -17,4 +17,6 @@ API Level 17 ( Android 4.2 )
 |[RxAndroid](https://github.com/ReactiveX/RxAndroid)|2.0.2|
 |[OkHttp](https://github.com/square/okhttp)|3.9.0|
 |[Dagger](https://github.com/google/dagger)|2.15|
+|[Kotshi](https://github.com/ansman/kotshi)|1.0.2|
+|[Retrofit](https://github.com/square/retrofit)|2.3.0|
 |[Android License Tools Plugin](https://github.com/cookpad/license-tools-plugin)|1.2.0|

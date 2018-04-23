@@ -1,27 +1,22 @@
 package com.numero.sojodia.service
 
 import android.app.IntentService
-import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-
 import com.numero.sojodia.SojoDiaApplication
-import com.numero.sojodia.api.BusDataApi
 import com.numero.sojodia.di.ApplicationComponent
 import com.numero.sojodia.manager.NotificationManager
-import com.numero.sojodia.model.BusDataFile
+import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.util.BroadCastUtil
-
 import javax.inject.Inject
 
 class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName) {
 
-    private val busDataFiles = BusDataFile.values()
     private lateinit var notificationManager: NotificationManager
 
     @Inject
-    lateinit var busDataApi: BusDataApi
+    lateinit var busDataRepository: BusDataRepository
     @Inject
     lateinit var configRepository: ConfigRepository
 
@@ -58,10 +53,10 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
     }
 
     private fun checkUpdate() {
-        busDataApi.getBusDataVersion()
+        busDataRepository.loadBusDataConfig()
                 .subscribe({
                     configRepository.apply {
-                        versionCode = it.toLong()
+                        masterVersionCode = it.version
                         if (canUpdate) {
                             executeUpdate()
                         }
@@ -74,25 +69,14 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     private fun executeUpdate() {
         notificationManager.showNotification()
-        busDataFiles.forEach { busDataFile ->
-            busDataApi.getBusData(busDataFile)
-                    .subscribe({
-                        saveDownLoadData(busDataFile.fileName, it)
-                    }, {
-                        it.printStackTrace()
-                        stopSelf()
-                    }, {
-                        configRepository.successUpdate()
-                        BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD)
-                        stopSelf()
-                    })
-        }
-    }
-
-    @Throws(Exception::class)
-    private fun saveDownLoadData(fileName: String, data: String) {
-        openFileOutput(fileName, Context.MODE_PRIVATE).apply {
-            write(data.toByteArray())
-        }.close()
+        busDataRepository.loadAndSaveBusData().subscribe({
+        }, {
+            it.printStackTrace()
+            stopSelf()
+        }, {
+            configRepository.versionCode = configRepository.masterVersionCode
+            BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD)
+            stopSelf()
+        })
     }
 }

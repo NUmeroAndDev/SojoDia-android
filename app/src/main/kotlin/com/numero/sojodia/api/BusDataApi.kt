@@ -1,31 +1,15 @@
 package com.numero.sojodia.api
 
-import com.numero.sojodia.BuildConfig
-import com.numero.sojodia.model.BusDataFile
-
+import com.numero.sojodia.api.response.BusDataResponse
+import com.numero.sojodia.model.Config
 import io.reactivex.Observable
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import retrofit2.http.GET
 
-class BusDataApi(private val okHttpClient: OkHttpClient) {
+interface BusDataApi {
 
-    fun getBusDataVersion(): Observable<String> = createObservable(Request.Builder().url(BuildConfig.UPDATE_URL).build())
+    @GET("/NUmeroAndDev/SojoDia-BusDate/v2/Config.json")
+    fun getConfig(): Observable<Config>
 
-    fun getBusData(busDataFile: BusDataFile): Observable<String> = createObservable(Request.Builder().url(busDataFile.url).build())
-
-    private fun createObservable(request: Request): Observable<String> {
-        return Observable.create {
-            val response = okHttpClient.newCall(request).execute()
-            if (!response.isSuccessful) {
-                throw Exception(response.message())
-            }
-            val responseBody = response.body()
-            if (responseBody != null) {
-                it.onNext(responseBody.string())
-                it.onComplete()
-            } else {
-                it.onError(Exception("Response data is null"))
-            }
-        }
-    }
+    @GET("/NUmeroAndDev/SojoDia-BusDate/v2/BusData.json")
+    fun getBusData(): Observable<BusDataResponse>
 }

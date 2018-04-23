@@ -58,3 +58,27 @@
   skip: true
 - artifact: javax.inject:javax.inject:+
   skip: true
+- artifact: com.squareup.retrofit2:retrofit:+
+  name: Retrofit
+  copyrightHolder: Square, Inc.
+  license: Apache 2.0
+- artifact: se.ansman.kotshi:+:+
+  name: Kotshi
+  copyrightHolder: Nicklas Ansman Giertz.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://github.com/ansman/kotshi/blob/master/LICENSE.txt
+  url: https://github.com/ansman/kotshi
+- artifact: com.squareup.retrofit2:converter-moshi:+
+  skip: true
+- artifact: com.squareup.moshi:moshi:+
+  name: Moshi
+  copyrightHolder: Square, Inc.
+  license: Apache 2.0
+- artifact: android.arch.lifecycle:viewmodel:+
+  skip: true
+- artifact: android.arch.core:runtime:+
+  skip: true
+- artifact: com.squareup.retrofit2:adapter-rxjava2:+
+  skip: true
+- artifact: android.arch.lifecycle:livedata-core:+
+  skip: true
