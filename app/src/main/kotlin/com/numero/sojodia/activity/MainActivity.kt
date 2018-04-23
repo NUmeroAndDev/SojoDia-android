@@ -17,8 +17,6 @@ import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.fragment.TimeTableDialogFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
-import com.numero.sojodia.presenter.BusSchedulePresenter
-import com.numero.sojodia.presenter.TimeTablePresenter
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.service.UpdateBusDataService
 import com.numero.sojodia.util.BroadCastUtil
@@ -78,20 +76,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onActivityCreated(fragment: BusScheduleFragment, reciprocate: Reciprocate) {
-        // FIXME AdapterではActivity再生成時にPresenterを生成できないからこの実装している
-        BusSchedulePresenter(fragment, busDataRepository, reciprocate)
-    }
-
     override fun onDataChanged() {
         toolbar.subtitle = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
     }
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
-        TimeTableDialogFragment.newInstance().also {
-            TimeTablePresenter(it, busDataRepository, route, reciprocate)
-            it.show(supportFragmentManager, "")
-        }
+        TimeTableDialogFragment.newInstance(route, reciprocate).show(supportFragmentManager, "")
     }
 
     private fun initViews() {

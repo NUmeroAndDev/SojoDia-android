@@ -15,6 +15,7 @@ import com.numero.sojodia.model.BusTime
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.Week
+import com.numero.sojodia.presenter.BusSchedulePresenter
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.view.CountDownClockTextView
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
@@ -24,13 +25,12 @@ import javax.inject.Inject
 
 class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
-    private var listener: BusScheduleFragmentListener? = null
-
-    private lateinit var presenter: BusScheduleContract.Presenter
-
     @Inject
     lateinit var busDataRepository: BusDataRepository
 
+    private lateinit var presenter: BusScheduleContract.Presenter
+
+    private var listener: BusScheduleFragmentListener? = null
     private var currentDateString: String? = null
 
     private val isDateChanged: Boolean
@@ -43,17 +43,14 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val arguments = arguments ?: return
-        val reciprocate = arguments.getSerializable(Reciprocate::class.java.simpleName) as Reciprocate
-        listener?.onActivityCreated(this, reciprocate)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         component?.inject(this)
         super.onCreate(savedInstanceState)
         retainInstance = true
+
+        val arguments = arguments ?: return
+        val reciprocate = arguments.getSerializable(Reciprocate::class.java.simpleName) as Reciprocate
+        BusSchedulePresenter(this, busDataRepository, reciprocate)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -222,8 +219,6 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     interface BusScheduleFragmentListener {
-        fun onActivityCreated(fragment: BusScheduleFragment, reciprocate: Reciprocate)
-
         fun onDataChanged()
 
         fun showTimeTableDialog(route: Route, reciprocate: Reciprocate)
