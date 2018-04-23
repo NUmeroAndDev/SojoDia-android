@@ -64,10 +64,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$ktx_version"
 
-    implementation "com.android.support:design:$supportLibrary_version"
-    implementation "com.android.support:appcompat-v7:$supportLibrary_version"
-    implementation "com.android.support:recyclerview-v7:$supportLibrary_version"
-    implementation "com.android.support:cardview-v7:$supportLibrary_version"
+    implementation "com.android.support:design:$support_library_version"
+    implementation "com.android.support:appcompat-v7:$support_library_version"
+    implementation "com.android.support:recyclerview-v7:$support_library_version"
+    implementation "com.android.support:cardview-v7:$support_library_version"
 
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"

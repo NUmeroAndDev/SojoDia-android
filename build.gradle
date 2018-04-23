@@ -3,7 +3,7 @@ buildscript {
     ext {
         kotlin_version = '1.2.40'
         ktx_version = '0.3'
-        supportLibrary_version = '27.1.1'
+        support_library_version = '27.1.1'
         okhttp_version = '3.9.0'
         kotshi_version = '1.0.2'
         retrofit_version = '2.3.0'
