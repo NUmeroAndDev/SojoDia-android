@@ -1,13 +1,13 @@
 buildscript {
 
-    ext.kotlin_version = '1.2.30'
-    ext.supportLibrary_version = '27.1.0'
+    ext.kotlin_version = '1.2.40'
+    ext.supportLibrary_version = '27.1.1'
     ext.okhttp_version = '3.9.0'
     ext.kotshi_version = '1.0.2'
     ext.retrofit_version = '2.3.0'
-    ext.dagger_version = '2.14.1'
+    ext.dagger_version = '2.15'
     ext.rxjava_version = '2.1.7'
-    ext.rx_android_version = '2.0.1'
+    ext.rx_android_version = '2.0.2'
 
     repositories {
         jcenter()
@@ -15,7 +15,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.1'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
