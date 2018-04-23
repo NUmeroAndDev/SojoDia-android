@@ -8,23 +8,29 @@ import android.view.View
 import android.view.ViewGroup
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.BusScheduleContract
+import com.numero.sojodia.extension.component
 import com.numero.sojodia.extension.createCountTime
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.model.BusTime
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.Week
+import com.numero.sojodia.presenter.BusSchedulePresenter
+import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.view.CountDownClockTextView
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
+import javax.inject.Inject
 
 class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
-    private var listener: BusScheduleFragmentListener? = null
+    @Inject
+    lateinit var busDataRepository: BusDataRepository
 
     private lateinit var presenter: BusScheduleContract.Presenter
 
+    private var listener: BusScheduleFragmentListener? = null
     private var currentDateString: String? = null
 
     private val isDateChanged: Boolean
@@ -37,16 +43,14 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val arguments = arguments ?: return
-        val reciprocate = arguments.getSerializable(Reciprocate::class.java.simpleName) as Reciprocate
-        listener?.onActivityCreated(this, reciprocate)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        component?.inject(this)
         super.onCreate(savedInstanceState)
         retainInstance = true
+
+        val arguments = arguments ?: return
+        val reciprocate = arguments.getSerializable(Reciprocate::class.java.simpleName) as Reciprocate
+        BusSchedulePresenter(this, busDataRepository, reciprocate)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -215,8 +219,6 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     interface BusScheduleFragmentListener {
-        fun onActivityCreated(fragment: BusScheduleFragment, reciprocate: Reciprocate)
-
         fun onDataChanged()
 
         fun showTimeTableDialog(route: Route, reciprocate: Reciprocate)
