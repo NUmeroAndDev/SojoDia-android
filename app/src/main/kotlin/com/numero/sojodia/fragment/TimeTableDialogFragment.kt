@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
+import androidx.core.os.bundleOf
 
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.TimeTableContract
@@ -94,10 +95,7 @@ class TimeTableDialogFragment : DialogFragment(), TimeTableContract.View {
         private const val ARG_RECIPROCATE = "ARG_RECIPROCATE"
 
         fun newInstance(route: Route, reciprocate: Reciprocate): TimeTableDialogFragment = TimeTableDialogFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable(ARG_ROUTE, route)
-                putSerializable(ARG_RECIPROCATE, reciprocate)
-            }
+            arguments = bundleOf(ARG_ROUTE to route, ARG_RECIPROCATE to reciprocate)
         }
     }
 
