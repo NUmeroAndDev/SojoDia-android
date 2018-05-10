@@ -18,12 +18,11 @@ def appVersionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch *
 def appVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 'android-P'
     defaultConfig {
         applicationId "com.numero.sojodia"
         minSdkVersion 17
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode appVersionCode
         versionName appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
