@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,211 +10,229 @@
     tools:context=".activity.MainActivity">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/tkScheduleCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/card_margin"
-        android:layout_weight="1"
         android:background="@color/card_background"
         app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tndScheduleCardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/card_stroke"
         app:strokeWidth="1dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/tk_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tkTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/station_tk"
+                android:textColor="@color/card_title_text"
+                android:textSize="@dimen/bus_toolbar_text"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/tkTimeTableButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/card_toolbar_button_margin"
+                android:src="@drawable/ic_schedule"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.numero.sojodia.view.NotSwipeViewPager
+                android:id="@+id/tkBusTimeViewPager"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
+
+            <com.numero.sojodia.view.CountDownClockTextView
+                android:id="@+id/tkCountdownTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_count_time_text_margin"
+                android:textSize="@dimen/count_time_text"
+                app:attentionTextColor="@color/count_attention_text"
+                app:defaultTextColor="@color/count_default_text"
+                app:fontFamily="@font/lato_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:safeTextColor="@color/count_safe_text" />
+
+            <ImageButton
+                android:id="@+id/tkNextImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/card_arrow_button_margin"
+                android:src="@drawable/ic_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
+
+            <ImageButton
+                android:id="@+id/tkPreviewImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/card_arrow_button_margin"
+                android:src="@drawable/ic_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
+
+            <FrameLayout
+                android:id="@+id/tkNoBusLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/card_background"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/station_tk"
-                    android:textColor="@color/card_title_text"
-                    android:textSize="@dimen/bus_toolbar_text"
-                    android:textStyle="bold" />
-
-                <ImageButton
-                    android:id="@+id/tkTimeTableButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="@dimen/card_toolbar_button_margin"
-                    android:src="@drawable/ic_schedule" />
-
-            </RelativeLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <com.numero.sojodia.view.NotSwipeViewPager
-                    android:id="@+id/tkBusTimeViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <com.numero.sojodia.view.CountDownClockTextView
-                    android:id="@+id/tkCountdownTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|bottom"
-                    android:layout_marginBottom="@dimen/card_count_time_text_margin"
-                    android:textSize="@dimen/count_time_text"
-                    app:attentionTextColor="@color/count_attention_text"
-                    app:defaultTextColor="@color/count_default_text"
-                    app:fontFamily="@font/lato_light"
-                    app:safeTextColor="@color/count_safe_text" />
-
-                <FrameLayout
-                    android:id="@+id/tkNoBusLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/card_background"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/no_bus"
-                        android:textSize="@dimen/no_bus_text" />
-
-                </FrameLayout>
-
-                <ImageButton
-                    android:id="@+id/tkPreviewImageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|start"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="@dimen/card_arrow_button_margin"
-                    android:src="@drawable/ic_arrow_left" />
-
-                <ImageButton
-                    android:id="@+id/tkNextImageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|end"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="@dimen/card_arrow_button_margin"
-                    android:src="@drawable/ic_arrow_right" />
+                    android:layout_gravity="center"
+                    android:text="@string/no_bus"
+                    android:textSize="@dimen/no_bus_text" />
 
             </FrameLayout>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/tndScheduleCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/card_margin"
-        android:layout_weight="1"
         android:background="@color/card_background"
         app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tkScheduleCardView"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/card_stroke"
         app:strokeWidth="1dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/tnd_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tndTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/station_tnd"
+                android:textColor="@color/card_title_text"
+                android:textSize="@dimen/bus_toolbar_text"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/tndTimeTableButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/card_toolbar_button_margin"
+                android:src="@drawable/ic_schedule"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.numero.sojodia.view.NotSwipeViewPager
+                android:id="@+id/tndBusTimeViewPager"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
+
+            <com.numero.sojodia.view.CountDownClockTextView
+                android:id="@+id/tndCountdownTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_count_time_text_margin"
+                android:textSize="@dimen/count_time_text"
+                app:attentionTextColor="@color/count_attention_text"
+                app:defaultTextColor="@color/count_default_text"
+                app:fontFamily="@font/lato_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:safeTextColor="@color/count_safe_text" />
+
+            <ImageButton
+                android:id="@+id/tndNextImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/card_arrow_button_margin"
+                android:src="@drawable/ic_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
+
+            <ImageButton
+                android:id="@+id/tndPreviewImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/card_arrow_button_margin"
+                android:src="@drawable/ic_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
+
+            <FrameLayout
+                android:id="@+id/tndNoBusLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/card_background"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/station_tnd"
-                    android:textColor="@color/card_title_text"
-                    android:textSize="@dimen/bus_toolbar_text"
-                    android:textStyle="bold" />
-
-                <ImageButton
-                    android:id="@+id/tndTimeTableButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="@dimen/card_toolbar_button_margin"
-                    android:src="@drawable/ic_schedule" />
-
-            </RelativeLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <com.numero.sojodia.view.NotSwipeViewPager
-                    android:id="@+id/tndBusTimeViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <com.numero.sojodia.view.CountDownClockTextView
-                    android:id="@+id/tndCountdownTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|bottom"
-                    android:layout_marginBottom="@dimen/card_count_time_text_margin"
-                    android:textSize="@dimen/count_time_text"
-                    app:attentionTextColor="@color/count_attention_text"
-                    app:defaultTextColor="@color/count_default_text"
-                    app:fontFamily="@font/lato_light"
-                    app:safeTextColor="@color/count_safe_text" />
-
-                <FrameLayout
-                    android:id="@+id/tndNoBusLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/card_background"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/no_bus"
-                        android:textSize="@dimen/no_bus_text" />
-
-                </FrameLayout>
-
-                <ImageButton
-                    android:id="@+id/tndPreviewImageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|start"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="@dimen/card_arrow_button_margin"
-                    android:src="@drawable/ic_arrow_left" />
-
-                <ImageButton
-                    android:id="@+id/tndNextImageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|end"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="@dimen/card_arrow_button_margin"
-                    android:src="@drawable/ic_arrow_right" />
+                    android:layout_gravity="center"
+                    android:text="@string/no_bus"
+                    android:textSize="@dimen/no_bus_text" />
 
             </FrameLayout>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
