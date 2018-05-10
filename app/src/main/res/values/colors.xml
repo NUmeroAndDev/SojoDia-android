@@ -13,6 +13,7 @@
     <color name="card_background">#FFFFFF</color>
     <color name="card_title_background">#8BC34A</color>
     <color name="card_title_text">#FFFFFF</color>
+    <color name="card_stroke">#1F000000</color>
     <color name="count_attention_text">#E91E63</color>
     <color name="count_safe_text">#2196F3</color>
     <color name="count_default_text">#757575</color>
