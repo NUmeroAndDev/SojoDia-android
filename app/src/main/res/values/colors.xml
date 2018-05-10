@@ -19,7 +19,7 @@
 
     <!--TimeTableDialog-->
     <color name="time_table_dialog_background">#FFFFFF</color>
-    <color name="time_table_dialog_toolbar_text">#FFFFFF</color>
+    <color name="time_table_dialog_toolbar_text">#8BC34A</color>
     <color name="time_table_dialog_hour_text">#212121</color>
     <color name="time_table_dialog_weekday_text">#212121</color>
     <color name="time_table_dialog_saturday_text">#2196F3</color>
