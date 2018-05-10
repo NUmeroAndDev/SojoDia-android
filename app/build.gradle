@@ -8,8 +8,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'com.cookpad.android.licensetools'
 
-def versionMajor = 7
-def versionMinor = 2
+def versionMajor = 8
+def versionMinor = 0
 def versionPatch = 0
 def versionBuild = 0
 def targetDevice = 0
