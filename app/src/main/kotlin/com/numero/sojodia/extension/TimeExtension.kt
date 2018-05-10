@@ -1,6 +1,6 @@
 package com.numero.sojodia.extension
 
-import android.support.annotation.VisibleForTesting
+import androidx.annotation.VisibleForTesting
 import com.numero.sojodia.model.Time
 
 /**

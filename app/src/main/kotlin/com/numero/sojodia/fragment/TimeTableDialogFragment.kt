@@ -2,10 +2,10 @@ package com.numero.sojodia.fragment
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
+import androidx.fragment.app.DialogFragment
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.Toolbar
 import android.view.LayoutInflater
 import androidx.core.os.bundleOf
 
@@ -21,7 +21,7 @@ import com.numero.sojodia.view.adapter.TimeTableRowAdapter
 import kotlinx.android.synthetic.main.dialog_time_table.view.*
 import javax.inject.Inject
 
-class TimeTableDialogFragment : DialogFragment(), TimeTableContract.View {
+class TimeTableDialogFragment : androidx.fragment.app.DialogFragment(), TimeTableContract.View {
 
     private var toolbar: Toolbar? = null
     private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
@@ -50,7 +50,7 @@ class TimeTableDialogFragment : DialogFragment(), TimeTableContract.View {
         }
         view.timeTableRecyclerView.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
             adapter = this@TimeTableDialogFragment.adapter
         }
         return AlertDialog.Builder(view.context)

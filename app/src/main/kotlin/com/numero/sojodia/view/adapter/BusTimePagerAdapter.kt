@@ -1,6 +1,6 @@
 package com.numero.sojodia.view.adapter
 
-import android.support.v4.view.PagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.numero.sojodia.model.BusTime
 import kotlinx.android.synthetic.main.pager_bus_time.view.*
 import java.util.*
 
-class BusTimePagerAdapter : PagerAdapter() {
+class BusTimePagerAdapter : androidx.viewpager.widget.PagerAdapter() {
 
     private var busTimeList: List<BusTime>? = null
 
@@ -77,6 +77,6 @@ class BusTimePagerAdapter : PagerAdapter() {
     }
 
     override fun getItemPosition(any: Any): Int {
-        return PagerAdapter.POSITION_NONE
+        return androidx.viewpager.widget.PagerAdapter.POSITION_NONE
     }
 }

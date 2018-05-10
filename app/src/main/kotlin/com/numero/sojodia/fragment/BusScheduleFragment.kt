@@ -2,7 +2,7 @@ package com.numero.sojodia.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
 import javax.inject.Inject
 
-class BusScheduleFragment : Fragment(), BusScheduleContract.View {
+class BusScheduleFragment : androidx.fragment.app.Fragment(), BusScheduleContract.View {
 
     @Inject
     lateinit var busDataRepository: BusDataRepository

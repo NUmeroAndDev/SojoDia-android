@@ -1,9 +1,9 @@
 package com.numero.sojodia.extension
 
 import android.content.DialogInterface
-import android.support.annotation.StringRes
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.numero.sojodia.SojoDiaApplication
 import com.numero.sojodia.di.ApplicationComponent
 
