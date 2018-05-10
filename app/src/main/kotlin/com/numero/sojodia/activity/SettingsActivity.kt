@@ -28,9 +28,9 @@ class SettingsActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val fragment: SettingsFragment = fragmentManager.findFragmentById(R.id.container) as? SettingsFragment
+        val fragment: SettingsFragment = supportFragmentManager.findFragmentById(R.id.container) as? SettingsFragment
                 ?: SettingsFragment.newInstance().also {
-                    fragmentManager.beginTransaction().replace(R.id.container, it).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.container, it).commit()
                 }
         SettingsPresenter(fragment, configRepository)
     }
