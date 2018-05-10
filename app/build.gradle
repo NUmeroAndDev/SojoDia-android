@@ -21,7 +21,7 @@ android {
     compileSdkVersion 'android-P'
     defaultConfig {
         applicationId "com.numero.sojodia"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode appVersionCode
         versionName appVersionName
