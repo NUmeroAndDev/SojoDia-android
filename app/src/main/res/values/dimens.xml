@@ -8,6 +8,8 @@
     <dimen name="card_arrow_button_margin">16dp</dimen>
     <dimen name="card_date_text_margin">8dp</dimen>
 
+    <dimen name="bus_time_view_pager_height">72dp</dimen>
+
     <dimen name="bus_toolbar_text">22sp</dimen>
     <dimen name="bus_time_text">28sp</dimen>
     <dimen name="bus_description_text">20sp</dimen>

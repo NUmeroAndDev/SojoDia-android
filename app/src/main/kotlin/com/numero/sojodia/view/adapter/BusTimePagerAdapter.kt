@@ -1,16 +1,15 @@
 package com.numero.sojodia.view.adapter
 
-import androidx.viewpager.widget.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.viewpager.widget.PagerAdapter
 import com.numero.sojodia.R
 import com.numero.sojodia.model.BusTime
 import kotlinx.android.synthetic.main.pager_bus_time.view.*
 import java.util.*
 
-class BusTimePagerAdapter : androidx.viewpager.widget.PagerAdapter() {
+class BusTimePagerAdapter : PagerAdapter() {
 
     private var busTimeList: List<BusTime>? = null
 
@@ -43,11 +42,11 @@ class BusTimePagerAdapter : androidx.viewpager.widget.PagerAdapter() {
             }
         }
 
-        val nextBusLayout = view.nextBusLayout
+        val nextBusGroup = view.nextBusGroup
         if (position == busTimeList.size - 1) {
-            nextBusLayout.visibility = View.GONE
+            nextBusGroup.visibility = View.GONE
         } else {
-            nextBusLayout.visibility = View.VISIBLE
+            nextBusGroup.visibility = View.VISIBLE
             val nextBusTime = busTimeList[position + 1]
             view.nextBusTimeTextView.text = String.format(Locale.ENGLISH, "%02d:%02d", nextBusTime.time.hour, nextBusTime.time.min)
             view.nextBusDescriptionTextView.apply {

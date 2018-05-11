@@ -13,9 +13,9 @@
     <color name="card_background">#FFFFFF</color>
     <color name="card_title_text">#8BC34A</color>
     <color name="card_stroke">#1F000000</color>
-    <color name="count_attention_text">#E91E63</color>
-    <color name="count_safe_text">#2196F3</color>
-    <color name="count_default_text">#757575</color>
+    <color name="count_attention_text">#f44336</color>
+    <color name="count_safe_text">#03a9f4</color>
+    <color name="count_default_text">#000000</color>
 
     <!--TimeTableDialog-->
     <color name="time_table_dialog_background">#FFFFFF</color>

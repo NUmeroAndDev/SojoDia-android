@@ -54,17 +54,17 @@
             <com.numero.sojodia.view.NotSwipeViewPager
                 android:id="@+id/tkBusTimeViewPager"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/bus_time_view_pager_height"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tkNextImageButton"
+                app:layout_constraintStart_toEndOf="@+id/tkPreviewImageButton"
                 app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
 
             <com.numero.sojodia.view.CountDownClockTextView
                 android:id="@+id/tkCountdownTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/card_count_time_text_margin"
+                android:layout_height="0dp"
+                android:gravity="center"
                 android:textSize="@dimen/count_time_text"
                 app:attentionTextColor="@color/count_attention_text"
                 app:defaultTextColor="@color/count_default_text"
@@ -72,6 +72,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tkBusTimeViewPager"
                 app:safeTextColor="@color/count_safe_text" />
 
             <ImageButton
@@ -79,22 +80,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="@dimen/card_arrow_button_margin"
+                android:padding="8dp"
                 android:src="@drawable/ic_arrow_right"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tkBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintTop_toTopOf="@+id/tkBusTimeViewPager" />
 
             <ImageButton
                 android:id="@+id/tkPreviewImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="@dimen/card_arrow_button_margin"
+                android:padding="8dp"
                 android:src="@drawable/ic_arrow_left"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintEnd_toStartOf="@id/tkBusTimeViewPager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
+                app:layout_constraintTop_toTopOf="@+id/tkBusTimeViewPager" />
 
             <FrameLayout
                 android:id="@+id/tkNoBusLayout"
@@ -170,17 +173,17 @@
             <com.numero.sojodia.view.NotSwipeViewPager
                 android:id="@+id/tndBusTimeViewPager"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/bus_time_view_pager_height"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tndNextImageButton"
+                app:layout_constraintStart_toEndOf="@+id/tndPreviewImageButton"
                 app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
 
             <com.numero.sojodia.view.CountDownClockTextView
                 android:id="@+id/tndCountdownTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/card_count_time_text_margin"
+                android:layout_height="0dp"
+                android:gravity="center"
                 android:textSize="@dimen/count_time_text"
                 app:attentionTextColor="@color/count_attention_text"
                 app:defaultTextColor="@color/count_default_text"
@@ -188,6 +191,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tndBusTimeViewPager"
                 app:safeTextColor="@color/count_safe_text" />
 
             <ImageButton
@@ -197,9 +201,10 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="@dimen/card_arrow_button_margin"
                 android:src="@drawable/ic_arrow_right"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tndBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
+                app:layout_constraintStart_toEndOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintTop_toTopOf="@+id/tndBusTimeViewPager" />
 
             <ImageButton
                 android:id="@+id/tndPreviewImageButton"
@@ -208,9 +213,10 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="@dimen/card_arrow_button_margin"
                 android:src="@drawable/ic_arrow_left"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintEnd_toStartOf="@id/tndBusTimeViewPager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
+                app:layout_constraintTop_toTopOf="@+id/tndBusTimeViewPager" />
 
             <FrameLayout
                 android:id="@+id/tndNoBusLayout"
