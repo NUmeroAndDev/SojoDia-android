@@ -55,24 +55,26 @@
                 android:id="@+id/tkBusTimeViewPager"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/bus_time_view_pager_height"
-                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tkNextImageButton"
                 app:layout_constraintStart_toEndOf="@+id/tkPreviewImageButton"
-                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/tkCountdownTextView" />
 
             <com.numero.sojodia.view.CountDownClockTextView
                 android:id="@+id/tkCountdownTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:textSize="@dimen/count_time_text"
                 app:attentionTextColor="@color/count_attention_text"
                 app:defaultTextColor="@color/count_default_text"
                 app:fontFamily="@font/lato_light"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tkBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView"
                 app:safeTextColor="@color/count_safe_text" />
 
             <ImageButton

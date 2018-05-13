@@ -10,10 +10,13 @@
         android:id="@+id/busDescriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/bus_description_text"
         app:layout_constraintBottom_toTopOf="@+id/busTimeTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="直行便" />
 
     <TextView
@@ -21,37 +24,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/bus_time_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="00:00" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/nextBusGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="nextBusDescriptionTextView,nextBusTimeTextView" />
-
-    <TextView
-        android:id="@+id/nextBusTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
-        android:textSize="@dimen/next_bus_time_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/busDescriptionTextView"
         tools:text="00:00" />
 
     <TextView
         android:id="@+id/nextBusDescriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/next_bus_description_text"
         app:layout_constraintBottom_toTopOf="@+id/nextBusTimeTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="直行便" />
+
+    <TextView
+        android:id="@+id/nextBusTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/next_bus_time_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nextBusDescriptionTextView"
+        tools:text="00:00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

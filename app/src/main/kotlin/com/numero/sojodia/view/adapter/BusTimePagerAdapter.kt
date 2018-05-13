@@ -7,7 +7,6 @@ import androidx.viewpager.widget.PagerAdapter
 import com.numero.sojodia.R
 import com.numero.sojodia.model.BusTime
 import kotlinx.android.synthetic.main.pager_bus_time.view.*
-import java.util.*
 
 class BusTimePagerAdapter : PagerAdapter() {
 
@@ -27,7 +26,7 @@ class BusTimePagerAdapter : PagerAdapter() {
         }
 
         val busTime = busTimeList[position]
-        view.busTimeTextView.text = String.format(Locale.ENGLISH, "%02d:%02d", busTime.time.hour, busTime.time.min)
+        view.busTimeTextView.text = "%02d:%02d".format(busTime.time.hour, busTime.time.min)
         view.busDescriptionTextView.apply {
             if (busTime.isNonstop) {
                 visibility = View.VISIBLE
@@ -42,13 +41,9 @@ class BusTimePagerAdapter : PagerAdapter() {
             }
         }
 
-        val nextBusGroup = view.nextBusGroup
-        if (position == busTimeList.size - 1) {
-            nextBusGroup.visibility = View.GONE
-        } else {
-            nextBusGroup.visibility = View.VISIBLE
+        if (position != busTimeList.size - 1) {
             val nextBusTime = busTimeList[position + 1]
-            view.nextBusTimeTextView.text = String.format(Locale.ENGLISH, "%02d:%02d", nextBusTime.time.hour, nextBusTime.time.min)
+            view.nextBusTimeTextView.text = "%02d:%02d".format(nextBusTime.time.hour, nextBusTime.time.min)
             view.nextBusDescriptionTextView.apply {
                 if (nextBusTime.isNonstop) {
                     visibility = View.VISIBLE
@@ -76,6 +71,6 @@ class BusTimePagerAdapter : PagerAdapter() {
     }
 
     override fun getItemPosition(any: Any): Int {
-        return androidx.viewpager.widget.PagerAdapter.POSITION_NONE
+        return PagerAdapter.POSITION_NONE
     }
 }
