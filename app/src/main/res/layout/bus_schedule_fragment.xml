@@ -178,24 +178,26 @@
                 android:id="@+id/tndBusTimeViewPager"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/bus_time_view_pager_height"
-                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tndNextImageButton"
                 app:layout_constraintStart_toEndOf="@+id/tndPreviewImageButton"
-                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/tndCountdownTextView" />
 
             <com.numero.sojodia.view.CountDownClockTextView
                 android:id="@+id/tndCountdownTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:textSize="@dimen/count_time_text"
                 app:attentionTextColor="@color/count_attention_text"
                 app:defaultTextColor="@color/count_default_text"
                 app:fontFamily="@font/lato_light"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tndBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView"
                 app:safeTextColor="@color/count_safe_text" />
 
             <ImageButton
