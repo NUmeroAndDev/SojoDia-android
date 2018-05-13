@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#FFFFFF</color>
-    <color name="primary_dark">#FFFFFF</color>
-    <color name="accent">#8BC34A</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="activity_background">#FAFAFA</color>
+    <color name="primaryVariant">#FFFFFF</color>
+    <color name="secondary">#8BC34A</color>
+    <color name="background">#FFFFFF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#B00020</color>
+
+    <color name="onPrimary">#000000</color>
+    <!-- FIXME 変える? -->
+    <color name="onSecondary">#000000</color>
+    <color name="onBackground">#000000</color>
+    <color name="onSurface">#000000</color>
+    <color name="onError">#FFFFFF</color>
+
     <color name="navigation_bar">#FFFFFF</color>
     <color name="navigation_bar_divider">#1F000000</color>
 
     <!--Fragment-->
-    <color name="card_background">#FFFFFF</color>
-    <color name="card_title_text">#8BC34A</color>
+    <color name="card_title_text">@color/secondary</color>
     <color name="card_stroke">#1F000000</color>
-    <color name="count_attention_text">#E91E63</color>
-    <color name="count_safe_text">#2196F3</color>
-    <color name="count_default_text">#757575</color>
+    <color name="count_attention_text">#f44336</color>
+    <color name="count_safe_text">#03a9f4</color>
+    <color name="count_default_text">@color/onPrimary</color>
 
     <!--TimeTableDialog-->
     <color name="time_table_dialog_background">#FFFFFF</color>

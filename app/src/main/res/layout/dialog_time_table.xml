@@ -22,9 +22,9 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/time_table_dialog_row_divider"
         android:background="@color/time_table_dialog_row_divider"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <LinearLayout
         android:id="@+id/headerLayout"
@@ -134,7 +134,7 @@
         android:paddingEnd="16dp"
         android:paddingBottom="8dp"
         android:text="@string/time_table_dialog_description"
-        android:textColor="@color/text_secondary"
+        android:textColor="@color/onSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

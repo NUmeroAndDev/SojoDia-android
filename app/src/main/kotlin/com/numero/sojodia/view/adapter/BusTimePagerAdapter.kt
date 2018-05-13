@@ -1,16 +1,14 @@
 package com.numero.sojodia.view.adapter
 
-import androidx.viewpager.widget.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.viewpager.widget.PagerAdapter
 import com.numero.sojodia.R
 import com.numero.sojodia.model.BusTime
 import kotlinx.android.synthetic.main.pager_bus_time.view.*
-import java.util.*
 
-class BusTimePagerAdapter : androidx.viewpager.widget.PagerAdapter() {
+class BusTimePagerAdapter : PagerAdapter() {
 
     private var busTimeList: List<BusTime>? = null
 
@@ -28,7 +26,7 @@ class BusTimePagerAdapter : androidx.viewpager.widget.PagerAdapter() {
         }
 
         val busTime = busTimeList[position]
-        view.busTimeTextView.text = String.format(Locale.ENGLISH, "%02d:%02d", busTime.time.hour, busTime.time.min)
+        view.busTimeTextView.text = "%02d:%02d".format(busTime.time.hour, busTime.time.min)
         view.busDescriptionTextView.apply {
             if (busTime.isNonstop) {
                 visibility = View.VISIBLE
@@ -43,13 +41,9 @@ class BusTimePagerAdapter : androidx.viewpager.widget.PagerAdapter() {
             }
         }
 
-        val nextBusLayout = view.nextBusLayout
-        if (position == busTimeList.size - 1) {
-            nextBusLayout.visibility = View.GONE
-        } else {
-            nextBusLayout.visibility = View.VISIBLE
+        if (position != busTimeList.size - 1) {
             val nextBusTime = busTimeList[position + 1]
-            view.nextBusTimeTextView.text = String.format(Locale.ENGLISH, "%02d:%02d", nextBusTime.time.hour, nextBusTime.time.min)
+            view.nextBusTimeTextView.text = "%02d:%02d".format(nextBusTime.time.hour, nextBusTime.time.min)
             view.nextBusDescriptionTextView.apply {
                 if (nextBusTime.isNonstop) {
                     visibility = View.VISIBLE
@@ -77,6 +71,6 @@ class BusTimePagerAdapter : androidx.viewpager.widget.PagerAdapter() {
     }
 
     override fun getItemPosition(any: Any): Int {
-        return androidx.viewpager.widget.PagerAdapter.POSITION_NONE
+        return PagerAdapter.POSITION_NONE
     }
 }
