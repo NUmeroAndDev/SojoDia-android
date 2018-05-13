@@ -1,6 +1,6 @@
 
 #  SojoDia  
-![Android Studio](https://img.shields.io/badge/Android%20Studio-3.1.2-green.svg)
+![Android Studio](https://img.shields.io/badge/Android%20Studio-3.2%20Canary14-green.svg)
 ![Kotlin](https://img.shields.io/badge/kotlin-1.2.41-yellow.svg)
 
 ## About  
@@ -19,5 +19,4 @@ API Level 19 ( Android 4.4 )
 |[Dagger](https://github.com/google/dagger)|2.15|
 |[Kotshi](https://github.com/ansman/kotshi)|1.0.2|
 |[Retrofit](https://github.com/square/retrofit)|2.3.0|
-|[Android-ktx](https://github.com/android/android-ktx)|0.3|
 |[Android License Tools Plugin](https://github.com/cookpad/license-tools-plugin)|1.2.0|
