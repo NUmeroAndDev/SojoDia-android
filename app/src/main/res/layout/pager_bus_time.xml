@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/bus_time_view_pager_height">
 
-    <!--FIXME テキストサイズ調整-->
     <TextView
         android:id="@+id/busDescriptionTextView"
         android:layout_width="wrap_content"
