@@ -19,7 +19,6 @@
 
     <!--Fragment-->
     <color name="card_title_text">@color/secondary</color>
-    <color name="card_stroke">#1F000000</color>
     <color name="count_attention_text">#f44336</color>
     <color name="count_safe_text">#03a9f4</color>
     <color name="count_default_text">@color/onPrimary</color>
