@@ -68,7 +68,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0-alpha1'
-    implementation 'androidx.legacy:legacy-preference-v14:1.0.0-alpha1'
+    implementation 'androidx.preference:preference:1.0.0-alpha1'
 
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
