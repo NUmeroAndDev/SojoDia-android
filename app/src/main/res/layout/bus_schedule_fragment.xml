@@ -46,10 +46,10 @@
 
             <ImageButton
                 android:id="@+id/tkTimeTableButton"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="4dp"
+                android:padding="8dp"
                 android:src="@drawable/ic_schedule"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -152,10 +152,10 @@
 
             <ImageButton
                 android:id="@+id/tndTimeTableButton"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="4dp"
+                android:padding="8dp"
                 android:src="@drawable/ic_schedule"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
