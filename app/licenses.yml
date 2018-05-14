@@ -1,8 +1,127 @@
-# SupportLibrary
-- artifact: com.android.support:+:+
-  name: Android Support Libraries
+# AndroidX
+- artifact: androidx.core:core:+
+  name: Android Support Library compat
   copyrightHolder: The Android Open Source Project
-  license: apache2
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://developer.android.com/tools/extras/support-library.html
+- artifact: androidx.drawerlayout:drawerlayout:+
+  name: Android Support Library Drawer Layout
+  skip: true
+- artifact: androidx.documentfile:documentfile:+
+  name: Android Support Library Document File
+  skip: true
+- artifact: androidx.interpolator:interpolator:+
+  name: Android Support Library Interpolators
+  skip: true
+- artifact: androidx.vectordrawable:vectordrawable:+
+  name: Android Support VectorDrawable
+  skip: true
+- artifact: androidx.legacy:legacy-support-core-ui:+
+  name: Android Support Library core UI
+  skip: true
+- artifact: androidx.arch.core:core-runtime:+
+  name: Android Arch-Runtime
+  skip: true
+- artifact: androidx.lifecycle:lifecycle-common:+
+  name: Android Lifecycle-Common
+  skip: true
+- artifact: androidx.viewpager:viewpager:+
+  name: Android Support Library View Pager
+  skip: true
+- artifact: androidx.transition:transition:+
+  name: Android Transition Support Library
+  skip: true
+- artifact: androidx.print:print:+
+  name: Android Support Library Print
+  skip: true
+- artifact: androidx.arch.core:core-common:+
+  name: Android Arch-Common
+  skip: true
+- artifact: androidx.loader:loader:+
+  name: Android Support Library loader
+  skip: true
+- artifact: androidx.lifecycle:lifecycle-runtime:+
+  name: Android Lifecycle Runtime
+  skip: true
+- artifact: androidx.annotation:annotation:+
+  name: Android Support Library Annotations
+  skip: true
+- artifact: androidx.swiperefreshlayout:swiperefreshlayout:+
+  name: Android Support Library Custom View
+  skip: true
+- artifact: androidx.slidingpanelayout:slidingpanelayout:+
+  name: Android Support Library Sliding Pane Layout
+  skip: true
+- artifact: androidx.cardview:cardview:+
+  name: Android Support CardView v7
+  skip: true
+- artifact: androidx.legacy:legacy-support-core-utils:+
+  name: Android Support Library core utils
+  skip: true
+- artifact: androidx.lifecycle:lifecycle-livedata-core:+
+  name: Android Lifecycle LiveData Core
+  skip: true
+- artifact: androidx.preference:preference:+
+  name: Android Support Preference v7
+  skip: true
+- artifact: androidx.fragment:fragment:+
+  name: Android Support Library fragment
+  skip: true
+- artifact: androidx.cursoradapter:cursoradapter:+
+  name: Android Support Library Cursor Adapter
+  skip: true
+- artifact: androidx.asynclayoutinflater:asynclayoutinflater:+
+  name: Android Support Library Async Layout Inflater
+  skip: true
+- artifact: androidx.vectordrawable:vectordrawable-animated:+
+  name: Android Support AnimatedVectorDrawable
+  skip: true
+- artifact: androidx.customview:customview:+
+  name: Android Support Library Custom View
+  skip: true
+- artifact: androidx.lifecycle:lifecycle-viewmodel:+
+  name: Android Lifecycle ViewModel
+  skip: true
+- artifact: androidx.recyclerview:recyclerview:+
+  name: Android Support RecyclerView v7
+  skip: true
+- artifact: androidx.collection:collection:+
+  name: Android Support Library collections
+  skip: true
+- artifact: androidx.appcompat:appcompat:+
+  name: Android AppCompat Library v7
+  skip: true
+- artifact: androidx.coordinatorlayout:coordinatorlayout:+
+  name: Android Support Library Coordinator Layout
+  skip: true
+- artifact: androidx.localbroadcastmanager:localbroadcastmanager:+
+  name: Android Support Library Local Broadcast Manager
+  skip: true
+
+- artifact: androidx.core:core-ktx:+
+  name: Android KTX Core
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/android/android-ktx
+
+- artifact: androidx.constraintlayout:constraintlayout:+
+  name: Android ConstraintLayout
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://tools.android.com
+- artifact: androidx.constraintlayout:constraintlayout-solver:+
+  name: Android ConstraintLayout Solver
+  skip: true
+
+- artifact: com.google.android.material:material:+
+  name: Material Components for Android
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://developer.android.com/tools/extras/support-library.html
 
 # Kotlin
 - artifact: org.jetbrains.kotlin:kotlin-stdlib:+
@@ -16,20 +135,6 @@
 - artifact: org.jetbrains:annotations:+
   skip: true
 - artifact: org.jetbrains.kotlin:kotlin-stdlib-jre7:+
-  skip: true
-
-# arch
-- artifact: android.arch.core:common:+
-  skip: true
-- artifact: android.arch.lifecycle:common:+
-  skip: true
-- artifact: android.arch.lifecycle:runtime:+
-  skip: true
-- artifact: android.arch.lifecycle:viewmodel:+
-  skip: true
-- artifact: android.arch.core:runtime:+
-  skip: true
-- artifact: android.arch.lifecycle:livedata-core:+
   skip: true
 
 # Okhttp
@@ -97,11 +202,3 @@
   name: Moshi
   copyrightHolder: Square, Inc.
   license: Apache 2.0
-
-# Android-ktx
-- artifact: androidx.core:core-ktx:+
-  name: Android KTX Core
-  copyrightHolder: The Android Open Source Project
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/android/android-ktx
