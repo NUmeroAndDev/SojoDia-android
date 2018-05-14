@@ -1,6 +1,6 @@
 <resources>
     <!--Fragment-->
-    <dimen name="card_margin">16dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
     <dimen name="card_toolbar_button_margin">12dp</dimen>
     <dimen name="card_bus_time_text_margin">16dp</dimen>
     <dimen name="card_next_bus_time_text_margin">16dp</dimen>

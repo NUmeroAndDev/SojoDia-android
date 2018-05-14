@@ -1,4 +1,5 @@
 <resources>
+    <dimen name="card_margin">16dp</dimen>
 
     <dimen name="bus_time_view_pager_height">64dp</dimen>
 
