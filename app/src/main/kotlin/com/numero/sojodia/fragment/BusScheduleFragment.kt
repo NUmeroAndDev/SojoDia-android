@@ -111,16 +111,16 @@ class BusScheduleFragment : androidx.fragment.app.Fragment(), BusScheduleContrac
     }
 
     private fun initNextPreviewButton() {
-        tkNextImageButton.setOnClickListener {
+        tkNextImageButton?.setOnClickListener {
             presenter.nextTkBus()
         }
-        tkPreviewImageButton.setOnClickListener {
+        tkPreviewImageButton?.setOnClickListener {
             presenter.previewTkBus()
         }
-        tndNextImageButton.setOnClickListener {
+        tndNextImageButton?.setOnClickListener {
             presenter.nextTndBus()
         }
-        tndPreviewImageButton.setOnClickListener {
+        tndPreviewImageButton?.setOnClickListener {
             presenter.previewTndBus()
         }
     }
@@ -168,11 +168,11 @@ class BusScheduleFragment : androidx.fragment.app.Fragment(), BusScheduleContrac
     }
 
     override fun showTkNextButton() {
-        tkNextImageButton.visibility = View.VISIBLE
+        tkNextImageButton?.visibility = View.VISIBLE
     }
 
     override fun showTkPreviewButton() {
-        tkPreviewImageButton.visibility = View.VISIBLE
+        tkPreviewImageButton?.visibility = View.VISIBLE
     }
 
     override fun showTkNoBusLayout() {
@@ -180,11 +180,11 @@ class BusScheduleFragment : androidx.fragment.app.Fragment(), BusScheduleContrac
     }
 
     override fun showTndNextButton() {
-        tndNextImageButton.visibility = View.VISIBLE
+        tndNextImageButton?.visibility = View.VISIBLE
     }
 
     override fun showTndPreviewButton() {
-        tndPreviewImageButton.visibility = View.VISIBLE
+        tndPreviewImageButton?.visibility = View.VISIBLE
     }
 
     override fun showTndNoBusLayout() {
@@ -192,11 +192,11 @@ class BusScheduleFragment : androidx.fragment.app.Fragment(), BusScheduleContrac
     }
 
     override fun hideTkNextButton() {
-        tkNextImageButton.visibility = View.INVISIBLE
+        tkNextImageButton?.visibility = View.INVISIBLE
     }
 
     override fun hideTkPreviewButton() {
-        tkPreviewImageButton.visibility = View.INVISIBLE
+        tkPreviewImageButton?.visibility = View.INVISIBLE
     }
 
     override fun hideTkNoBusLayout() {
@@ -204,11 +204,11 @@ class BusScheduleFragment : androidx.fragment.app.Fragment(), BusScheduleContrac
     }
 
     override fun hideTndNextButton() {
-        tndNextImageButton.visibility = View.INVISIBLE
+        tndNextImageButton?.visibility = View.INVISIBLE
     }
 
     override fun hideTndPreviewButton() {
-        tndPreviewImageButton.visibility = View.INVISIBLE
+        tndPreviewImageButton?.visibility = View.INVISIBLE
     }
 
     override fun hideTndNoBusLayout() {

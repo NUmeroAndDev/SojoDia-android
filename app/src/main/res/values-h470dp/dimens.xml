@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="card_margin">16dp</dimen>
+
+    <dimen name="bus_time_view_pager_height">64dp</dimen>
+
+    <dimen name="bus_time_text">28sp</dimen>
+    <dimen name="bus_description_text">16sp</dimen>
+    <dimen name="next_bus_description_text">12sp</dimen>
+    <dimen name="next_bus_time_text">16sp</dimen>
+</resources>
