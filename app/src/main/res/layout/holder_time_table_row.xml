@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/hourTextView"
         android:layout_width="@dimen/time_table_dialog_hour_text_width"
         android:layout_height="wrap_content"
@@ -18,81 +18,65 @@
         android:textSize="@dimen/time_table_dialog_row_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/hourDivider"
+        app:layout_constraintEnd_toStartOf="@+id/weekdayTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="09" />
 
     <View
-        android:id="@+id/hourDivider"
         android:layout_width="@dimen/time_table_dialog_row_divider"
         android:layout_height="0dp"
         android:background="@color/time_table_dialog_row_divider"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/weekdayTextView"
         app:layout_constraintStart_toEndOf="@+id/hourTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/weekdayTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
+        android:gravity="top"
         android:padding="@dimen/time_table_dialog_text_margin"
         android:textColor="@color/time_table_dialog_time_text"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/weekdayDivider"
-        app:layout_constraintStart_toEndOf="@+id/hourDivider"
+        app:layout_constraintEnd_toStartOf="@+id/saturdayTextView"
+        app:layout_constraintStart_toEndOf="@+id/hourTextView"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
         tools:text="04 12 ★57" />
 
-    <View
-        android:id="@+id/weekdayDivider"
-        android:layout_width="@dimen/time_table_dialog_row_divider"
-        android:layout_height="0dp"
-        android:background="@color/time_table_dialog_row_divider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/saturdayTextView"
-        app:layout_constraintStart_toEndOf="@+id/weekdayTextView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/saturdayTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
+        android:gravity="top"
         android:padding="@dimen/time_table_dialog_text_margin"
         android:textColor="@color/time_table_dialog_time_text"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/saturdayDivider"
-        app:layout_constraintStart_toEndOf="@+id/weekdayDivider"
+        app:layout_constraintEnd_toStartOf="@+id/sundayTextView"
+        app:layout_constraintStart_toEndOf="@+id/weekdayTextView"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
         tools:text="04 12 ★57" />
 
-    <View
-        android:id="@+id/saturdayDivider"
-        android:layout_width="@dimen/time_table_dialog_row_divider"
-        android:layout_height="0dp"
-        android:background="@color/time_table_dialog_row_divider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sundayTextView"
-        app:layout_constraintStart_toEndOf="@+id/saturdayTextView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/sundayTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
+        android:gravity="top"
         android:padding="@dimen/time_table_dialog_text_margin"
         android:textColor="@color/time_table_dialog_time_text"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/saturdayDivider"
+        app:layout_constraintStart_toEndOf="@+id/saturdayTextView"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
         tools:text="04 12 ★57" />
 
     <View
