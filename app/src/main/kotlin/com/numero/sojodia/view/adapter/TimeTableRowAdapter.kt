@@ -8,7 +8,7 @@ import com.numero.sojodia.model.TimeTableRow
 import com.numero.sojodia.view.TimeTableRowHolder
 import java.util.*
 
-class TimeTableRowAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<TimeTableRowHolder>() {
+class TimeTableRowAdapter : RecyclerView.Adapter<TimeTableRowHolder>() {
 
     var tableRowList: MutableList<TimeTableRow>? = null
         set(value) {
