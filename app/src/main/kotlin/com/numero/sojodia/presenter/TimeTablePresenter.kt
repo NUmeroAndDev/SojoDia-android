@@ -16,19 +16,18 @@ class TimeTablePresenter(private val view: TimeTableContract.View,
 
         // バスは6時から23時しか動いていない
         (6..23).mapTo(timeTableRowList) { TimeTableRow(it) }
-    }
-
-    override fun subscribe() {
-        view.showCurrentRoute(route)
-        view.showCurrentReciprocate(reciprocate)
-
+        
         val list = if (route == Route.TK) {
             setupTkBusTimeList()
         } else {
             setupTndBusTimeList()
         }
         mapTimeTableRow(list)
+    }
 
+    override fun subscribe() {
+        view.showCurrentRoute(route)
+        view.showCurrentReciprocate(reciprocate)
         view.showTimeTableRowList(timeTableRowList)
     }
 
