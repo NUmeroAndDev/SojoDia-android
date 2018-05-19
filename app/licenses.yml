@@ -165,20 +165,6 @@
 - artifact: org.reactivestreams:reactive-streams:+
   skip: true
 
-# Dagger
-- artifact: com.google.dagger:dagger:+
-  name: Dagger
-  copyrightHolder: The Dagger Authors
-  license: Apache 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/google/dagger
-- artifact: com.google.dagger:dagger-android:+
-  skip: true
-- artifact: com.google.dagger:dagger-android-support:+
-  skip: true
-- artifact: javax.inject:javax.inject:+
-  skip: true
-
 # Retrofit
 - artifact: com.squareup.retrofit2:retrofit:+
   name: Retrofit

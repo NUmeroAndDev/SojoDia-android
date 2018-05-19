@@ -23,8 +23,4 @@
     public <methods>;
 }
 
-# Dagger
--keep class com.google.errorprone.annotations.** { *; }
--dontwarn com.google.errorprone.annotations.**
-
 -keep class com.numero.sojodia.model.** { *; }

@@ -3,28 +3,24 @@ package com.numero.sojodia.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
-
+import androidx.appcompat.app.AppCompatActivity
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.component
+import com.numero.sojodia.extension.app
 import com.numero.sojodia.fragment.SettingsFragment
 import com.numero.sojodia.presenter.SettingsPresenter
-import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_settings.*
-
-import javax.inject.Inject
 
 class SettingsActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var configRepository: ConfigRepository
+    private val configRepository: IConfigRepository
+        get() = app.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         setSupportActionBar(toolbar)
-        component?.inject(this)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
