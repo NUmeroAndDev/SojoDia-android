@@ -26,7 +26,8 @@ import java.util.*
 class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
 
-    private val busDataRepository: BusDataRepository = app.busDataRepository
+    private val busDataRepository: BusDataRepository
+        get() = app.busDataRepository
 
     private lateinit var presenter: BusScheduleContract.Presenter
 

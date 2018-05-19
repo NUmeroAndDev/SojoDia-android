@@ -27,7 +27,8 @@ class TimeTableDialogFragment : DialogFragment(), TimeTableContract.View {
 
     private lateinit var presenter: TimeTableContract.Presenter
 
-    private val busDataRepository: BusDataRepository = app.busDataRepository
+    private val busDataRepository: BusDataRepository
+        get() = app.busDataRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
