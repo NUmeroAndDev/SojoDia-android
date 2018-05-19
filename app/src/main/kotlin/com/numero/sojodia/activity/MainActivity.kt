@@ -17,7 +17,7 @@ import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.fragment.TimeTableDialogFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
-import com.numero.sojodia.repository.BusDataRepository
+import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.service.UpdateBusDataService
 import com.numero.sojodia.util.BroadCastUtil
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         }
     }
 
-    private val busDataRepository: BusDataRepository
+    private val busDataRepository: IBusDataRepository
         get() = app.busDataRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {

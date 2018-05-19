@@ -9,12 +9,12 @@ import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.fragment.SettingsFragment
 import com.numero.sojodia.presenter.SettingsPresenter
-import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
 
-    private val configRepository: ConfigRepository
+    private val configRepository: IConfigRepository
         get() = app.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {

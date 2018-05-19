@@ -17,7 +17,7 @@ import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.Week
 import com.numero.sojodia.presenter.BusSchedulePresenter
-import com.numero.sojodia.repository.BusDataRepository
+import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.view.CountDownClockTextView
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
@@ -26,7 +26,7 @@ import java.util.*
 class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
 
-    private val busDataRepository: BusDataRepository
+    private val busDataRepository: IBusDataRepository
         get() = app.busDataRepository
 
     private lateinit var presenter: BusScheduleContract.Presenter

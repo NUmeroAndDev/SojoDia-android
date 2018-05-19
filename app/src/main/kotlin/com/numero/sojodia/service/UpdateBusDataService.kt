@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.IBinder
 import com.numero.sojodia.IApplication
 import com.numero.sojodia.manager.NotificationManager
-import com.numero.sojodia.repository.BusDataRepository
-import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.util.BroadCastUtil
 import io.reactivex.disposables.Disposable
 
@@ -14,9 +14,9 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     private lateinit var notificationManager: NotificationManager
 
-    private val busDataRepository: BusDataRepository
+    private val busDataRepository: IBusDataRepository
         get() = (application as IApplication).busDataRepository
-    private val configRepository: ConfigRepository
+    private val configRepository: IConfigRepository
         get() = (application as IApplication).configRepository
 
     private var disposable: Disposable? = null

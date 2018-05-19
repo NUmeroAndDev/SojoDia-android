@@ -5,6 +5,8 @@ import com.numero.sojodia.api.ApplicationJsonAdapterFactory
 import com.numero.sojodia.api.BusDataApi
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.IConfigRepository
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,14 +16,19 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class SojoDiaApplication : Application(), IApplication {
 
-    override val configRepository: ConfigRepository by lazy { ConfigRepository(this) }
+    override lateinit var configRepository: IConfigRepository
 
-    override val busDataRepository: BusDataRepository by lazy {
-        val busDataApi = retrofit.create(BusDataApi::class.java)
-        BusDataRepository(this, busDataApi)
-    }
+    override lateinit var busDataRepository: IBusDataRepository
 
     private val retrofit: Retrofit = createRetrofit()
+
+    override fun onCreate() {
+        super.onCreate()
+        configRepository = ConfigRepository(this)
+
+        val busDataApi = retrofit.create(BusDataApi::class.java)
+        busDataRepository = BusDataRepository(this, busDataApi)
+    }
 
     private fun createRetrofit(): Retrofit {
         val okHttpClient = OkHttpClient.Builder().apply {

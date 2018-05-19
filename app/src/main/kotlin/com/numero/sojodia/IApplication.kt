@@ -1,10 +1,10 @@
 package com.numero.sojodia
 
-import com.numero.sojodia.repository.BusDataRepository
-import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.IConfigRepository
 
 interface IApplication {
-    val configRepository: ConfigRepository
+    var configRepository: IConfigRepository
 
-    val busDataRepository: BusDataRepository
+    var busDataRepository: IBusDataRepository
 }
