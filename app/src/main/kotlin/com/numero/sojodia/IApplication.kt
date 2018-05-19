@@ -4,7 +4,7 @@ import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 
 interface IApplication {
-    var configRepository: IConfigRepository
+    val configRepository: IConfigRepository
 
-    var busDataRepository: IBusDataRepository
+    val busDataRepository: IBusDataRepository
 }
