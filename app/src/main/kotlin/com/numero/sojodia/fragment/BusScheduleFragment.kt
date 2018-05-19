@@ -2,14 +2,14 @@ package com.numero.sojodia.fragment
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.BusScheduleContract
-import com.numero.sojodia.extension.component
+import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.createCountTime
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.model.BusTime
@@ -22,12 +22,12 @@ import com.numero.sojodia.view.CountDownClockTextView
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
-import javax.inject.Inject
 
-class BusScheduleFragment : androidx.fragment.app.Fragment(), BusScheduleContract.View {
+class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
-    @Inject
-    lateinit var busDataRepository: BusDataRepository
+
+    private val busDataRepository: BusDataRepository
+        get() = app.busDataRepository
 
     private lateinit var presenter: BusScheduleContract.Presenter
 
@@ -45,7 +45,6 @@ class BusScheduleFragment : androidx.fragment.app.Fragment(), BusScheduleContrac
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        component?.inject(this)
         super.onCreate(savedInstanceState)
         retainInstance = true
 

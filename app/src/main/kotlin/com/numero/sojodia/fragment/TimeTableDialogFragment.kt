@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.TimeTableContract
-import com.numero.sojodia.extension.component
+import com.numero.sojodia.extension.app
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.TimeTableRow
@@ -19,7 +19,6 @@ import com.numero.sojodia.presenter.TimeTablePresenter
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.view.adapter.TimeTableRowAdapter
 import kotlinx.android.synthetic.main.dialog_time_table.view.*
-import javax.inject.Inject
 
 class TimeTableDialogFragment : DialogFragment(), TimeTableContract.View {
 
@@ -28,12 +27,11 @@ class TimeTableDialogFragment : DialogFragment(), TimeTableContract.View {
 
     private lateinit var presenter: TimeTableContract.Presenter
 
-    @Inject
-    lateinit var busDataRepository: BusDataRepository
+    private val busDataRepository: BusDataRepository
+        get() = app.busDataRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        component?.inject(this)
 
         val arguments = arguments ?: return
         val route = arguments.getSerializable(ARG_ROUTE) as Route

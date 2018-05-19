@@ -4,11 +4,10 @@ import android.content.DialogInterface
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.numero.sojodia.SojoDiaApplication
-import com.numero.sojodia.di.ApplicationComponent
+import com.numero.sojodia.IApplication
 
-val AppCompatActivity.component: ApplicationComponent?
-    get() = (application as? SojoDiaApplication)?.component
+val AppCompatActivity.app: IApplication
+    get() = application as IApplication
 
 fun AppCompatActivity.showDialog(@StringRes message: Int, @StringRes positiveButton: Int, listener: (DialogInterface, Int) -> Unit) {
     AlertDialog.Builder(this).apply {
