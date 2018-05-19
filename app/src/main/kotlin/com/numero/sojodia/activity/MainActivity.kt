@@ -32,8 +32,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         }
     }
 
-    private val busDataRepository: BusDataRepository
-        get() = app.busDataRepository
+    private val busDataRepository: BusDataRepository = app.busDataRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

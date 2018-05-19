@@ -14,10 +14,8 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     private lateinit var notificationManager: NotificationManager
 
-    private val busDataRepository: BusDataRepository
-        get() = (application as IApplication).busDataRepository
-    private val configRepository: ConfigRepository
-        get() = (application as IApplication).configRepository
+    private val busDataRepository: BusDataRepository = (application as IApplication).busDataRepository
+    private val configRepository: ConfigRepository = (application as IApplication).configRepository
 
     private var disposable: Disposable? = null
 

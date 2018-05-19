@@ -14,8 +14,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
 
-    private val configRepository: ConfigRepository
-        get() = app.configRepository
+    private val configRepository: ConfigRepository = app.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
