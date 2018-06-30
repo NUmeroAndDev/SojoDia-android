@@ -1,18 +1,9 @@
+# Okhttp
 -dontwarn okhttp3.**
 -dontwarn okio.**
-
-# RxJava
--dontwarn sun.misc.**
--keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-   long producerIndex;
-   long consumerIndex;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode producerNode;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode consumerNode;
-}
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
 # Retrofit
 -keepattributes Signature
@@ -31,9 +22,5 @@
 -keepclassmembers class kotlin.Metadata {
     public <methods>;
 }
-
-# Dagger
--keep class com.google.errorprone.annotations.** { *; }
--dontwarn com.google.errorprone.annotations.**
 
 -keep class com.numero.sojodia.model.** { *; }

@@ -2,14 +2,14 @@ package com.numero.sojodia.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.BusScheduleContract
-import com.numero.sojodia.extension.component
+import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.createCountTime
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.model.BusTime
@@ -17,17 +17,17 @@ import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.Week
 import com.numero.sojodia.presenter.BusSchedulePresenter
-import com.numero.sojodia.repository.BusDataRepository
+import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.view.CountDownClockTextView
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
-import javax.inject.Inject
 
 class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
-    @Inject
-    lateinit var busDataRepository: BusDataRepository
+
+    private val busDataRepository: IBusDataRepository
+        get() = app.busDataRepository
 
     private lateinit var presenter: BusScheduleContract.Presenter
 
@@ -45,7 +45,6 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        component?.inject(this)
         super.onCreate(savedInstanceState)
         retainInstance = true
 
@@ -111,16 +110,16 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     private fun initNextPreviewButton() {
-        tkNextImageButton.setOnClickListener {
+        tkNextImageButton?.setOnClickListener {
             presenter.nextTkBus()
         }
-        tkPreviewImageButton.setOnClickListener {
+        tkPreviewImageButton?.setOnClickListener {
             presenter.previewTkBus()
         }
-        tndNextImageButton.setOnClickListener {
+        tndNextImageButton?.setOnClickListener {
             presenter.nextTndBus()
         }
-        tndPreviewImageButton.setOnClickListener {
+        tndPreviewImageButton?.setOnClickListener {
             presenter.previewTndBus()
         }
     }
@@ -168,11 +167,11 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     override fun showTkNextButton() {
-        tkNextImageButton.visibility = View.VISIBLE
+        tkNextImageButton?.visibility = View.VISIBLE
     }
 
     override fun showTkPreviewButton() {
-        tkPreviewImageButton.visibility = View.VISIBLE
+        tkPreviewImageButton?.visibility = View.VISIBLE
     }
 
     override fun showTkNoBusLayout() {
@@ -180,11 +179,11 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     override fun showTndNextButton() {
-        tndNextImageButton.visibility = View.VISIBLE
+        tndNextImageButton?.visibility = View.VISIBLE
     }
 
     override fun showTndPreviewButton() {
-        tndPreviewImageButton.visibility = View.VISIBLE
+        tndPreviewImageButton?.visibility = View.VISIBLE
     }
 
     override fun showTndNoBusLayout() {
@@ -192,11 +191,11 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     override fun hideTkNextButton() {
-        tkNextImageButton.visibility = View.GONE
+        tkNextImageButton?.visibility = View.INVISIBLE
     }
 
     override fun hideTkPreviewButton() {
-        tkPreviewImageButton.visibility = View.GONE
+        tkPreviewImageButton?.visibility = View.INVISIBLE
     }
 
     override fun hideTkNoBusLayout() {
@@ -204,11 +203,11 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     override fun hideTndNextButton() {
-        tndNextImageButton.visibility = View.GONE
+        tndNextImageButton?.visibility = View.INVISIBLE
     }
 
     override fun hideTndPreviewButton() {
-        tndPreviewImageButton.visibility = View.GONE
+        tndPreviewImageButton?.visibility = View.INVISIBLE
     }
 
     override fun hideTndNoBusLayout() {

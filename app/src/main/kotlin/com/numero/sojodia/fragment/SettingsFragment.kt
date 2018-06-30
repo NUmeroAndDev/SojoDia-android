@@ -1,31 +1,32 @@
 package com.numero.sojodia.fragment
 
 import android.os.Bundle
-import android.preference.PreferenceFragment
-import android.preference.PreferenceScreen
-
+import androidx.preference.PreferenceFragmentCompat
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.activity.LicensesActivity
 import com.numero.sojodia.contract.SettingsContract
 
-class SettingsFragment : PreferenceFragment(), SettingsContract.View {
+class SettingsFragment : PreferenceFragmentCompat(), SettingsContract.View {
 
     private lateinit var presenter: SettingsContract.Presenter
-    private val dataVersionScreen: PreferenceScreen by lazy {
-        findPreference("data_version") as PreferenceScreen
+//    private val dataVersionScreen: PreferenceScreen by lazy {
+//        findPreference("data_version") as PreferenceScreen
+//    }
+
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.settings, rootKey)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addPreferencesFromResource(R.xml.settings)
 
-        val appVersionScreen = findPreference("app_version") as PreferenceScreen
+        val appVersionScreen = findPreference("app_version")
         appVersionScreen.summary = BuildConfig.VERSION_NAME
 
-        val licensesScreen = findPreference("licenses") as PreferenceScreen
+        val licensesScreen = findPreference("licenses")
         licensesScreen.setOnPreferenceClickListener {
-            startActivity(LicensesActivity.createIntent(activity))
+            startActivity(LicensesActivity.createIntent(context!!))
             false
         }
     }
@@ -45,7 +46,7 @@ class SettingsFragment : PreferenceFragment(), SettingsContract.View {
     }
 
     override fun showBusDataVersion(version: String) {
-        dataVersionScreen.summary = version
+        findPreference("data_version").summary = version
     }
 
     companion object {

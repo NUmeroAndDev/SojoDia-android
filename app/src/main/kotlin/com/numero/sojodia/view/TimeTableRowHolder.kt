@@ -1,16 +1,15 @@
 package com.numero.sojodia.view
 
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
 import android.view.View
-
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.numero.sojodia.R
 import com.numero.sojodia.model.TimeTableRow
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.holder_time_table_row.*
 import java.util.*
 
-class TimeTableRowHolder(override val containerView: View?) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+class TimeTableRowHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
     var timeTableRow: TimeTableRow? = null
         set(value) {

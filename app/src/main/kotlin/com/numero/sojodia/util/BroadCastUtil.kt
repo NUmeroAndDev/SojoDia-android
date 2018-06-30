@@ -2,7 +2,7 @@ package com.numero.sojodia.util
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.LocalBroadcastManager
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 object BroadCastUtil {
 
@@ -10,7 +10,7 @@ object BroadCastUtil {
 
     fun sendBroadCast(context: Context?, action: String) {
         context ?: return
-        LocalBroadcastManager.getInstance(context).sendBroadcast(Intent().also {
+        androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(context).sendBroadcast(Intent().also {
             it.action = action
         })
     }

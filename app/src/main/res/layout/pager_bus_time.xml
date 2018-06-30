@@ -1,69 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="12dp"
-    android:paddingEnd="16dp"
-    android:paddingStart="16dp"
-    android:paddingTop="12dp">
+    android:layout_height="@dimen/bus_time_view_pager_height">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/busDescriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:textColor="@color/onPrimary"
+        android:textSize="@dimen/bus_description_text"
+        app:layout_constraintBottom_toTopOf="@+id/busTimeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="直行便" />
 
-        <TextView
-            android:id="@+id/busDescriptionTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/bus_description_text"
-            tools:text="直行便" />
-
-        <TextView
-            android:id="@+id/busTimeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:textSize="@dimen/bus_time_text"
-            tools:text="00:00" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/nextBusLayout"
+    <TextView
+        android:id="@+id/busTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|top"
-        android:orientation="vertical">
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/onPrimary"
+        android:textSize="@dimen/bus_time_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/busDescriptionTextView"
+        tools:text="00:00" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginBottom="4dp"
-            android:text="@string/next_title"
-            android:textSize="@dimen/next_bus_title_text" />
+    <TextView
+        android:id="@+id/nextBusDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/onPrimary"
+        android:textSize="@dimen/next_bus_description_text"
+        app:layout_constraintBottom_toTopOf="@+id/nextBusTimeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="直行便" />
 
-        <TextView
-            android:id="@+id/nextBusDescriptionTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:textSize="@dimen/next_bus_description_text"
-            tools:text="直行便" />
+    <TextView
+        android:id="@+id/nextBusTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/onPrimary"
+        android:textSize="@dimen/next_bus_time_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nextBusDescriptionTextView"
+        tools:text="00:00" />
 
-        <TextView
-            android:id="@+id/nextBusTimeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:fontFamily="sans-serif-light"
-            android:textSize="@dimen/next_bus_time_text"
-            tools:text="00:00" />
-
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.ConstraintLayout>

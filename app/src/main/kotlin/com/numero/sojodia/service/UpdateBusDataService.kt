@@ -3,29 +3,26 @@ package com.numero.sojodia.service
 import android.app.IntentService
 import android.content.Intent
 import android.os.IBinder
-import com.numero.sojodia.SojoDiaApplication
-import com.numero.sojodia.di.ApplicationComponent
+import com.numero.sojodia.IApplication
 import com.numero.sojodia.manager.NotificationManager
-import com.numero.sojodia.repository.BusDataRepository
-import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.util.BroadCastUtil
-import javax.inject.Inject
+import io.reactivex.disposables.Disposable
 
 class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName) {
 
     private lateinit var notificationManager: NotificationManager
 
-    @Inject
-    lateinit var busDataRepository: BusDataRepository
-    @Inject
-    lateinit var configRepository: ConfigRepository
+    private val busDataRepository: IBusDataRepository
+        get() = (application as IApplication).busDataRepository
+    private val configRepository: IConfigRepository
+        get() = (application as IApplication).configRepository
 
-    private val component: ApplicationComponent
-        get() = (application as SojoDiaApplication).component
+    private var disposable: Disposable? = null
 
     override fun onCreate() {
         super.onCreate()
-        component.inject(this)
 
         notificationManager = NotificationManager(this)
     }
@@ -36,6 +33,11 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     override fun onDestroy() {
         super.onDestroy()
+        disposable?.apply {
+            if (isDisposed.not()) {
+                dispose()
+            }
+        }
         notificationManager.cancelNotification()
     }
 
@@ -53,7 +55,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
     }
 
     private fun checkUpdate() {
-        busDataRepository.loadBusDataConfig()
+        disposable = busDataRepository.loadBusDataConfig()
                 .subscribe({
                     configRepository.apply {
                         masterVersionCode = it.version
@@ -69,7 +71,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     private fun executeUpdate() {
         notificationManager.showNotification()
-        busDataRepository.loadAndSaveBusData().subscribe({
+        disposable = busDataRepository.loadAndSaveBusData().subscribe({
         }, {
             it.printStackTrace()
             stopSelf()

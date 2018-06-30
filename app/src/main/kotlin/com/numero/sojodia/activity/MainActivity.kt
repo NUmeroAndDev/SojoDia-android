@@ -5,25 +5,24 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.support.v4.content.LocalBroadcastManager
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.component
+import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.extension.showDialog
 import com.numero.sojodia.fragment.BusScheduleFragment
-import com.numero.sojodia.fragment.TimeTableDialogFragment
+import com.numero.sojodia.fragment.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
-import com.numero.sojodia.repository.BusDataRepository
+import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.service.UpdateBusDataService
 import com.numero.sojodia.util.BroadCastUtil
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmentListener {
 
@@ -33,14 +32,13 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         }
     }
 
-    @Inject
-    lateinit var busDataRepository: BusDataRepository
+    private val busDataRepository: IBusDataRepository
+        get() = app.busDataRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        component?.inject(this)
 
         initViews()
 
@@ -81,7 +79,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
-        TimeTableDialogFragment.newInstance(route, reciprocate).show(supportFragmentManager, "")
+        TimeTableBottomSheetDialogFragment.newInstance(route, reciprocate).show(supportFragmentManager)
     }
 
     private fun initViews() {

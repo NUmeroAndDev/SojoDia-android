@@ -1,82 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/rowLayout"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/hourTextView"
+        android:layout_width="@dimen/time_table_dialog_hour_text_width"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/hourTextView"
-            android:layout_width="@dimen/time_table_dialog_hour_text_width"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:paddingBottom="@dimen/time_table_dialog_text_margin"
-            android:paddingTop="@dimen/time_table_dialog_text_margin"
-            android:textColor="@color/time_table_dialog_hour_text"
-            android:textSize="@dimen/time_table_dialog_row_text"
-            android:textStyle="bold"
-            tools:text="09" />
-
-        <View
-            android:layout_width="@dimen/time_table_dialog_row_divider"
-            android:layout_height="match_parent"
-            android:background="@color/time_table_dialog_row_divider" />
-
-        <TextView
-            android:id="@+id/weekdayTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-light"
-            android:padding="@dimen/time_table_dialog_text_margin"
-            android:textColor="@color/time_table_dialog_time_text"
-            android:textSize="@dimen/time_table_dialog_row_text"
-            tools:text="04 12 ★57" />
-
-        <View
-            android:layout_width="@dimen/time_table_dialog_row_divider"
-            android:layout_height="match_parent"
-            android:background="@color/time_table_dialog_row_divider" />
-
-        <TextView
-            android:id="@+id/saturdayTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-light"
-            android:padding="@dimen/time_table_dialog_text_margin"
-            android:textColor="@color/time_table_dialog_time_text"
-            android:textSize="@dimen/time_table_dialog_row_text"
-            tools:text="04 12 ★57" />
-
-        <View
-            android:layout_width="@dimen/time_table_dialog_row_divider"
-            android:layout_height="match_parent"
-            android:background="@color/time_table_dialog_row_divider" />
-
-        <TextView
-            android:id="@+id/sundayTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-light"
-            android:padding="@dimen/time_table_dialog_text_margin"
-            android:textColor="@color/time_table_dialog_time_text"
-            android:textSize="@dimen/time_table_dialog_row_text"
-            tools:text="04 12 ★57" />
-
-    </LinearLayout>
+        android:layout_marginStart="16dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
+        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+        android:textColor="@color/time_table_dialog_hour_text"
+        android:textSize="@dimen/time_table_dialog_row_text"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/weekdayTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="09" />
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/time_table_dialog_row_divider"
-        android:background="@color/time_table_dialog_row_divider" />
+        android:layout_width="@dimen/time_table_dialog_row_divider"
+        android:layout_height="0dp"
+        android:background="@color/time_table_dialog_row_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hourTextView"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/weekdayTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="top"
+        android:paddingStart="@dimen/time_table_dialog_horizontal_text_margin"
+        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
+        android:paddingEnd="@dimen/time_table_dialog_horizontal_text_margin"
+        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+        android:textColor="@color/time_table_dialog_time_text"
+        android:textSize="@dimen/time_table_dialog_row_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/saturdayTextView"
+        app:layout_constraintStart_toEndOf="@+id/hourTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        tools:text="04 12 ★57" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/saturdayTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="top"
+        android:paddingStart="@dimen/time_table_dialog_horizontal_text_margin"
+        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
+        android:paddingEnd="@dimen/time_table_dialog_horizontal_text_margin"
+        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+        android:textColor="@color/time_table_dialog_time_text"
+        android:textSize="@dimen/time_table_dialog_row_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sundayTextView"
+        app:layout_constraintStart_toEndOf="@+id/weekdayTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        tools:text="04 12 ★57" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sundayTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="top"
+        android:paddingStart="@dimen/time_table_dialog_horizontal_text_margin"
+        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
+        android:paddingEnd="@dimen/time_table_dialog_horizontal_text_margin"
+        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+        android:textColor="@color/time_table_dialog_time_text"
+        android:textSize="@dimen/time_table_dialog_row_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/saturdayTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        tools:text="04 12 ★57" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/time_table_dialog_row_divider"
+        android:background="@color/time_table_dialog_row_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.ConstraintLayout>
