@@ -2,12 +2,10 @@ package com.numero.sojodia.fragment
 
 import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.WindowManager
-import androidx.appcompat.app.AlertDialog
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.TimeTableContract
@@ -20,7 +18,7 @@ import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.view.adapter.TimeTableRowAdapter
 import kotlinx.android.synthetic.main.dialog_time_table.view.*
 
-class TimeTableDialogFragment : DialogFragment(), TimeTableContract.View {
+class TimeTableBottomSheetDialogFragment : RoundedBottomSheetFragment(), TimeTableContract.View {
 
     private var toolbar: Toolbar? = null
     private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
@@ -39,26 +37,15 @@ class TimeTableDialogFragment : DialogFragment(), TimeTableContract.View {
         TimeTablePresenter(this, busDataRepository, route, reciprocate)
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val view = LayoutInflater.from(context).inflate(R.layout.dialog_time_table, null)
-        toolbar = view.toolbar.apply {
-            setNavigationOnClickListener {
-                dismiss()
-            }
-        }
+    override fun setupDialog(dialog: Dialog?, style: Int) {
+        val view = View.inflate(context, R.layout.dialog_time_table, null)
+        toolbar = view.toolbar
         view.timeTableRecyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = this@TimeTableDialogFragment.adapter
+            adapter = this@TimeTableBottomSheetDialogFragment.adapter
         }
-        return AlertDialog.Builder(view.context)
-                .setView(view)
-                .create()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog?.setContentView(view)
     }
 
     override fun onResume() {
@@ -87,12 +74,18 @@ class TimeTableDialogFragment : DialogFragment(), TimeTableContract.View {
         toolbar?.setSubtitle(reciprocate.titleStringRes)
     }
 
+    fun show(fragmentManager: FragmentManager?) {
+        show(fragmentManager, TAG)
+    }
+
     companion object {
 
         private const val ARG_ROUTE = "ARG_ROUTE"
         private const val ARG_RECIPROCATE = "ARG_RECIPROCATE"
 
-        fun newInstance(route: Route, reciprocate: Reciprocate): TimeTableDialogFragment = TimeTableDialogFragment().apply {
+        private const val TAG = "TimeTableBottomSheetDialogFragment"
+
+        fun newInstance(route: Route, reciprocate: Reciprocate): TimeTableBottomSheetDialogFragment = TimeTableBottomSheetDialogFragment().apply {
             arguments = bundleOf(ARG_ROUTE to route, ARG_RECIPROCATE to reciprocate)
         }
     }

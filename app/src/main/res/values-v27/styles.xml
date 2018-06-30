@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -7,5 +8,11 @@
         <item name="android:windowLightNavigationBar">true</item>
         <item name="android:navigationBarColor">@color/navigation_bar</item>
         <item name="android:navigationBarDividerColor">@color/navigation_bar_divider</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/navigation_bar</item>
+        <item name="android:navigationBarDividerColor">@android:color/transparent</item>
     </style>
 </resources>
