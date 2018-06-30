@@ -24,8 +24,9 @@
     <!--TimeTableDialog-->
     <dimen name="time_table_dialog_hour_text_width">36dp</dimen>
     <dimen name="time_table_dialog_row_divider">1dp</dimen>
-    <dimen name="time_table_dialog_text_margin">4dp</dimen>
+    <dimen name="time_table_dialog_vertical_text_margin">4dp</dimen>
+    <dimen name="time_table_dialog_horizontal_text_margin">8dp</dimen>
     <dimen name="time_table_dialog_header_text">14sp</dimen>
-    <dimen name="time_table_dialog_row_text">14sp</dimen>
+    <dimen name="time_table_dialog_row_text">16sp</dimen>
 
 </resources>
