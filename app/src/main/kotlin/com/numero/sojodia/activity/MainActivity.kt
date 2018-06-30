@@ -14,7 +14,7 @@ import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.extension.showDialog
 import com.numero.sojodia.fragment.BusScheduleFragment
-import com.numero.sojodia.fragment.TimeTableDialogFragment
+import com.numero.sojodia.fragment.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.repository.IBusDataRepository
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
-        TimeTableDialogFragment.newInstance(route, reciprocate).show(supportFragmentManager, "")
+        TimeTableBottomSheetDialogFragment.newInstance(route, reciprocate).show(supportFragmentManager)
     }
 
     private fun initViews() {

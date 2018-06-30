@@ -10,7 +10,7 @@
         <item name="android:splitMotionEvents">false</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="android:windowBackground">@color/background</item>
-        <item name="dialogCornerRadius">16dp</item>
+        <item name="dialogCornerRadius">@dimen/app_corner_round</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -21,5 +21,16 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="BottomSheetStyle" parent="@style/Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet_dialog</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog" />
+
+    <style name="BottomSheetDialogTheme.Rounded">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
 
 </resources>
