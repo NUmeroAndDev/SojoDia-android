@@ -9,7 +9,7 @@ import java.util.*
 
 class ConfigRepository(context: Context) : IConfigRepository {
 
-    private val sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
 
     override var versionCode: Long
         set(value) {
@@ -19,24 +19,15 @@ class ConfigRepository(context: Context) : IConfigRepository {
         }
         get() = sharedPreferences.getLong(VERSION_CODE, 20170401L)
 
-    override var masterVersionCode: Long = -1
-        set(value) {
-            field = value
-            sharedPreferences.edit {
-                putString(DATE, Calendar.getInstance().getTodayStringOnlyFigure())
-            }
-        }
-
     override val isTodayUpdateChecked: Boolean
         get() {
             return Calendar.getInstance().getTodayStringOnlyFigure() == sharedPreferences.getString(DATE, "")
         }
 
-    override val canUpdate: Boolean
-        get() = versionCode < masterVersionCode
-
-    init {
-        sharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
+    override fun updateCheckUpdateDate() {
+        sharedPreferences.edit {
+            putString(DATE, Calendar.getInstance().getTodayStringOnlyFigure())
+        }
     }
 
     companion object {

@@ -19,6 +19,6 @@ class ConfigRepositoryTest {
 
     @Test
     fun `Hoge`() {
-        assertEquals(configRepository.masterVersionCode, -1)
+        assertEquals(configRepository.versionCode, 20170401L)
     }
 }
