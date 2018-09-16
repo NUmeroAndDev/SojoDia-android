@@ -1,4 +1,4 @@
-package com.numero.sojodia.model
+package com.numero.sojodia.resource.model
 
 import se.ansman.kotshi.JsonSerializable
 

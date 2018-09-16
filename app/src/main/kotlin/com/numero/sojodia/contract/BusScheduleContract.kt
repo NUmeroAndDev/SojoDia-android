@@ -1,10 +1,10 @@
 package com.numero.sojodia.contract
 
-import com.numero.sojodia.model.BusTime
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
-import com.numero.sojodia.model.Week
 import com.numero.sojodia.presenter.IPresenter
+import com.numero.sojodia.resource.model.BusTime
+import com.numero.sojodia.resource.model.Week
 import com.numero.sojodia.view.IView
 
 interface BusScheduleContract {

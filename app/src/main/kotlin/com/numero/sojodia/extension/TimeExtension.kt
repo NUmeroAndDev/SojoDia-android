@@ -1,7 +1,7 @@
 package com.numero.sojodia.extension
 
 import androidx.annotation.VisibleForTesting
-import com.numero.sojodia.model.Time
+import com.numero.sojodia.resource.model.Time
 
 /**
  * @return 現在時刻からのカウント

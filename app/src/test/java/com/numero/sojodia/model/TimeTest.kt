@@ -2,6 +2,7 @@ package com.numero.sojodia.model
 
 import com.numero.sojodia.extension.createCountTime
 import com.numero.sojodia.extension.isOverTime
+import com.numero.sojodia.resource.model.Time
 import org.junit.Assert.*
 import org.junit.Test
 

@@ -1,6 +1,5 @@
-package com.numero.sojodia.api.response
+package com.numero.sojodia.resource.model
 
-import com.numero.sojodia.model.BusTime
 import com.squareup.moshi.Json
 import se.ansman.kotshi.JsonSerializable
 
