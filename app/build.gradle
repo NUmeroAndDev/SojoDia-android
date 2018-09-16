@@ -8,23 +8,14 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'com.cookpad.android.licensetools'
 
-def versionMajor = 8
-def versionMinor = 0
-def versionPatch = 0
-def versionBuild = 4
-def targetDevice = 0
-
-def appVersionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild * 10 + targetDevice
-def appVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
-
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.numero.sojodia"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode appVersionCode
-        versionName appVersionName
+        versionCode rootProject.appVersionCode
+        versionName rootProject.appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "BUS_DATA_URL", "\"https://raw.githubusercontent.com\"")
