@@ -1,11 +1,9 @@
-package com.numero.sojodia.view
+package com.numero.sojodia.widget
 
 import android.content.Context
-import androidx.appcompat.widget.AppCompatTextView
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.withStyledAttributes
-
-import com.numero.sojodia.R
 import java.util.*
 
 class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatTextView(context, attrs, defStyleAttr) {
