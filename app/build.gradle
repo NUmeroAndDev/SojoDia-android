@@ -69,16 +69,8 @@ dependencies {
 
     implementation "com.google.android.material:material:$materialVersion"
 
-    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 
-    implementation "se.ansman.kotshi:api:$kotshiVersion"
-    kapt "se.ansman.kotshi:compiler:$kotshiVersion"
-
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 }

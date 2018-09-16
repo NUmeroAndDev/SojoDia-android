@@ -5,14 +5,7 @@ import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
-import com.numero.sojodia.resource.ResourceJsonAdapterFactory
-import com.numero.sojodia.resource.BusDataApi
-import com.squareup.moshi.Moshi
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
+import com.numero.sojodia.resource.ResourceConfig
 
 class SojoDiaApplication : Application(), IApplication {
 
@@ -20,29 +13,11 @@ class SojoDiaApplication : Application(), IApplication {
 
     override lateinit var busDataRepository: IBusDataRepository
 
-    private val retrofit: Retrofit = createRetrofit()
-
     override fun onCreate() {
         super.onCreate()
         configRepository = ConfigRepository(this)
 
-        val busDataApi = retrofit.create(BusDataApi::class.java)
+        val busDataApi = ResourceConfig.createBusDataApi(BuildConfig.BUS_DATA_URL)
         busDataRepository = BusDataRepository(this, busDataApi)
-    }
-
-    private fun createRetrofit(): Retrofit {
-        val okHttpClient = OkHttpClient.Builder().apply {
-            if (BuildConfig.DEBUG) {
-                addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            }
-        }.build()
-        return Retrofit.Builder()
-                .baseUrl(BuildConfig.BUS_DATA_URL)
-                .client(okHttpClient)
-                .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder()
-                        .add(ResourceJsonAdapterFactory.INSTANCE)
-                        .build()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
-                .build()
     }
 }

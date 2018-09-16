@@ -40,8 +40,12 @@ dependencies {
 
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 
     implementation "se.ansman.kotshi:api:$kotshiVersion"
     kapt "se.ansman.kotshi:compiler:$kotshiVersion"
