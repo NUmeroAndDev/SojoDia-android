@@ -58,7 +58,7 @@
                 app:layout_constraintStart_toEndOf="@+id/tkPreviewImageButton"
                 app:layout_constraintTop_toBottomOf="@+id/tkCountdownTextView" />
 
-            <com.numero.sojodia.view.CountDownClockTextView
+            <com.numero.sojodia.widget.CountDownClockTextView
                 android:id="@+id/tkCountdownTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -177,7 +177,7 @@
                 app:layout_constraintStart_toEndOf="@+id/tndPreviewImageButton"
                 app:layout_constraintTop_toBottomOf="@+id/tndCountdownTextView" />
 
-            <com.numero.sojodia.view.CountDownClockTextView
+            <com.numero.sojodia.widget.CountDownClockTextView
                 android:id="@+id/tndCountdownTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
