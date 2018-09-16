@@ -1,19 +1,13 @@
 package com.numero.sojodia.repository
 
-import android.content.Context
-import com.numero.sojodia.extension.readAssetsFile
-import com.numero.sojodia.resource.ResourceJsonAdapterFactory
-import com.numero.sojodia.resource.BusDataApi
-import com.numero.sojodia.resource.model.BusDataResponse
+import com.numero.sojodia.resource.BusDataSource
 import com.numero.sojodia.resource.model.BusTime
 import com.numero.sojodia.resource.model.Config
-import com.squareup.moshi.Moshi
 import io.reactivex.Observable
-import java.io.File
 
-class BusDataRepository(private val context: Context, private val busDataApi: BusDataApi) : IBusDataRepository {
-
-    private val moshi = Moshi.Builder().add(ResourceJsonAdapterFactory.INSTANCE).build()
+class BusDataRepository(
+        private val busDataSource: BusDataSource
+) : IBusDataRepository {
 
     override var tkBusTimeListGoing: MutableList<BusTime> = mutableListOf()
         get() {
@@ -47,14 +41,10 @@ class BusDataRepository(private val context: Context, private val busDataApi: Bu
             return field
         }
 
-    override fun loadBusDataConfig(): Observable<Config> = busDataApi.getConfig()
+    override fun loadBusDataConfig(): Observable<Config> = busDataSource.loadConfigObservable()
 
     override fun loadAndSaveBusData(): Observable<String> {
-        return busDataApi.getBusData()
-                .map { moshi.adapter(BusDataResponse::class.java).toJson(it) }
-                .doOnNext({
-                    saveDownLoadData(BUS_DATA_FILE_NAME, it)
-                })
+        return busDataSource.loadAndSaveBusData()
     }
 
     override fun clearCache() {
@@ -64,37 +54,12 @@ class BusDataRepository(private val context: Context, private val busDataApi: Bu
         tndBusTimeListReturn.clear()
     }
 
-    @Throws(Exception::class)
-    private fun saveDownLoadData(fileName: String, data: String) {
-        context.openFileOutput(fileName, Context.MODE_PRIVATE).apply {
-            write(data.toByteArray())
-        }.close()
-    }
-
     private fun initList() {
-        createFileLoadObservable().subscribe({
+        busDataSource.createFileLoadObservable().subscribe({
             tkBusTimeListGoing = it.tkToKutcDataList.toMutableList()
             tkBusTimeListReturn = it.kutcToTkDataList.toMutableList()
             tndBusTimeListGoing = it.tndToKutcDataList.toMutableList()
             tndBusTimeListReturn = it.kutcToTndDataList.toMutableList()
         })
-    }
-
-    private fun createFileLoadObservable(): Observable<BusDataResponse> {
-        return Observable.create<String> {
-            // ダウンロードしたファイルがなければアセットから取得
-            val file = File("%s/%s".format(context.filesDir.toString(), BUS_DATA_FILE_NAME))
-            val source = if (file.exists()) {
-                file.readText(Charsets.UTF_8)
-            } else {
-                context.readAssetsFile(BUS_DATA_FILE_NAME)
-            }
-            it.onNext(source)
-        }
-                .map { moshi.adapter(BusDataResponse::class.java).fromJson(it) }
-    }
-
-    companion object {
-        private const val BUS_DATA_FILE_NAME: String = "BusData.json"
     }
 }

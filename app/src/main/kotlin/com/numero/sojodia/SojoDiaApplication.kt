@@ -5,7 +5,7 @@ import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
-import com.numero.sojodia.resource.ResourceConfig
+import com.numero.sojodia.resource.BusDataSource
 
 class SojoDiaApplication : Application(), IApplication {
 
@@ -17,7 +17,6 @@ class SojoDiaApplication : Application(), IApplication {
         super.onCreate()
         configRepository = ConfigRepository(this)
 
-        val busDataApi = ResourceConfig.createBusDataApi(BuildConfig.BUS_DATA_URL)
-        busDataRepository = BusDataRepository(this, busDataApi)
+        busDataRepository = BusDataRepository(BusDataSource(this, BuildConfig.BUS_DATA_URL))
     }
 }
