@@ -1,19 +1,19 @@
 package com.numero.sojodia.repository
 
 import android.content.Context
-import com.numero.sojodia.api.ApplicationJsonAdapterFactory
-import com.numero.sojodia.api.BusDataApi
-import com.numero.sojodia.api.response.BusDataResponse
 import com.numero.sojodia.extension.readAssetsFile
-import com.numero.sojodia.model.BusTime
-import com.numero.sojodia.model.Config
+import com.numero.sojodia.resource.ResourceJsonAdapterFactory
+import com.numero.sojodia.resource.BusDataApi
+import com.numero.sojodia.resource.model.BusDataResponse
+import com.numero.sojodia.resource.model.BusTime
+import com.numero.sojodia.resource.model.Config
 import com.squareup.moshi.Moshi
 import io.reactivex.Observable
 import java.io.File
 
 class BusDataRepository(private val context: Context, private val busDataApi: BusDataApi) : IBusDataRepository {
 
-    private val moshi = Moshi.Builder().add(ApplicationJsonAdapterFactory.INSTANCE).build()
+    private val moshi = Moshi.Builder().add(ResourceJsonAdapterFactory.INSTANCE).build()
 
     override var tkBusTimeListGoing: MutableList<BusTime> = mutableListOf()
         get() {

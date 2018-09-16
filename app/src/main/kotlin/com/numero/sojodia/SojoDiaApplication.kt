@@ -1,12 +1,12 @@
 package com.numero.sojodia
 
 import android.app.Application
-import com.numero.sojodia.api.ApplicationJsonAdapterFactory
-import com.numero.sojodia.api.BusDataApi
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
+import com.numero.sojodia.resource.ResourceJsonAdapterFactory
+import com.numero.sojodia.resource.BusDataApi
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,7 +40,7 @@ class SojoDiaApplication : Application(), IApplication {
                 .baseUrl(BuildConfig.BUS_DATA_URL)
                 .client(okHttpClient)
                 .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder()
-                        .add(ApplicationJsonAdapterFactory.INSTANCE)
+                        .add(ResourceJsonAdapterFactory.INSTANCE)
                         .build()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
                 .build()

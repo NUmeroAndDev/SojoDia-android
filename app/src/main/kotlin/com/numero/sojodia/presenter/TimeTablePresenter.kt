@@ -1,13 +1,19 @@
 package com.numero.sojodia.presenter
 
 import com.numero.sojodia.contract.TimeTableContract
-import com.numero.sojodia.model.*
+import com.numero.sojodia.model.Reciprocate
+import com.numero.sojodia.model.Route
+import com.numero.sojodia.model.TimeTableRow
 import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.resource.model.BusTime
+import com.numero.sojodia.resource.model.Week
 
-class TimeTablePresenter(private val view: TimeTableContract.View,
-                         private val busDataRepository: IBusDataRepository,
-                         private val route: Route,
-                         private val reciprocate: Reciprocate) : TimeTableContract.Presenter {
+class TimeTablePresenter(
+        private val view: TimeTableContract.View,
+        private val busDataRepository: IBusDataRepository,
+        private val route: Route,
+        private val reciprocate: Reciprocate
+) : TimeTableContract.Presenter {
 
     private val timeTableRowList = mutableListOf<TimeTableRow>()
 
@@ -16,7 +22,7 @@ class TimeTablePresenter(private val view: TimeTableContract.View,
 
         // バスは6時から23時しか動いていない
         (6..23).mapTo(timeTableRowList) { TimeTableRow(it) }
-        
+
         val list = if (route == Route.TK) {
             setupTkBusTimeList()
         } else {
