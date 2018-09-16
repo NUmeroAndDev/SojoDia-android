@@ -1,12 +1,20 @@
 buildscript {
 
     ext {
-        kotlin_version = '1.2.70'
-        okhttp_version = '3.9.0'
-        kotshi_version = '1.0.4'
-        retrofit_version = '2.4.0'
-        rxjava_version = '2.1.7'
-        rx_android_version = '2.0.2'
+        kotlinVersion = '1.2.70'
+
+        appCompatVersion = '1.0.0-rc02'
+        ktxVersion = '1.0.0-rc02'
+        materialVersion = '1.0.0-rc02'
+        recyclerViewVersion = '1.0.0-rc02'
+        constraintLayoutVersion = '1.1.2'
+        preferenceVersion = '1.0.0-rc02'
+
+        okhttpVersion = '3.9.0'
+        kotshiVersion = '1.0.4'
+        retrofitVersion = '2.4.0'
+        rxJavaVersion = '2.1.7'
+        rxAndroidVersion = '2.0.2'
     }
 
     repositories {
@@ -17,7 +25,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0-rc03'
 
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
         classpath 'com.cookpad.android.licensetools:license-tools-plugin:1.5.0'
     }
