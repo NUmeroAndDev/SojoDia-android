@@ -1,7 +1,7 @@
 
 #  SojoDia  
-![Android Studio](https://img.shields.io/badge/Android%20Studio-3.2%20rc02-green.svg)
-![Kotlin](https://img.shields.io/badge/kotlin-1.2.61-yellow.svg)
+![Android Studio](https://img.shields.io/badge/Android%20Studio-3.2%20rc3-green.svg)
+![Kotlin](https://img.shields.io/badge/kotlin-1.2.70-yellow.svg)
 
 ## About  
 関西大学高槻キャンパス用のバス時刻表アプリ  
@@ -18,4 +18,4 @@ API Level 19 ( Android 4.4 )
 |[OkHttp](https://github.com/square/okhttp)|3.9.0|
 |[Kotshi](https://github.com/ansman/kotshi)|1.0.4|
 |[Retrofit](https://github.com/square/retrofit)|2.4.0|
-|[Android License Tools Plugin](https://github.com/cookpad/license-tools-plugin)|1.2.0|
+|[Android License Tools Plugin](https://github.com/cookpad/license-tools-plugin)|1.5.0|
