@@ -5,25 +5,23 @@ import android.content.Intent
 import android.os.IBinder
 import com.numero.sojodia.IApplication
 import com.numero.sojodia.manager.NotificationManager
-import com.numero.sojodia.repository.IBusDataRepository
-import com.numero.sojodia.repository.IConfigRepository
+import com.numero.sojodia.presenter.UpdateBusDataPresenter
 import com.numero.sojodia.util.BroadCastUtil
-import io.reactivex.disposables.Disposable
+import com.numero.sojodia.view.IUpdateBusDataView
 
-class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName) {
+class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName), IUpdateBusDataView {
 
     private lateinit var notificationManager: NotificationManager
 
-    private val busDataRepository: IBusDataRepository
-        get() = (application as IApplication).busDataRepository
-    private val configRepository: IConfigRepository
-        get() = (application as IApplication).configRepository
-
-    private var disposable: Disposable? = null
+    private lateinit var presenter: UpdateBusDataPresenter
 
     override fun onCreate() {
         super.onCreate()
 
+        val configRepository = (application as IApplication).configRepository
+        val busDataRepository = (application as IApplication).busDataRepository
+
+        presenter = UpdateBusDataPresenter(this, configRepository, busDataRepository)
         notificationManager = NotificationManager(this)
     }
 
@@ -33,11 +31,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
 
     override fun onDestroy() {
         super.onDestroy()
-        disposable?.apply {
-            if (isDisposed.not()) {
-                dispose()
-            }
-        }
+        presenter.unSubscribe()
         notificationManager.cancelNotification()
     }
 
@@ -46,39 +40,20 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
     }
 
     override fun onHandleIntent(intent: Intent?) {
-        if (configRepository.isTodayUpdateChecked) {
-            stopSelf()
-            return
-        }
-
-        checkUpdate()
+        presenter.checkUpdate()
     }
 
-    private fun checkUpdate() {
-        disposable = busDataRepository.loadBusDataConfig()
-                .subscribe({
-                    configRepository.apply {
-                        masterVersionCode = it.version
-                        if (canUpdate) {
-                            executeUpdate()
-                        }
-                    }
-                }, {
-                    it.printStackTrace()
-                    stopSelf()
-                })
+    override fun successUpdate() {
+        BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD)
+        stopSelf()
     }
 
-    private fun executeUpdate() {
-        notificationManager.showNotification()
-        disposable = busDataRepository.loadAndSaveBusData().subscribe({
-        }, {
-            it.printStackTrace()
-            stopSelf()
-        }, {
-            configRepository.versionCode = configRepository.masterVersionCode
-            BroadCastUtil.sendBroadCast(this, BroadCastUtil.ACTION_FINISH_DOWNLOAD)
-            stopSelf()
-        })
+    override fun noNeedUpdate() {
+        stopSelf()
+    }
+
+    override fun onError(throwable: Throwable) {
+        throwable.printStackTrace()
+        stopSelf()
     }
 }
