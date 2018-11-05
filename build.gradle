@@ -45,7 +45,7 @@ buildscript {
 
         appCompatVersion = '1.0.0'
         ktxVersion = '1.0.0'
-        materialVersion = '1.0.0'
+        materialVersion = '1.1.0-alpha01'
         recyclerViewVersion = '1.0.0'
         constraintLayoutVersion = '2.0.0-alpha2'
         preferenceVersion = '1.0.0'
