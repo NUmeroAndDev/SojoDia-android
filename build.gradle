@@ -1,20 +1,60 @@
+enum VersionSuffix {
+    ALPHA(0, "alpha"), BETA(1, "beta"), PRODUCT(9, "")
+
+    private final int code
+    private final String name
+
+    VersionSuffix(int code, String name) {
+        this.code = code
+        this.name = name
+    }
+
+    int getCode() {
+        code
+    }
+
+    String getName() {
+        name
+    }
+}
+
+ext {
+    def suffix = VersionSuffix.ALPHA
+
+    def appVersionMajor = 8
+    def appVersionMinor = 0
+    def appVersionPatch = 1
+    def appVersionBuild = 0
+    /**
+     * device number
+     * 0 = phone
+     * 1 = wear
+     */
+    def appTargetDevice = 0
+
+    appVersionCode = appVersionMajor * 100000 + appVersionMinor * 10000 + appVersionPatch * 1000 + suffix.code * 100 + appVersionBuild * 10 + appTargetDevice
+    appVersionName = suffix == VersionSuffix.PRODUCT ?
+            "${appVersionMajor}.${appVersionMinor}.${appVersionPatch}" :
+            "${appVersionMajor}.${appVersionMinor}.${appVersionPatch}-${suffix.name} ${appVersionBuild}"
+}
+
 buildscript {
 
     ext {
-        kotlinVersion = '1.2.70'
+        kotlinVersion = '1.3.0'
 
-        appCompatVersion = '1.0.0-rc02'
-        ktxVersion = '1.0.0-rc02'
-        materialVersion = '1.0.0-rc02'
-        recyclerViewVersion = '1.0.0-rc02'
-        constraintLayoutVersion = '1.1.2'
-        preferenceVersion = '1.0.0-rc02'
+        appCompatVersion = '1.0.0'
+        ktxVersion = '1.0.0'
+        materialVersion = '1.1.0-alpha01'
+        recyclerViewVersion = '1.0.0'
+        constraintLayoutVersion = '2.0.0-alpha2'
+        preferenceVersion = '1.0.0'
 
         okhttpVersion = '3.9.0'
-        kotshiVersion = '1.0.4'
+        kotshiVersion = '1.0.5'
         retrofitVersion = '2.4.0'
-        rxJavaVersion = '2.1.7'
-        rxAndroidVersion = '2.0.2'
+        rxJavaVersion = '2.2.3'
+        rxAndroidVersion = '2.1.0'
     }
 
     repositories {
@@ -23,7 +63,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-rc03'
+        classpath 'com.android.tools.build:gradle:3.3.0-beta02'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 

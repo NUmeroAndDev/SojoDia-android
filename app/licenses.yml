@@ -98,6 +98,15 @@
 - artifact: androidx.localbroadcastmanager:localbroadcastmanager:+
   name: Android Support Library Local Broadcast Manager
   skip: true
+- artifact: androidx.test:monitor:+
+  name: AndroidX Test Library
+  skip: true
+- artifact: androidx.test:runner:+
+  name: AndroidX Test Library
+  skip: true
+- artifact: androidx.versionedparcelable:versionedparcelable:+
+  name: VersionedParcelable and friends
+  skip: true
 
 - artifact: androidx.core:core-ktx:+
   name: Android KTX Core
@@ -130,6 +139,15 @@
   license: The Apache License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://kotlinlang.org/
+- artifact: org.jetbrains.kotlin:kotlin-stdlib-common:+
+  name: org.jetbrains.kotlin:kotlin-stdlib-common
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://kotlinlang.org/
+- artifact: org.jetbrains.kotlin:kotlin-stdlib-jdk7:+
+  name: org.jetbrains.kotlin:kotlin-stdlib-jdk7
+  skip: true
 - artifact: org.jetbrains.kotlin:kotlin-android-extensions-runtime:+
   skip: true
 - artifact: org.jetbrains:annotations:+
@@ -188,3 +206,138 @@
   name: Moshi
   copyrightHolder: Square, Inc.
   license: Apache 2.0
+
+# Test
+- artifact: junit:junit:+
+  name: JUnit
+  skip: true
+- artifact: org.robolectric:shadowapi:+
+  name: shadowapi
+  skip: true
+- artifact: org.robolectric:junit:+
+  name: junit
+  skip: true
+- artifact: org.robolectric:resources:+
+  name: resources
+  skip: true
+- artifact: org.robolectric:utils:+
+  name: utils
+  skip: true
+- artifact: org.robolectric:sandbox:+
+  name: sandbox
+  skip: true
+- artifact: org.robolectric:robolectric:+
+  name: robolectric
+  skip: true
+- artifact: org.robolectric:annotations:+
+  name: annotations
+  skip: true
+- artifact: org.robolectric:shadows-framework:+
+  name: framework
+  skip: true
+- artifact: com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:+
+  name: Accessibility Test Framework
+  skip: true
+
+- artifact: classworlds:classworlds:+
+  name: classworlds
+  skip: true
+- artifact: org.codehaus.plexus:plexus-interpolation:+
+  name: Plexus Interpolation API
+  skip: true
+- artifact: backport-util-concurrent:backport-util-concurrent:+
+  name: Backport of JSR 166
+  skip: true
+- artifact: org.apache.maven.wagon:wagon-http-shared:+
+  name: Maven Wagon HTTP Shared Library
+  skip: true
+- artifact: org.hamcrest:hamcrest-core:+
+  name: Hamcrest Core
+  skip: true
+- artifact: com.ibm.icu:icu4j:+
+  name: ICU4J
+  skip: true
+- artifact: net.sf.kxml:kxml2:+
+  name: kXML 2 is a small XML pull parser based on the common XML pull API
+  skip: true
+- artifact: org.apache.maven:maven-profile:+
+  name: Maven Profile Model
+  skip: true
+- artifact: org.apache.maven:maven-artifact-manager:+
+  name: Maven Artifact Manager
+  skip: true
+- artifact: org.codehaus.plexus:plexus-container-default:+
+  name: Default Plexus Container
+  skip: true
+- artifact: org.apache.maven:maven-repository-metadata:+
+  name: Maven Repository Metadata Model
+  skip: true
+- artifact: org.apache.maven.wagon:wagon-file:+
+  name: Maven Wagon File Provider
+  skip: true
+- artifact: org.codehaus.plexus:plexus-utils:+
+  name: Plexus Common Utilities
+  skip: true
+- artifact: nekohtml:xercesMinimal:+
+  name: xercesMinimal
+  skip: true
+- artifact: com.google.guava:guava:+
+  name: Guava Google Core Libraries for Java
+  skip: true
+- artifact: com.almworks.sqlite4java:sqlite4java:+
+  name: sqlite4java
+  skip: true
+- artifact: org.apache.maven:maven-error-diagnostics:+
+  name: Maven Error Diagnostics
+  skip: true
+- artifact: org.apache.maven:maven-artifact:+
+  name: Maven Artifact
+  skip: true
+- artifact: org.hamcrest:hamcrest-library:+
+  name: Hamcrest library
+  skip: true
+- artifact: org.apache.ant:ant:+
+  name: org.apache.tools.ant
+  skip: true
+- artifact: org.apache.ant:ant-launcher:+
+  name: ant-launcher
+  skip: true
+- artifact: org.apache.maven:maven-settings:+
+  name: Maven Local Settings Model
+  skip: true
+- artifact: org.apache.maven:maven-plugin-registry:+
+  name: Maven Plugin Registry Model
+  skip: true
+- artifact: org.apache.maven.wagon:wagon-provider-api:+
+  name: Maven Wagon API
+  skip: true
+- artifact: org.apache.maven:maven-project:+
+  name: Maven Project Builder
+  skip: true
+- artifact: org.apache.maven:maven-model:+
+  name: Maven Model
+  skip: true
+- artifact: org.apache.maven.wagon:wagon-http-lightweight:+
+  name: Maven Wagon Lightweight HTTP Provider
+  skip: true
+- artifact: org.bouncycastle:bcprov-jdk15on:+
+  name: Bouncy Castle Provider
+  skip: true
+- artifact: nekohtml:nekohtml:+
+  name: Neko HTML
+  skip: true
+- artifact: org.ow2.asm:asm-commons:+
+  name: ASM Commons
+  skip: true
+- artifact: org.ow2.asm:asm-tree:+
+  name: ASM Tree
+  skip: true
+- artifact: org.ow2.asm:asm:+
+  name: ASM Core
+  skip: true
+- artifact: org.apache.maven:maven-ant-tasks:+
+  name: Maven Ant Tasks
+  skip: true
+- artifact: com.google.protobuf:protobuf-java:+
+  name: Protocol Buffer Java API
+  skip: true

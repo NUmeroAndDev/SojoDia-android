@@ -12,14 +12,14 @@ import com.numero.sojodia.contract.BusScheduleContract
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.createCountTime
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
-import com.numero.sojodia.model.BusTime
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
-import com.numero.sojodia.model.Week
 import com.numero.sojodia.presenter.BusSchedulePresenter
 import com.numero.sojodia.repository.IBusDataRepository
-import com.numero.sojodia.view.CountDownClockTextView
+import com.numero.sojodia.resource.model.BusTime
+import com.numero.sojodia.resource.model.Week
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
+import com.numero.sojodia.widget.CountDownClockTextView
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
 

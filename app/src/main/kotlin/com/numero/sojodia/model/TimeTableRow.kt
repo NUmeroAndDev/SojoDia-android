@@ -1,5 +1,6 @@
 package com.numero.sojodia.model
 
+import com.numero.sojodia.resource.model.BusTime
 import java.util.*
 
 class TimeTableRow(val hour: Int) {

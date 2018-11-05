@@ -1,7 +1,7 @@
-package com.numero.sojodia.api
+package com.numero.sojodia.resource
 
-import com.numero.sojodia.api.response.BusDataResponse
-import com.numero.sojodia.model.Config
+import com.numero.sojodia.resource.model.BusDataResponse
+import com.numero.sojodia.resource.model.Config
 import io.reactivex.Observable
 import retrofit2.http.GET
 

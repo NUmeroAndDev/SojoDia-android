@@ -8,23 +8,14 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'com.cookpad.android.licensetools'
 
-def versionMajor = 8
-def versionMinor = 0
-def versionPatch = 0
-def versionBuild = 4
-def targetDevice = 0
-
-def appVersionCode = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild * 10 + targetDevice
-def appVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
-
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.numero.sojodia"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode appVersionCode
-        versionName appVersionName
+        versionCode rootProject.appVersionCode
+        versionName rootProject.appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "BUS_DATA_URL", "\"https://raw.githubusercontent.com\"")
@@ -34,6 +25,10 @@ android {
         release {
             shrinkResources true
             minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -52,7 +47,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':widget')
+    implementation project(':resource')
+
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.robolectric:robolectric:4.0-alpha-3'
+    testImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
@@ -66,16 +66,6 @@ dependencies {
 
     implementation "com.google.android.material:material:$materialVersion"
 
-    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
-
-    implementation "se.ansman.kotshi:api:$kotshiVersion"
-    kapt "se.ansman.kotshi:compiler:$kotshiVersion"
-
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 }

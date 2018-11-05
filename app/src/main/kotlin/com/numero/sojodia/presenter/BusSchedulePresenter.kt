@@ -2,12 +2,18 @@ package com.numero.sojodia.presenter
 
 import com.numero.sojodia.contract.BusScheduleContract
 import com.numero.sojodia.extension.isOverTime
-import com.numero.sojodia.model.*
+import com.numero.sojodia.model.Reciprocate
+import com.numero.sojodia.model.Route
 import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.resource.model.BusTime
+import com.numero.sojodia.resource.model.Time
+import com.numero.sojodia.resource.model.Week
 
-class BusSchedulePresenter(private val view: BusScheduleContract.View,
-                           private val busDataRepository: IBusDataRepository,
-                           private val reciprocate: Reciprocate) : BusScheduleContract.Presenter {
+class BusSchedulePresenter(
+        private val view: BusScheduleContract.View,
+        private val busDataRepository: IBusDataRepository,
+        private val reciprocate: Reciprocate
+) : BusScheduleContract.Presenter {
     private lateinit var week: Week
 
     private var tkBusPosition = 0
