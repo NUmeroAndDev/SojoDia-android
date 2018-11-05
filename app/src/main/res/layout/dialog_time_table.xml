@@ -16,6 +16,14 @@
         app:subtitleTextColor="@color/time_table_dialog_toolbar_text"
         app:titleTextColor="@color/time_table_dialog_toolbar_text" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bottom_sheet_control_bar"
+        app:layout_constraintEnd_toEndOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/headerHourTextView"
         android:layout_width="@dimen/time_table_dialog_hour_text_width"
