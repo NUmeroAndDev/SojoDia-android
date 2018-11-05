@@ -3,13 +3,25 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primaryVariant</item>
-        <item name="colorAccent">@color/secondary</item>
+        <item name="colorPrimaryVariant">@color/primaryVariant</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorError">@color/error</item>
+
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorOnBackground">@color/onBackground</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="colorOnError">@color/onError</item>
+
+        <item name="colorPrimaryDark">?attr/colorPrimaryVariant</item>
         <item name="android:textColorPrimary">@color/onPrimary</item>
         <item name="android:textColorSecondary">@color/onSecondary</item>
         <item name="android:splitMotionEvents">false</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-        <item name="android:windowBackground">@color/background</item>
+
         <item name="dialogCornerRadius">@dimen/app_corner_round</item>
     </style>
 
