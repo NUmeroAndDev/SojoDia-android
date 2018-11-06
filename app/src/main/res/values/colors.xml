@@ -17,10 +17,8 @@
     <color name="navigation_bar_divider">#1E000000</color>
 
     <!--Fragment-->
-    <color name="card_title_text">@color/secondary</color>
     <color name="count_attention_text">#f44336</color>
     <color name="count_safe_text">#03a9f4</color>
-    <color name="count_default_text">@color/onPrimary</color>
 
     <!--TimeTableDialog-->
     <color name="time_table_dialog_background">#FFFFFF</color>
