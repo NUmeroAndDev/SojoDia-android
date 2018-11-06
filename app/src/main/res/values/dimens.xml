@@ -24,7 +24,7 @@
     <dimen name="no_bus_text">22sp</dimen>
 
     <!--TimeTableDialog-->
-    <dimen name="time_table_dialog_hour_text_width">36dp</dimen>
+    <dimen name="time_table_dialog_hour_text_width">52dp</dimen>
     <dimen name="time_table_dialog_row_divider">1dp</dimen>
     <dimen name="time_table_dialog_vertical_text_margin">4dp</dimen>
     <dimen name="time_table_dialog_horizontal_text_margin">8dp</dimen>
