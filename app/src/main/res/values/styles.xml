@@ -17,12 +17,14 @@
         <item name="colorOnError">@color/onError</item>
 
         <item name="colorPrimaryDark">?attr/colorPrimaryVariant</item>
-        <item name="android:textColorPrimary">@color/onPrimary</item>
-        <item name="android:textColorSecondary">@color/onSecondary</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
         <item name="android:splitMotionEvents">false</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 
         <item name="dialogCornerRadius">@dimen/app_corner_round</item>
+
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme.Rounded.Light</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -34,15 +36,19 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
-    <style name="BottomSheetStyle" parent="@style/Widget.MaterialComponents.BottomSheet.Modal">
-        <item name="android:background">@drawable/bg_bottom_sheet_dialog</item>
-    </style>
-
     <style name="BottomSheetDialogTheme" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog" />
 
     <style name="BottomSheetDialogTheme.Rounded">
         <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme.Rounded.Light">
+        <item name="android:colorBackground">@color/background</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="@style/Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet_dialog</item>
     </style>
 
 </resources>

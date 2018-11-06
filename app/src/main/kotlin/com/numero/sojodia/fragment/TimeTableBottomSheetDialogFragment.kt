@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.TimeTableContract
 import com.numero.sojodia.extension.app
@@ -18,7 +19,7 @@ import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.view.adapter.TimeTableRowAdapter
 import kotlinx.android.synthetic.main.dialog_time_table.view.*
 
-class TimeTableBottomSheetDialogFragment : RoundedBottomSheetFragment(), TimeTableContract.View {
+class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTableContract.View {
 
     private var toolbar: Toolbar? = null
     private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
