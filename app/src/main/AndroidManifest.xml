@@ -13,13 +13,12 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,13 +33,11 @@
 
         <activity
             android:name=".activity.SettingsActivity"
-            android:label="@string/settings_label"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/settings_label" />
 
         <activity
             android:name=".activity.LicensesActivity"
-            android:label="@string/licenses_label"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/licenses_label" />
 
         <service android:name=".service.UpdateBusDataService" />
         <meta-data
