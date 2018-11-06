@@ -1,6 +1,8 @@
 <resources>
     <dimen name="app_corner_round">16dp</dimen>
 
+    <dimen name="bus_schedule_card_elevation">4dp</dimen>
+
     <!--Fragment-->
     <dimen name="card_margin">8dp</dimen>
     <dimen name="card_toolbar_button_margin">12dp</dimen>
