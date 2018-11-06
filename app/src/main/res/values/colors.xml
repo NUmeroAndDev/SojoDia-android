@@ -16,6 +16,8 @@
     <color name="textColorPrimary">#DB000000</color>
     <color name="textColorSecondary">#8A000000</color>
 
+    <color name="colorControlHighlight">#1A000000</color>
+
     <color name="navigation_bar">#FFFFFF</color>
     <color name="navigation_bar_divider">#1E000000</color>
 

@@ -26,6 +26,7 @@
 
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:colorControlHighlight">@color/colorControlHighlight</item>
 
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme.Rounded.Light</item>
     </style>
@@ -47,6 +48,7 @@
 
         <item name="android:textColorPrimary">@color/textColorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryDark</item>
+        <item name="android:colorControlHighlight">@color/colorControlHighlightDark</item>
 
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme.Rounded.Dark</item>
     </style>

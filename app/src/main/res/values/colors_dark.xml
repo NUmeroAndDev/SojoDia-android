@@ -16,4 +16,6 @@
     <color name="textColorPrimaryDark">#DBFFFFFF</color>
     <color name="textColorSecondaryDark">#8AFFFFFF</color>
 
+    <color name="colorControlHighlightDark">#1AFFFFFF</color>
+
 </resources>
