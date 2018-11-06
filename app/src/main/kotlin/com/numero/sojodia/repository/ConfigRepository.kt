@@ -3,6 +3,8 @@ package com.numero.sojodia.repository
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import androidx.preference.PreferenceManager
+import com.numero.sojodia.R
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 
 import java.util.*
@@ -10,6 +12,7 @@ import java.util.*
 class ConfigRepository(context: Context) : IConfigRepository {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
+    private val settingsPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     override var versionCode: Long
         set(value) {
@@ -30,9 +33,23 @@ class ConfigRepository(context: Context) : IConfigRepository {
         }
     }
 
+    override val isUseDarkTheme: Boolean
+        get() = settingsPreferences.getBoolean(KEY_USE_DARK_THEME, isDefaultUseDarkTheme)
+
+
+    override val themeRes: Int
+        get() = if (isUseDarkTheme) {
+            R.style.AppTheme_Dark_NoActionBar
+        } else {
+            R.style.AppTheme_Light_NoActionBar
+        }
+
     companion object {
         private const val PREFERENCES = "PREFERENCES"
         private const val VERSION_CODE = "FIRST_BOOT"
         private const val DATE = "DATE"
+        private const val KEY_USE_DARK_THEME = "use_dark_theme"
+
+        private const val isDefaultUseDarkTheme = false
     }
 }
