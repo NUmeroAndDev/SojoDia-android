@@ -43,7 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tkTimeTableButton" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tkTimeTableButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -51,7 +51,8 @@
                 android:padding="8dp"
                 android:src="@drawable/ic_schedule"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorSecondary" />
 
             <com.numero.sojodia.view.NotSwipeViewPager
                 android:id="@+id/tkBusTimeViewPager"
@@ -148,7 +149,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tndTimeTableButton" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tndTimeTableButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -156,7 +157,8 @@
                 android:padding="8dp"
                 android:src="@drawable/ic_schedule"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorSecondary" />
 
             <com.numero.sojodia.view.NotSwipeViewPager
                 android:id="@+id/tndBusTimeViewPager"
