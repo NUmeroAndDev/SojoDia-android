@@ -17,8 +17,8 @@
         <item name="colorOnError">@color/onError</item>
 
         <item name="colorPrimaryDark">?attr/colorPrimaryVariant</item>
-        <item name="android:textColorPrimary">@color/onPrimary</item>
-        <item name="android:textColorSecondary">@color/onSecondary</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
         <item name="android:splitMotionEvents">false</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 
