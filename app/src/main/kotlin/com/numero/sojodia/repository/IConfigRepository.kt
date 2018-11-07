@@ -6,5 +6,9 @@ interface IConfigRepository {
 
     val isTodayUpdateChecked: Boolean
 
+    val isUseDarkTheme: Boolean
+
+    val themeRes: Int
+
     fun updateCheckUpdateDate()
 }

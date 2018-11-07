@@ -1,8 +1,8 @@
 package com.numero.sojodia.view.adapter
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.numero.sojodia.R
 import com.numero.sojodia.model.TimeTableRow
 import com.numero.sojodia.view.TimeTableRowHolder
@@ -16,6 +16,8 @@ class TimeTableRowAdapter : RecyclerView.Adapter<TimeTableRowHolder>() {
             notifyDataSetChanged()
         }
 
+    private val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) - 6
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): TimeTableRowHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.holder_time_table_row, viewGroup, false)
         return TimeTableRowHolder(view)
@@ -25,7 +27,7 @@ class TimeTableRowAdapter : RecyclerView.Adapter<TimeTableRowHolder>() {
         val list = tableRowList ?: return
         holder.apply {
             timeTableRow = list[position]
-            isCurrentHour = position == Calendar.getInstance().get(Calendar.HOUR_OF_DAY) - 6
+            isCurrentHour = position == currentHour
         }
     }
 

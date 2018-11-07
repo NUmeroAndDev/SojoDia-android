@@ -35,7 +35,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tkTimeTableButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,7 +45,8 @@
                 android:padding="@dimen/card_toolbar_button_margin"
                 android:src="@drawable/ic_schedule"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorSecondary" />
 
             <com.numero.sojodia.view.NotSwipeViewPager
                 android:id="@+id/tkBusTimeViewPager"
@@ -73,7 +74,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView"
                 app:safeTextColor="@color/count_safe_text" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tkNextImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,9 +85,10 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tkBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tkBusTimeViewPager"
-                app:layout_constraintTop_toTopOf="@+id/tkBusTimeViewPager" />
+                app:layout_constraintTop_toTopOf="@+id/tkBusTimeViewPager"
+                app:tint="?attr/colorOnSurface" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tkPreviewImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,7 +99,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tkBusTimeViewPager"
                 app:layout_constraintEnd_toStartOf="@id/tkBusTimeViewPager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tkBusTimeViewPager" />
+                app:layout_constraintTop_toTopOf="@+id/tkBusTimeViewPager"
+                app:tint="?attr/colorOnSurface" />
 
             <FrameLayout
                 android:id="@+id/tkNoBusLayout"
@@ -156,7 +159,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tndTimeTableButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -166,7 +169,8 @@
                 android:padding="@dimen/card_toolbar_button_margin"
                 android:src="@drawable/ic_schedule"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorSecondary" />
 
             <com.numero.sojodia.view.NotSwipeViewPager
                 android:id="@+id/tndBusTimeViewPager"
@@ -194,7 +198,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView"
                 app:safeTextColor="@color/count_safe_text" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tndNextImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -205,9 +209,10 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tndBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tndBusTimeViewPager"
-                app:layout_constraintTop_toTopOf="@+id/tndBusTimeViewPager" />
+                app:layout_constraintTop_toTopOf="@+id/tndBusTimeViewPager"
+                app:tint="?attr/colorOnSurface" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tndPreviewImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -218,7 +223,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tndBusTimeViewPager"
                 app:layout_constraintEnd_toStartOf="@id/tndBusTimeViewPager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tndBusTimeViewPager" />
+                app:layout_constraintTop_toTopOf="@+id/tndBusTimeViewPager"
+                app:tint="?attr/colorOnSurface" />
 
             <FrameLayout
                 android:id="@+id/tndNoBusLayout"

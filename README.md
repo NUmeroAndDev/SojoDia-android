@@ -8,7 +8,7 @@
 [Google Play](https://play.google.com/store/apps/details?id=com.numero.sojodia)  
 
 ### Support  
-API Level 19 ( Android 4.4 )
+API Level 21 ( Android 5.0 )
 
 ### Libraries  
 |Library|Version|

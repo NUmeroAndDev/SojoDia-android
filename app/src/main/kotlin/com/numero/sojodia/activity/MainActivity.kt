@@ -18,6 +18,7 @@ import com.numero.sojodia.fragment.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.service.UpdateBusDataService
 import com.numero.sojodia.util.BroadCastUtil
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter
@@ -34,9 +35,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     private val busDataRepository: IBusDataRepository
         get() = app.busDataRepository
+    private val configRepository: IConfigRepository
+        get() = app.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(configRepository.themeRes)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
@@ -100,5 +104,11 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
                     this.recreate()
                 }
         )
+    }
+
+    companion object {
+        fun createClearTopIntent(context: Context) = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
     }
 }

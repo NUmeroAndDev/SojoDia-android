@@ -12,7 +12,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.numero.sojodia"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode rootProject.appVersionCode
         versionName rootProject.appVersionName

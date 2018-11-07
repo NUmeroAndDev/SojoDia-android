@@ -29,6 +29,7 @@
 
     <string name="date_pattern">EEE, MMM d</string>
 
+    <string name="settings_use_dark_theme_title">Dark Theme</string>
     <string name="settings_data_version_title">Timetable data</string>
     <string name="settings_app_version_title">Version</string>
     <string name="settings_licenses_title">Licenses</string>

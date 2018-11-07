@@ -1,18 +1,27 @@
 package com.numero.sojodia.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreference
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
-import com.numero.sojodia.activity.LicensesActivity
-import com.numero.sojodia.contract.SettingsContract
+import com.numero.sojodia.extension.app
+import com.numero.sojodia.repository.IConfigRepository
 
-class SettingsFragment : PreferenceFragmentCompat(), SettingsContract.View {
+class SettingsFragment : PreferenceFragmentCompat() {
 
-    private lateinit var presenter: SettingsContract.Presenter
-//    private val dataVersionScreen: PreferenceScreen by lazy {
-//        findPreference("data_version") as PreferenceScreen
-//    }
+    private var transition: ISettingsTransition? = null
+
+    private val configRepository: IConfigRepository
+        get() = app.configRepository
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is ISettingsTransition) {
+            transition = context
+        }
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
@@ -21,32 +30,28 @@ class SettingsFragment : PreferenceFragmentCompat(), SettingsContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val useDarkModeScreen = findPreference("use_dark_theme") as SwitchPreference
+        useDarkModeScreen.setOnPreferenceChangeListener { _, _ ->
+            transition?.reopenSettingsScreen()
+            true
+        }
+
+        findPreference("data_version").summary = configRepository.versionCode.toString()
+
         val appVersionScreen = findPreference("app_version")
         appVersionScreen.summary = BuildConfig.VERSION_NAME
 
         val licensesScreen = findPreference("licenses")
         licensesScreen.setOnPreferenceClickListener {
-            startActivity(LicensesActivity.createIntent(context!!))
+            transition?.showLicensesScreen()
             false
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.subscribe()
-    }
+    interface ISettingsTransition {
+        fun reopenSettingsScreen()
 
-    override fun onPause() {
-        super.onPause()
-        presenter.unSubscribe()
-    }
-
-    override fun setPresenter(presenter: SettingsContract.Presenter) {
-        this.presenter = presenter
-    }
-
-    override fun showBusDataVersion(version: String) {
-        findPreference("data_version").summary = version
+        fun showLicensesScreen()
     }
 
     companion object {

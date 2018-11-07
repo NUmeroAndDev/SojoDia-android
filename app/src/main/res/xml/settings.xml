@@ -2,6 +2,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="use_dark_theme"
+        android:title="@string/settings_use_dark_theme_title" />
+
     <PreferenceScreen
         android:key="data_version"
         android:title="@string/settings_data_version_title"
