@@ -4,7 +4,7 @@
 ![Kotlin](https://img.shields.io/badge/kotlin-1.3.0-yellow.svg)
 
 ## About  
-関西大学高槻キャンパス用のバス時刻表アプリ
+関西大学高槻キャンパス用のバス時刻表アプリ  
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
 alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=com.numero.sojodia)
 
