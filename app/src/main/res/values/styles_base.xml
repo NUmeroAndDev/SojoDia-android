@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <attr name="colorDivider" format="color" />
+
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimaryDark">?attr/colorPrimaryVariant</item>
+        <item name="colorDivider">?android:attr/listDivider</item>
 
         <item name="android:splitMotionEvents">false</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
@@ -17,6 +20,8 @@
         <item name="android:windowBackground">@color/background</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorError">@color/error</item>
+
+        <item name="colorDivider">@color/divider</item>
 
         <item name="colorOnPrimary">@color/onPrimary</item>
         <item name="colorOnSecondary">@color/onSecondary</item>
@@ -39,6 +44,8 @@
         <item name="android:windowBackground">@color/backgroundDark</item>
         <item name="colorSurface">@color/surfaceDark</item>
         <item name="colorError">@color/errorDark</item>
+
+        <item name="colorDivider">@color/dividerDark</item>
 
         <item name="colorOnPrimary">@color/onPrimaryDark</item>
         <item name="colorOnSecondary">@color/onSecondaryDark</item>

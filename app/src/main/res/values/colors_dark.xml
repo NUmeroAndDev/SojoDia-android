@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryDark">#36363B</color>
-    <color name="primaryVariantDark">#36363B</color>
+    <color name="primaryDark">#313235</color>
+    <color name="primaryVariantDark">#313235</color>
     <color name="secondaryDark">#8BC34A</color>
-    <color name="backgroundDark">#404045</color>
-    <color name="surfaceDark">#49494D</color>
+    <color name="backgroundDark">#202124</color>
+    <color name="surfaceDark">#313235</color>
     <color name="errorDark">#B00020</color>
+    <color name="dividerDark">#424346</color>
 
     <color name="onPrimaryDark">#FFFFFF</color>
     <color name="onSecondaryDark">#99FFFFFF</color>
