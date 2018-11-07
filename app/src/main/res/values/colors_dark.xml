@@ -9,7 +9,7 @@
     <color name="dividerDark">#424346</color>
 
     <color name="onPrimaryDark">#FFFFFF</color>
-    <color name="onSecondaryDark">#99FFFFFF</color>
+    <color name="onSecondaryDark">#FFFFFF</color>
     <color name="onBackgroundDark">#FFFFFF</color>
     <color name="onSurfaceDark">#FFFFFF</color>
     <color name="onErrorDark">#FFFFFF</color>

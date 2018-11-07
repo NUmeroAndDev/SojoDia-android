@@ -1,9 +1,7 @@
 package com.numero.sojodia.view
 
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.numero.sojodia.R
 import com.numero.sojodia.model.TimeTableRow
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.holder_time_table_row.*
@@ -15,7 +13,7 @@ class TimeTableRowHolder(override val containerView: View) : RecyclerView.ViewHo
         set(value) {
             value ?: return
             field = value
-            hourTextView.text = String.format(Locale.ENGLISH, "%02d", value.hour)
+            hourTextView.text = "%02d".format(Locale.ENGLISH, value.hour)
             weekdayTextView.text = value.timeOnWeekdayText
             saturdayTextView.text = value.timeOnSaturdayText
             sundayTextView.text = value.timeOnSundayText
@@ -24,12 +22,6 @@ class TimeTableRowHolder(override val containerView: View) : RecyclerView.ViewHo
     var isCurrentHour: Boolean = false
         set(value) {
             field = value
-            rowLayout.apply {
-                if (value) {
-                    setBackgroundColor(ContextCompat.getColor(context, R.color.time_table_dialog_row_highlight))
-                } else {
-                    background = null
-                }
-            }
+            rowLayout.isActivated = value
         }
 }
