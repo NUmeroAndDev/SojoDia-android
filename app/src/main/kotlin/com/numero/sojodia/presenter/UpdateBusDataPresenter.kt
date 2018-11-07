@@ -28,23 +28,22 @@ class UpdateBusDataPresenter(
             view.noNeedUpdate()
             return
         }
-        disposable = busDataRepository.loadBusDataConfig()
-                .subscribe({
-                    configRepository.updateCheckUpdateDate()
-                    if (configRepository.versionCode < it.version) {
-                        executeUpdate(it.version)
-                    } else {
-                        view.noNeedUpdate()
-                    }
-                }, {
-                    view.onError(it)
-                })
+        busDataRepository.loadBusDataConfig().blockingSubscribe({
+            configRepository.updateCheckUpdateDate()
+            if (configRepository.versionCode < it.version) {
+                executeUpdate(it.version)
+            } else {
+                view.noNeedUpdate()
+            }
+        }, {
+            view.onError(it)
+        })
     }
 
 
     private fun executeUpdate(latestVersion: Long) {
         // notificationManager.showNotification()
-        disposable = busDataRepository.loadAndSaveBusData().subscribe({
+        busDataRepository.loadAndSaveBusData().blockingSubscribe({
         }, {
             view.onError(it)
         }, {
