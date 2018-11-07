@@ -19,4 +19,6 @@
 
     <color name="colorControlHighlightDark">#1AFFFFFF</color>
 
+    <color name="navigationBarDark">@color/backgroundDark</color>
+
 </resources>

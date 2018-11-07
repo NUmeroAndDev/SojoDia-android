@@ -62,7 +62,6 @@
 
     <style name="BottomSheetDialogTheme" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/navigation_bar</item>
     </style>
 
     <style name="BottomSheetStyle" parent="@style/Widget.MaterialComponents.BottomSheet.Modal">

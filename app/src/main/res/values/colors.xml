@@ -19,8 +19,7 @@
 
     <color name="colorControlHighlight">#1A000000</color>
 
-    <color name="navigation_bar">#FFFFFF</color>
-    <color name="navigation_bar_divider">#1E000000</color>
+    <color name="navigationBar">@color/background</color>
 
     <!--Fragment-->
     <color name="count_attention_text">#f44336</color>
@@ -29,7 +28,6 @@
     <!--TimeTableDialog-->
     <color name="time_table_dialog_saturday_text">#2196F3</color>
     <color name="time_table_dialog_sunday_text">#E91E63</color>
-    <color name="time_table_dialog_row_divider">#1E000000</color>
     <color name="time_table_dialog_row_highlight">#FFFF7F</color>
 
 </resources>
