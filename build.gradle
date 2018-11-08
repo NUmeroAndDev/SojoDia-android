@@ -22,8 +22,8 @@ ext {
     def suffix = VersionSuffix.ALPHA
 
     def appVersionMajor = 8
-    def appVersionMinor = 0
-    def appVersionPatch = 1
+    def appVersionMinor = 1
+    def appVersionPatch = 0
     def appVersionBuild = 0
     /**
      * device number
