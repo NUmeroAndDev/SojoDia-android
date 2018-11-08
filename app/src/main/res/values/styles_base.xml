@@ -10,6 +10,7 @@
         <item name="android:splitMotionEvents">false</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="dialogCornerRadius">@dimen/app_corner_round</item>
+        <item name="alertDialogTheme">@style/DialogTheme</item>
     </style>
 
     <style name="AppTheme.Light">
@@ -58,6 +59,15 @@
         <item name="android:colorControlHighlight">@color/colorControlHighlightDark</item>
 
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme.Rounded.Dark</item>
+    </style>
+
+    <!--FIXME Dialogのボタンの色をもう少し簡単に変えたい-->
+    <style name="DialogTheme" parent="Base.ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarButtonStyle">@style/DialogButton</item>
+    </style>
+
+    <style name="DialogButton" parent="@style/Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textColor">?attr/colorSecondary</item>
     </style>
 
     <style name="BottomSheetDialogTheme" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
