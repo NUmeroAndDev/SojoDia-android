@@ -101,10 +101,10 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     private fun initTimeTableButton() {
-        tkTimeTableButton.setOnClickListener {
+        tkTimetableActionChip.setOnClickListener {
             presenter.showTimeTableDialog(Route.TK)
         }
-        tndTimeTableButton.setOnClickListener {
+        tndTimetableActionChip.setOnClickListener {
             presenter.showTimeTableDialog(Route.TND)
         }
     }

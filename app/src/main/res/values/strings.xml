@@ -3,6 +3,8 @@
     <string name="settings_label">Settings</string>
     <string name="licenses_label">Licenses</string>
 
+    <string name="timetable_label">Timetable</string>
+
     <string name="weekday">Weekdays</string>
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>

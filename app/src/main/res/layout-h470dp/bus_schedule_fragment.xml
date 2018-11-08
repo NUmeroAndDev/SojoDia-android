@@ -26,27 +26,30 @@
                 android:id="@+id/tkTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/station_tk"
                 android:textColor="?attr/colorSecondary"
                 android:textSize="@dimen/bus_toolbar_text"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/tkTimeTableButton"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tkTimetableActionChip"
+                style="@style/Widget.MaterialComponents.Chip.Action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="@dimen/card_toolbar_button_margin"
-                android:src="@drawable/ic_schedule"
+                android:layout_marginEnd="16dp"
+                android:text="@string/timetable_label"
+                app:chipBackgroundColor="?attr/colorPrimary"
+                app:chipIcon="@drawable/ic_schedule"
+                app:chipIconTint="?attr/colorOnSurface"
+                app:chipStrokeColor="?attr/colorDivider"
+                app:chipStrokeWidth="1dp"
+                app:layout_constraintBottom_toBottomOf="@id/tkTitleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="?attr/colorSecondary" />
+                app:layout_constraintTop_toTopOf="@id/tkTitleTextView" />
 
             <com.numero.sojodia.view.NotSwipeViewPager
                 android:id="@+id/tkBusTimeViewPager"
@@ -66,6 +69,10 @@
                 android:gravity="center"
                 android:textSize="@dimen/count_time_text"
                 app:attentionTextColor="@color/count_attention_text"
+                app:autoSizeMaxTextSize="@dimen/count_time_text"
+                app:autoSizeMinTextSize="2sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
                 app:defaultTextColor="?attr/colorOnSurface"
                 app:fontFamily="@font/lato_light"
                 app:layout_constraintBottom_toTopOf="@+id/tkBusTimeViewPager"
@@ -150,27 +157,30 @@
                 android:id="@+id/tndTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/station_tnd"
                 android:textColor="?attr/colorSecondary"
                 android:textSize="@dimen/bus_toolbar_text"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/tndTimeTableButton"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tndTimetableActionChip"
+                style="@style/Widget.MaterialComponents.Chip.Action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="@dimen/card_toolbar_button_margin"
-                android:src="@drawable/ic_schedule"
+                android:layout_marginEnd="16dp"
+                android:text="@string/timetable_label"
+                app:chipBackgroundColor="?attr/colorPrimary"
+                app:chipIcon="@drawable/ic_schedule"
+                app:chipIconTint="?attr/colorOnSurface"
+                app:chipStrokeColor="?attr/colorDivider"
+                app:chipStrokeWidth="1dp"
+                app:layout_constraintBottom_toBottomOf="@id/tndTitleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="?attr/colorSecondary" />
+                app:layout_constraintTop_toTopOf="@id/tndTitleTextView" />
 
             <com.numero.sojodia.view.NotSwipeViewPager
                 android:id="@+id/tndBusTimeViewPager"
@@ -190,6 +200,10 @@
                 android:gravity="center"
                 android:textSize="@dimen/count_time_text"
                 app:attentionTextColor="@color/count_attention_text"
+                app:autoSizeMaxTextSize="@dimen/count_time_text"
+                app:autoSizeMinTextSize="2sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
                 app:defaultTextColor="?attr/colorOnSurface"
                 app:fontFamily="@font/lato_light"
                 app:layout_constraintBottom_toTopOf="@+id/tndBusTimeViewPager"
