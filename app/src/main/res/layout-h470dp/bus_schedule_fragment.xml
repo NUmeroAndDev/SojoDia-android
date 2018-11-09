@@ -114,7 +114,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/surface"
+                android:background="?attr/colorSurface"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,6 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/no_bus"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="@dimen/no_bus_text" />
 
             </FrameLayout>
@@ -245,7 +246,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/surface"
+                android:background="?attr/colorSurface"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -257,6 +258,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/no_bus"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="@dimen/no_bus_text" />
 
             </FrameLayout>
