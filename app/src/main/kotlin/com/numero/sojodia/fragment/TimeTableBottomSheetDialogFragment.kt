@@ -38,7 +38,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         TimeTablePresenter(this, busDataRepository, route, reciprocate)
     }
 
-    override fun setupDialog(dialog: Dialog?, style: Int) {
+    override fun setupDialog(dialog: Dialog, style: Int) {
         val view = View.inflate(context, R.layout.dialog_time_table, null)
         toolbar = view.toolbar
         view.timeTableRecyclerView.apply {
@@ -46,7 +46,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
             layoutManager = LinearLayoutManager(context)
             adapter = this@TimeTableBottomSheetDialogFragment.adapter
         }
-        dialog?.setContentView(view)
+        dialog.setContentView(view)
     }
 
     override fun onResume() {
@@ -75,7 +75,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         toolbar?.setSubtitle(reciprocate.titleStringRes)
     }
 
-    fun show(fragmentManager: FragmentManager?) {
+    fun show(fragmentManager: FragmentManager) {
         show(fragmentManager, TAG)
     }
 
