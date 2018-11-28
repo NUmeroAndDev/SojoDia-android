@@ -9,11 +9,11 @@ import java.io.File
 
 class BusDataSource(
         private val context: Context,
-        baseUrl: String
+        baseUrl: String,
+        private val busDataApi: BusDataApi = ResourceConfig.createBusDataApi(baseUrl)
 ) {
 
     private val moshi = Moshi.Builder().add(ResourceJsonAdapterFactory.INSTANCE).build()
-    private val busDataApi = ResourceConfig.createBusDataApi(baseUrl)
 
     fun loadConfigObservable(): Observable<Config> {
         return busDataApi.getConfig()

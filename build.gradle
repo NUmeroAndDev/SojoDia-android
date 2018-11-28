@@ -59,6 +59,7 @@ buildscript {
         junitVersion = '4.12'
         robolectricVersion = '4.0.2'
         testRunnerVersion = '1.1.0'
+        testJunitVersion = '1.0.0'
         espressoVersion = '3.1.0'
     }
 

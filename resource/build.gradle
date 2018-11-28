@@ -26,14 +26,21 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
-    testImplementation "androidx.test:runner:$testRunnerVersion"
-    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    testImplementation "androidx.test.ext:junit:$testJunitVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
+    androidTestImplementation "androidx.test.ext:junit:$testJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
