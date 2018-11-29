@@ -1,7 +1,8 @@
 
 #  SojoDia  
-![Android Studio](https://img.shields.io/badge/Android%20Studio-3.3.0%20rc01-green.svg)
-![Kotlin](https://img.shields.io/badge/kotlin-1.3.10-yellow.svg)
+![Android Studio](https://img.shields.io/badge/Android%20Studio-3.3.0%20rc01-green.svg)  
+![Kotlin](https://img.shields.io/badge/kotlin-1.3.10-yellow.svg)  
+[![CircleCI](https://circleci.com/gh/NUmeroAndDev/SojoDia-android.svg?style=svg)](https://circleci.com/gh/NUmeroAndDev/SojoDia-android)  
 
 ## About  
 関西大学高槻キャンパス用のバス時刻表アプリ  
