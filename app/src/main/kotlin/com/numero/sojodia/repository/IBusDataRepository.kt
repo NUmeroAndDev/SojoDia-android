@@ -1,5 +1,6 @@
 package com.numero.sojodia.repository
 
+import com.numero.sojodia.resource.model.BusDataResponse
 import com.numero.sojodia.resource.model.BusTime
 import com.numero.sojodia.resource.model.Config
 import io.reactivex.Observable
@@ -16,7 +17,7 @@ interface IBusDataRepository {
 
     fun loadBusDataConfig(): Observable<Config>
 
-    fun loadAndSaveBusData(): Observable<String>
+    fun loadAndSaveBusData(): Observable<BusDataResponse>
 
     fun clearCache()
 

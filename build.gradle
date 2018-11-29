@@ -55,6 +55,12 @@ buildscript {
         retrofitVersion = '2.4.0'
         rxJavaVersion = '2.2.3'
         rxAndroidVersion = '2.1.0'
+
+        junitVersion = '4.12'
+        robolectricVersion = '4.0.2'
+        testRunnerVersion = '1.1.0'
+        testJunitVersion = '1.0.0'
+        espressoVersion = '3.1.0'
     }
 
     repositories {

@@ -6,7 +6,6 @@ import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
-
 import java.util.*
 
 class ConfigRepository(context: Context) : IConfigRepository {
@@ -20,7 +19,7 @@ class ConfigRepository(context: Context) : IConfigRepository {
                 putLong(VERSION_CODE, value)
             }
         }
-        get() = sharedPreferences.getLong(VERSION_CODE, 20170401L)
+        get() = sharedPreferences.getLong(VERSION_CODE, DEFAULT_DATA_VERSION)
 
     override val isTodayUpdateChecked: Boolean
         get() {
@@ -45,6 +44,9 @@ class ConfigRepository(context: Context) : IConfigRepository {
         }
 
     companion object {
+
+        const val DEFAULT_DATA_VERSION = 20170401L
+
         private const val PREFERENCES = "PREFERENCES"
         private const val VERSION_CODE = "FIRST_BOOT"
         private const val DATE = "DATE"

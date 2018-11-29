@@ -9,17 +9,15 @@ import java.io.File
 
 class BusDataSource(
         private val context: Context,
-        baseUrl: String
-) {
+        baseUrl: String,
+        private val busDataApi: BusDataApi = ResourceConfig.createBusDataApi(baseUrl)
+) : IBusDataSource {
 
     private val moshi = Moshi.Builder().add(ResourceJsonAdapterFactory.INSTANCE).build()
-    private val busDataApi = ResourceConfig.createBusDataApi(baseUrl)
 
-    fun loadConfigObservable(): Observable<Config> {
-        return busDataApi.getConfig()
-    }
+    override fun getConfigObservable(): Observable<Config> = busDataApi.getConfig()
 
-    fun createFileLoadObservable(): Observable<BusDataResponse> {
+    override fun loadBusDataObservable(): Observable<BusDataResponse> {
         return Observable.create<String> {
             // ダウンロードしたファイルがなければアセットから取得
             val file = File("%s/%s".format(context.filesDir.toString(), BUS_DATA_FILE_NAME))
@@ -34,11 +32,10 @@ class BusDataSource(
         }
     }
 
-    fun loadAndSaveBusData(): Observable<String> {
-        return busDataApi.getBusData().map {
-            moshi.adapter(BusDataResponse::class.java).toJson(it)
-        }.doOnNext {
-            saveDownLoadData(BUS_DATA_FILE_NAME, it)
+    override fun getAndSaveBusData(): Observable<BusDataResponse> {
+        return busDataApi.getBusData().doOnNext {
+            val value = moshi.adapter(BusDataResponse::class.java).toJson(it)
+            saveDownLoadData(BUS_DATA_FILE_NAME, value)
         }
     }
 

@@ -1,6 +1,7 @@
 package com.numero.sojodia.repository
 
 import com.numero.sojodia.resource.BusDataSource
+import com.numero.sojodia.resource.model.BusDataResponse
 import com.numero.sojodia.resource.model.BusTime
 import com.numero.sojodia.resource.model.Config
 import io.reactivex.Observable
@@ -41,10 +42,10 @@ class BusDataRepository(
             return field
         }
 
-    override fun loadBusDataConfig(): Observable<Config> = busDataSource.loadConfigObservable()
+    override fun loadBusDataConfig(): Observable<Config> = busDataSource.getConfigObservable()
 
-    override fun loadAndSaveBusData(): Observable<String> {
-        return busDataSource.loadAndSaveBusData()
+    override fun loadAndSaveBusData(): Observable<BusDataResponse> {
+        return busDataSource.getAndSaveBusData()
     }
 
     override fun clearCache() {
@@ -55,7 +56,7 @@ class BusDataRepository(
     }
 
     private fun initList() {
-        busDataSource.createFileLoadObservable().subscribe({
+        busDataSource.loadBusDataObservable().subscribe({
             tkBusTimeListGoing = it.tkToKutcDataList.toMutableList()
             tkBusTimeListReturn = it.kutcToTkDataList.toMutableList()
             tndBusTimeListGoing = it.tndToKutcDataList.toMutableList()
