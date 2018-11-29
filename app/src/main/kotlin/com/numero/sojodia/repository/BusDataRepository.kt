@@ -1,6 +1,7 @@
 package com.numero.sojodia.repository
 
 import com.numero.sojodia.resource.BusDataSource
+import com.numero.sojodia.resource.model.BusDataResponse
 import com.numero.sojodia.resource.model.BusTime
 import com.numero.sojodia.resource.model.Config
 import io.reactivex.Observable
@@ -43,7 +44,7 @@ class BusDataRepository(
 
     override fun loadBusDataConfig(): Observable<Config> = busDataSource.loadConfigObservable()
 
-    override fun loadAndSaveBusData(): Observable<String> {
+    override fun loadAndSaveBusData(): Observable<BusDataResponse> {
         return busDataSource.loadAndSaveBusData()
     }
 

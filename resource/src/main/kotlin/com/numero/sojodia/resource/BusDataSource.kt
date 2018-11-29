@@ -34,11 +34,10 @@ class BusDataSource(
         }
     }
 
-    fun loadAndSaveBusData(): Observable<String> {
-        return busDataApi.getBusData().map {
-            moshi.adapter(BusDataResponse::class.java).toJson(it)
-        }.doOnNext {
-            saveDownLoadData(BUS_DATA_FILE_NAME, it)
+    fun loadAndSaveBusData(): Observable<BusDataResponse> {
+        return busDataApi.getBusData().doOnNext {
+            val value = moshi.adapter(BusDataResponse::class.java).toJson(it)
+            saveDownLoadData(BUS_DATA_FILE_NAME, value)
         }
     }
 
