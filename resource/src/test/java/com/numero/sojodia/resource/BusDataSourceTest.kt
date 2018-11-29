@@ -34,7 +34,7 @@ class BusDataSourceTest {
     }
 
     @Test
-    fun loadConfigObservable() {
+    fun `getConfigObservable_設定ファイルをサーバから取得すること`() {
         val response = MockResponse()
         response.setBody("{\n" +
                 "  \"version\" : 20180331\n" +
@@ -46,7 +46,7 @@ class BusDataSourceTest {
     }
 
     @Test
-    fun createFileLoadObservable() {
+    fun `loadBusDataObservable_時刻表を読み込むこと`() {
         val busData = busDataSource.loadBusDataObservable().test().assertNoErrors().values()[0]
         assertTrue(busData.kutcToTkDataList.isNotEmpty())
         assertTrue(busData.kutcToTndDataList.isNotEmpty())
@@ -55,7 +55,7 @@ class BusDataSourceTest {
     }
 
     @Test
-    fun loadAndSaveBusData() {
+    fun `getAndSaveBusData_時刻表をサーバから取得すること`() {
         val responseValue = "{\n" +
                 "  \"KutcToTk\": [\n" +
                 "    {\n" +
