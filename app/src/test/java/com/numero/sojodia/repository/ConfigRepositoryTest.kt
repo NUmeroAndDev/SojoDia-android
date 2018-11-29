@@ -1,8 +1,8 @@
 package com.numero.sojodia.repository
 
-import androidx.test.InstrumentationRegistry
-import androidx.test.runner.AndroidJUnit4
-import org.junit.Assert.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import junit.framework.TestCase.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,7 +13,7 @@ class ConfigRepositoryTest {
 
     @Before
     fun setup() {
-        val context = InstrumentationRegistry.getTargetContext()
+        val context = InstrumentationRegistry.getInstrumentation().context
         configRepository = ConfigRepository(context)
     }
 
