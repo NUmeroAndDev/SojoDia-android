@@ -104,6 +104,12 @@
 - artifact: androidx.test:runner:+
   name: AndroidX Test Library
   skip: true
+- artifact: androidx.lifecycle:lifecycle-livedata:+
+  name: Android Lifecycle LiveData
+  skip: true
+- artifact: androidx.test.ext:junit:+
+  name: AndroidX Test Library
+  skip: true
 - artifact: androidx.versionedparcelable:versionedparcelable:+
   name: VersionedParcelable and friends
   skip: true
@@ -165,6 +171,9 @@
   copyrightHolder: Square, Inc.
   license: apache2
 - artifact: com.squareup.okhttp3:logging-interceptor:+
+  skip: true
+- artifact: com.squareup.okhttp3:mockwebserver:+
+  name: MockWebServer
   skip: true
 
 # Rxjava
@@ -334,6 +343,9 @@
   skip: true
 - artifact: org.ow2.asm:asm:+
   name: ASM Core
+  skip: true
+- artifact: org.ow2.asm:asm-analysis:+
+  name: asm-analysis
   skip: true
 - artifact: org.apache.maven:maven-ant-tasks:+
   name: Maven Ant Tasks
