@@ -42,10 +42,10 @@ class BusDataRepository(
             return field
         }
 
-    override fun loadBusDataConfig(): Observable<Config> = busDataSource.loadConfigObservable()
+    override fun loadBusDataConfig(): Observable<Config> = busDataSource.getConfigObservable()
 
     override fun loadAndSaveBusData(): Observable<BusDataResponse> {
-        return busDataSource.loadAndSaveBusData()
+        return busDataSource.getAndSaveBusData()
     }
 
     override fun clearCache() {
@@ -56,7 +56,7 @@ class BusDataRepository(
     }
 
     private fun initList() {
-        busDataSource.createFileLoadObservable().subscribe({
+        busDataSource.loadBusDataObservable().subscribe({
             tkBusTimeListGoing = it.tkToKutcDataList.toMutableList()
             tkBusTimeListReturn = it.kutcToTkDataList.toMutableList()
             tndBusTimeListGoing = it.tndToKutcDataList.toMutableList()

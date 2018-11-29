@@ -41,13 +41,13 @@ class BusDataSourceTest {
                 "}")
         server.enqueue(response)
 
-        val configResponse = busDataSource.loadConfigObservable().test().await().assertNoErrors().values()[0]
+        val configResponse = busDataSource.getConfigObservable().test().await().assertNoErrors().values()[0]
         assertEquals(configResponse.version, 20180331)
     }
 
     @Test
     fun createFileLoadObservable() {
-        val busData = busDataSource.createFileLoadObservable().test().assertNoErrors().values()[0]
+        val busData = busDataSource.loadBusDataObservable().test().assertNoErrors().values()[0]
         assertTrue(busData.kutcToTkDataList.isNotEmpty())
         assertTrue(busData.kutcToTndDataList.isNotEmpty())
         assertTrue(busData.tkToKutcDataList.isNotEmpty())
@@ -126,7 +126,7 @@ class BusDataSourceTest {
         response.setBody(responseValue)
         server.enqueue(response)
 
-        val busTimeResponse = busDataSource.loadAndSaveBusData().test().await().assertNoErrors().values()[0]
+        val busTimeResponse = busDataSource.getAndSaveBusData().test().await().assertNoErrors().values()[0]
         assertEquals(busTimeResponse.kutcToTkDataList.size, 4)
         assertEquals(busTimeResponse.kutcToTndDataList.size, 2)
         assertEquals(busTimeResponse.tkToKutcDataList.size, 1)
