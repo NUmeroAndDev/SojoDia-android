@@ -5,6 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.squareup.moshi.Moshi
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Before
@@ -46,6 +47,11 @@ class BusDataSourceTest {
 
     @Test
     fun createFileLoadObservable() {
+        val busData = busDataSource.createFileLoadObservable().test().assertNoErrors().values()[0]
+        assertTrue(busData.kutcToTkDataList.isNotEmpty())
+        assertTrue(busData.kutcToTndDataList.isNotEmpty())
+        assertTrue(busData.tkToKutcDataList.isNotEmpty())
+        assertTrue(busData.tndToKutcDataList.isNotEmpty())
     }
 
     @Test
