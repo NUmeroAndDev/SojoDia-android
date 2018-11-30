@@ -40,15 +40,15 @@ class TimeTablePresenter(
     override fun unSubscribe() {
     }
 
-    private fun setupTkBusTimeList(): MutableList<BusTime> {
+    private fun setupTkBusTimeList(): List<BusTime> {
         return if (reciprocate == Reciprocate.GOING) busDataRepository.tkBusTimeListGoing else busDataRepository.tkBusTimeListReturn
     }
 
-    private fun setupTndBusTimeList(): MutableList<BusTime> {
+    private fun setupTndBusTimeList(): List<BusTime> {
         return if (reciprocate == Reciprocate.GOING) busDataRepository.tndBusTimeListGoing else busDataRepository.tndBusTimeListReturn
     }
 
-    private fun mapTimeTableRow(list: MutableList<BusTime>) {
+    private fun mapTimeTableRow(list: List<BusTime>) {
         list.forEach {
             val hour = it.time.hour - 6
             when (it.week) {
