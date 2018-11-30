@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
                 R.string.message_need_update,
                 R.string.positive_button_need_update,
                 { _, _ ->
-                    busDataRepository.clearCache()
+                    busDataRepository.reloadBusData()
                     this.recreate()
                 }
         )

@@ -9,6 +9,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ConfigRepositoryTest {
+
     private lateinit var configRepository: ConfigRepository
 
     @Before
