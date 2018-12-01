@@ -5,19 +5,12 @@
 
     <!--Fragment-->
     <dimen name="card_margin">8dp</dimen>
-    <dimen name="card_toolbar_button_margin">12dp</dimen>
-    <dimen name="card_bus_time_text_margin">16dp</dimen>
-    <dimen name="card_next_bus_time_text_margin">16dp</dimen>
-    <dimen name="card_count_time_text_margin">28dp</dimen>
-    <dimen name="card_arrow_button_margin">16dp</dimen>
-    <dimen name="card_date_text_margin">8dp</dimen>
 
     <dimen name="bus_time_view_pager_height">48dp</dimen>
 
     <dimen name="bus_toolbar_text">22sp</dimen>
     <dimen name="bus_time_text">18sp</dimen>
     <dimen name="bus_description_text">12sp</dimen>
-    <dimen name="next_bus_title_text">16sp</dimen>
     <dimen name="next_bus_description_text">8sp</dimen>
     <dimen name="next_bus_time_text">12sp</dimen>
     <dimen name="count_time_text">56sp</dimen>

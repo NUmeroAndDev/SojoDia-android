@@ -8,7 +8,6 @@
     <string name="weekday">Weekdays</string>
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
-    <string name="holiday_in_school">Holiday in school</string>
     <string name="hour">Hour</string>
     <string name="station_tk">JR Takatsuki Station</string>
     <string name="station_tnd">JR Tonda Station</string>
@@ -16,7 +15,6 @@
     <string name="bus_type_nonstop">Nonstop Bus</string>
     <string name="no_bus">There is no bus at today</string>
     <string name="last_bus">Last bus</string>
-    <string name="next_title" translatable="false">Next</string>
     <string name="time_table_dialog_description">★ = Non stop bus</string>
 
     <string name="going_to_school">Going to school</string>
