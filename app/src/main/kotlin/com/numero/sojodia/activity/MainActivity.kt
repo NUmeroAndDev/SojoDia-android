@@ -44,6 +44,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        if (busDataRepository.isNoBusTimeData) {
+            startActivity(SplashActivity.createIntent(this))
+            finish()
+            return
+        }
+
         initViews()
 
         val shortcutIntent = intent.getStringExtra("shortcut")

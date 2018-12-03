@@ -23,6 +23,11 @@ class BusDataRepository(
     override var tndBusTimeListReturn: List<BusTime> = listOf()
         private set
 
+    override val isNoBusTimeData: Boolean
+        get() {
+            return tkBusTimeListGoing.isEmpty() and tkBusTimeListReturn.isEmpty() and tndBusTimeListGoing.isEmpty() and tndBusTimeListReturn.isEmpty()
+        }
+
     init {
         reloadBusData()
     }

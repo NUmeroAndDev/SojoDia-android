@@ -15,6 +15,8 @@ interface IBusDataRepository {
 
     val tndBusTimeListReturn: List<BusTime>
 
+    val isNoBusTimeData: Boolean
+
     fun loadBusDataConfig(): Observable<Config>
 
     fun loadAndSaveBusData(): Observable<BusDataResponse>
