@@ -7,6 +7,7 @@ import com.numero.sojodia.resource.datasource.api.ApiConfig
 import com.numero.sojodia.resource.datasource.api.BusDataApi
 import com.numero.sojodia.resource.datasource.api.BusDataResponse
 import com.numero.sojodia.resource.datasource.db.BusTimeDatabase
+import com.numero.sojodia.resource.datasource.db.IBusTimeDao
 import com.numero.sojodia.resource.model.Config
 import com.numero.sojodia.resource.model.Route
 import io.reactivex.Maybe
@@ -15,10 +16,9 @@ import io.reactivex.Observable
 class BusDataSource(
         private val context: Context,
         baseUrl: String,
-        private val busDataApi: BusDataApi = ApiConfig.createBusDataApi(baseUrl)
+        private val busDataApi: BusDataApi = ApiConfig.createBusDataApi(baseUrl),
+        private val busTimeDatabaseDao: IBusTimeDao = Room.databaseBuilder(context, BusTimeDatabase::class.java, BUS_TIME_DB_FILE_NAME).allowMainThreadQueries().build().busTimeDao()
 ) : IBusDataSource {
-
-    private val busTimeDatabaseDao = Room.databaseBuilder(context, BusTimeDatabase::class.java, BUS_TIME_DB_FILE_NAME).allowMainThreadQueries().build().busTimeDao()
 
     override val existBusTimeDB: Boolean
         get() {
