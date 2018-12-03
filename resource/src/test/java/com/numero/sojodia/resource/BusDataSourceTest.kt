@@ -48,12 +48,9 @@ class BusDataSourceTest {
     }
 
     @Test
-    fun `loadBusDataObservable_時刻表を読み込むこと`() {
-        val busData = busDataSource.loadBusDataObservable().test().assertNoErrors().values()[0]
-        assertTrue(busData.kutcToTkDataList.isNotEmpty())
-        assertTrue(busData.kutcToTndDataList.isNotEmpty())
-        assertTrue(busData.tkToKutcDataList.isNotEmpty())
-        assertTrue(busData.tndToKutcDataList.isNotEmpty())
+    fun `loadAllBusTime_時刻表を読み込むこと`() {
+        val list = busDataSource.loadAllBusTime().test().assertNoErrors().values()[0]
+        //assertTrue(list.isNotEmpty())
     }
 
     @Test
