@@ -49,6 +49,7 @@ buildscript {
         recyclerViewVersion = '1.0.0'
         constraintLayoutVersion = '2.0.0-alpha2'
         preferenceVersion = '1.0.0'
+        roomVersion = '2.0.0'
 
         okhttpVersion = '3.9.0'
         kotshiVersion = '1.0.5'
