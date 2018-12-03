@@ -10,7 +10,7 @@ import com.numero.sojodia.resource.model.Week
 @Entity(tableName = "bus_time")
 data class BusTime(
         @PrimaryKey(autoGenerate = true)
-        val id: Long,
+        val id: Long = 0,
         val routeId: Int,
         val hour: Int,
         val minute: Int,

@@ -16,7 +16,7 @@ import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.presenter.BusSchedulePresenter
 import com.numero.sojodia.repository.IBusDataRepository
-import com.numero.sojodia.resource.model.BusTime
+import com.numero.sojodia.resource.datasource.BusTime
 import com.numero.sojodia.resource.model.Week
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
 import com.numero.sojodia.widget.CountDownClockTextView

@@ -2,10 +2,13 @@ package com.numero.sojodia.resource
 
 import android.content.Context
 import androidx.room.Room
+import com.numero.sojodia.resource.datasource.BusTime
 import com.numero.sojodia.resource.datasource.BusTimeDatabase
 import com.numero.sojodia.resource.model.BusDataResponse
 import com.numero.sojodia.resource.model.Config
+import com.numero.sojodia.resource.model.Route
 import com.squareup.moshi.Moshi
+import io.reactivex.Maybe
 import io.reactivex.Observable
 import java.io.File
 
@@ -15,7 +18,7 @@ class BusDataSource(
         private val busDataApi: BusDataApi = ResourceConfig.createBusDataApi(baseUrl)
 ) : IBusDataSource {
 
-    private val busTimeDatabaseRoom = Room.databaseBuilder(context, BusTimeDatabase::class.java, "BusTime.db").build()
+    private val busTimeDatabaseDao = Room.databaseBuilder(context, BusTimeDatabase::class.java, "BusTime.db").allowMainThreadQueries().build().busTimeDao()
 
     private val moshi = Moshi.Builder().add(ResourceJsonAdapterFactory.INSTANCE).build()
 
@@ -36,10 +39,76 @@ class BusDataSource(
         }
     }
 
+    override fun loadAllBusTimeObservable(): Maybe<List<BusTime>> {
+        return busTimeDatabaseDao.findAll()
+    }
+
+    override fun loadBusTimeObservable(route: Route): Observable<List<BusTime>> {
+        return busTimeDatabaseDao.find(route.id).toObservable()
+    }
+
     override fun getAndSaveBusData(): Observable<BusDataResponse> {
-        return busDataApi.getBusData().doOnNext {
-            val value = moshi.adapter(BusDataResponse::class.java).toJson(it)
-            saveDownLoadData(BUS_DATA_FILE_NAME, value)
+        return busDataApi.getBusData()
+                .flatMap {
+                    saveBusDataObservable(it)
+                }
+                .doOnNext {
+                    val value = moshi.adapter(BusDataResponse::class.java).toJson(it)
+                    saveDownLoadData(BUS_DATA_FILE_NAME, value)
+                }
+    }
+
+    private fun saveBusDataObservable(busDataResponse: BusDataResponse): Observable<BusDataResponse> {
+        return Observable.create { e ->
+            busDataResponse.kutcToTkDataList.asSequence().map {
+                BusTime(
+                        routeId = Route.KutcToTk.id,
+                        hour = it.hour,
+                        minute = it.minute,
+                        weekId = it.weekId,
+                        isNonstop = it.isNonstop,
+                        isOnlyOnSchooldays = it.isOnlyOnSchooldays)
+            }.forEach {
+                busTimeDatabaseDao.create(it)
+            }
+
+            busDataResponse.kutcToTndDataList.asSequence().map {
+                BusTime(
+                        routeId = Route.KutcToTnd.id,
+                        hour = it.hour,
+                        minute = it.minute,
+                        weekId = it.weekId,
+                        isNonstop = it.isNonstop,
+                        isOnlyOnSchooldays = it.isOnlyOnSchooldays)
+            }.forEach {
+                busTimeDatabaseDao.create(it)
+            }
+
+            busDataResponse.tkToKutcDataList.asSequence().map {
+                BusTime(
+                        routeId = Route.TkToKutc.id,
+                        hour = it.hour,
+                        minute = it.minute,
+                        weekId = it.weekId,
+                        isNonstop = it.isNonstop,
+                        isOnlyOnSchooldays = it.isOnlyOnSchooldays)
+            }.forEach {
+                busTimeDatabaseDao.create(it)
+            }
+
+            busDataResponse.tndToKutcDataList.asSequence().map {
+                BusTime(
+                        routeId = Route.TndToKutc.id,
+                        hour = it.hour,
+                        minute = it.minute,
+                        weekId = it.weekId,
+                        isNonstop = it.isNonstop,
+                        isOnlyOnSchooldays = it.isOnlyOnSchooldays)
+            }.forEach {
+                busTimeDatabaseDao.create(it)
+            }
+
+            e.onNext(busDataResponse)
         }
     }
 
