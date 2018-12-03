@@ -19,10 +19,10 @@ data class BusTime(
         val isOnlyOnSchooldays: Boolean) {
 
     @Ignore
-    val route: Route = Route.findRoute(routeId)
+    val route: Route = Route.find(routeId)
 
     @Ignore
-    val week: Week? = Week.getWeek(weekId)
+    val week: Week? = Week.find(weekId)
 
     @Ignore
     val time: Time = Time(hour, minute)

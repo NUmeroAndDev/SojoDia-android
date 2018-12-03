@@ -15,6 +15,9 @@ enum class Week(val id: Int) {
             else -> WEEKDAY
         }
 
-        fun getWeek(id: Int): Week? = Week.values().find { week -> week.id == id }
+        fun find(id: Int): Week {
+            val week = Week.values().find { week -> week.id == id }
+            return requireNotNull(week)
+        }
     }
 }

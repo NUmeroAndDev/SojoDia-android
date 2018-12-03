@@ -7,7 +7,7 @@ enum class Route(val id: Int) {
     TndToKutc(3);
 
     companion object {
-        fun findRoute(id: Int): Route {
+        fun find(id: Int): Route {
             val route = Route.values().find { it.id == id }
             return requireNotNull(route)
         }

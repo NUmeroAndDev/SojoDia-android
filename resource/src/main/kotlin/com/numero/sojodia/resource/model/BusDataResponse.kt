@@ -12,5 +12,19 @@ data class BusDataResponse(
         @Json(name = "TkToKutc")
         val tkToKutcDataList: List<BusTime>,
         @Json(name = "TndToKutc")
-        val tndToKutcDataList: List<BusTime>
-)
+        val tndToKutcDataList: List<BusTime>) {
+
+    @JsonSerializable
+    data class BusTime(
+            val hour: Int,
+            val minute: Int,
+            @Json(name = "week")
+            val weekId: Int,
+            val isNonstop: Boolean,
+            val isOnlyOnSchooldays: Boolean) {
+
+        val time: Time = Time(hour, minute)
+
+        val week: Week? = Week.find(weekId)
+    }
+}
