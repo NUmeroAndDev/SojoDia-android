@@ -1,6 +1,8 @@
 package com.numero.sojodia.resource
 
 import android.content.Context
+import androidx.room.Room
+import com.numero.sojodia.resource.datasource.BusTimeDatabase
 import com.numero.sojodia.resource.model.BusDataResponse
 import com.numero.sojodia.resource.model.Config
 import com.squareup.moshi.Moshi
@@ -12,6 +14,8 @@ class BusDataSource(
         baseUrl: String,
         private val busDataApi: BusDataApi = ResourceConfig.createBusDataApi(baseUrl)
 ) : IBusDataSource {
+
+    private val busTimeDatabaseRoom = Room.databaseBuilder(context, BusTimeDatabase::class.java, "BusTime.db").build()
 
     private val moshi = Moshi.Builder().add(ResourceJsonAdapterFactory.INSTANCE).build()
 
