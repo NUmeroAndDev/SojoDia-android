@@ -45,7 +45,6 @@ class BusDataSource(
             busDataResponse.tkToKutcDataList.mapAndSaveDB(Route.TkToKutc)
             busDataResponse.tndToKutcDataList.mapAndSaveDB(Route.TndToKutc)
 
-            busTimeDatabaseDao
             e.onNext(busDataResponse)
         }
     }
