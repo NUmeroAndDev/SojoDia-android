@@ -3,8 +3,11 @@ package com.numero.sojodia.resource
 import android.content.Context
 import androidx.room.Room
 import com.numero.sojodia.resource.datasource.BusTime
-import com.numero.sojodia.resource.datasource.BusTimeDatabase
-import com.numero.sojodia.resource.model.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.ApiConfig
+import com.numero.sojodia.resource.datasource.api.BusDataApi
+import com.numero.sojodia.resource.datasource.db.BusTimeDatabase
+import com.numero.sojodia.resource.datasource.api.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.ResourceJsonAdapterFactory
 import com.numero.sojodia.resource.model.Config
 import com.numero.sojodia.resource.model.Route
 import com.squareup.moshi.Moshi
@@ -15,7 +18,7 @@ import java.io.File
 class BusDataSource(
         private val context: Context,
         baseUrl: String,
-        private val busDataApi: BusDataApi = ResourceConfig.createBusDataApi(baseUrl)
+        private val busDataApi: BusDataApi = ApiConfig.createBusDataApi(baseUrl)
 ) : IBusDataSource {
 
     private val busTimeDatabaseDao = Room.databaseBuilder(context, BusTimeDatabase::class.java, "BusTime.db").allowMainThreadQueries().build().busTimeDao()

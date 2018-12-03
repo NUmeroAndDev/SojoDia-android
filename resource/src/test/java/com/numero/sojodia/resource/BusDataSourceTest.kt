@@ -3,6 +3,8 @@ package com.numero.sojodia.resource
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.numero.sojodia.resource.datasource.api.BusDataApi
+import com.numero.sojodia.resource.datasource.api.ResourceJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue

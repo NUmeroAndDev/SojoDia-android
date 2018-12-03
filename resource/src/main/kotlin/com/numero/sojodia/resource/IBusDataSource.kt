@@ -1,7 +1,7 @@
 package com.numero.sojodia.resource
 
 import com.numero.sojodia.resource.datasource.BusTime
-import com.numero.sojodia.resource.model.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.BusDataResponse
 import com.numero.sojodia.resource.model.Config
 import com.numero.sojodia.resource.model.Route
 import io.reactivex.Maybe
