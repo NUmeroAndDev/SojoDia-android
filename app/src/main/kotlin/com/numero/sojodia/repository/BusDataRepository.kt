@@ -32,7 +32,7 @@ class BusDataRepository(
     override fun loadAndSaveBusData(): Observable<BusDataResponse> = busDataSource.getAndSaveBusData()
 
     override fun reloadBusData() {
-        val list = busDataSource.loadAllBusTimeObservable().blockingGet()
+        val list = busDataSource.loadAllBusTime().blockingGet()
         tkBusTimeListGoing = list.asSequence().filter { it.routeId == Route.TkToKutc.id }.toList()
         tkBusTimeListReturn = list.asSequence().filter { it.routeId == Route.KutcToTk.id }.toList()
         tndBusTimeListGoing = list.asSequence().filter { it.routeId == Route.TndToKutc.id }.toList()

@@ -3,19 +3,16 @@ package com.numero.sojodia.resource
 import com.numero.sojodia.resource.datasource.BusTime
 import com.numero.sojodia.resource.datasource.api.BusDataResponse
 import com.numero.sojodia.resource.model.Config
-import com.numero.sojodia.resource.model.Route
 import io.reactivex.Maybe
 import io.reactivex.Observable
 
 interface IBusDataSource {
 
+    val existBusTimeDB: Boolean
+
     fun getConfigObservable(): Observable<Config>
 
-    fun loadBusDataObservable(): Observable<BusDataResponse>
-
-    fun loadAllBusTimeObservable(): Maybe<List<BusTime>>
-
-    fun loadBusTimeObservable(route: Route): Observable<List<BusTime>>
+    fun loadAllBusTime(): Maybe<List<BusTime>>
 
     fun getAndSaveBusData(): Observable<BusDataResponse>
 }
