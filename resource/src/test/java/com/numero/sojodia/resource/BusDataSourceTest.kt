@@ -9,7 +9,6 @@ import com.numero.sojodia.resource.datasource.api.ResourceJsonAdapterFactory
 import com.numero.sojodia.resource.datasource.db.IBusTimeDao
 import com.numero.sojodia.resource.model.Route
 import com.squareup.moshi.Moshi
-import io.reactivex.Flowable
 import io.reactivex.Maybe
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
@@ -139,11 +138,14 @@ class BusDataSourceTest {
         assertEquals(busTimeResponse.tndToKutcDataList.size, 1)
 
         assertTrue(database.isInserted)
+        assertTrue(database.isClearedDB)
     }
 
     class MockBusDataDao : IBusTimeDao {
 
         var isInserted: Boolean = false
+            private set
+        var isClearedDB: Boolean = false
             private set
 
         override fun create(busTime: BusTime) {
@@ -188,9 +190,8 @@ class BusDataSourceTest {
             return Maybe.just(list)
         }
 
-        override fun find(routeId: Int): Flowable<List<BusTime>> {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        override fun clearTable() {
+            isClearedDB = true
         }
-
     }
 }
