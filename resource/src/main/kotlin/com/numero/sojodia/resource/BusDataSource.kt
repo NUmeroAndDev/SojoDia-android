@@ -40,6 +40,7 @@ class BusDataSource(
 
     private fun saveBusDataObservable(busDataResponse: BusDataResponse): Observable<BusDataResponse> {
         return Observable.create { e ->
+            busTimeDatabaseDao.clearTable()
             busDataResponse.kutcToTkDataList.mapAndSaveDB(Route.KutcToTk)
             busDataResponse.kutcToTndDataList.mapAndSaveDB(Route.KutcToTnd)
             busDataResponse.tkToKutcDataList.mapAndSaveDB(Route.TkToKutc)
