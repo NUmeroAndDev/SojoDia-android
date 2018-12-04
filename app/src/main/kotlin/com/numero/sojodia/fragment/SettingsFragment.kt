@@ -3,7 +3,7 @@ package com.numero.sojodia.fragment
 import android.content.Context
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreference
+import androidx.preference.SwitchPreferenceCompat
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
@@ -16,7 +16,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private val configRepository: IConfigRepository
         get() = app.configRepository
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is ISettingsTransition) {
             transition = context
@@ -30,7 +30,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val useDarkModeScreen = findPreference("use_dark_theme") as SwitchPreference
+        val useDarkModeScreen = findPreference("use_dark_theme") as SwitchPreferenceCompat
         useDarkModeScreen.setOnPreferenceChangeListener { _, _ ->
             transition?.reopenSettingsScreen()
             true

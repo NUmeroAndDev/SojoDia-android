@@ -37,7 +37,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     private val isDateChanged: Boolean
         get() = Calendar.getInstance().getTodayStringOnlyFigure() != currentDateString
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is BusScheduleFragmentListener) {
             listener = context

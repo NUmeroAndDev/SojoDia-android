@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="use_dark_theme"
-        android:title="@string/settings_use_dark_theme_title" />
+    <SwitchPreferenceCompat
+        app:defaultValue="false"
+        app:key="use_dark_theme"
+        app:title="@string/settings_use_dark_theme_title" />
 
-    <PreferenceScreen
-        android:key="data_version"
-        android:title="@string/settings_data_version_title"
+    <Preference
+        app:key="data_version"
+        app:title="@string/settings_data_version_title"
         tools:summary="20170401" />
 
-    <PreferenceScreen
-        android:key="app_version"
-        android:title="@string/settings_app_version_title"
+    <Preference
+        app:key="app_version"
+        app:title="@string/settings_app_version_title"
         tools:summary="6.0.0" />
 
-    <PreferenceScreen
-        android:key="licenses"
-        android:title="@string/settings_licenses_title" />
+    <Preference
+        app:key="licenses"
+        app:title="@string/settings_licenses_title" />
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>
