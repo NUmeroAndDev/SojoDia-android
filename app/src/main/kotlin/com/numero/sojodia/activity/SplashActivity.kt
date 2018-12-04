@@ -8,6 +8,7 @@ import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.presenter.ISplashPresenter
 import com.numero.sojodia.presenter.SplashPresenter
+import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.view.ISplashView
 
@@ -15,6 +16,8 @@ class SplashActivity : AppCompatActivity(), ISplashView {
 
     private val configRepository: IConfigRepository
         get() = app.configRepository
+    private val busDataRepository: IBusDataRepository
+        get() = app.busDataRepository
 
     private lateinit var presenter: ISplashPresenter
 
@@ -23,7 +26,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
         setTheme(configRepository.themeRes)
         setContentView(R.layout.activity_splash)
 
-        presenter = SplashPresenter(this)
+        presenter = SplashPresenter(this, busDataRepository, configRepository)
     }
 
     override fun onResume() {
@@ -36,7 +39,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
         presenter.unSubscribe()
     }
 
-    override fun finishDownload() {
+    override fun successDownloadedBusData() {
         startActivity(MainActivity.createClearTopIntent(this))
         finish()
     }
