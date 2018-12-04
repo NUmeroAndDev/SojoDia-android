@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.presenter.ISplashPresenter
@@ -11,6 +13,7 @@ import com.numero.sojodia.presenter.SplashPresenter
 import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.view.ISplashView
+import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity(), ISplashView {
 
@@ -27,11 +30,15 @@ class SplashActivity : AppCompatActivity(), ISplashView {
         setContentView(R.layout.activity_splash)
 
         presenter = SplashPresenter(this, busDataRepository, configRepository)
+
+        retryButton.setOnClickListener {
+            loadBusData()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.subscribe()
+        loadBusData()
     }
 
     override fun onPause() {
@@ -45,7 +52,14 @@ class SplashActivity : AppCompatActivity(), ISplashView {
     }
 
     override fun onError(throwable: Throwable) {
-        // TODO エラーハンドリング
+        errorGroup.isVisible = true
+        progress.isInvisible = true
+    }
+
+    private fun loadBusData() {
+        errorGroup.isVisible = false
+        progress.isInvisible = false
+        presenter.subscribe()
     }
 
     companion object {
