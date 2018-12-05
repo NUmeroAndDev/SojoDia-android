@@ -8,7 +8,8 @@ import io.reactivex.disposables.Disposable
 class UpdateBusDataPresenter(
         private val view: IUpdateBusDataView,
         private val configRepository: IConfigRepository,
-        private val busDataRepository: IBusDataRepository) : IUpdateBusDataPresenter {
+        private val busDataRepository: IBusDataRepository
+) : IUpdateBusDataPresenter {
 
     private var disposable: Disposable? = null
 

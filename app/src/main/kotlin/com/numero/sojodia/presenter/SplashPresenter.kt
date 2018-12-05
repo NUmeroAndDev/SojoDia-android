@@ -37,6 +37,7 @@ class SplashPresenter(
                 .subscribeBy(
                         onNext = {
                             configRepository.versionCode = it.version
+                            configRepository.updateCheckUpdateDate()
                             busDataRepository.reloadBusData()
                             view.successDownloadedBusData()
                         },
