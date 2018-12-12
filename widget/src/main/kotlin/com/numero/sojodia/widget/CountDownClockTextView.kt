@@ -6,9 +6,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.withStyledAttributes
 import java.util.*
 
-class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatTextView(context, attrs, defStyleAttr) {
+class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatTextView(context, attrs, defStyleAttr), ISyncThreadView {
 
-    private var isAttached: Boolean = false
     private var hour: Int = 0
     private var min: Int = 0
     private var isBecomeZeroSecond = false
@@ -17,13 +16,23 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
     private var attentionTextColor: Int = 0
     private var safeTextColor: Int = 0
 
-    private var onTimeChangedListener: OnTimeChangedListener? = null
+    override var isSynced: Boolean = false
+        set(value) {
+            field = value
+            if (value and isRunning) {
+                handler.removeCallbacks(runnable)
+            }
+        }
+    private var syncView: ISyncThreadView? = null
 
+    private var onTimeLimitListener: (() -> Unit)? = null
+    private var onCountListener: (() -> Unit)? = null
+
+    private var isRunning: Boolean = false
     private val runnable = object : Runnable {
         override fun run() {
-            onTimeChanged()
-
-            onTimeChangedListener?.onTimeChanged()
+            doOnThread()
+            syncView?.doOnThread()
 
             handler.postDelayed(this, 200)
         }
@@ -43,6 +52,11 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         }
     }
 
+    fun setSyncView(syncThreadView: ISyncThreadView) {
+        syncView = syncThreadView
+        syncThreadView.isSynced = true
+    }
+
     /**
      * @param hour
      * @param min
@@ -54,31 +68,30 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         this.min = min - 1
     }
 
-    fun setOnTimeChangedListener(onTimeChangedListener: OnTimeChangedListener) {
-        this.onTimeChangedListener = onTimeChangedListener
+    fun setOnTimeLimitListener(listener: () -> Unit) {
+        onTimeLimitListener = listener
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
+    fun setOnCountListener(listener: () -> Unit) {
+        onCountListener = listener
+    }
 
-        if (isAttached.not()) {
-            isAttached = true
+    fun start() {
+        if (isRunning.not() and isSynced.not()) {
+            isRunning = true
             isBecomeZeroSecond = false
             runnable.run()
         }
     }
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        if (isAttached) {
-
+    fun stop() {
+        if (isRunning) {
             handler.removeCallbacks(runnable)
-
-            isAttached = false
+            isRunning = false
         }
     }
 
-    private fun onTimeChanged() {
+    override fun doOnThread() {
         var sec = 59 - currentSec
         if (sec == 0) {
             isBecomeZeroSecond = true
@@ -96,10 +109,12 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
             hour = 0
             min = 0
             sec = 0
-            onTimeChangedListener?.onTimeLimit()
+            onTimeLimitListener?.invoke()
         }
         setTextColor(getCountTimeTextColor(hour, min, sec))
         text = String.format(Locale.ENGLISH, "%02d:%02d:%02d", hour, min, sec)
+
+        onCountListener?.invoke()
     }
 
     private fun getCountTimeTextColor(hour: Int, min: Int, sec: Int): Int {
@@ -111,11 +126,5 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         } else {
             safeTextColor
         }
-    }
-
-    interface OnTimeChangedListener {
-        fun onTimeChanged()
-
-        fun onTimeLimit()
     }
 }
