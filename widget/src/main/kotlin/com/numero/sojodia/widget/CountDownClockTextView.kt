@@ -6,7 +6,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.withStyledAttributes
 import java.util.*
 
-class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatTextView(context, attrs, defStyleAttr) {
+class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatTextView(context, attrs, defStyleAttr), ISyncThreadView {
 
     private var isAttached: Boolean = false
     private var hour: Int = 0
@@ -17,13 +17,21 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
     private var attentionTextColor: Int = 0
     private var safeTextColor: Int = 0
 
+    override var isSynced: Boolean = false
+        set(value) {
+            field = value
+            if (value) {
+                handler.removeCallbacks(runnable)
+            }
+        }
+    private var syncView: ISyncThreadView? = null
+
     private var onTimeChangedListener: OnTimeChangedListener? = null
 
     private val runnable = object : Runnable {
         override fun run() {
-            onTimeChanged()
-
-            onTimeChangedListener?.onTimeChanged()
+            doOnThread()
+            syncView?.doOnThread()
 
             handler.postDelayed(this, 200)
         }
@@ -41,6 +49,11 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
             attentionTextColor = getColor(R.styleable.CountDownClockTextView_attentionTextColor, 0)
             safeTextColor = getColor(R.styleable.CountDownClockTextView_safeTextColor, 0)
         }
+    }
+
+    fun setSyncView(syncThreadView: ISyncThreadView) {
+        syncView = syncThreadView
+        syncThreadView.isSynced = true
     }
 
     /**
@@ -61,7 +74,7 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        if (isAttached.not()) {
+        if (isAttached.not() and isSynced.not()) {
             isAttached = true
             isBecomeZeroSecond = false
             runnable.run()
@@ -78,7 +91,7 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         }
     }
 
-    private fun onTimeChanged() {
+    override fun doOnThread() {
         var sec = 59 - currentSec
         if (sec == 0) {
             isBecomeZeroSecond = true
@@ -100,6 +113,8 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         }
         setTextColor(getCountTimeTextColor(hour, min, sec))
         text = String.format(Locale.ENGLISH, "%02d:%02d:%02d", hour, min, sec)
+
+        onTimeChangedListener?.onTimeChanged()
     }
 
     private fun getCountTimeTextColor(hour: Int, min: Int, sec: Int): Int {

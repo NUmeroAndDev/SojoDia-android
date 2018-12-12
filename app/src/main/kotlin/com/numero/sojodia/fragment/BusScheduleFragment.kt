@@ -98,6 +98,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
                 presenter.nextTndBus()
             }
         })
+        tkCountdownTextView.setSyncView(tndCountdownTextView)
     }
 
     private fun initTimeTableButton() {
