@@ -154,7 +154,8 @@
         android:gravity="end"
         android:text="@string/time_table_dialog_description"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timeTableRecyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
