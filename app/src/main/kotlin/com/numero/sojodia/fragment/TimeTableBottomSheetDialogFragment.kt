@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.dialog_time_table.view.*
 
 class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTableContract.View {
 
-    private var toolbar: Toolbar? = null
+    private lateinit var toolbar: Toolbar
     private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
 
     private lateinit var presenter: TimeTableContract.Presenter
@@ -68,15 +68,17 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
     }
 
     override fun showCurrentRoute(route: Route) {
-        toolbar?.setTitle(route.stationStringRes)
+        toolbar.setTitle(route.stationStringRes)
     }
 
     override fun showCurrentReciprocate(reciprocate: Reciprocate) {
-        toolbar?.setSubtitle(reciprocate.titleStringRes)
+        toolbar.setSubtitle(reciprocate.titleStringRes)
     }
 
-    fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun showIfNeed(fragmentManager: FragmentManager) {
+        if (fragmentManager.findFragmentByTag(TAG) == null) {
+            show(fragmentManager, TAG)
+        }
     }
 
     companion object {
