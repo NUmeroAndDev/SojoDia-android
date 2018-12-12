@@ -8,8 +8,6 @@ import io.reactivex.Observable
 
 interface IBusDataSource {
 
-    val existBusTimeDB: Boolean
-
     fun getConfigObservable(): Observable<Config>
 
     fun loadAllBusTime(): Maybe<List<BusTime>>

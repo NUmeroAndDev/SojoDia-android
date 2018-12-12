@@ -20,11 +20,6 @@ class BusDataSource(
         private val busTimeDatabaseDao: IBusTimeDao = Room.databaseBuilder(context, BusTimeDatabase::class.java, BUS_TIME_DB_FILE_NAME).allowMainThreadQueries().build().busTimeDao()
 ) : IBusDataSource {
 
-    override val existBusTimeDB: Boolean
-        get() {
-            return context.getDatabasePath(BUS_TIME_DB_FILE_NAME).exists()
-        }
-
     override fun getConfigObservable(): Observable<Config> = busDataApi.getConfig()
 
     override fun loadAllBusTime(): Maybe<List<BusTime>> {
