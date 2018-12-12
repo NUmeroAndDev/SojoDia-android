@@ -90,9 +90,6 @@ class BusDataRepositoryTest {
             tndToKutcDataList: List<BusDataResponse.BusTime>
     ) : IBusDataSource {
 
-        override val existBusTimeDB: Boolean
-            get() = false
-
         private var busTime = listOf(
                 BusTime(routeId = Route.KutcToTk.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
                 BusTime(routeId = Route.KutcToTnd.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
