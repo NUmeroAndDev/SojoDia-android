@@ -9,19 +9,16 @@ import java.util.*
 
 class TimeTableRowHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-    var timeTableRow: TimeTableRow? = null
-        set(value) {
-            value ?: return
-            field = value
-            hourTextView.text = "%02d".format(Locale.ENGLISH, value.hour)
-            weekdayTextView.text = value.timeOnWeekdayText
-            saturdayTextView.text = value.timeOnSaturdayText
-            sundayTextView.text = value.timeOnSundayText
-        }
-
     var isCurrentHour: Boolean = false
         set(value) {
             field = value
             rowLayout.isActivated = value
         }
+
+    fun setTimeTableRow(timeTableRow: TimeTableRow, isNotSchoolTerm: Boolean) {
+        hourTextView.text = "%02d".format(Locale.ENGLISH, timeTableRow.hour)
+        weekdayTextView.text = timeTableRow.createOnWeekdayText(isNotSchoolTerm)
+        saturdayTextView.text = timeTableRow.createOnSaturdayText(isNotSchoolTerm)
+        sundayTextView.text = timeTableRow.createOnSundayText(isNotSchoolTerm)
+    }
 }

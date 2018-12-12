@@ -16,7 +16,17 @@ class TimeTableRowAdapter : RecyclerView.Adapter<TimeTableRowHolder>() {
             notifyDataSetChanged()
         }
 
+    var isNotSchoolTerm: Boolean = false
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     private val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) - 6
+
+    init {
+        setHasStableIds(true)
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): TimeTableRowHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.holder_time_table_row, viewGroup, false)
@@ -26,9 +36,14 @@ class TimeTableRowAdapter : RecyclerView.Adapter<TimeTableRowHolder>() {
     override fun onBindViewHolder(holder: TimeTableRowHolder, position: Int) {
         val list = tableRowList ?: return
         holder.apply {
-            timeTableRow = list[position]
+            setTimeTableRow(list[position], isNotSchoolTerm)
             isCurrentHour = position == currentHour
         }
+    }
+
+    override fun getItemId(position: Int): Long {
+        val list = tableRowList ?: return 0
+        return list[position].hour.toLong()
     }
 
     override fun getItemCount(): Int {

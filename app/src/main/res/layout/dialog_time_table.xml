@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:overScrollMode="never"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@+id/nonSchoolTermChip"
+        app:layout_constraintBottom_toTopOf="@+id/notSchoolTermChip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottomDivider"
@@ -130,7 +130,7 @@
 
     <!--FIXME checkedIconのTint-->
     <com.google.android.material.chip.Chip
-        android:id="@+id/nonSchoolTermChip"
+        android:id="@+id/notSchoolTermChip"
         style="@style/Widget.MaterialComponents.Chip.Filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

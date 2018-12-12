@@ -46,6 +46,9 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
             layoutManager = LinearLayoutManager(context)
             adapter = this@TimeTableBottomSheetDialogFragment.adapter
         }
+        view.notSchoolTermChip.setOnCheckedChangeListener { _, isChecked ->
+            adapter.isNotSchoolTerm = isChecked
+        }
         dialog.setContentView(view)
     }
 
