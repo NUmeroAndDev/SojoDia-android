@@ -4,14 +4,11 @@ import android.app.IntentService
 import android.content.Intent
 import android.os.IBinder
 import com.numero.sojodia.IApplication
-import com.numero.sojodia.manager.NotificationManager
 import com.numero.sojodia.presenter.UpdateBusDataPresenter
 import com.numero.sojodia.util.BroadCastUtil
 import com.numero.sojodia.view.IUpdateBusDataView
 
 class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName), IUpdateBusDataView {
-
-    private lateinit var notificationManager: NotificationManager
 
     private lateinit var presenter: UpdateBusDataPresenter
 
@@ -22,7 +19,6 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
         val busDataRepository = (application as IApplication).busDataRepository
 
         presenter = UpdateBusDataPresenter(this, configRepository, busDataRepository)
-        notificationManager = NotificationManager(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -32,7 +28,6 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
     override fun onDestroy() {
         super.onDestroy()
         presenter.unSubscribe()
-        notificationManager.cancelNotification()
     }
 
     override fun onBind(intent: Intent): IBinder? {
