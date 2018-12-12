@@ -68,11 +68,15 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
         super.onResume()
         presenter.subscribe()
         presenter.onTimeChanged(Week.getCurrentWeek())
+        tkCountdownTextView.start()
+        tndCountdownTextView.start()
     }
 
     override fun onPause() {
         super.onPause()
         presenter.unSubscribe()
+        tkCountdownTextView.stop()
+        tndCountdownTextView.stop()
     }
 
     override fun setPresenter(presenter: BusScheduleContract.Presenter) {

@@ -8,7 +8,6 @@ import java.util.*
 
 class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : AppCompatTextView(context, attrs, defStyleAttr), ISyncThreadView {
 
-    private var isAttached: Boolean = false
     private var hour: Int = 0
     private var min: Int = 0
     private var isBecomeZeroSecond = false
@@ -20,7 +19,7 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
     override var isSynced: Boolean = false
         set(value) {
             field = value
-            if (value) {
+            if (value and isRunning) {
                 handler.removeCallbacks(runnable)
             }
         }
@@ -29,6 +28,7 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
     private var onTimeLimitListener: (() -> Unit)? = null
     private var onCountListener: (() -> Unit)? = null
 
+    private var isRunning: Boolean = false
     private val runnable = object : Runnable {
         override fun run() {
             doOnThread()
@@ -76,23 +76,18 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         onCountListener = listener
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-
-        if (isAttached.not() and isSynced.not()) {
-            isAttached = true
+    fun start() {
+        if (isRunning.not() and isSynced.not()) {
+            isRunning = true
             isBecomeZeroSecond = false
             runnable.run()
         }
     }
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        if (isAttached) {
-
+    fun stop() {
+        if (isRunning) {
             handler.removeCallbacks(runnable)
-
-            isAttached = false
+            isRunning = false
         }
     }
 
