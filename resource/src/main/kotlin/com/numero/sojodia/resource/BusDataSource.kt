@@ -1,56 +1,65 @@
 package com.numero.sojodia.resource
 
 import android.content.Context
-import com.numero.sojodia.resource.model.BusDataResponse
+import androidx.room.Room
+import com.numero.sojodia.resource.datasource.BusTime
+import com.numero.sojodia.resource.datasource.api.ApiConfig
+import com.numero.sojodia.resource.datasource.api.BusDataApi
+import com.numero.sojodia.resource.datasource.api.BusDataResponse
+import com.numero.sojodia.resource.datasource.db.BusTimeDatabase
+import com.numero.sojodia.resource.datasource.db.IBusTimeDao
 import com.numero.sojodia.resource.model.Config
-import com.squareup.moshi.Moshi
+import com.numero.sojodia.resource.model.Route
+import io.reactivex.Maybe
 import io.reactivex.Observable
-import java.io.File
 
 class BusDataSource(
         private val context: Context,
         baseUrl: String,
-        private val busDataApi: BusDataApi = ResourceConfig.createBusDataApi(baseUrl)
+        private val busDataApi: BusDataApi = ApiConfig.createBusDataApi(baseUrl),
+        private val busTimeDatabaseDao: IBusTimeDao = Room.databaseBuilder(context, BusTimeDatabase::class.java, BUS_TIME_DB_FILE_NAME).allowMainThreadQueries().build().busTimeDao()
 ) : IBusDataSource {
-
-    private val moshi = Moshi.Builder().add(ResourceJsonAdapterFactory.INSTANCE).build()
 
     override fun getConfigObservable(): Observable<Config> = busDataApi.getConfig()
 
-    override fun loadBusDataObservable(): Observable<BusDataResponse> {
-        return Observable.create<String> {
-            // ダウンロードしたファイルがなければアセットから取得
-            val file = File("%s/%s".format(context.filesDir.toString(), BUS_DATA_FILE_NAME))
-            val source = if (file.exists()) {
-                file.readText(Charsets.UTF_8)
-            } else {
-                context.readAssetsFile(BUS_DATA_FILE_NAME)
-            }
-            it.onNext(source)
-        }.map {
-            moshi.adapter(BusDataResponse::class.java).fromJson(it)
-        }
+    override fun loadAllBusTime(): Maybe<List<BusTime>> {
+        return busTimeDatabaseDao.findAll()
     }
 
     override fun getAndSaveBusData(): Observable<BusDataResponse> {
-        return busDataApi.getBusData().doOnNext {
-            val value = moshi.adapter(BusDataResponse::class.java).toJson(it)
-            saveDownLoadData(BUS_DATA_FILE_NAME, value)
+        return busDataApi.getBusData()
+                .flatMap {
+                    saveBusDataObservable(it)
+                }
+    }
+
+    private fun saveBusDataObservable(busDataResponse: BusDataResponse): Observable<BusDataResponse> {
+        return Observable.create { e ->
+            busTimeDatabaseDao.clearTable()
+            busDataResponse.kutcToTkDataList.mapAndSaveDB(Route.KutcToTk)
+            busDataResponse.kutcToTndDataList.mapAndSaveDB(Route.KutcToTnd)
+            busDataResponse.tkToKutcDataList.mapAndSaveDB(Route.TkToKutc)
+            busDataResponse.tndToKutcDataList.mapAndSaveDB(Route.TndToKutc)
+
+            e.onNext(busDataResponse)
         }
     }
 
-    @Throws(Exception::class)
-    private fun saveDownLoadData(fileName: String, data: String) {
-        context.openFileOutput(fileName, Context.MODE_PRIVATE).apply {
-            write(data.toByteArray())
-        }.close()
-    }
-
-    private fun Context.readAssetsFile(fileName: String): String {
-        return assets.open(fileName).reader(charset = Charsets.UTF_8).use { it.readText() }
+    private fun List<BusDataResponse.BusTime>.mapAndSaveDB(route: Route) {
+        asSequence().map {
+            BusTime(
+                    routeId = route.id,
+                    hour = it.hour,
+                    minute = it.minute,
+                    weekId = it.weekId,
+                    isNonstop = it.isNonstop,
+                    isOnlyOnSchooldays = it.isOnlyOnSchooldays)
+        }.forEach {
+            busTimeDatabaseDao.create(it)
+        }
     }
 
     companion object {
-        private const val BUS_DATA_FILE_NAME: String = "BusData.json"
+        private const val BUS_TIME_DB_FILE_NAME = "BusTime.db"
     }
 }

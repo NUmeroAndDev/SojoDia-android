@@ -20,8 +20,11 @@
     <string name="going_to_school">Going to school</string>
     <string name="coming_home">Coming home</string>
 
-    <string name="message_need_update">Restart this application to update timetable data.</string>
-    <string name="positive_button_need_update">Restart</string>
+    <string name="message_need_update">Download of timetable data is complete</string>
+    <string name="positive_button_need_update">Update</string>
+
+    <string name="error_load_bus_data_message">Please check your internet connection.</string>
+    <string name="error_retry_button">Retry</string>
 
     <string name="notification_update_title">Update timetable data</string>
     <string name="notification_update_text">Downloading</string>

@@ -9,10 +9,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.material.snackbar.Snackbar
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.getTodayString
-import com.numero.sojodia.extension.showDialog
 import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.fragment.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.model.Reciprocate
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     private val finishDownloadReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            showNeedRestartDialog()
+            showNeedRestartNotice()
         }
     }
 
@@ -43,6 +43,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         setTheme(configRepository.themeRes)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        if (busDataRepository.isNoBusTimeData) {
+            startActivity(SplashActivity.createIntent(this))
+            finish()
+            return
+        }
 
         initViews()
 
@@ -95,15 +101,13 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         startService(Intent(this, UpdateBusDataService::class.java))
     }
 
-    private fun showNeedRestartDialog() {
-        showDialog(
-                R.string.message_need_update,
-                R.string.positive_button_need_update,
-                { _, _ ->
+    private fun showNeedRestartNotice() {
+        Snackbar.make(rootLayout, R.string.message_need_update, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.positive_button_need_update) {
                     busDataRepository.reloadBusData()
                     this.recreate()
                 }
-        )
+                .show()
     }
 
     companion object {

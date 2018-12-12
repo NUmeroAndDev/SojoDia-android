@@ -5,7 +5,7 @@ import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.TimeTableRow
 import com.numero.sojodia.repository.IBusDataRepository
-import com.numero.sojodia.resource.model.BusTime
+import com.numero.sojodia.resource.datasource.BusTime
 import com.numero.sojodia.resource.model.Week
 
 class TimeTablePresenter(

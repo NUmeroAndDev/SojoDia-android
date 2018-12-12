@@ -4,11 +4,13 @@ import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.view.IUpdateBusDataView
 import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.blockingSubscribeBy
 
 class UpdateBusDataPresenter(
         private val view: IUpdateBusDataView,
         private val configRepository: IConfigRepository,
-        private val busDataRepository: IBusDataRepository) : IUpdateBusDataPresenter {
+        private val busDataRepository: IBusDataRepository
+) : IUpdateBusDataPresenter {
 
     private var disposable: Disposable? = null
 
@@ -28,27 +30,30 @@ class UpdateBusDataPresenter(
             view.noNeedUpdate()
             return
         }
-        busDataRepository.loadBusDataConfig().blockingSubscribe({
-            configRepository.updateCheckUpdateDate()
-            if (configRepository.versionCode < it.version) {
-                executeUpdate(it.version)
-            } else {
-                view.noNeedUpdate()
-            }
-        }, {
-            view.onError(it)
-        })
+        busDataRepository.loadBusDataConfig().blockingSubscribeBy(
+                onNext = {
+                    configRepository.updateCheckUpdateDate()
+                    if (configRepository.versionCode < it.version) {
+                        executeUpdate(it.version)
+                    } else {
+                        view.noNeedUpdate()
+                    }
+                },
+                onError = {
+                    view.onError(it)
+                }
+        )
     }
 
-
     private fun executeUpdate(latestVersion: Long) {
-        // notificationManager.showNotification()
-        busDataRepository.loadAndSaveBusData().blockingSubscribe({
-        }, {
-            view.onError(it)
-        }, {
-            configRepository.versionCode = latestVersion
-            view.successUpdate()
-        })
+        busDataRepository.loadAndSaveBusData().blockingSubscribeBy(
+                onNext = {
+                    configRepository.versionCode = latestVersion
+                    view.successUpdate()
+                },
+                onError = {
+                    view.onError(it)
+                }
+        )
     }
 }

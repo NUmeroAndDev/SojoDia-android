@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.numero.sojodia.R
-import com.numero.sojodia.resource.model.BusTime
+import com.numero.sojodia.resource.datasource.BusTime
 import kotlinx.android.synthetic.main.pager_bus_time.view.*
 
 class BusTimePagerAdapter : PagerAdapter() {
