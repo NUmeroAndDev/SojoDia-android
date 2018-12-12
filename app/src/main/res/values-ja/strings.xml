@@ -26,10 +26,6 @@
     <string name="error_load_bus_data_message">通信状態を確認してください</string>
     <string name="error_retry_button">再接続</string>
 
-    <string name="notification_update_title">時刻表データの更新</string>
-    <string name="notification_update_text">ダウンロード中</string>
-    <string name="notification_channel_name">時刻表データ更新中の通知</string>
-
     <string name="date_pattern">MM/dd (E)</string>
 
     <string name="settings_use_dark_theme_title">ダークテーマ</string>
