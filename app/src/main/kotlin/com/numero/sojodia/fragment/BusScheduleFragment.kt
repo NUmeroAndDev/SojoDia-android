@@ -19,7 +19,6 @@ import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.resource.datasource.BusTime
 import com.numero.sojodia.resource.model.Week
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
-import com.numero.sojodia.widget.CountDownClockTextView
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
 
@@ -81,23 +80,17 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
     }
 
     private fun initCountDownClockTextView() {
-        tkCountdownTextView.setOnTimeChangedListener(object : CountDownClockTextView.OnTimeChangedListener {
-            override fun onTimeChanged() {
-                checkDateChange()
-            }
-
-            override fun onTimeLimit() {
+        tkCountdownTextView.apply {
+            setOnTimeLimitListener {
                 presenter.nextTkBus()
             }
-        })
-
-        tndCountdownTextView.setOnTimeChangedListener(object : CountDownClockTextView.OnTimeChangedListener {
-            override fun onTimeChanged() {}
-
-            override fun onTimeLimit() {
-                presenter.nextTndBus()
+            setOnCountListener {
+                checkDateChange()
             }
-        })
+        }
+        tndCountdownTextView.setOnTimeLimitListener {
+            presenter.nextTndBus()
+        }
         tkCountdownTextView.setSyncView(tndCountdownTextView)
     }
 

@@ -26,7 +26,8 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         }
     private var syncView: ISyncThreadView? = null
 
-    private var onTimeChangedListener: OnTimeChangedListener? = null
+    private var onTimeLimitListener: (() -> Unit)? = null
+    private var onCountListener: (() -> Unit)? = null
 
     private val runnable = object : Runnable {
         override fun run() {
@@ -67,8 +68,12 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         this.min = min - 1
     }
 
-    fun setOnTimeChangedListener(onTimeChangedListener: OnTimeChangedListener) {
-        this.onTimeChangedListener = onTimeChangedListener
+    fun setOnTimeLimitListener(listener: () -> Unit) {
+        onTimeLimitListener = listener
+    }
+
+    fun setOnCountListener(listener: () -> Unit) {
+        onCountListener = listener
     }
 
     override fun onAttachedToWindow() {
@@ -109,12 +114,12 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
             hour = 0
             min = 0
             sec = 0
-            onTimeChangedListener?.onTimeLimit()
+            onTimeLimitListener?.invoke()
         }
         setTextColor(getCountTimeTextColor(hour, min, sec))
         text = String.format(Locale.ENGLISH, "%02d:%02d:%02d", hour, min, sec)
 
-        onTimeChangedListener?.onTimeChanged()
+        onCountListener?.invoke()
     }
 
     private fun getCountTimeTextColor(hour: Int, min: Int, sec: Int): Int {
@@ -126,11 +131,5 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         } else {
             safeTextColor
         }
-    }
-
-    interface OnTimeChangedListener {
-        fun onTimeChanged()
-
-        fun onTimeLimit()
     }
 }
