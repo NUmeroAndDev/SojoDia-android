@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rowLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_time_table_row">
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/bgView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.48"
+        android:background="@drawable/bg_time_table_row"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/hourTextView"
@@ -15,7 +25,7 @@
         android:gravity="center"
         android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
         android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:textColor="@color/text_time_table_row_hour"
+        android:textColor="?android:attr/textColorSecondary"
         android:textSize="@dimen/time_table_dialog_row_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +52,7 @@
         android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
         android:paddingEnd="@dimen/time_table_dialog_horizontal_text_margin"
         android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:textColor="@color/text_time_table_row_times"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/saturdayTextView"
@@ -61,7 +71,7 @@
         android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
         android:paddingEnd="@dimen/time_table_dialog_horizontal_text_margin"
         android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:textColor="@color/text_time_table_row_times"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sundayTextView"
@@ -81,7 +91,7 @@
         android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
         android:paddingEnd="@dimen/time_table_dialog_horizontal_text_margin"
         android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:textColor="@color/text_time_table_row_times"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
