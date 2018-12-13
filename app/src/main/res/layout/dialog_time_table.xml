@@ -130,15 +130,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!--FIXME checkedIconのTint-->
     <com.google.android.material.chip.Chip
         android:id="@+id/notSchoolTermChip"
         style="@style/Widget.MaterialComponents.Chip.Filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="学休期間"
+        android:text="@string/not_school_term"
+        app:checkedIconEnabled="false"
         app:chipBackgroundColor="@color/bg_chip_color"
+        app:chipIcon="@drawable/ic_check"
+        app:chipIconEnabled="true"
+        app:chipIconTint="?attr/colorOnSurface"
+        app:chipIconVisible="false"
         app:chipStrokeColor="@color/stroke_chip"
         app:chipStrokeWidth="1dp"
         app:layout_constraintBottom_toBottomOf="@id/toolbar"

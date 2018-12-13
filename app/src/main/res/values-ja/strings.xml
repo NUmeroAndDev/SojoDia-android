@@ -11,6 +11,7 @@
     <string name="hour">時</string>
     <string name="station_tk">JR高槻駅北</string>
     <string name="station_tnd">JR富田駅</string>
+    <string name="not_school_term">学休期間</string>
 
     <string name="bus_type_nonstop">直行便</string>
     <string name="no_bus">本日のバスはありません</string>
