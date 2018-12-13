@@ -11,6 +11,7 @@
     <string name="hour">Hour</string>
     <string name="station_tk">JR Takatsuki Station</string>
     <string name="station_tnd">JR Tonda Station</string>
+    <string name="not_school_term">Not School Term</string>
 
     <string name="bus_type_nonstop">Nonstop Bus</string>
     <string name="no_bus">There is no bus at today</string>
