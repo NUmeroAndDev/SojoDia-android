@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
-        TimeTableBottomSheetDialogFragment.newInstance(route, reciprocate).show(supportFragmentManager)
+        TimeTableBottomSheetDialogFragment.newInstance(route, reciprocate).showIfNeed(supportFragmentManager)
     }
 
     private fun initViews() {

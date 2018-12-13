@@ -5,37 +5,44 @@ import java.util.*
 
 class TimeTableRow(val hour: Int) {
 
-    private val timeOnWeekdayStringBuilder = StringBuilder()
-    private val timeOnSaturdayStringBuilder = StringBuilder()
-    private val timeOnSundayStringBuilder = StringBuilder()
+    private val onWeekdayBusTime: MutableList<BusTime> = mutableListOf()
+    private val onSaturdayBusTime: MutableList<BusTime> = mutableListOf()
+    private val onSundayBusTime: MutableList<BusTime> = mutableListOf()
 
-    val timeOnWeekdayText: String
-        get() = timeOnWeekdayStringBuilder.toString()
+    fun createOnWeekdayText(isNotSchoolTerm: Boolean): String {
+        return onWeekdayBusTime.createBusMinTimeString(isNotSchoolTerm)
+    }
 
-    val timeOnSaturdayText: String
-        get() = timeOnSaturdayStringBuilder.toString()
+    fun createOnSaturdayText(isNotSchoolTerm: Boolean): String {
+        return onSaturdayBusTime.createBusMinTimeString(isNotSchoolTerm)
+    }
 
-    val timeOnSundayText: String
-        get() = timeOnSundayStringBuilder.toString()
+    fun createOnSundayText(isNotSchoolTerm: Boolean): String {
+        return onSundayBusTime.createBusMinTimeString(isNotSchoolTerm)
+    }
 
     fun addBusTimeOnWeekday(busTime: BusTime) {
-        if (busTime.isNonstop) {
-            timeOnWeekdayStringBuilder.append("★")
-        }
-        timeOnWeekdayStringBuilder.append(String.format(Locale.ENGLISH, "%02d ", busTime.time.min))
+        onWeekdayBusTime.add(busTime)
     }
 
     fun addBusTimeOnSaturday(busTime: BusTime) {
-        if (busTime.isNonstop) {
-            timeOnSaturdayStringBuilder.append("★")
-        }
-        timeOnSaturdayStringBuilder.append(String.format(Locale.ENGLISH, "%02d ", busTime.time.min))
+        onSaturdayBusTime.add(busTime)
     }
 
     fun addBusTimeOnSunday(busTime: BusTime) {
-        if (busTime.isNonstop) {
-            timeOnSundayStringBuilder.append("★")
+        onSundayBusTime.add(busTime)
+    }
+
+    private fun List<BusTime>.createBusMinTimeString(isNotSchoolTerm: Boolean): String {
+        return buildString {
+            this@createBusMinTimeString.asSequence().forEach {
+                if (isNotSchoolTerm.not() or it.isOnlyOnSchooldays.not()) {
+                    if (it.isNonstop) {
+                        append("★")
+                    }
+                    append(String.format(Locale.ENGLISH, "%02d ", it.time.min))
+                }
+            }
         }
-        timeOnSundayStringBuilder.append(String.format(Locale.ENGLISH, "%02d ", busTime.time.min))
     }
 }
