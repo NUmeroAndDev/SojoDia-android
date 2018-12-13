@@ -17,7 +17,7 @@
 
     <style name="BottomSheetDialogTheme.Rounded">
         <item name="android:windowIsFloating">false</item>
-        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+        <item name="bottomSheetStyle">@style/BottomSheetStyle.Rounded</item>
     </style>
 
     <style name="BottomSheetDialogTheme.Rounded.Light">

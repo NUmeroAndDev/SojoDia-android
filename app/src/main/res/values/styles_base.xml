@@ -61,11 +61,16 @@
 
     <!--TODO Snackbarのボタンの色を変える-->
 
-    <style name="BottomSheetDialogTheme" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="BottomSheetStyle" parent="@style/Widget.MaterialComponents.BottomSheet.Modal">
-        <item name="android:background">@drawable/bg_bottom_sheet_dialog</item>
+    <style name="BottomSheetStyle.Rounded" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">@style/LargeShapeAppearance</item>
+    </style>
+
+    <style name="LargeShapeAppearance" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
     </style>
 </resources>
