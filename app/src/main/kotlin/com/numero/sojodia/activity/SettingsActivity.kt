@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.fragment.SettingsFragment
+import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_settings.*
 
@@ -15,6 +16,8 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
 
     private val configRepository: IConfigRepository
         get() = app.configRepository
+
+    private val reciprocate by lazy { intent.getSerializableExtra(BUNDLE_RECIPROCATE) as Reciprocate }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +41,7 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
     }
 
     override fun onBackPressed() {
-        startActivity(MainActivity.createClearTopIntent(this))
+        startActivity(MainActivity.createClearTopIntent(this, reciprocate))
     }
 
     override fun reopenSettingsScreen() {
@@ -50,6 +53,11 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
     }
 
     companion object {
-        fun createIntent(context: Context): Intent = Intent(context, SettingsActivity::class.java)
+
+        private const val BUNDLE_RECIPROCATE = "BUNDLE_RECIPROCATE"
+
+        fun createIntent(context: Context, reciprocate: Reciprocate): Intent = Intent(context, SettingsActivity::class.java).apply {
+            putExtra(BUNDLE_RECIPROCATE, reciprocate)
+        }
     }
 }

@@ -53,7 +53,9 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         initViews()
 
         val shortcutIntent = intent.getStringExtra("shortcut")
-        viewPager.currentItem = if (shortcutIntent == "coming_home") 1 else 0
+        val reciprocate = intent.getSerializableExtra(BUNDLE_RECIPROCATE) as?Reciprocate
+                ?: Reciprocate.findReciprocate(shortcutIntent)
+        viewPager.currentItem = reciprocate.ordinal
         startCheckUpdateService()
     }
 
@@ -79,7 +81,10 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_settings -> startActivity(SettingsActivity.createIntent(this))
+            R.id.action_settings -> {
+                val reciprocate = Reciprocate.findReciprocate(viewPager.currentItem)
+                startActivity(SettingsActivity.createIntent(this, reciprocate))
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -111,8 +116,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     companion object {
-        fun createClearTopIntent(context: Context) = Intent(context, MainActivity::class.java).apply {
+
+        private const val BUNDLE_RECIPROCATE = "BUNDLE_RECIPROCATE"
+
+        fun createClearTopIntent(context: Context, reciprocate: Reciprocate? = null) = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            putExtra(BUNDLE_RECIPROCATE, reciprocate)
         }
     }
 }

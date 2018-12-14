@@ -8,10 +8,10 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.model.Reciprocate
 
-class BusScheduleFragmentPagerAdapter(private val context: Context, fragmentManager: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fragmentManager) {
+class BusScheduleFragmentPagerAdapter(private val context: Context, fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
-    override fun getItem(position: Int): androidx.fragment.app.Fragment {
-        return BusScheduleFragment.newInstance(Reciprocate.getReciprocate(position))
+    override fun getItem(position: Int): Fragment {
+        return BusScheduleFragment.newInstance(Reciprocate.findReciprocate(position))
     }
 
     override fun getCount(): Int {
@@ -19,7 +19,7 @@ class BusScheduleFragmentPagerAdapter(private val context: Context, fragmentMana
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        val reciprocate = Reciprocate.getReciprocate(position)
+        val reciprocate = Reciprocate.findReciprocate(position)
         return context.getString(reciprocate.titleStringRes)
     }
 }

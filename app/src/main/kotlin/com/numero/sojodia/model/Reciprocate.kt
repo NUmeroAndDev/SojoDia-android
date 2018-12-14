@@ -2,19 +2,29 @@ package com.numero.sojodia.model
 
 import com.numero.sojodia.R
 
-enum class Reciprocate(val titleStringRes: Int) {
+enum class Reciprocate(
+        val titleStringRes: Int,
+        private val shortcutValue: String
+) {
 
     GOING(
-            R.string.going_to_school
+            R.string.going_to_school,
+            "going_to_school"
     ),
 
     RETURN(
-            R.string.coming_home
+            R.string.coming_home,
+            "coming_home"
     );
 
     companion object {
-        fun getReciprocate(ordinal: Int): Reciprocate = if (Reciprocate.values().size <= ordinal) {
+
+        fun findReciprocate(position: Int): Reciprocate = if (Reciprocate.values().size <= position) {
             GOING
-        } else Reciprocate.values()[ordinal]
+        } else Reciprocate.values()[position]
+
+        fun findReciprocate(shortCut: String?): Reciprocate {
+            return Reciprocate.values().find { it.shortcutValue == shortCut } ?: GOING
+        }
     }
 }
