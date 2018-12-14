@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp">
+    android:paddingTop="8dp">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -113,22 +112,15 @@
         android:id="@+id/timeTableRecyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
         android:overScrollMode="never"
+        android:paddingBottom="8dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottomDivider"
         tools:listitem="@layout/holder_time_table_row" />
-
-    <View
-        android:id="@+id/chipTopDivider"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/time_table_dialog_row_divider"
-        android:background="?attr/colorDivider"
-        app:layout_constraintBottom_toBottomOf="@id/timeTableRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/notSchoolTermChip"
