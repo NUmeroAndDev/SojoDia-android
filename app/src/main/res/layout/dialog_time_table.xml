@@ -1,144 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:paddingTop="8dp">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:subtitleTextColor="?attr/colorSecondary"
-        app:titleTextColor="?attr/colorSecondary" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/bottom_sheet_control_bar"
-        app:layout_constraintEnd_toEndOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="@id/toolbar"
-        app:layout_constraintTop_toTopOf="@id/toolbar" />
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/bottom_sheet_control_bar" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/headerHourTextView"
-        android:layout_width="@dimen/time_table_dialog_hour_text_width"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:text="@string/hour"
-        android:textColor="?android:attr/textColorSecondary"
-        android:textSize="@dimen/time_table_dialog_header_text"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/timeTableRecyclerView"
-        app:layout_constraintEnd_toStartOf="@+id/headerWeekdayTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="@dimen/time_table_dialog_row_divider"
-        android:layout_height="0dp"
-        android:background="?attr/colorDivider"
-        app:layout_constraintBottom_toBottomOf="@+id/headerHourTextView"
-        app:layout_constraintStart_toEndOf="@+id/headerHourTextView"
-        app:layout_constraintTop_toTopOf="@+id/headerHourTextView" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:subtitleTextColor="?attr/colorSecondary"
+            app:titleTextColor="?attr/colorSecondary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/headerWeekdayTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:text="@string/weekday"
-        android:textColor="?android:attr/textColorSecondary"
-        android:textSize="@dimen/time_table_dialog_header_text"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/headerHourTextView"
-        app:layout_constraintEnd_toStartOf="@+id/headerSaturdayTextView"
-        app:layout_constraintStart_toEndOf="@+id/headerHourTextView"
-        app:layout_constraintTop_toTopOf="@+id/headerHourTextView" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/notSchoolTermChip"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:text="@string/not_school_term"
+            app:checkedIconEnabled="false"
+            app:chipBackgroundColor="@color/bg_chip_color"
+            app:chipIcon="@drawable/ic_check"
+            app:chipIconEnabled="true"
+            app:chipIconTint="?attr/colorOnSurface"
+            app:chipIconVisible="false"
+            app:chipStrokeColor="@color/stroke_chip"
+            app:chipStrokeWidth="1dp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/headerSaturdayTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:text="@string/saturday"
-        android:textColor="@color/time_table_dialog_saturday_text"
-        android:textSize="@dimen/time_table_dialog_header_text"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/headerWeekdayTextView"
-        app:layout_constraintEnd_toStartOf="@id/headerSundayTextView"
-        app:layout_constraintStart_toEndOf="@+id/headerWeekdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/headerWeekdayTextView" />
+    </FrameLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/headerSundayTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:text="@string/sunday"
-        android:textColor="@color/time_table_dialog_sunday_text"
-        android:textSize="@dimen/time_table_dialog_header_text"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/headerSaturdayTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/headerSaturdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/headerSaturdayTextView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/headerHourTextView"
+            android:layout_width="@dimen/time_table_dialog_hour_text_width"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
+            android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+            android:text="@string/hour"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="@dimen/time_table_dialog_header_text"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/headerWeekdayTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="@dimen/time_table_dialog_row_divider"
+            android:layout_height="0dp"
+            android:background="?attr/colorDivider"
+            app:layout_constraintBottom_toBottomOf="@+id/headerHourTextView"
+            app:layout_constraintStart_toEndOf="@+id/headerHourTextView"
+            app:layout_constraintTop_toTopOf="@+id/headerHourTextView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/headerWeekdayTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
+            android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+            android:text="@string/weekday"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="@dimen/time_table_dialog_header_text"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/headerHourTextView"
+            app:layout_constraintEnd_toStartOf="@+id/headerSaturdayTextView"
+            app:layout_constraintStart_toEndOf="@+id/headerHourTextView"
+            app:layout_constraintTop_toTopOf="@+id/headerHourTextView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/headerSaturdayTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
+            android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+            android:text="@string/saturday"
+            android:textColor="@color/time_table_dialog_saturday_text"
+            android:textSize="@dimen/time_table_dialog_header_text"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/headerWeekdayTextView"
+            app:layout_constraintEnd_toStartOf="@id/headerSundayTextView"
+            app:layout_constraintStart_toEndOf="@+id/headerWeekdayTextView"
+            app:layout_constraintTop_toTopOf="@+id/headerWeekdayTextView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/headerSundayTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
+            android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+            android:text="@string/sunday"
+            android:textColor="@color/time_table_dialog_sunday_text"
+            android:textSize="@dimen/time_table_dialog_header_text"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/headerSaturdayTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/headerSaturdayTextView"
+            app:layout_constraintTop_toTopOf="@+id/headerSaturdayTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:id="@+id/bottomDivider"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/time_table_dialog_row_divider"
-        android:background="?attr/colorDivider"
-        app:layout_constraintBottom_toTopOf="@+id/timeTableRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerHourTextView" />
+        android:background="?attr/colorDivider" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/timeTableRecyclerView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingBottom="8dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottomDivider"
         tools:listitem="@layout/holder_time_table_row" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/notSchoolTermChip"
-        style="@style/Widget.MaterialComponents.Chip.Filter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/not_school_term"
-        app:checkedIconEnabled="false"
-        app:chipBackgroundColor="@color/bg_chip_color"
-        app:chipIcon="@drawable/ic_check"
-        app:chipIconEnabled="true"
-        app:chipIconTint="?attr/colorOnSurface"
-        app:chipIconVisible="false"
-        app:chipStrokeColor="@color/stroke_chip"
-        app:chipStrokeWidth="1dp"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/toolbar" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
