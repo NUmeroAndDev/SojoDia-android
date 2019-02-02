@@ -45,10 +45,10 @@ buildscript {
 
         appCompatVersion = '1.1.0-alpha01'
         ktxVersion = '1.0.1'
-        materialVersion = '1.1.0-alpha02'
-        recyclerViewVersion = '1.1.0-alpha01'
-        constraintLayoutVersion = '2.0.0-alpha2'
-        preferenceVersion = '1.1.0-alpha01'
+        materialVersion = '1.1.0-alpha03'
+        recyclerViewVersion = '1.1.0-alpha02'
+        constraintLayoutVersion = '2.0.0-alpha3'
+        preferenceVersion = '1.1.0-alpha02'
         roomVersion = '2.0.0'
 
         okhttpVersion = '3.9.0'
