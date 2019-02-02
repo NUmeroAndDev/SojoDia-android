@@ -2,6 +2,7 @@ package com.numero.sojodia.fragment
 
 import android.content.Context
 import android.os.Bundle
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.numero.sojodia.BuildConfig
@@ -30,18 +31,18 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val useDarkModeScreen = findPreference("use_dark_theme") as SwitchPreferenceCompat
+        val useDarkModeScreen = findPreference<SwitchPreferenceCompat>("use_dark_theme")
         useDarkModeScreen.setOnPreferenceChangeListener { _, _ ->
             transition?.reopenSettingsScreen()
             true
         }
 
-        findPreference("data_version").summary = configRepository.versionCode.toString()
+        findPreference<Preference>("data_version").summary = configRepository.versionCode.toString()
 
-        val appVersionScreen = findPreference("app_version")
+        val appVersionScreen = findPreference<Preference>("app_version")
         appVersionScreen.summary = BuildConfig.VERSION_NAME
 
-        val licensesScreen = findPreference("licenses")
+        val licensesScreen = findPreference<Preference>("licenses")
         licensesScreen.setOnPreferenceClickListener {
             transition?.showLicensesScreen()
             false
