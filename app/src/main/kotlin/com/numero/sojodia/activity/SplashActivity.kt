@@ -1,13 +1,13 @@
 package com.numero.sojodia.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import com.numero.common.IIntentResolver
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.presenter.ISplashPresenter
 import com.numero.sojodia.presenter.SplashPresenter
 import com.numero.sojodia.repository.IBusDataRepository
@@ -18,9 +18,11 @@ import kotlinx.android.synthetic.main.activity_splash.*
 class SplashActivity : AppCompatActivity(), ISplashView {
 
     private val configRepository: IConfigRepository
-        get() = app.configRepository
+        get() = module.configRepository
     private val busDataRepository: IBusDataRepository
-        get() = app.busDataRepository
+        get() = module.busDataRepository
+    private val intentResolver: IIntentResolver
+        get() = module.intentResolver
 
     private lateinit var presenter: ISplashPresenter
 
@@ -47,7 +49,10 @@ class SplashActivity : AppCompatActivity(), ISplashView {
     }
 
     override fun successDownloadedBusData() {
-        startActivity(MainActivity.createClearTopIntent(this))
+        val intent = intentResolver.mainActivityIntent.apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
+        startActivity(intent)
         finish()
     }
 
@@ -60,9 +65,5 @@ class SplashActivity : AppCompatActivity(), ISplashView {
         errorGroup.isVisible = false
         progress.isInvisible = false
         presenter.subscribe()
-    }
-
-    companion object {
-        fun createIntent(context: Context): Intent = Intent(context, SplashActivity::class.java)
     }
 }

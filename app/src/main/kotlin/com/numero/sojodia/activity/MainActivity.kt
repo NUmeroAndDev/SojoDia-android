@@ -10,8 +10,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.snackbar.Snackbar
+import com.numero.common.IIntentResolver
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.fragment.TimeTableBottomSheetDialogFragment
@@ -34,9 +35,11 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     private val busDataRepository: IBusDataRepository
-        get() = app.busDataRepository
+        get() = module.busDataRepository
     private val configRepository: IConfigRepository
-        get() = app.configRepository
+        get() = module.configRepository
+    private val intentResolver: IIntentResolver
+        get() = module.intentResolver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +48,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         setSupportActionBar(toolbar)
 
         if (busDataRepository.isNoBusTimeData) {
-            startActivity(SplashActivity.createIntent(this))
+            startActivity(intentResolver.splashActivityIntent)
             finish()
             return
         }
@@ -116,12 +119,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     companion object {
-
-        private const val BUNDLE_RECIPROCATE = "BUNDLE_RECIPROCATE"
-
-        fun createClearTopIntent(context: Context, reciprocate: Reciprocate? = null) = Intent(context, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            putExtra(BUNDLE_RECIPROCATE, reciprocate)
-        }
+        // FIXME これなんとかしたい
+        const val BUNDLE_RECIPROCATE = "BUNDLE_RECIPROCATE"
     }
 }

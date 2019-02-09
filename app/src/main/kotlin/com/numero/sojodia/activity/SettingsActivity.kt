@@ -5,8 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.numero.common.IIntentResolver
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.fragment.SettingsFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.repository.IConfigRepository
@@ -15,7 +16,9 @@ import kotlinx.android.synthetic.main.activity_settings.*
 class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransition {
 
     private val configRepository: IConfigRepository
-        get() = app.configRepository
+        get() = module.configRepository
+    private val intentResolver: IIntentResolver
+        get() = module.intentResolver
 
     private val reciprocate by lazy { intent.getSerializableExtra(BUNDLE_RECIPROCATE) as Reciprocate }
 
@@ -41,7 +44,11 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
     }
 
     override fun onBackPressed() {
-        startActivity(MainActivity.createClearTopIntent(this, reciprocate))
+        val intent = intentResolver.mainActivityIntent.apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            putExtra(MainActivity.BUNDLE_RECIPROCATE, reciprocate)
+        }
+        startActivity(intent)
     }
 
     override fun reopenSettingsScreen() {
@@ -49,7 +56,7 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
     }
 
     override fun showLicensesScreen() {
-        startActivity(LicensesActivity.createIntent(this))
+        startActivity(intentResolver.licensesActivityIntent)
     }
 
     companion object {

@@ -7,7 +7,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.repository.IConfigRepository
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -15,7 +15,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private var transition: ISettingsTransition? = null
 
     private val configRepository: IConfigRepository
-        get() = app.configRepository
+        get() = module.configRepository
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

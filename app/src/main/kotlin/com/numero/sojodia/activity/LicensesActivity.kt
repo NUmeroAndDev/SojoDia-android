@@ -1,19 +1,17 @@
 package com.numero.sojodia.activity
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_licenses.*
 
 class LicensesActivity : AppCompatActivity() {
 
     private val configRepository: IConfigRepository
-        get() = app.configRepository
+        get() = module.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +41,5 @@ class LicensesActivity : AppCompatActivity() {
     companion object {
 
         private const val LICENSES_HTML_PATH = "file:///android_asset/licenses.html"
-
-        fun createIntent(context: Context): Intent = Intent(context, LicensesActivity::class.java)
     }
 }
