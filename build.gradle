@@ -41,7 +41,7 @@ ext {
 buildscript {
 
     ext {
-        kotlinVersion = '1.3.20'
+        kotlinVersion = '1.3.21'
 
         appCompatVersion = '1.1.0-alpha01'
         ktxVersion = '1.0.1'
