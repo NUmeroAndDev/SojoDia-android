@@ -14,6 +14,7 @@ import com.numero.common.IIntentResolver
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.getTodayString
+import com.numero.sojodia.extension.styleRes
 import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.fragment.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.model.Reciprocate
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(configRepository.themeRes)
+        setTheme(configRepository.theme.styleRes)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 

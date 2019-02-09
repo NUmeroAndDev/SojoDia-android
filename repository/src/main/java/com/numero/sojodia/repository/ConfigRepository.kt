@@ -2,10 +2,9 @@ package com.numero.sojodia.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.text.format.DateFormat
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import com.numero.sojodia.R
-import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import java.util.*
 
 class ConfigRepository(context: Context) : IConfigRepository {
@@ -36,12 +35,16 @@ class ConfigRepository(context: Context) : IConfigRepository {
         get() = settingsPreferences.getBoolean(KEY_USE_DARK_THEME, isDefaultUseDarkTheme)
 
 
-    override val themeRes: Int
+    override val theme: Theme
         get() = if (isUseDarkTheme) {
-            R.style.AppTheme_Dark_NoActionBar
+            Theme.DARK
         } else {
-            R.style.AppTheme_Light_NoActionBar
+            Theme.LIGHT
         }
+
+    private fun Calendar.getTodayStringOnlyFigure(): String {
+        return DateFormat.format("yyyyMMdd", this).toString()
+    }
 
     companion object {
 

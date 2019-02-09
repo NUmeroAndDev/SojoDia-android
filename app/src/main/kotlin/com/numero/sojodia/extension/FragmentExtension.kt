@@ -1,7 +1,7 @@
 package com.numero.sojodia.extension
 
 import androidx.fragment.app.Fragment
-import com.numero.sojodia.ILegacyModule
+import com.numero.common.IModule
 
-val Fragment.module: ILegacyModule
-    get() = activity?.application as ILegacyModule
+val Fragment.module: IModule
+    get() = activity?.application as IModule

@@ -3,7 +3,7 @@ package com.numero.sojodia.service
 import android.app.IntentService
 import android.content.Intent
 import android.os.IBinder
-import com.numero.sojodia.ILegacyModule
+import com.numero.common.IModule
 import com.numero.sojodia.presenter.UpdateBusDataPresenter
 import com.numero.sojodia.util.BroadCastUtil
 import com.numero.sojodia.view.IUpdateBusDataView
@@ -15,8 +15,8 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
     override fun onCreate() {
         super.onCreate()
 
-        val configRepository = (application as ILegacyModule).configRepository
-        val busDataRepository = (application as ILegacyModule).busDataRepository
+        val configRepository = (application as IModule).configRepository
+        val busDataRepository = (application as IModule).busDataRepository
 
         presenter = UpdateBusDataPresenter(this, configRepository, busDataRepository)
     }

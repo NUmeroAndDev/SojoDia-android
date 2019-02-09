@@ -2,13 +2,14 @@ package com.numero.sojodia
 
 import android.app.Application
 import com.numero.common.IIntentResolver
+import com.numero.common.IModule
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.resource.BusDataSource
 
-class SojoDiaApplication : Application(), ILegacyModule {
+class SojoDiaApplication : Application(), IModule {
 
     override lateinit var configRepository: IConfigRepository
 

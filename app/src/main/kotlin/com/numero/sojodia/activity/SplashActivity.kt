@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import com.numero.common.IIntentResolver
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.styleRes
 import com.numero.sojodia.presenter.ISplashPresenter
 import com.numero.sojodia.presenter.SplashPresenter
 import com.numero.sojodia.repository.IBusDataRepository
@@ -28,7 +29,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(configRepository.themeRes)
+        setTheme(configRepository.theme.styleRes)
         setContentView(R.layout.activity_splash)
 
         presenter = SplashPresenter(this, busDataRepository, configRepository)

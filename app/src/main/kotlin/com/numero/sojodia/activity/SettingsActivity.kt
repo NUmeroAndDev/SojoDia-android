@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.numero.common.IIntentResolver
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.styleRes
 import com.numero.sojodia.fragment.SettingsFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.repository.IConfigRepository
@@ -24,7 +25,7 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(configRepository.themeRes)
+        setTheme(configRepository.theme.styleRes)
         setContentView(R.layout.activity_settings)
         setSupportActionBar(toolbar)
 

@@ -8,7 +8,7 @@ interface IConfigRepository {
 
     val isUseDarkTheme: Boolean
 
-    val themeRes: Int
+    val theme: Theme
 
     fun updateCheckUpdateDate()
 }

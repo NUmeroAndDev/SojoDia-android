@@ -27,9 +27,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':repository')
+    implementation project(':data')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "androidx.core:core-ktx:$ktxVersion"
+    implementation "androidx.preference:preference:$preferenceVersion"
+
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 
     testImplementation "junit:junit:$junitVersion"
     testImplementation "androidx.test.ext:junit:$testJunitVersion"
