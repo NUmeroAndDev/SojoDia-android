@@ -37,7 +37,7 @@ class BusDataSourceTest {
                 .build()
                 .create(BusDataApi::class.java)
         val context = InstrumentationRegistry.getInstrumentation().context
-        busDataSource = BusDataSource(context, "", api, database)
+        busDataSource = BusDataSource(context, api, database)
     }
 
     @Test
