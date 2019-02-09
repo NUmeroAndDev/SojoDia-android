@@ -10,14 +10,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class ApiConfig {
     companion object {
-        private fun createRetrofit(baseUrl: String): Retrofit {
+        private fun createRetrofit(): Retrofit {
             val okHttpClient = OkHttpClient.Builder().apply {
                 if (BuildConfig.DEBUG) {
                     addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 }
             }.build()
             return Retrofit.Builder()
-                    .baseUrl(baseUrl)
+                    .baseUrl(BuildConfig.BUS_DATA_URL)
                     .client(okHttpClient)
                     .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder()
                             .add(ResourceJsonAdapterFactory.INSTANCE)
@@ -26,8 +26,8 @@ class ApiConfig {
                     .build()
         }
 
-        fun createBusDataApi(baseUrl: String): BusDataApi {
-            return createRetrofit(baseUrl).create(BusDataApi::class.java)
+        fun createBusDataApi(): BusDataApi {
+            return createRetrofit().create(BusDataApi::class.java)
         }
     }
 }
