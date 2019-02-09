@@ -4,8 +4,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'kotlin-kapt'
-
 apply plugin: 'com.cookpad.android.licensetools'
 
 android {
@@ -18,8 +16,6 @@ android {
         versionName rootProject.appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testOptions.unitTests.includeAndroidResources = true
-
-        buildConfigField("String", "BUS_DATA_URL", "\"https://raw.githubusercontent.com\"")
     }
 
     buildTypes {

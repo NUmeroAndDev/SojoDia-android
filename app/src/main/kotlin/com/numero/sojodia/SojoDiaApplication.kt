@@ -17,6 +17,6 @@ class SojoDiaApplication : Application(), IApplication {
         super.onCreate()
         configRepository = ConfigRepository(this)
 
-        busDataRepository = BusDataRepository(BusDataSource(this, BuildConfig.BUS_DATA_URL))
+        busDataRepository = BusDataRepository(BusDataSource(this))
     }
 }

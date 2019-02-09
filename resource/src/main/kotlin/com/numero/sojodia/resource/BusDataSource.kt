@@ -15,8 +15,7 @@ import io.reactivex.Observable
 
 class BusDataSource(
         private val context: Context,
-        baseUrl: String,
-        private val busDataApi: BusDataApi = ApiConfig.createBusDataApi(baseUrl),
+        private val busDataApi: BusDataApi = ApiConfig.createBusDataApi(),
         private val busTimeDatabaseDao: IBusTimeDao = Room.databaseBuilder(context, BusTimeDatabase::class.java, BUS_TIME_DB_FILE_NAME).allowMainThreadQueries().build().busTimeDao()
 ) : IBusDataSource {
 
