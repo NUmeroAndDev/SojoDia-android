@@ -42,11 +42,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':common')
     implementation project(':widget')
     implementation project(':repository')
     implementation project(':data')
 
+    implementation project(':component_splash')
     implementation project(':component_library')
 
     testImplementation "junit:junit:$junitVersion"

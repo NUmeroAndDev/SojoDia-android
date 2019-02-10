@@ -1,4 +1,4 @@
-package com.numero.sojodia.activity
+package com.numero.sojodia.component.splash
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,14 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.numero.common.IIntentResolver
-import com.numero.sojodia.R
-import com.numero.sojodia.extension.module
-import com.numero.sojodia.extension.styleRes
-import com.numero.sojodia.presenter.ISplashPresenter
-import com.numero.sojodia.presenter.SplashPresenter
+import com.numero.common.extension.module
+import com.numero.common.extension.styleRes
 import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
-import com.numero.sojodia.view.ISplashView
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity(), ISplashView {

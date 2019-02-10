@@ -1,4 +1,4 @@
-package com.numero.sojodia.view
+package com.numero.sojodia.component.splash
 
 interface ISplashView {
 

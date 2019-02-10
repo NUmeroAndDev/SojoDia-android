@@ -1,4 +1,4 @@
-package com.numero.sojodia.component.library
+package com.numero.common.extension
 
 import android.content.Context
 import com.numero.common.IModule

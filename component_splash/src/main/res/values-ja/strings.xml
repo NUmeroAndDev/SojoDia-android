@@ -1,0 +1,4 @@
+<resources>
+    <string name="error_load_bus_data_message">通信状態を確認してください</string>
+    <string name="error_retry_button">再接続</string>
+</resources>

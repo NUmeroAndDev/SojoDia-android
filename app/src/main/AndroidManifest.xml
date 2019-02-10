@@ -31,7 +31,7 @@
 
         </activity>
 
-        <activity android:name=".activity.SplashActivity" />
+        <activity android:name=".component.splash.SplashActivity" />
 
         <activity
             android:name=".activity.SettingsActivity"

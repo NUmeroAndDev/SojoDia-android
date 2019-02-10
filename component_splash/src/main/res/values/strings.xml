@@ -1,0 +1,4 @@
+<resources>
+    <string name="error_load_bus_data_message">Please check your internet connection.</string>
+    <string name="error_retry_button">Retry</string>
+</resources>
