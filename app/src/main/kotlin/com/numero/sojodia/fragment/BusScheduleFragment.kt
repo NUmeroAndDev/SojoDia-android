@@ -24,7 +24,6 @@ import java.util.*
 
 class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
-
     private val busDataRepository: IBusDataRepository
         get() = module.busDataRepository
 
