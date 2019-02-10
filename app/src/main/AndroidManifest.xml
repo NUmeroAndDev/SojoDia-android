@@ -38,7 +38,7 @@
             android:label="@string/settings_label" />
 
         <activity
-            android:name=".activity.LicensesActivity"
+            android:name=".component.library.LicensesActivity"
             android:label="@string/licenses_label" />
 
         <service android:name=".service.UpdateBusDataService" />

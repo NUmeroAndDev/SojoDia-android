@@ -1,1 +1,1 @@
-include ':app', ':widget', ':data', ':common', ':repository', ':resource'
+include ':app', ':widget', ':data', ':common', ':repository', ':resource', ':component_library'

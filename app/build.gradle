@@ -4,8 +4,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'com.cookpad.android.licensetools'
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -44,11 +42,13 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':common')
+    api project(':common')
     implementation project(':widget')
     api project(':repository')
     implementation project(':data')
-    implementation project(':resource')
+    api project(':resource')
+
+    implementation project(':component_library')
 
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"

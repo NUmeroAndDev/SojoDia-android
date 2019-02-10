@@ -1,12 +1,10 @@
-package com.numero.sojodia.activity
+package com.numero.sojodia.component.library
 
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.numero.sojodia.R
-import com.numero.sojodia.extension.module
-import com.numero.sojodia.extension.styleRes
 import com.numero.sojodia.repository.IConfigRepository
+import com.numero.sojodia.repository.Theme
 import kotlinx.android.synthetic.main.activity_licenses.*
 
 class LicensesActivity : AppCompatActivity() {
@@ -38,6 +36,14 @@ class LicensesActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private val Theme.styleRes: Int
+        get() {
+            return when (this) {
+                Theme.DARK -> R.style.AppTheme_Dark_NoActionBar
+                Theme.LIGHT -> R.style.AppTheme_Light_NoActionBar
+            }
+        }
 
     companion object {
 
