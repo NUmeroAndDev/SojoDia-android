@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="app_corner_round">16dp</dimen>
+</resources>

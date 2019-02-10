@@ -48,6 +48,7 @@ dependencies {
     implementation project(':widget')
     api project(':repository')
     implementation project(':data')
+    implementation project(':resource')
 
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
