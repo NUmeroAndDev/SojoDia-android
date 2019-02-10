@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         when (item.itemId) {
             R.id.action_settings -> {
                 val reciprocate = Reciprocate.findReciprocate(viewPager.currentItem)
-                startActivity(SettingsActivity.createIntent(this, reciprocate))
+                startActivity(intentResolver.getSettingsActivityIntent(reciprocate))
             }
         }
         return super.onOptionsItemSelected(item)

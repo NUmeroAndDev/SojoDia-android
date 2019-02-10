@@ -46,7 +46,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
     }
 
     override fun successDownloadedBusData() {
-        val intent = intentResolver.mainActivityIntent.apply {
+        val intent = intentResolver.getMainActivityIntent().apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
         startActivity(intent)

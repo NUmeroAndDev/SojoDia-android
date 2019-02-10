@@ -48,6 +48,7 @@ dependencies {
 
     implementation project(':component_splash')
     implementation project(':component_library')
+    implementation project(':component_settings')
 
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"

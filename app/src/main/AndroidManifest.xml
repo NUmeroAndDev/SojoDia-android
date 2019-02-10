@@ -34,7 +34,7 @@
         <activity android:name=".component.splash.SplashActivity" />
 
         <activity
-            android:name=".activity.SettingsActivity"
+            android:name=".component.settings.SettingsActivity"
             android:label="@string/settings_label" />
 
         <activity

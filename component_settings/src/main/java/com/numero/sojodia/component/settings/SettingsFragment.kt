@@ -1,13 +1,10 @@
-package com.numero.sojodia.fragment
+package com.numero.sojodia.component.settings
 
 import android.content.Context
 import android.os.Bundle
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
-import com.numero.sojodia.BuildConfig
-import com.numero.sojodia.R
-import com.numero.sojodia.extension.module
 import com.numero.sojodia.repository.IConfigRepository
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -40,6 +37,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         findPreference<Preference>("data_version").summary = configRepository.versionCode.toString()
 
         val appVersionScreen = findPreference<Preference>("app_version")
+        // FIXME アプリのバージョンを参照
         appVersionScreen.summary = BuildConfig.VERSION_NAME
 
         val licensesScreen = findPreference<Preference>("licenses")

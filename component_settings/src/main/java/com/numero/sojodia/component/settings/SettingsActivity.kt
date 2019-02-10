@@ -1,15 +1,12 @@
-package com.numero.sojodia.activity
+package com.numero.sojodia.component.settings
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.numero.common.IIntentResolver
-import com.numero.sojodia.R
-import com.numero.sojodia.extension.module
-import com.numero.sojodia.extension.styleRes
-import com.numero.sojodia.fragment.SettingsFragment
+import com.numero.common.extension.module
+import com.numero.common.extension.styleRes
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -45,9 +42,8 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
     }
 
     override fun onBackPressed() {
-        val intent = intentResolver.mainActivityIntent.apply {
+        val intent = intentResolver.getMainActivityIntent(reciprocate).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            putExtra(MainActivity.BUNDLE_RECIPROCATE, reciprocate)
         }
         startActivity(intent)
     }
@@ -62,10 +58,6 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
 
     companion object {
 
-        private const val BUNDLE_RECIPROCATE = "BUNDLE_RECIPROCATE"
-
-        fun createIntent(context: Context, reciprocate: Reciprocate): Intent = Intent(context, SettingsActivity::class.java).apply {
-            putExtra(BUNDLE_RECIPROCATE, reciprocate)
-        }
+        const val BUNDLE_RECIPROCATE = "BUNDLE_RECIPROCATE"
     }
 }
