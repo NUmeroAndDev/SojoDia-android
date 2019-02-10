@@ -3,8 +3,8 @@ package com.numero.sojodia
 import android.content.Context
 import android.content.Intent
 import com.numero.common.IIntentResolver
-import com.numero.sojodia.activity.MainActivity
 import com.numero.sojodia.component.library.LicensesActivity
+import com.numero.sojodia.component.main.MainActivity
 import com.numero.sojodia.component.settings.SettingsActivity
 import com.numero.sojodia.component.splash.SplashActivity
 import com.numero.sojodia.model.Reciprocate

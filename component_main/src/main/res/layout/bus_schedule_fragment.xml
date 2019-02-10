@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tkScheduleCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/card_margin"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="@dimen/bus_schedule_card_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tndScheduleCardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tkTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/station_tk"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="@dimen/bus_toolbar_text"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tkTimetableActionChip"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/timetable_label"
+                app:chipBackgroundColor="?attr/colorPrimary"
+                app:chipStrokeColor="?attr/colorDivider"
+                app:chipStrokeWidth="1dp"
+                app:layout_constraintBottom_toBottomOf="@id/tkTitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tkTitleTextView" />
+
+            <com.numero.sojodia.component.main.NotSwipeViewPager
+                android:id="@+id/tkBusTimeViewPager"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/bus_time_view_pager_height"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tkCountdownTextView" />
+
+            <com.numero.sojodia.widget.CountDownClockTextView
+                android:id="@+id/tkCountdownTextView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:attentionTextColor="@color/count_attention_text"
+                app:autoSizeMaxTextSize="@dimen/count_time_text"
+                app:autoSizeMinTextSize="2sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:defaultTextColor="?attr/colorOnSurface"
+                app:fontFamily="@font/lato_light"
+                app:layout_constraintBottom_toTopOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView"
+                app:safeTextColor="@color/count_safe_text" />
+
+            <FrameLayout
+                android:id="@+id/tkNoBusLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:background="?attr/colorSurface"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/no_bus"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="@dimen/no_bus_text" />
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tndScheduleCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/card_margin"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="@dimen/bus_schedule_card_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tkScheduleCardView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tndTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/station_tnd"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="@dimen/bus_toolbar_text"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tndTimetableActionChip"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/timetable_label"
+                app:chipBackgroundColor="?attr/colorPrimary"
+                app:chipStrokeColor="?attr/colorDivider"
+                app:chipStrokeWidth="1dp"
+                app:layout_constraintBottom_toBottomOf="@id/tndTitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tndTitleTextView" />
+
+            <com.numero.sojodia.component.main.NotSwipeViewPager
+                android:id="@+id/tndBusTimeViewPager"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/bus_time_view_pager_height"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tndCountdownTextView" />
+
+            <com.numero.sojodia.widget.CountDownClockTextView
+                android:id="@+id/tndCountdownTextView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:attentionTextColor="@color/count_attention_text"
+                app:autoSizeMaxTextSize="@dimen/count_time_text"
+                app:autoSizeMinTextSize="2sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform"
+                app:defaultTextColor="?attr/colorOnSurface"
+                app:fontFamily="@font/lato_light"
+                app:layout_constraintBottom_toTopOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView"
+                app:safeTextColor="@color/count_safe_text" />
+
+            <FrameLayout
+                android:id="@+id/tndNoBusLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:background="?attr/colorSurface"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/no_bus"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="@dimen/no_bus_text" />
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

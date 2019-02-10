@@ -28,10 +28,6 @@ android {
         }
     }
 
-    androidExtensions {
-        experimental = true
-    }
-
     productFlavors {
     }
 
@@ -42,18 +38,17 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':widget')
     implementation project(':repository')
     implementation project(':data')
 
     implementation project(':component_splash')
+    implementation project(':component_main')
     implementation project(':component_library')
     implementation project(':component_settings')
 
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
     testImplementation "androidx.test.ext:junit:$testJunitVersion"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
     androidTestImplementation "androidx.test.ext:junit:$testJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 
@@ -61,11 +56,6 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.core:core-ktx:$ktxVersion"
-    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation "androidx.preference:preference:$preferenceVersion"
-
-    implementation "com.google.android.material:material:$materialVersion"
 
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"

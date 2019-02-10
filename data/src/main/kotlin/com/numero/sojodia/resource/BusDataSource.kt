@@ -8,8 +8,8 @@ import com.numero.sojodia.resource.datasource.api.BusDataApi
 import com.numero.sojodia.resource.datasource.api.BusDataResponse
 import com.numero.sojodia.resource.datasource.db.BusTimeDatabase
 import com.numero.sojodia.resource.datasource.db.IBusTimeDao
+import com.numero.sojodia.resource.model.BusRoute
 import com.numero.sojodia.resource.model.Config
-import com.numero.sojodia.resource.model.Route
 import io.reactivex.Maybe
 import io.reactivex.Observable
 
@@ -35,16 +35,16 @@ class BusDataSource(
     private fun saveBusDataObservable(busDataResponse: BusDataResponse): Observable<BusDataResponse> {
         return Observable.create { e ->
             busTimeDatabaseDao.clearTable()
-            busDataResponse.kutcToTkDataList.mapAndSaveDB(Route.KutcToTk)
-            busDataResponse.kutcToTndDataList.mapAndSaveDB(Route.KutcToTnd)
-            busDataResponse.tkToKutcDataList.mapAndSaveDB(Route.TkToKutc)
-            busDataResponse.tndToKutcDataList.mapAndSaveDB(Route.TndToKutc)
+            busDataResponse.kutcToTkDataList.mapAndSaveDB(BusRoute.KutcToTk)
+            busDataResponse.kutcToTndDataList.mapAndSaveDB(BusRoute.KutcToTnd)
+            busDataResponse.tkToKutcDataList.mapAndSaveDB(BusRoute.TkToKutc)
+            busDataResponse.tndToKutcDataList.mapAndSaveDB(BusRoute.TndToKutc)
 
             e.onNext(busDataResponse)
         }
     }
 
-    private fun List<BusDataResponse.BusTime>.mapAndSaveDB(route: Route) {
+    private fun List<BusDataResponse.BusTime>.mapAndSaveDB(route: BusRoute) {
         asSequence().map {
             BusTime(
                     routeId = route.id,

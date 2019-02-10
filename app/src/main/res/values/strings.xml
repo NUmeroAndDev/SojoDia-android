@@ -1,28 +1,3 @@
 <resources>
     <string name="app_name">Bus Schedule</string>
-    <string name="settings_label">Settings</string>
-
-    <string name="timetable_label">Timetable</string>
-
-    <string name="weekday">Weekdays</string>
-    <string name="saturday">Saturday</string>
-    <string name="sunday">Sunday</string>
-    <string name="hour">Hour</string>
-    <string name="station_tk">JR Takatsuki Station</string>
-    <string name="station_tnd">JR Tonda Station</string>
-    <string name="not_school_term">Not School Term</string>
-
-    <string name="bus_type_nonstop">Nonstop Bus</string>
-    <string name="no_bus">There is no bus at today</string>
-    <string name="last_bus">Last bus</string>
-    <string name="time_table_dialog_description">★ = Non stop bus</string>
-
-    <string name="going_to_school">Going to school</string>
-    <string name="coming_home">Coming home</string>
-
-    <string name="message_need_update">Download of timetable data is complete</string>
-    <string name="positive_button_need_update">Update</string>
-
-    <string name="date_pattern">EEE, MMM d</string>
-
 </resources>
