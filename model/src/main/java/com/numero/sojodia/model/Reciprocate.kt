@@ -1,21 +1,10 @@
 package com.numero.sojodia.model
 
-import com.numero.sojodia.R
+enum class Reciprocate(private val shortcutValue: String) {
 
-enum class Reciprocate(
-        val titleStringRes: Int,
-        private val shortcutValue: String
-) {
+    GOING("going_to_school"),
 
-    GOING(
-            R.string.going_to_school,
-            "going_to_school"
-    ),
-
-    RETURN(
-            R.string.coming_home,
-            "coming_home"
-    );
+    RETURN("coming_home");
 
     companion object {
 

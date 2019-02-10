@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.TimeTableContract
 import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.TimeTableRow
@@ -73,7 +74,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
     }
 
     override fun showCurrentRoute(route: Route) {
-        toolbar.setTitle(route.stationStringRes)
+        toolbar.setTitle(route.stationTitleRes)
     }
 
     override fun showCurrentReciprocate(reciprocate: Reciprocate) {
@@ -84,6 +85,12 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         if (fragmentManager.findFragmentByTag(TAG) == null) {
             show(fragmentManager, TAG)
         }
+    }
+
+    private val Route.stationTitleRes:Int
+    get() = when(this) {
+        Route.TK -> R.string.station_tk
+        Route.TND -> R.string.station_tnd
     }
 
     companion object {

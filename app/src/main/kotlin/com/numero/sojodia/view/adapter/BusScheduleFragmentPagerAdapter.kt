@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.numero.sojodia.extension.titleStringRes
 
 import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.model.Reciprocate
