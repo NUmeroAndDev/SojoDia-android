@@ -29,8 +29,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':common')
-    api project(':repository')
+    implementation project(':common')
     api project(':resource')
 
     implementation "androidx.appcompat:appcompat:$appCompatVersion"

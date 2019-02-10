@@ -42,11 +42,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api project(':common')
+    implementation project(':common')
     implementation project(':widget')
-    api project(':repository')
+    implementation project(':repository')
     implementation project(':data')
-    api project(':resource')
 
     implementation project(':component_library')
 
