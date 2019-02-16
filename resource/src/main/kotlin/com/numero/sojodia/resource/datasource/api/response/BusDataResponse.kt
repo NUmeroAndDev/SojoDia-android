@@ -1,4 +1,4 @@
-package com.numero.sojodia.resource.datasource.api
+package com.numero.sojodia.resource.datasource.api.response
 
 import com.squareup.moshi.Json
 import se.ansman.kotshi.JsonSerializable

@@ -1,8 +1,8 @@
 package com.numero.sojodia.presenter
 
+import com.numero.sojodia.model.Config
 import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
-import com.numero.sojodia.resource.model.Config
 import com.numero.sojodia.view.ISplashView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

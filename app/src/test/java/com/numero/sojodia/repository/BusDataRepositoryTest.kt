@@ -3,8 +3,8 @@ package com.numero.sojodia.repository
 import com.numero.sojodia.resource.BusRouteId
 import com.numero.sojodia.resource.IBusDataSource
 import com.numero.sojodia.resource.datasource.db.BusTimeData
-import com.numero.sojodia.resource.datasource.api.BusDataResponse
-import com.numero.sojodia.resource.model.Config
+import com.numero.sojodia.resource.datasource.api.response.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.response.ConfigResponse
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import junit.framework.TestCase.*
@@ -98,11 +98,11 @@ class BusDataRepositoryTest {
         )
 
 
-        val config = Config(20180101)
+        val config = ConfigResponse(20180101)
         var busData = BusDataResponse(kutcToTkDataList, kutcToTndDataList, tkToKutcDataList, tndToKutcDataList)
             private set
 
-        override fun getConfigObservable(): Observable<Config> = Observable.just(config)
+        override fun getConfigObservable(): Observable<ConfigResponse> = Observable.just(config)
 
         override fun loadAllBusTime(): Maybe<List<BusTimeData>> = Maybe.just(busTime)
 

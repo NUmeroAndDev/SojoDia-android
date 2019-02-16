@@ -1,13 +1,14 @@
 package com.numero.sojodia.repository
 
 import com.numero.sojodia.model.BusTime
+import com.numero.sojodia.model.Config
 import com.numero.sojodia.model.Time
 import com.numero.sojodia.model.Week
 import com.numero.sojodia.resource.BusRoute
 import com.numero.sojodia.resource.IBusDataSource
-import com.numero.sojodia.resource.datasource.api.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.response.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.response.ConfigResponse
 import com.numero.sojodia.resource.datasource.db.BusTimeData
-import com.numero.sojodia.resource.model.Config
 import io.reactivex.Observable
 
 class BusDataRepository(
@@ -35,7 +36,7 @@ class BusDataRepository(
         reloadBusData()
     }
 
-    override fun loadBusDataConfig(): Observable<Config> = busDataSource.getConfigObservable()
+    override fun loadBusDataConfig(): Observable<Config> = busDataSource.getConfigObservable().map { it.toConfig() }
 
     override fun loadAndSaveBusData(): Observable<BusDataResponse> = busDataSource.getAndSaveBusData()
 
@@ -67,6 +68,10 @@ class BusDataRepository(
         tkBusTimeListReturn = tkReturnList
         tndBusTimeListGoing = tndGoingList
         tndBusTimeListReturn = tndReturnList
+    }
+
+    private fun ConfigResponse.toConfig() :Config {
+        return Config(version)
     }
 
     private fun BusTimeData.toBusTime(): BusTime {

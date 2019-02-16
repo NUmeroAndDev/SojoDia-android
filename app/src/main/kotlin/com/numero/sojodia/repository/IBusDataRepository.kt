@@ -1,9 +1,8 @@
 package com.numero.sojodia.repository
 
 import com.numero.sojodia.model.BusTime
-import com.numero.sojodia.resource.datasource.db.BusTimeData
-import com.numero.sojodia.resource.datasource.api.BusDataResponse
-import com.numero.sojodia.resource.model.Config
+import com.numero.sojodia.model.Config
+import com.numero.sojodia.resource.datasource.api.response.BusDataResponse
 import io.reactivex.Observable
 
 interface IBusDataRepository {

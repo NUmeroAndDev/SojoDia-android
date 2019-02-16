@@ -5,10 +5,10 @@ import androidx.room.Room
 import com.numero.sojodia.resource.datasource.db.BusTimeData
 import com.numero.sojodia.resource.datasource.api.ApiConfig
 import com.numero.sojodia.resource.datasource.api.BusDataApi
-import com.numero.sojodia.resource.datasource.api.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.response.BusDataResponse
 import com.numero.sojodia.resource.datasource.db.BusTimeDatabase
 import com.numero.sojodia.resource.datasource.db.IBusTimeDao
-import com.numero.sojodia.resource.model.Config
+import com.numero.sojodia.resource.datasource.api.response.ConfigResponse
 import io.reactivex.Maybe
 import io.reactivex.Observable
 
@@ -18,7 +18,7 @@ class BusDataSource(
         private val busTimeDatabaseDao: IBusTimeDao = Room.databaseBuilder(context, BusTimeDatabase::class.java, BUS_TIME_DB_FILE_NAME).allowMainThreadQueries().build().busTimeDao()
 ) : IBusDataSource {
 
-    override fun getConfigObservable(): Observable<Config> = busDataApi.getConfig()
+    override fun getConfigObservable(): Observable<ConfigResponse> = busDataApi.getConfig()
 
     override fun loadAllBusTime(): Maybe<List<BusTimeData>> {
         return busTimeDatabaseDao.findAll()
