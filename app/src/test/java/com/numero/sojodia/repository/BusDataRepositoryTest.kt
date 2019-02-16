@@ -58,7 +58,7 @@ class BusDataRepositoryTest {
     @Test
     fun `loadBusDataConfig_設定データが返ってくること`() {
         val config = busDataRepository.loadBusDataConfig().test().values()[0]
-        assertEquals(config, busDataSource.config)
+        assertEquals(config.version, busDataSource.config.version)
     }
 
     @Test
