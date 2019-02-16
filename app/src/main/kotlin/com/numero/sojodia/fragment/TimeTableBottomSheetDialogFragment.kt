@@ -11,6 +11,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.R
 import com.numero.sojodia.contract.TimeTableContract
 import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.stationTitleRes
+import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.TimeTableRow
@@ -73,7 +75,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
     }
 
     override fun showCurrentRoute(route: Route) {
-        toolbar.setTitle(route.stationStringRes)
+        toolbar.setTitle(route.stationTitleRes)
     }
 
     override fun showCurrentReciprocate(reciprocate: Reciprocate) {
