@@ -1,6 +1,7 @@
 package com.numero.sojodia.widget
 
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.withStyledAttributes
@@ -20,7 +21,7 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
         set(value) {
             field = value
             if (value and isRunning) {
-                handler.removeCallbacks(runnable)
+                intervalHandler.removeCallbacks(runnable)
             }
         }
     private var syncView: ISyncThreadView? = null
@@ -28,15 +29,17 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
     private var onTimeLimitListener: (() -> Unit)? = null
     private var onCountListener: (() -> Unit)? = null
 
+    private val intervalHandler = Handler()
     private var isRunning: Boolean = false
     private val runnable = object : Runnable {
         override fun run() {
             doOnThread()
             syncView?.doOnThread()
 
-            handler.postDelayed(this, 200)
+            intervalHandler.postDelayed(this, 200)
         }
     }
+
 
     private val currentSec: Int
         get() {
@@ -86,7 +89,7 @@ class CountDownClockTextView @JvmOverloads constructor(context: Context, attrs: 
 
     fun stop() {
         if (isRunning) {
-            handler.removeCallbacks(runnable)
+            intervalHandler.removeCallbacks(runnable)
             isRunning = false
         }
     }
