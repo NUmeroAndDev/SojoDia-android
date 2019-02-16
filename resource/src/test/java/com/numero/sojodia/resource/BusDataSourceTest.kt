@@ -3,7 +3,7 @@ package com.numero.sojodia.resource
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.numero.sojodia.resource.datasource.BusTime
+import com.numero.sojodia.resource.datasource.db.BusTimeData
 import com.numero.sojodia.resource.datasource.api.BusDataApi
 import com.numero.sojodia.resource.datasource.api.ResourceJsonAdapterFactory
 import com.numero.sojodia.resource.datasource.db.IBusTimeDao
@@ -147,13 +147,13 @@ class BusDataSourceTest {
         var isClearedDB: Boolean = false
             private set
 
-        override fun create(busTime: BusTime) {
+        override fun create(busTime: BusTimeData) {
             isInserted = true
         }
 
-        override fun findAll(): Maybe<List<BusTime>> {
+        override fun findAll(): Maybe<List<BusTimeData>> {
             val list = listOf(
-                    BusTime(
+                    BusTimeData(
                             routeId = BusRouteId.KUTC_TO_TK_ID,
                             hour = 0,
                             minute = 0,
@@ -161,7 +161,7 @@ class BusDataSourceTest {
                             isNonstop = false,
                             isOnlyOnSchooldays = false
                     ),
-                    BusTime(
+                    BusTimeData(
                             routeId = BusRouteId.KUTC_TO_TND_ID,
                             hour = 0,
                             minute = 0,
@@ -169,7 +169,7 @@ class BusDataSourceTest {
                             isNonstop = false,
                             isOnlyOnSchooldays = false
                     ),
-                    BusTime(
+                    BusTimeData(
                             routeId = BusRouteId.TK_TO_KUTC_ID,
                             hour = 0,
                             minute = 0,
@@ -177,7 +177,7 @@ class BusDataSourceTest {
                             isNonstop = false,
                             isOnlyOnSchooldays = false
                     ),
-                    BusTime(
+                    BusTimeData(
                             routeId = BusRouteId.TND_TO_KUTC_ID,
                             hour = 0,
                             minute = 0,

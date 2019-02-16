@@ -1,6 +1,5 @@
 package com.numero.sojodia.resource.datasource.api
 
-import com.numero.sojodia.resource.model.Time
 import com.squareup.moshi.Json
 import se.ansman.kotshi.JsonSerializable
 
@@ -22,8 +21,6 @@ data class BusDataResponse(
             @Json(name = "week")
             val weekId: Int,
             val isNonstop: Boolean,
-            val isOnlyOnSchooldays: Boolean) {
-
-        val time: Time = Time(hour, minute)
-    }
+            val isOnlyOnSchooldays: Boolean
+    )
 }

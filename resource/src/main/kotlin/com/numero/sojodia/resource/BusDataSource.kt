@@ -2,7 +2,7 @@ package com.numero.sojodia.resource
 
 import android.content.Context
 import androidx.room.Room
-import com.numero.sojodia.resource.datasource.BusTime
+import com.numero.sojodia.resource.datasource.db.BusTimeData
 import com.numero.sojodia.resource.datasource.api.ApiConfig
 import com.numero.sojodia.resource.datasource.api.BusDataApi
 import com.numero.sojodia.resource.datasource.api.BusDataResponse
@@ -20,7 +20,7 @@ class BusDataSource(
 
     override fun getConfigObservable(): Observable<Config> = busDataApi.getConfig()
 
-    override fun loadAllBusTime(): Maybe<List<BusTime>> {
+    override fun loadAllBusTime(): Maybe<List<BusTimeData>> {
         return busTimeDatabaseDao.findAll()
     }
 
@@ -45,7 +45,7 @@ class BusDataSource(
 
     private fun List<BusDataResponse.BusTime>.mapAndSaveDB(busRouteId: BusRouteId) {
         asSequence().map {
-            BusTime(
+            BusTimeData(
                     routeId = busRouteId.value,
                     hour = it.hour,
                     minute = it.minute,
@@ -58,6 +58,6 @@ class BusDataSource(
     }
 
     companion object {
-        private const val BUS_TIME_DB_FILE_NAME = "BusTime.db"
+        private const val BUS_TIME_DB_FILE_NAME = "BusTimeData.db"
     }
 }

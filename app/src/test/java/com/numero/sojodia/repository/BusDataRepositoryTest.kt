@@ -2,7 +2,7 @@ package com.numero.sojodia.repository
 
 import com.numero.sojodia.resource.BusRouteId
 import com.numero.sojodia.resource.IBusDataSource
-import com.numero.sojodia.resource.datasource.BusTime
+import com.numero.sojodia.resource.datasource.db.BusTimeData
 import com.numero.sojodia.resource.datasource.api.BusDataResponse
 import com.numero.sojodia.resource.model.Config
 import io.reactivex.Maybe
@@ -91,10 +91,10 @@ class BusDataRepositoryTest {
     ) : IBusDataSource {
 
         private var busTime = listOf(
-                BusTime(routeId = BusRouteId.KUTC_TO_TK_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
-                BusTime(routeId = BusRouteId.KUTC_TO_TND_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
-                BusTime(routeId = BusRouteId.TK_TO_KUTC_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
-                BusTime(routeId = BusRouteId.TND_TO_KUTC_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false)
+                BusTimeData(routeId = BusRouteId.KUTC_TO_TK_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
+                BusTimeData(routeId = BusRouteId.KUTC_TO_TND_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
+                BusTimeData(routeId = BusRouteId.TK_TO_KUTC_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
+                BusTimeData(routeId = BusRouteId.TND_TO_KUTC_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false)
         )
 
 
@@ -104,7 +104,7 @@ class BusDataRepositoryTest {
 
         override fun getConfigObservable(): Observable<Config> = Observable.just(config)
 
-        override fun loadAllBusTime(): Maybe<List<BusTime>> = Maybe.just(busTime)
+        override fun loadAllBusTime(): Maybe<List<BusTimeData>> = Maybe.just(busTime)
 
         override fun getAndSaveBusData(): Observable<BusDataResponse> = Observable.just(busData)
 

@@ -1,9 +1,12 @@
 package com.numero.sojodia.repository
 
+import com.numero.sojodia.model.BusTime
+import com.numero.sojodia.model.Time
+import com.numero.sojodia.model.Week
 import com.numero.sojodia.resource.BusRoute
 import com.numero.sojodia.resource.IBusDataSource
-import com.numero.sojodia.resource.datasource.BusTime
 import com.numero.sojodia.resource.datasource.api.BusDataResponse
+import com.numero.sojodia.resource.datasource.db.BusTimeData
 import com.numero.sojodia.resource.model.Config
 import io.reactivex.Observable
 
@@ -44,18 +47,19 @@ class BusDataRepository(
         val tndReturnList = mutableListOf<BusTime>()
 
         list.asSequence().forEach {
+            val busTime = it.toBusTime()
             when (BusRoute.from(it.routeId)) {
                 BusRoute.KUTC_TO_TK -> {
-                    tkReturnList.add(it)
+                    tkReturnList.add(busTime)
                 }
                 BusRoute.KUTC_TO_TND -> {
-                    tndReturnList.add(it)
+                    tndReturnList.add(busTime)
                 }
                 BusRoute.TK_TO_KUTC -> {
-                    tkGoingList.add(it)
+                    tkGoingList.add(busTime)
                 }
                 BusRoute.TND_TO_KUTC -> {
-                    tndGoingList.add(it)
+                    tndGoingList.add(busTime)
                 }
             }
         }
@@ -63,5 +67,14 @@ class BusDataRepository(
         tkBusTimeListReturn = tkReturnList
         tndBusTimeListGoing = tndGoingList
         tndBusTimeListReturn = tndReturnList
+    }
+
+    private fun BusTimeData.toBusTime(): BusTime {
+        return BusTime(
+                Time(hour, minute),
+                Week.from(weekId),
+                isNonstop,
+                isOnlyOnSchooldays
+        )
     }
 }

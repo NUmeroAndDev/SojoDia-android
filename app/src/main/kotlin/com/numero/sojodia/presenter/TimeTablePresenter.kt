@@ -1,12 +1,8 @@
 package com.numero.sojodia.presenter
 
 import com.numero.sojodia.contract.TimeTableContract
-import com.numero.sojodia.model.Reciprocate
-import com.numero.sojodia.model.Route
-import com.numero.sojodia.model.TimeTableRow
-import com.numero.sojodia.model.Week
+import com.numero.sojodia.model.*
 import com.numero.sojodia.repository.IBusDataRepository
-import com.numero.sojodia.resource.datasource.BusTime
 
 class TimeTablePresenter(
         private val view: TimeTableContract.View,
