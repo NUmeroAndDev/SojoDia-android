@@ -1,10 +1,10 @@
 package com.numero.sojodia.repository
 
+import com.numero.sojodia.resource.BusRouteId
 import com.numero.sojodia.resource.IBusDataSource
 import com.numero.sojodia.resource.datasource.BusTime
 import com.numero.sojodia.resource.datasource.api.BusDataResponse
 import com.numero.sojodia.resource.model.Config
-import com.numero.sojodia.resource.model.Route
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import junit.framework.TestCase.*
@@ -91,10 +91,10 @@ class BusDataRepositoryTest {
     ) : IBusDataSource {
 
         private var busTime = listOf(
-                BusTime(routeId = Route.KutcToTk.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
-                BusTime(routeId = Route.KutcToTnd.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
-                BusTime(routeId = Route.TkToKutc.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
-                BusTime(routeId = Route.TndToKutc.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false)
+                BusTime(routeId = BusRouteId.KUTC_TO_TK_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
+                BusTime(routeId = BusRouteId.KUTC_TO_TND_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
+                BusTime(routeId = BusRouteId.TK_TO_KUTC_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
+                BusTime(routeId = BusRouteId.TND_TO_KUTC_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false)
         )
 
 

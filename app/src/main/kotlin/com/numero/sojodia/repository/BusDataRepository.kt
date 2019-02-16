@@ -1,10 +1,10 @@
 package com.numero.sojodia.repository
 
+import com.numero.sojodia.resource.BusRoute
 import com.numero.sojodia.resource.IBusDataSource
 import com.numero.sojodia.resource.datasource.BusTime
 import com.numero.sojodia.resource.datasource.api.BusDataResponse
 import com.numero.sojodia.resource.model.Config
-import com.numero.sojodia.resource.model.Route
 import io.reactivex.Observable
 
 class BusDataRepository(
@@ -38,9 +38,30 @@ class BusDataRepository(
 
     override fun reloadBusData() {
         val list = busDataSource.loadAllBusTime().blockingGet()
-        tkBusTimeListGoing = list.asSequence().filter { it.routeId == Route.TkToKutc.id }.toList()
-        tkBusTimeListReturn = list.asSequence().filter { it.routeId == Route.KutcToTk.id }.toList()
-        tndBusTimeListGoing = list.asSequence().filter { it.routeId == Route.TndToKutc.id }.toList()
-        tndBusTimeListReturn = list.asSequence().filter { it.routeId == Route.KutcToTnd.id }.toList()
+        val tkGoingList = mutableListOf<BusTime>()
+        val tkReturnList = mutableListOf<BusTime>()
+        val tndGoingList = mutableListOf<BusTime>()
+        val tndReturnList = mutableListOf<BusTime>()
+
+        list.asSequence().forEach {
+            when (BusRoute.from(it.routeId)) {
+                BusRoute.KUTC_TO_TK -> {
+                    tkReturnList.add(it)
+                }
+                BusRoute.KUTC_TO_TND -> {
+                    tndReturnList.add(it)
+                }
+                BusRoute.TK_TO_KUTC -> {
+                    tkGoingList.add(it)
+                }
+                BusRoute.TND_TO_KUTC -> {
+                    tndGoingList.add(it)
+                }
+            }
+        }
+        tkBusTimeListGoing = tkGoingList
+        tkBusTimeListReturn = tkReturnList
+        tndBusTimeListGoing = tndGoingList
+        tndBusTimeListReturn = tndReturnList
     }
 }

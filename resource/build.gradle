@@ -32,6 +32,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //FIXME 依存関係を解消したら消す
+    implementation project(':model')
+
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
     testImplementation "androidx.test.ext:junit:$testJunitVersion"

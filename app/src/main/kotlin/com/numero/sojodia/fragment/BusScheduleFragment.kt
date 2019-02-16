@@ -14,10 +14,10 @@ import com.numero.sojodia.extension.createCountTime
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
+import com.numero.sojodia.model.Week
 import com.numero.sojodia.presenter.BusSchedulePresenter
 import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.resource.datasource.BusTime
-import com.numero.sojodia.resource.model.Week
 import com.numero.sojodia.view.adapter.BusTimePagerAdapter
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*

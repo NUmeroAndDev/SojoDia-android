@@ -7,7 +7,6 @@ import com.numero.sojodia.resource.datasource.BusTime
 import com.numero.sojodia.resource.datasource.api.BusDataApi
 import com.numero.sojodia.resource.datasource.api.ResourceJsonAdapterFactory
 import com.numero.sojodia.resource.datasource.db.IBusTimeDao
-import com.numero.sojodia.resource.model.Route
 import com.squareup.moshi.Moshi
 import io.reactivex.Maybe
 import junit.framework.TestCase.assertEquals
@@ -155,7 +154,7 @@ class BusDataSourceTest {
         override fun findAll(): Maybe<List<BusTime>> {
             val list = listOf(
                     BusTime(
-                            routeId = Route.KutcToTk.id,
+                            routeId = BusRouteId.KUTC_TO_TK_ID,
                             hour = 0,
                             minute = 0,
                             weekId = 0,
@@ -163,7 +162,7 @@ class BusDataSourceTest {
                             isOnlyOnSchooldays = false
                     ),
                     BusTime(
-                            routeId = Route.KutcToTnd.id,
+                            routeId = BusRouteId.KUTC_TO_TND_ID,
                             hour = 0,
                             minute = 0,
                             weekId = 0,
@@ -171,7 +170,7 @@ class BusDataSourceTest {
                             isOnlyOnSchooldays = false
                     ),
                     BusTime(
-                            routeId = Route.TkToKutc.id,
+                            routeId = BusRouteId.TK_TO_KUTC_ID,
                             hour = 0,
                             minute = 0,
                             weekId = 0,
@@ -179,7 +178,7 @@ class BusDataSourceTest {
                             isOnlyOnSchooldays = false
                     ),
                     BusTime(
-                            routeId = Route.TndToKutc.id,
+                            routeId = BusRouteId.TND_TO_KUTC_ID,
                             hour = 0,
                             minute = 0,
                             weekId = 0,
