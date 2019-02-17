@@ -1,9 +1,6 @@
 package com.numero.sojodia.repository
 
-import com.numero.sojodia.model.BusTime
-import com.numero.sojodia.model.Config
-import com.numero.sojodia.model.Time
-import com.numero.sojodia.model.Week
+import com.numero.sojodia.model.*
 import com.numero.sojodia.resource.BusRoute
 import com.numero.sojodia.resource.IBusDataSource
 import com.numero.sojodia.resource.datasource.api.response.BusDataResponse
@@ -70,8 +67,8 @@ class BusDataRepository(
         tndBusTimeListReturn = tndReturnList
     }
 
-    private fun ConfigResponse.toConfig() :Config {
-        return Config(version)
+    private fun ConfigResponse.toConfig(): Config {
+        return Config(LatestVersion(version))
     }
 
     private fun BusTimeData.toBusTime(): BusTime {

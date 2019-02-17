@@ -36,7 +36,7 @@ class SplashPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onNext = {
-                            configRepository.versionCode = it.version
+                            configRepository.updateBusDataVersion(it.latestVersion)
                             configRepository.updateCheckUpdateDate()
                             busDataRepository.reloadBusData()
                             view.successDownloadedBusData()
