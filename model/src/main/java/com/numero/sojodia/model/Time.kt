@@ -1,4 +1,4 @@
-package com.numero.sojodia.resource.model
+package com.numero.sojodia.model
 
 import java.util.*
 

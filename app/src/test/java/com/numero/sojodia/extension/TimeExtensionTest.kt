@@ -1,6 +1,6 @@
 package com.numero.sojodia.extension
 
-import com.numero.sojodia.resource.model.Time
+import com.numero.sojodia.model.Time
 import junit.framework.TestCase
 import org.junit.Test
 

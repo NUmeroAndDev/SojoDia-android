@@ -3,11 +3,10 @@ package com.numero.sojodia.resource
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.numero.sojodia.resource.datasource.BusTime
+import com.numero.sojodia.resource.datasource.db.BusTimeData
 import com.numero.sojodia.resource.datasource.api.BusDataApi
 import com.numero.sojodia.resource.datasource.api.ResourceJsonAdapterFactory
 import com.numero.sojodia.resource.datasource.db.IBusTimeDao
-import com.numero.sojodia.resource.model.Route
 import com.squareup.moshi.Moshi
 import io.reactivex.Maybe
 import junit.framework.TestCase.assertEquals
@@ -148,38 +147,38 @@ class BusDataSourceTest {
         var isClearedDB: Boolean = false
             private set
 
-        override fun create(busTime: BusTime) {
+        override fun create(busTime: BusTimeData) {
             isInserted = true
         }
 
-        override fun findAll(): Maybe<List<BusTime>> {
+        override fun findAll(): Maybe<List<BusTimeData>> {
             val list = listOf(
-                    BusTime(
-                            routeId = Route.KutcToTk.id,
+                    BusTimeData(
+                            routeId = BusRouteId.KUTC_TO_TK_ID,
                             hour = 0,
                             minute = 0,
                             weekId = 0,
                             isNonstop = false,
                             isOnlyOnSchooldays = false
                     ),
-                    BusTime(
-                            routeId = Route.KutcToTnd.id,
+                    BusTimeData(
+                            routeId = BusRouteId.KUTC_TO_TND_ID,
                             hour = 0,
                             minute = 0,
                             weekId = 0,
                             isNonstop = false,
                             isOnlyOnSchooldays = false
                     ),
-                    BusTime(
-                            routeId = Route.TkToKutc.id,
+                    BusTimeData(
+                            routeId = BusRouteId.TK_TO_KUTC_ID,
                             hour = 0,
                             minute = 0,
                             weekId = 0,
                             isNonstop = false,
                             isOnlyOnSchooldays = false
                     ),
-                    BusTime(
-                            routeId = Route.TndToKutc.id,
+                    BusTimeData(
+                            routeId = BusRouteId.TND_TO_KUTC_ID,
                             hour = 0,
                             minute = 0,
                             weekId = 0,

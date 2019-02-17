@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
         val shortcutIntent = intent.getStringExtra("shortcut")
         val reciprocate = intent.getSerializableExtra(BUNDLE_RECIPROCATE) as?Reciprocate
-                ?: Reciprocate.findReciprocate(shortcutIntent)
+                ?: Reciprocate.from(shortcutIntent)
+        // FIXME
         viewPager.currentItem = reciprocate.ordinal
         startCheckUpdateService()
     }
@@ -82,7 +83,8 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> {
-                val reciprocate = Reciprocate.findReciprocate(viewPager.currentItem)
+                val adapter = viewPager.adapter as? BusScheduleFragmentPagerAdapter ?: return false
+                val reciprocate = adapter.reciprocateList[viewPager.currentItem]
                 startActivity(SettingsActivity.createIntent(this, reciprocate))
             }
         }

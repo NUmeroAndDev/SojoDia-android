@@ -37,7 +37,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
 
-        findPreference<Preference>("data_version").summary = configRepository.versionCode.toString()
+        findPreference<Preference>("data_version").summary = configRepository.currentVersion.value.toString()
 
         val appVersionScreen = findPreference<Preference>("app_version")
         appVersionScreen.summary = BuildConfig.VERSION_NAME

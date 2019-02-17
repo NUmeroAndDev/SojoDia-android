@@ -1,10 +1,10 @@
 package com.numero.sojodia.repository
 
+import com.numero.sojodia.resource.BusRouteId
 import com.numero.sojodia.resource.IBusDataSource
-import com.numero.sojodia.resource.datasource.BusTime
-import com.numero.sojodia.resource.datasource.api.BusDataResponse
-import com.numero.sojodia.resource.model.Config
-import com.numero.sojodia.resource.model.Route
+import com.numero.sojodia.resource.datasource.db.BusTimeData
+import com.numero.sojodia.resource.datasource.api.response.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.response.ConfigResponse
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import junit.framework.TestCase.*
@@ -58,7 +58,7 @@ class BusDataRepositoryTest {
     @Test
     fun `loadBusDataConfig_設定データが返ってくること`() {
         val config = busDataRepository.loadBusDataConfig().test().values()[0]
-        assertEquals(config, busDataSource.config)
+        assertEquals(config.latestVersion.value, busDataSource.config.version)
     }
 
     @Test
@@ -91,20 +91,20 @@ class BusDataRepositoryTest {
     ) : IBusDataSource {
 
         private var busTime = listOf(
-                BusTime(routeId = Route.KutcToTk.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
-                BusTime(routeId = Route.KutcToTnd.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
-                BusTime(routeId = Route.TkToKutc.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
-                BusTime(routeId = Route.TndToKutc.id, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false)
+                BusTimeData(routeId = BusRouteId.KUTC_TO_TK_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
+                BusTimeData(routeId = BusRouteId.KUTC_TO_TND_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
+                BusTimeData(routeId = BusRouteId.TK_TO_KUTC_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false),
+                BusTimeData(routeId = BusRouteId.TND_TO_KUTC_ID, hour = 0, minute = 0, weekId = 0, isNonstop = false, isOnlyOnSchooldays = false)
         )
 
 
-        val config = Config(20180101)
+        val config = ConfigResponse(20180101)
         var busData = BusDataResponse(kutcToTkDataList, kutcToTndDataList, tkToKutcDataList, tndToKutcDataList)
             private set
 
-        override fun getConfigObservable(): Observable<Config> = Observable.just(config)
+        override fun getConfigObservable(): Observable<ConfigResponse> = Observable.just(config)
 
-        override fun loadAllBusTime(): Maybe<List<BusTime>> = Maybe.just(busTime)
+        override fun loadAllBusTime(): Maybe<List<BusTimeData>> = Maybe.just(busTime)
 
         override fun getAndSaveBusData(): Observable<BusDataResponse> = Observable.just(busData)
 

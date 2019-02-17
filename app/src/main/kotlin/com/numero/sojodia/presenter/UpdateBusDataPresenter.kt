@@ -1,5 +1,6 @@
 package com.numero.sojodia.presenter
 
+import com.numero.sojodia.model.LatestVersion
 import com.numero.sojodia.repository.IBusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.view.IUpdateBusDataView
@@ -33,8 +34,8 @@ class UpdateBusDataPresenter(
         busDataRepository.loadBusDataConfig().blockingSubscribeBy(
                 onNext = {
                     configRepository.updateCheckUpdateDate()
-                    if (configRepository.versionCode < it.version) {
-                        executeUpdate(it.version)
+                    if (it.checkUpdate(configRepository.currentVersion)) {
+                        executeUpdate(it.latestVersion)
                     } else {
                         view.noNeedUpdate()
                     }
@@ -45,10 +46,10 @@ class UpdateBusDataPresenter(
         )
     }
 
-    private fun executeUpdate(latestVersion: Long) {
+    private fun executeUpdate(latestVersion: LatestVersion) {
         busDataRepository.loadAndSaveBusData().blockingSubscribeBy(
                 onNext = {
-                    configRepository.versionCode = latestVersion
+                    configRepository.updateBusDataVersion(latestVersion)
                     view.successUpdate()
                 },
                 onError = {

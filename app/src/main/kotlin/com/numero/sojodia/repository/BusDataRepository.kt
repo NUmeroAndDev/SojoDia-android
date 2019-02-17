@@ -1,10 +1,11 @@
 package com.numero.sojodia.repository
 
+import com.numero.sojodia.model.*
+import com.numero.sojodia.resource.BusRoute
 import com.numero.sojodia.resource.IBusDataSource
-import com.numero.sojodia.resource.datasource.BusTime
-import com.numero.sojodia.resource.datasource.api.BusDataResponse
-import com.numero.sojodia.resource.model.Config
-import com.numero.sojodia.resource.model.Route
+import com.numero.sojodia.resource.datasource.api.response.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.response.ConfigResponse
+import com.numero.sojodia.resource.datasource.db.BusTimeData
 import io.reactivex.Observable
 
 class BusDataRepository(
@@ -32,15 +33,50 @@ class BusDataRepository(
         reloadBusData()
     }
 
-    override fun loadBusDataConfig(): Observable<Config> = busDataSource.getConfigObservable()
+    override fun loadBusDataConfig(): Observable<Config> = busDataSource.getConfigObservable().map { it.toConfig() }
 
     override fun loadAndSaveBusData(): Observable<BusDataResponse> = busDataSource.getAndSaveBusData()
 
     override fun reloadBusData() {
         val list = busDataSource.loadAllBusTime().blockingGet()
-        tkBusTimeListGoing = list.asSequence().filter { it.routeId == Route.TkToKutc.id }.toList()
-        tkBusTimeListReturn = list.asSequence().filter { it.routeId == Route.KutcToTk.id }.toList()
-        tndBusTimeListGoing = list.asSequence().filter { it.routeId == Route.TndToKutc.id }.toList()
-        tndBusTimeListReturn = list.asSequence().filter { it.routeId == Route.KutcToTnd.id }.toList()
+        val tkGoingList = mutableListOf<BusTime>()
+        val tkReturnList = mutableListOf<BusTime>()
+        val tndGoingList = mutableListOf<BusTime>()
+        val tndReturnList = mutableListOf<BusTime>()
+
+        list.asSequence().forEach {
+            val busTime = it.toBusTime()
+            when (BusRoute.from(it.routeId)) {
+                BusRoute.KUTC_TO_TK -> {
+                    tkReturnList.add(busTime)
+                }
+                BusRoute.KUTC_TO_TND -> {
+                    tndReturnList.add(busTime)
+                }
+                BusRoute.TK_TO_KUTC -> {
+                    tkGoingList.add(busTime)
+                }
+                BusRoute.TND_TO_KUTC -> {
+                    tndGoingList.add(busTime)
+                }
+            }
+        }
+        tkBusTimeListGoing = tkGoingList
+        tkBusTimeListReturn = tkReturnList
+        tndBusTimeListGoing = tndGoingList
+        tndBusTimeListReturn = tndReturnList
+    }
+
+    private fun ConfigResponse.toConfig(): Config {
+        return Config(LatestVersion(version))
+    }
+
+    private fun BusTimeData.toBusTime(): BusTime {
+        return BusTime(
+                Time(hour, minute),
+                Week.from(weekId),
+                isNonstop,
+                isOnlyOnSchooldays
+        )
     }
 }

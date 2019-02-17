@@ -1,16 +1,16 @@
 package com.numero.sojodia.resource
 
-import com.numero.sojodia.resource.datasource.BusTime
-import com.numero.sojodia.resource.datasource.api.BusDataResponse
-import com.numero.sojodia.resource.model.Config
+import com.numero.sojodia.resource.datasource.db.BusTimeData
+import com.numero.sojodia.resource.datasource.api.response.BusDataResponse
+import com.numero.sojodia.resource.datasource.api.response.ConfigResponse
 import io.reactivex.Maybe
 import io.reactivex.Observable
 
 interface IBusDataSource {
 
-    fun getConfigObservable(): Observable<Config>
+    fun getConfigObservable(): Observable<ConfigResponse>
 
-    fun loadAllBusTime(): Maybe<List<BusTime>>
+    fun loadAllBusTime(): Maybe<List<BusTimeData>>
 
     fun getAndSaveBusData(): Observable<BusDataResponse>
 }
