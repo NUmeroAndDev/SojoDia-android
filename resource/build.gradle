@@ -40,6 +40,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 
@@ -55,5 +56,6 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-rxjava2:$roomVersion"
+    implementation "androidx.room:room-coroutines:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 }
