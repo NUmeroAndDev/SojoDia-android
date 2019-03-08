@@ -3,28 +3,29 @@ package com.numero.sojodia.presenter
 import com.numero.sojodia.contract.BusScheduleContract
 import com.numero.sojodia.extension.isOverTime
 import com.numero.sojodia.model.*
-import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.BusDataRepository
 
 class BusSchedulePresenter(
         private val view: BusScheduleContract.View,
-        private val busDataRepository: IBusDataRepository,
+        busDataRepository: BusDataRepository,
         private val reciprocate: Reciprocate
 ) : BusScheduleContract.Presenter {
     private lateinit var week: Week
 
     private var tkBusPosition = 0
     private var tndBusPosition = 0
+    private val busData: BusData = busDataRepository.getBusData()
 
     private var tkTimeList: MutableList<BusTime> = mutableListOf()
         get() {
             return if (field.isEmpty()) {
                 when (reciprocate) {
-                    Reciprocate.GOING -> busDataRepository.tkBusTimeListGoing
+                    Reciprocate.GOING -> busData.tkBusTimeListGoing
                             .filter { busTime -> busTime.week == week }.toMutableList()
                             .apply {
                                 field = this
                             }
-                    Reciprocate.RETURN -> busDataRepository.tkBusTimeListReturn
+                    Reciprocate.RETURN -> busData.tkBusTimeListReturn
                             .filter { busTime -> busTime.week == week }.toMutableList()
                             .apply {
                                 field = this
@@ -39,12 +40,12 @@ class BusSchedulePresenter(
         get() {
             return if (field.isEmpty()) {
                 when (reciprocate) {
-                    Reciprocate.GOING -> busDataRepository.tndBusTimeListGoing
+                    Reciprocate.GOING -> busData.tndBusTimeListGoing
                             .filter { busTime -> busTime.week == week }.toMutableList()
                             .apply {
                                 field = this
                             }
-                    Reciprocate.RETURN -> busDataRepository.tndBusTimeListReturn
+                    Reciprocate.RETURN -> busData.tndBusTimeListReturn
                             .filter { busTime -> busTime.week == week }.toMutableList()
                             .apply {
                                 field = this

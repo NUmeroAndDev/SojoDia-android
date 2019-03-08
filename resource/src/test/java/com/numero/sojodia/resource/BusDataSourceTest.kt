@@ -4,8 +4,8 @@ package com.numero.sojodia.resource
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.numero.sojodia.resource.datasource.db.BusTimeData
-import com.numero.sojodia.resource.datasource.api.BusDataApi
-import com.numero.sojodia.resource.datasource.api.ResourceJsonAdapterFactory
+import com.numero.sojodia.resource.remote.BusDataApi
+import com.numero.sojodia.resource.remote.ResourceJsonAdapterFactory
 import com.numero.sojodia.resource.datasource.db.IBusTimeDao
 import com.squareup.moshi.Moshi
 import io.reactivex.Maybe

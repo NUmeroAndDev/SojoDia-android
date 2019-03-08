@@ -2,16 +2,17 @@ package com.numero.sojodia.presenter
 
 import com.numero.sojodia.contract.TimeTableContract
 import com.numero.sojodia.model.*
-import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.BusDataRepository
 
 class TimeTablePresenter(
         private val view: TimeTableContract.View,
-        private val busDataRepository: IBusDataRepository,
+        busDataRepository: BusDataRepository,
         private val route: Route,
         private val reciprocate: Reciprocate
 ) : TimeTableContract.Presenter {
 
     private val timeTableRowList = mutableListOf<TimeTableRow>()
+    private val busData: BusData = busDataRepository.getBusData()
 
     init {
         view.setPresenter(this)
@@ -37,11 +38,11 @@ class TimeTablePresenter(
     }
 
     private fun setupTkBusTimeList(): List<BusTime> {
-        return if (reciprocate == Reciprocate.GOING) busDataRepository.tkBusTimeListGoing else busDataRepository.tkBusTimeListReturn
+        return if (reciprocate == Reciprocate.GOING) busData.tkBusTimeListGoing else busData.tkBusTimeListReturn
     }
 
     private fun setupTndBusTimeList(): List<BusTime> {
-        return if (reciprocate == Reciprocate.GOING) busDataRepository.tndBusTimeListGoing else busDataRepository.tndBusTimeListReturn
+        return if (reciprocate == Reciprocate.GOING) busData.tndBusTimeListGoing else busData.tndBusTimeListReturn
     }
 
     private fun mapTimeTableRow(list: List<BusTime>) {

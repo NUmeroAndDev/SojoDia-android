@@ -17,7 +17,7 @@ import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.fragment.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
-import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.service.UpdateBusDataService
 import com.numero.sojodia.util.BroadCastUtil
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         }
     }
 
-    private val busDataRepository: IBusDataRepository
+    private val busDataRepository: BusDataRepository
         get() = app.busDataRepository
     private val configRepository: IConfigRepository
         get() = app.configRepository
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        if (busDataRepository.isNoBusTimeData) {
+        if (busDataRepository.getBusData().isNoBusData) {
             startActivity(SplashActivity.createIntent(this))
             finish()
             return

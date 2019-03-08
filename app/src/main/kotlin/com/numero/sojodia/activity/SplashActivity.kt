@@ -10,7 +10,7 @@ import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.presenter.ISplashPresenter
 import com.numero.sojodia.presenter.SplashPresenter
-import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.view.ISplashView
 import kotlinx.android.synthetic.main.activity_splash.*
@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
 
     private val configRepository: IConfigRepository
         get() = app.configRepository
-    private val busDataRepository: IBusDataRepository
+    private val busDataRepository: BusDataRepository
         get() = app.busDataRepository
 
     private lateinit var presenter: ISplashPresenter

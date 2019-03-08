@@ -3,8 +3,8 @@ package com.numero.sojodia.repository
 import com.numero.sojodia.resource.BusRouteId
 import com.numero.sojodia.resource.IBusDataSource
 import com.numero.sojodia.resource.datasource.db.BusTimeData
-import com.numero.sojodia.resource.datasource.api.response.BusDataResponse
-import com.numero.sojodia.resource.datasource.api.response.ConfigResponse
+import com.numero.sojodia.resource.remote.response.BusDataResponse
+import com.numero.sojodia.resource.remote.response.ConfigResponse
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import junit.framework.TestCase.*
