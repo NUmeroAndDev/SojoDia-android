@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.fragment.SettingsFragment
@@ -48,6 +49,10 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
         recreate()
     }
 
+    override fun showSource() {
+        startActivity(Intent(Intent.ACTION_VIEW, SOURCE_URL.toUri()))
+    }
+
     override fun showLicensesScreen() {
         startActivity(LicensesActivity.createIntent(this))
     }
@@ -55,6 +60,8 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
     companion object {
 
         private const val BUNDLE_RECIPROCATE = "BUNDLE_RECIPROCATE"
+
+        private const val SOURCE_URL = "https://github.com/NUmeroAndDev/SojoDia-android"
 
         fun createIntent(context: Context, reciprocate: Reciprocate): Intent = Intent(context, SettingsActivity::class.java).apply {
             putExtra(BUNDLE_RECIPROCATE, reciprocate)

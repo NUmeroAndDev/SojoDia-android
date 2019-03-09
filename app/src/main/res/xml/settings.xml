@@ -18,6 +18,11 @@
         tools:summary="6.0.0" />
 
     <Preference
+        app:icon="@drawable/ic_github"
+        app:key="view_source"
+        app:title="@string/settings_view_source_title" />
+
+    <Preference
         app:key="licenses"
         app:title="@string/settings_licenses_title" />
 
