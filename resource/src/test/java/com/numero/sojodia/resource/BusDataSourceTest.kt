@@ -1,14 +1,10 @@
 package com.numero.sojodia.resource
 
-
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import com.numero.sojodia.resource.local.BusTimeData
+import com.numero.sojodia.model.Result
 import com.numero.sojodia.resource.remote.BusDataApi
 import com.numero.sojodia.resource.remote.ResourceJsonAdapterFactory
-import com.numero.sojodia.resource.local.IBusTimeDao
 import com.squareup.moshi.Moshi
-import io.reactivex.Maybe
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import okhttp3.mockwebserver.MockResponse
@@ -17,45 +13,37 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @RunWith(AndroidJUnit4::class)
 class BusDataSourceTest {
 
     private lateinit var busDataSource: BusDataSource
-    private val database = MockBusDataDao()
     private val server: MockWebServer = MockWebServer()
 
     @Before
     fun setup() {
         val api = Retrofit.Builder()
                 .baseUrl(server.url("/"))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(ResourceJsonAdapterFactory.INSTANCE).build()))
                 .build()
                 .create(BusDataApi::class.java)
-        val context = InstrumentationRegistry.getInstrumentation().context
-        busDataSource = BusDataSource(context, api, database)
+        busDataSource = BusDataSourceImpl(api)
     }
 
     @Test
-    fun `getConfigObservable_設定ファイルをサーバから取得すること`() {
+    fun `getConfig_設定ファイルをサーバから取得すること`() {
         val response = MockResponse()
         response.setBody("{\n" +
                 "  \"version\" : 20180331\n" +
                 "}")
         server.enqueue(response)
 
-        val configResponse = busDataSource.getConfigObservable().test().await().assertNoErrors().values()[0]
-        assertEquals(configResponse.version, 20180331)
-    }
+        val result = busDataSource.getConfig()
+        assertTrue(result is Result.Success)
 
-    @Test
-    fun `loadAllBusTime_時刻表を読み込むこと`() {
-        val list = busDataSource.loadAllBusTime().test().assertNoErrors().values()[0]
-        assertTrue(list.isNotEmpty())
-        assertEquals(list.size, 4)
+        val config = (result as Result.Success).value
+        assertEquals(config.latestVersion.value, 20180331)
     }
 
     @Test
@@ -130,67 +118,16 @@ class BusDataSourceTest {
         response.setBody(responseValue)
         server.enqueue(response)
 
-        val busTimeResponse = busDataSource.getAndSaveBusData().test().assertNoErrors().values()[0]
-        assertEquals(busTimeResponse.kutcToTkDataList.size, 4)
-        assertEquals(busTimeResponse.kutcToTndDataList.size, 2)
-        assertEquals(busTimeResponse.tkToKutcDataList.size, 1)
-        assertEquals(busTimeResponse.tndToKutcDataList.size, 1)
+        val result = busDataSource.getBusData()
+        assertTrue(result is Result.Success)
 
-        assertTrue(database.isInserted)
-        assertTrue(database.isClearedDB)
-    }
+        val busData = (result as Result.Success).value
+        assertTrue(busData.isNoBusData.not())
 
-    class MockBusDataDao : IBusTimeDao {
 
-        var isInserted: Boolean = false
-            private set
-        var isClearedDB: Boolean = false
-            private set
-
-        override fun create(busTime: BusTimeData) {
-            isInserted = true
-        }
-
-        override fun findAll(): Maybe<List<BusTimeData>> {
-            val list = listOf(
-                    BusTimeData(
-                            routeId = BusRouteId.KUTC_TO_TK_ID,
-                            hour = 0,
-                            minute = 0,
-                            weekId = 0,
-                            isNonstop = false,
-                            isOnlyOnSchooldays = false
-                    ),
-                    BusTimeData(
-                            routeId = BusRouteId.KUTC_TO_TND_ID,
-                            hour = 0,
-                            minute = 0,
-                            weekId = 0,
-                            isNonstop = false,
-                            isOnlyOnSchooldays = false
-                    ),
-                    BusTimeData(
-                            routeId = BusRouteId.TK_TO_KUTC_ID,
-                            hour = 0,
-                            minute = 0,
-                            weekId = 0,
-                            isNonstop = false,
-                            isOnlyOnSchooldays = false
-                    ),
-                    BusTimeData(
-                            routeId = BusRouteId.TND_TO_KUTC_ID,
-                            hour = 0,
-                            minute = 0,
-                            weekId = 0,
-                            isNonstop = false,
-                            isOnlyOnSchooldays = false
-                    )
-            )
-            return Maybe.just(list)
-        }
-
-        override fun clearTable() {
-            isClearedDB = true
-        }
+        assertEquals(busData.tkBusTimeListReturn.size, 4)
+        assertEquals(busData.tndBusTimeListReturn.size, 2)
+        assertEquals(busData.tkBusTimeListGoing.size, 1)
+        assertEquals(busData.tndBusTimeListGoing.size, 1)
     }
 }

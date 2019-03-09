@@ -1,6 +1,7 @@
 package com.numero.sojodia.resource
 
 import com.numero.sojodia.model.*
+import com.numero.sojodia.resource.remote.BusDataApi
 import com.numero.sojodia.resource.remote.RemoteConfig
 import com.numero.sojodia.resource.remote.executeSync
 import com.numero.sojodia.resource.remote.response.BusDataResponse
@@ -8,7 +9,15 @@ import com.numero.sojodia.resource.remote.response.ConfigResponse
 
 class BusDataSourceImpl : BusDataSource {
 
-    private val busDataApi = RemoteConfig.createBusDataApi()
+    private val busDataApi :BusDataApi
+
+    constructor() {
+        busDataApi = RemoteConfig.createBusDataApi()
+    }
+
+    constructor(busDataApi: BusDataApi) {
+        this.busDataApi = busDataApi
+    }
 
     override fun getConfig(): Result<Config> {
         val result = busDataApi.getConfig().executeSync()
