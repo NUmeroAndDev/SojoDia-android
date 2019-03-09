@@ -47,10 +47,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
             transition?.showLicensesScreen()
             false
         }
+
+        findPreference<Preference>("view_source").setOnPreferenceClickListener {
+            transition?.showSource()
+            false
+        }
     }
 
     interface ISettingsTransition {
         fun reopenSettingsScreen()
+
+        fun showSource()
 
         fun showLicensesScreen()
     }
