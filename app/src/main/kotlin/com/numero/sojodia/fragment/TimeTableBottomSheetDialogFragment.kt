@@ -17,7 +17,7 @@ import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.TimeTableRow
 import com.numero.sojodia.presenter.TimeTablePresenter
-import com.numero.sojodia.repository.IBusDataRepository
+import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.view.adapter.TimeTableRowAdapter
 import kotlinx.android.synthetic.main.dialog_time_table.view.*
 
@@ -28,7 +28,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
 
     private lateinit var presenter: TimeTableContract.Presenter
 
-    private val busDataRepository: IBusDataRepository
+    private val busDataRepository: BusDataRepository
         get() = app.busDataRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {

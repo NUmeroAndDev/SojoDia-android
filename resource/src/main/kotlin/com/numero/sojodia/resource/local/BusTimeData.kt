@@ -1,4 +1,4 @@
-package com.numero.sojodia.resource.datasource.db
+package com.numero.sojodia.resource.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

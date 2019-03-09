@@ -1,4 +1,4 @@
-package com.numero.sojodia.resource.datasource.api
+package com.numero.sojodia.resource.remote
 
 import com.squareup.moshi.JsonAdapter
 import se.ansman.kotshi.KotshiJsonAdapterFactory

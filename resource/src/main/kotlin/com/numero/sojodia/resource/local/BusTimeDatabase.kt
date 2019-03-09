@@ -1,4 +1,4 @@
-package com.numero.sojodia.resource.datasource.db
+package com.numero.sojodia.resource.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

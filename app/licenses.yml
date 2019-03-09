@@ -5,6 +5,9 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: http://developer.android.com/tools/extras/support-library.html
+- artifact: androidx.activity:activity:+
+  name: Activity
+  skip: true
 - artifact: androidx.drawerlayout:drawerlayout:+
   name: Android Support Library Drawer Layout
   skip: true
@@ -113,6 +116,9 @@
 - artifact: androidx.versionedparcelable:versionedparcelable:+
   name: VersionedParcelable and friends
   skip: true
+- artifact: androidx.concurrent:concurrent-futures:+
+  name: AndroidX Futures
+  skip: true
 
 - artifact: androidx.core:core-ktx:+
   name: Android KTX Core
@@ -129,6 +135,25 @@
   url: http://tools.android.com
 - artifact: androidx.constraintlayout:constraintlayout-solver:+
   name: Android ConstraintLayout Solver
+  skip: true
+
+- artifact: androidx.room:room-runtime:+
+  name: Android Room-Runtime
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/topic/libraries/architecture/index.html
+- artifact: androidx.room:room-common:+
+  name: Android Room-Common
+  copyrightHolder: The Android Open Source Project
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/topic/libraries/architecture/index.html
+- artifact: androidx.sqlite:sqlite:+
+  name: Android DB
+  skip: true
+- artifact: androidx.sqlite:sqlite-framework:+
+  name: Android Support SQLite - Framework Implementation
   skip: true
 
 - artifact: com.google.android.material:material:+
@@ -161,6 +186,22 @@
 - artifact: org.jetbrains.kotlin:kotlin-stdlib-jre7:+
   skip: true
 
+- artifact: org.jetbrains.kotlinx:kotlinx-coroutines-android:+
+  name: kotlinx-coroutines-android
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/Kotlin/kotlinx.coroutines
+- artifact: org.jetbrains.kotlinx:kotlinx-coroutines-core:+
+  name: kotlinx-coroutines-core
+  copyrightHolder: JetBrains s.r.o.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/Kotlin/kotlinx.coroutines
+- artifact: org.jetbrains.kotlinx:kotlinx-coroutines-core-common:+
+  name: kotlinx-coroutines-core-common
+  skip: true
+
 # Okhttp
 - artifact: com.squareup.okhttp3:okhttp:+
   name: OkHttp
@@ -176,30 +217,12 @@
   name: MockWebServer
   skip: true
 
-# Rxjava
-- artifact: io.reactivex.rxjava2:rxandroid:+
-  name: RxAndroid
-  copyrightHolder: The RxAndroid authors
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/ReactiveX/RxAndroid
-- artifact: io.reactivex.rxjava2:rxjava:+
-  name: rxjava
-  copyrightHolder: RxJava Contributors.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: https://github.com/ReactiveX/RxJava
-- artifact: org.reactivestreams:reactive-streams:+
-  skip: true
-
 # Retrofit
 - artifact: com.squareup.retrofit2:retrofit:+
   name: Retrofit
   copyrightHolder: Square, Inc.
   license: Apache 2.0
 - artifact: com.squareup.retrofit2:converter-moshi:+
-  skip: true
-- artifact: com.squareup.retrofit2:adapter-rxjava2:+
   skip: true
 
 # Kotshi
@@ -248,6 +271,9 @@
   name: Accessibility Test Framework
   skip: true
 
+- artifact: com.google.guava:listenablefuture:+
+  name: Guava ListenableFuture only
+  skip: true
 - artifact: classworlds:classworlds:+
   name: classworlds
   skip: true

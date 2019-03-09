@@ -25,3 +25,9 @@ jobs:
       - store_artifacts:
           path: resource/build/reports
           destination: ResourceReports
+      - store_artifacts:
+          path: repository/build/reports
+          destination: RepositoryReports
+      - store_artifacts:
+          path: model/build/reports
+          destination: ModelReports

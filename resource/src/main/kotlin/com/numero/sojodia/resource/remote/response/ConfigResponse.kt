@@ -1,4 +1,4 @@
-package com.numero.sojodia.resource.datasource.api.response
+package com.numero.sojodia.resource.remote.response
 
 import se.ansman.kotshi.JsonSerializable
 

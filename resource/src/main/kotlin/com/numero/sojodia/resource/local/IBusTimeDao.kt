@@ -1,10 +1,9 @@
-package com.numero.sojodia.resource.datasource.db
+package com.numero.sojodia.resource.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import io.reactivex.Maybe
 
 @Dao
 interface IBusTimeDao {
@@ -13,7 +12,7 @@ interface IBusTimeDao {
     fun create(busTime: BusTimeData)
 
     @Query("SELECT * FROM bus_time ORDER BY routeId ASC, hour ASC, minute ASC, weekId ASC")
-    fun findAll(): Maybe<List<BusTimeData>>
+    fun findAll(): List<BusTimeData>
 
     @Query("DELETE FROM bus_time")
     fun clearTable()
