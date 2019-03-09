@@ -20,7 +20,7 @@ class BusDataRepositoryTest {
     )
 
     private lateinit var repository: BusDataRepository
-    private val cacheDataSource: MockCacheDataSource = MockCacheDataSource()
+    private val cacheDataSource: MockCacheDataSource = MockCacheDataSource(busData)
     private val busDataSource: MockBusDataSource = MockBusDataSource(config, busData)
 
     @Before
@@ -38,29 +38,37 @@ class BusDataRepositoryTest {
     }
 
     @Test
-    fun `fetchBusData_BusDataが取得できること`() = runBlocking {
+    fun `fetchBusData_BusDataが取得でき、ローカルに保存されること`() = runBlocking {
         val result = repository.fetchBusData()
         assertTrue(result is Result.Success)
 
         val busData = (result as Result.Success).value
         assertEquals(busData, this@BusDataRepositoryTest.busData)
+        assertTrue(cacheDataSource.isSavedLocal)
     }
 
-    // TODO テストの追加
+    @Test
+    fun `getBusData_BusDataが取得できること`() {
+        val busData = repository.getBusData()
+        assertEquals(busData, this@BusDataRepositoryTest.busData)
+    }
 
-    class MockCacheDataSource : CacheBusDataSource {
+    class MockCacheDataSource(
+            private val busData: BusData
+    ) : CacheBusDataSource {
 
         var hasCache: Boolean = false
             private set
-        private var busData: BusData? = null
+        var isSavedLocal: Boolean = false
+            private set
 
         override fun putBusData(busData: BusData) {
-            this.busData = busData
+            isSavedLocal = true
         }
 
         override fun getBusData(): BusData {
             hasCache = true
-            return requireNotNull(busData)
+            return busData
         }
 
         override fun clearCache() {
