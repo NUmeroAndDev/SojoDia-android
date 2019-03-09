@@ -44,6 +44,6 @@ class BusDataRepositoryImpl : BusDataRepository {
     }
 
     override fun reloadBusData() {
-        getBusData()
+        cacheBusDataSource.clearCache()
     }
 }

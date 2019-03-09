@@ -56,6 +56,10 @@ class CacheBusDataSourceImpl(
         return busData
     }
 
+    override fun clearCache() {
+        memoryCacheBusData = null
+    }
+
     private fun BusData.mapAndSaveDB() {
         tkBusTimeListGoing.mapAndSaveDB(BusRouteId.from(BusRoute.TK_TO_KUTC))
         tkBusTimeListReturn.mapAndSaveDB(BusRouteId.from(BusRoute.KUTC_TO_TK))

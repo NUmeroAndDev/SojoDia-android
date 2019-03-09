@@ -5,8 +5,9 @@ import com.numero.sojodia.model.Result
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.view.IUpdateBusDataView
-import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class UpdateBusDataPresenter(
         private val view: IUpdateBusDataView,
@@ -14,15 +15,10 @@ class UpdateBusDataPresenter(
         private val busDataRepository: BusDataRepository
 ) : IUpdateBusDataPresenter {
 
-    private val job = Job()
-    private val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + job
-
     override fun subscribe() {
     }
 
     override fun unSubscribe() {
-        job.cancelChildren()
     }
 
     override fun checkUpdate() {
@@ -30,7 +26,7 @@ class UpdateBusDataPresenter(
             view.noNeedUpdate()
             return
         }
-        runBlocking(coroutineContext) {
+        runBlocking {
             val result = withContext(Dispatchers.Default) { busDataRepository.fetchConfig() }
 
             when(result) {
@@ -51,7 +47,7 @@ class UpdateBusDataPresenter(
     }
 
     private fun executeUpdate(latestVersion: LatestVersion) {
-        runBlocking(coroutineContext) {
+        runBlocking {
             val result = withContext(Dispatchers.Default) { busDataRepository.fetchBusData() }
 
             when(result) {

@@ -6,4 +6,6 @@ interface CacheBusDataSource {
     fun putBusData(busData: BusData)
 
     fun getBusData(): BusData
+
+    fun clearCache()
 }
