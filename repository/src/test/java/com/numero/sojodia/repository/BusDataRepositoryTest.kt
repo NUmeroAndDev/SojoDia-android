@@ -1,8 +1,8 @@
 package com.numero.sojodia.repository
 
 import com.numero.sojodia.model.*
-import com.numero.sojodia.resource.BusDataSource
-import com.numero.sojodia.resource.CacheBusDataSource
+import com.numero.sojodia.data.BusDataSource
+import com.numero.sojodia.data.CacheBusDataSource
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
