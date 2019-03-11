@@ -3,10 +3,10 @@ package com.numero.sojodia.repository
 import android.content.Context
 import com.numero.sojodia.model.BusData
 import com.numero.sojodia.model.Config
-import com.numero.sojodia.resource.BusDataSource
-import com.numero.sojodia.resource.BusDataSourceImpl
-import com.numero.sojodia.resource.CacheBusDataSource
-import com.numero.sojodia.resource.CacheBusDataSourceImpl
+import com.numero.sojodia.data.BusDataSource
+import com.numero.sojodia.data.BusDataSourceImpl
+import com.numero.sojodia.data.CacheBusDataSource
+import com.numero.sojodia.data.CacheBusDataSourceImpl
 import com.numero.sojodia.model.Result
 
 class BusDataRepositoryImpl : BusDataRepository {
