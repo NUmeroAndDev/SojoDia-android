@@ -12,12 +12,18 @@ alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/det
 ### Support  
 API Level 21 ( Android 5.0 )
 
-### Libraries  
-|Library|Version|
-|:-----------|:-----------|
-|[RxJava](https://github.com/ReactiveX/RxJava)|2.2.3|
-|[RxAndroid](https://github.com/ReactiveX/RxAndroid)|2.1.0|
-|[OkHttp](https://github.com/square/okhttp)|3.9.0|
-|[Kotshi](https://github.com/ansman/kotshi)|1.0.5|
-|[Retrofit](https://github.com/square/retrofit)|2.4.0|
-|[Android License Tools Plugin](https://github.com/cookpad/license-tools-plugin)|1.5.0|
+### Architecture  
+
+<img src="img/module.png" width="50%" >
+
+#### :app  
+View、Presenter など UI 関連  
+
+#### :repository  
+時刻表データ、設定の読み込み  
+
+#### :data  
+時刻データのアクセス、ローカルへの保存、メモリキャッシュ  
+
+#### :model  
+アプリ全般で使用するモデルクラス  
