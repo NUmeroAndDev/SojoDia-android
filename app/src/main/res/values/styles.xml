@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.Dark.NoActionBar">
+    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -14,18 +9,5 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
-
-    <style name="BottomSheetDialogTheme.Rounded">
-        <item name="android:windowIsFloating">false</item>
-        <item name="bottomSheetStyle">@style/BottomSheetStyle.Rounded</item>
-    </style>
-
-    <style name="BottomSheetDialogTheme.Rounded.Light">
-        <item name="android:colorBackground">@color/background</item>
-    </style>
-
-    <style name="BottomSheetDialogTheme.Rounded.Dark">
-        <item name="android:colorBackground">@color/backgroundDark</item>
-    </style>
 
 </resources>
