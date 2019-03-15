@@ -32,23 +32,23 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onCreate(savedInstanceState)
 
         val useDarkModeScreen = findPreference<SwitchPreferenceCompat>("use_dark_theme")
-        useDarkModeScreen.setOnPreferenceChangeListener { _, _ ->
+        useDarkModeScreen?.setOnPreferenceChangeListener { _, _ ->
             transition?.reopenSettingsScreen()
             true
         }
 
-        findPreference<Preference>("data_version").summary = configRepository.currentVersion.value.toString()
+        findPreference<Preference>("data_version")?.summary = configRepository.currentVersion.value.toString()
 
         val appVersionScreen = findPreference<Preference>("app_version")
-        appVersionScreen.summary = BuildConfig.VERSION_NAME
+        appVersionScreen?.summary = BuildConfig.VERSION_NAME
 
         val licensesScreen = findPreference<Preference>("licenses")
-        licensesScreen.setOnPreferenceClickListener {
+        licensesScreen?.setOnPreferenceClickListener {
             transition?.showLicensesScreen()
             false
         }
 
-        findPreference<Preference>("view_source").setOnPreferenceClickListener {
+        findPreference<Preference>("view_source")?.setOnPreferenceClickListener {
             transition?.showSource()
             false
         }
