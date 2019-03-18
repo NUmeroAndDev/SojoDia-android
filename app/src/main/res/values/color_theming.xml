@@ -21,11 +21,11 @@
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:textColorSecondary">@color/textColorSecondary</item>
         <item name="android:colorControlHighlight">@color/colorControlHighlight</item>
+    </style>
 
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
-        <item name="android:navigationBarColor" tools:targetApi="o_mr1">@color/navigationBar</item>
-        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@color/divider</item>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="BottomSheetDialogTheme.Rounded">
