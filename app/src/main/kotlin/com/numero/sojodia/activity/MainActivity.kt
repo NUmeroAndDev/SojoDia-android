@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.getTodayString
+import com.numero.sojodia.extension.setNightMode
 import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.fragment.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.model.Reciprocate
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(configRepository.themeRes)
+        setNightMode(configRepository.isUseDarkTheme)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 

@@ -11,8 +11,6 @@ interface IConfigRepository {
 
     val isUseDarkTheme: Boolean
 
-    val themeRes: Int
-
     fun updateBusDataVersion(latestVersion: LatestVersion)
 
     fun updateCheckUpdateDate()

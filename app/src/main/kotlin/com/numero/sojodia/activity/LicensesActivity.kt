@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.setNightMode
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_licenses.*
 
@@ -17,7 +18,7 @@ class LicensesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(configRepository.themeRes)
+        setNightMode(configRepository.isUseDarkTheme)
         setContentView(R.layout.activity_licenses)
         setSupportActionBar(toolbar)
 

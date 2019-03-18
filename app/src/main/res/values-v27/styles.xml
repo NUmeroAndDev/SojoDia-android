@@ -1,33 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:navigationBarColor">@color/navigationBar</item>
-        <item name="android:navigationBarDividerColor">@color/divider</item>
-    </style>
-
-    <style name="AppTheme.Dark.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
-    </style>
-
     <style name="BottomSheetDialogTheme" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarDividerColor">@android:color/transparent</item>
     </style>
 
-    <style name="BottomSheetDialogTheme.Rounded.Light">
-        <item name="android:colorBackground">@color/background</item>
-        <item name="android:navigationBarColor">@color/navigationBar</item>
-    </style>
-
-    <style name="BottomSheetDialogTheme.Rounded.Dark">
-        <item name="android:colorBackground">@color/backgroundDark</item>
-    </style>
 </resources>

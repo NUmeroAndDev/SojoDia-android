@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import com.numero.sojodia.R
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.model.CurrentVersion
 import com.numero.sojodia.model.LatestVersion
@@ -40,14 +39,6 @@ class ConfigRepository(context: Context) : IConfigRepository {
 
     override val isUseDarkTheme: Boolean
         get() = settingsPreferences.getBoolean(KEY_USE_DARK_THEME, isDefaultUseDarkTheme)
-
-
-    override val themeRes: Int
-        get() = if (isUseDarkTheme) {
-            R.style.AppTheme_Dark_NoActionBar
-        } else {
-            R.style.AppTheme_Light_NoActionBar
-        }
 
     companion object {
 
