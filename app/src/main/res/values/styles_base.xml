@@ -21,6 +21,7 @@
 
     <style name="BottomSheetStyle.Rounded" parent="Widget.MaterialComponents.BottomSheet.Modal">
         <item name="shapeAppearanceOverlay">@style/LargeShapeAppearance</item>
+        <item name="backgroundTint">?android:attr/colorBackground</item>
     </style>
 
     <style name="LargeShapeAppearance" parent="ShapeAppearanceOverlay.MaterialComponents.BottomSheet.Modal">
