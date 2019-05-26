@@ -32,8 +32,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onCreate(savedInstanceState)
 
         val useDarkModeScreen = findPreference<SwitchPreferenceCompat>("use_dark_theme")
-        useDarkModeScreen?.setOnPreferenceChangeListener { _, _ ->
-            transition?.reopenSettingsScreen()
+        useDarkModeScreen?.setOnPreferenceChangeListener { _, isDark ->
+            transition?.switchDarkMode(isDark as Boolean)
             true
         }
 
@@ -55,7 +55,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     interface ISettingsTransition {
-        fun reopenSettingsScreen()
+        fun switchDarkMode(isDark: Boolean)
 
         fun showSource()
 
