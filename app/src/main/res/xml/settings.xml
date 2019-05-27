@@ -2,10 +2,12 @@
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <SwitchPreferenceCompat
-        app:defaultValue="false"
-        app:key="use_dark_theme"
-        app:title="@string/settings_use_dark_theme_title" />
+    <DropDownPreference
+        app:entries="@array/app_theme_entries"
+        app:entryValues="@array/app_theme_entry_value"
+        app:key="select_app_theme"
+        app:title="@string/settings_select_app_theme_title"
+        app:useSimpleSummaryProvider="true" />
 
     <Preference
         app:key="data_version"

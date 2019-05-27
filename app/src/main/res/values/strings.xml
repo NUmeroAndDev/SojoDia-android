@@ -29,10 +29,21 @@
 
     <string name="date_pattern">EEE, MMM d</string>
 
-    <string name="settings_use_dark_theme_title">Dark Theme</string>
+    <string name="settings_select_app_theme_title">Select Theme</string>
     <string name="settings_data_version_title">Timetable data</string>
     <string name="settings_app_version_title">Version</string>
     <string name="settings_view_source_title">View source on GitHub</string>
     <string name="settings_licenses_title">Licenses</string>
 
+    <string-array name="app_theme_entries">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System default</item>
+    </string-array>
+
+    <string-array name="app_theme_entry_value" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>

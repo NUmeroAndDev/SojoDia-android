@@ -2,12 +2,14 @@ package com.numero.sojodia.fragment
 
 import android.content.Context
 import android.os.Bundle
+import androidx.preference.DropDownPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
+import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.IConfigRepository
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -31,9 +33,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val useDarkModeScreen = findPreference<SwitchPreferenceCompat>("use_dark_theme")
-        useDarkModeScreen?.setOnPreferenceChangeListener { _, isDark ->
-            transition?.switchDarkMode(isDark as Boolean)
+        val appThemePreference = findPreference<DropDownPreference>("select_app_theme")
+        appThemePreference?.setOnPreferenceChangeListener { _, newValue ->
+            transition?.switchAppTheme(AppTheme.from(newValue.toString()))
             true
         }
 
@@ -55,7 +57,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     interface ISettingsTransition {
-        fun switchDarkMode(isDark: Boolean)
+        fun switchAppTheme(appTheme: AppTheme)
 
         fun showSource()
 

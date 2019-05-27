@@ -8,8 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
-import com.numero.sojodia.extension.setNightMode
+import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.fragment.SettingsFragment
+import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -23,7 +24,7 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setNightMode(configRepository.isUseDarkTheme)
+        applyAppTheme(configRepository.appTheme)
         setContentView(R.layout.activity_settings)
         setSupportActionBar(toolbar)
 
@@ -46,8 +47,8 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
         startActivity(MainActivity.createClearTopIntent(this, reciprocate))
     }
 
-    override fun switchDarkMode(isDark: Boolean) {
-        setNightMode(isDark)
+    override fun switchAppTheme(appTheme: AppTheme) {
+        applyAppTheme(appTheme)
     }
 
     override fun showSource() {

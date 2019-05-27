@@ -29,10 +29,15 @@
 
     <string name="date_pattern">MM/dd (E)</string>
 
-    <string name="settings_use_dark_theme_title">ダークテーマ</string>
+    <string name="settings_select_app_theme_title">テーマを選択</string>
     <string name="settings_data_version_title">時刻表データ</string>
     <string name="settings_app_version_title">バージョン</string>
     <string name="settings_view_source_title">View source on GitHub</string>
     <string name="settings_licenses_title">ライセンス</string>
 
+    <string-array name="app_theme_entries">
+        <item>ライト</item>
+        <item>ダーク</item>
+        <item>システムのデフォルト</item>
+    </string-array>
 </resources>
