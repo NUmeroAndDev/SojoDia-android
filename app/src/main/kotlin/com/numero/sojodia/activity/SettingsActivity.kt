@@ -46,8 +46,8 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
         startActivity(MainActivity.createClearTopIntent(this, reciprocate))
     }
 
-    override fun reopenSettingsScreen() {
-        recreate()
+    override fun switchDarkMode(isDark: Boolean) {
+        setNightMode(isDark)
     }
 
     override fun showSource() {
