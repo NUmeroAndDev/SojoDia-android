@@ -6,16 +6,15 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.applyAppTheme
-import com.numero.sojodia.fragment.SettingsFragment
-import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_settings.*
 
-class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransition {
+class SettingsActivity : AppCompatActivity() {
 
     private val configRepository: IConfigRepository
         get() = app.configRepository
@@ -29,8 +28,7 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        supportFragmentManager.beginTransaction().replace(R.id.container, SettingsFragment.newInstance()).commit()
+        setupViews()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -47,16 +45,18 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
         startActivity(MainActivity.createClearTopIntent(this, reciprocate))
     }
 
-    override fun switchAppTheme(appTheme: AppTheme) {
-        applyAppTheme(appTheme)
-    }
+    private fun setupViews() {
+        busDataSettingsItemView.setSummary(configRepository.currentVersion.value.toString())
 
-    override fun showSource() {
-        startActivity(Intent(Intent.ACTION_VIEW, SOURCE_URL.toUri()))
-    }
+        appVersionSettingsItemView.setSummary(BuildConfig.VERSION_NAME)
 
-    override fun showLicensesScreen() {
-        startActivity(LicensesActivity.createIntent(this))
+        viewSourceSettingsItemView.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, SOURCE_URL.toUri()))
+        }
+
+        licensesSettingsItemView.setOnClickListener {
+            startActivity(LicensesActivity.createIntent(this@SettingsActivity))
+        }
     }
 
     companion object {
