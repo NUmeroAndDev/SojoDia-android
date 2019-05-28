@@ -8,7 +8,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
-import com.numero.sojodia.extension.setNightMode
+import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.presenter.ISplashPresenter
 import com.numero.sojodia.presenter.SplashPresenter
 import com.numero.sojodia.repository.BusDataRepository
@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setNightMode(configRepository.isUseDarkTheme)
+        applyAppTheme(configRepository.appTheme)
         setContentView(R.layout.activity_splash)
 
         presenter = SplashPresenter(this, busDataRepository, configRepository)

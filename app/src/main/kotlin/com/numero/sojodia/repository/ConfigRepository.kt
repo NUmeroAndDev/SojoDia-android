@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
+import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.CurrentVersion
 import com.numero.sojodia.model.LatestVersion
 import java.util.*
@@ -37,8 +38,11 @@ class ConfigRepository(context: Context) : IConfigRepository {
         }
     }
 
-    override val isUseDarkTheme: Boolean
-        get() = settingsPreferences.getBoolean(KEY_USE_DARK_THEME, isDefaultUseDarkTheme)
+    override val appTheme: AppTheme
+        get() {
+            val entry = settingsPreferences.getString("select_app_theme", "0")
+            return AppTheme.from(entry)
+        }
 
     companion object {
 
@@ -47,8 +51,5 @@ class ConfigRepository(context: Context) : IConfigRepository {
         private const val PREFERENCES = "PREFERENCES"
         private const val VERSION_CODE = "FIRST_BOOT"
         private const val DATE = "DATE"
-        private const val KEY_USE_DARK_THEME = "use_dark_theme"
-
-        private const val isDefaultUseDarkTheme = false
     }
 }
