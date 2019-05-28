@@ -5,4 +5,10 @@
         <attr name="defaultTextColor" format="color" />
         <attr name="safeTextColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="SettingsItemView">
+        <attr name="title" format="string" />
+        <attr name="summary" format="string" />
+        <attr name="icon" format="reference" />
+    </declare-styleable>
 </resources>

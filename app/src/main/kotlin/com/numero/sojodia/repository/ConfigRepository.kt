@@ -3,7 +3,6 @@ package com.numero.sojodia.repository
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import androidx.preference.PreferenceManager
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.CurrentVersion
@@ -13,7 +12,6 @@ import java.util.*
 class ConfigRepository(context: Context) : IConfigRepository {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
-    private val settingsPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     override val currentVersion: CurrentVersion
         get() {
@@ -38,9 +36,14 @@ class ConfigRepository(context: Context) : IConfigRepository {
         }
     }
 
-    override val appTheme: AppTheme
+    override var appTheme: AppTheme
+        set(value) {
+            sharedPreferences.edit {
+                putString(KEY_APP_THEME, value.key)
+            }
+        }
         get() {
-            val entry = settingsPreferences.getString("select_app_theme", "0")
+            val entry = sharedPreferences.getString(KEY_APP_THEME, AppTheme.LIGHT.key)
             return AppTheme.from(entry)
         }
 
@@ -50,6 +53,7 @@ class ConfigRepository(context: Context) : IConfigRepository {
 
         private const val PREFERENCES = "PREFERENCES"
         private const val VERSION_CODE = "FIRST_BOOT"
+        private const val KEY_APP_THEME = "KEY_APP_THEME"
         private const val DATE = "DATE"
     }
 }

@@ -10,7 +10,7 @@ interface IConfigRepository {
 
     val isTodayUpdateChecked: Boolean
 
-    val appTheme: AppTheme
+    var appTheme: AppTheme
 
     fun updateBusDataVersion(latestVersion: LatestVersion)
 

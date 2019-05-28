@@ -4,18 +4,20 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.net.toUri
+import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.applyAppTheme
-import com.numero.sojodia.fragment.SettingsFragment
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_settings.*
 
-class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransition {
+class SettingsActivity : AppCompatActivity() {
 
     private val configRepository: IConfigRepository
         get() = app.configRepository
@@ -29,8 +31,7 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        supportFragmentManager.beginTransaction().replace(R.id.container, SettingsFragment.newInstance()).commit()
+        setupViews()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -47,17 +48,55 @@ class SettingsActivity : AppCompatActivity(), SettingsFragment.ISettingsTransiti
         startActivity(MainActivity.createClearTopIntent(this, reciprocate))
     }
 
-    override fun switchAppTheme(appTheme: AppTheme) {
-        applyAppTheme(appTheme)
+    private fun setupViews() {
+        selectThemeSettingsItemView.apply {
+            val currentTheme = configRepository.appTheme
+            setSummary(getString(currentTheme.textRes))
+            setOnClickListener {
+                showSelectThemeMenu(it.findViewById(R.id.titleTextView))
+            }
+        }
+
+        busDataSettingsItemView.setSummary(configRepository.currentVersion.value.toString())
+
+        appVersionSettingsItemView.setSummary(BuildConfig.VERSION_NAME)
+
+        viewSourceSettingsItemView.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, SOURCE_URL.toUri()))
+        }
+
+        licensesSettingsItemView.setOnClickListener {
+            startActivity(LicensesActivity.createIntent(this@SettingsActivity))
+        }
     }
 
-    override fun showSource() {
-        startActivity(Intent(Intent.ACTION_VIEW, SOURCE_URL.toUri()))
+    private fun showSelectThemeMenu(anchorView: View) {
+        val popupMenu = PopupMenu(this, anchorView).apply {
+            menuInflater.inflate(R.menu.menu_select_theme, menu)
+            setOnMenuItemClickListener {
+                val theme = when (it.itemId) {
+                    R.id.theme_light -> AppTheme.LIGHT
+                    R.id.theme_dark -> AppTheme.DARK
+                    R.id.theme_system -> AppTheme.SYSTEM_DEFAULT
+                    else -> throw Exception()
+                }
+                configRepository.appTheme = theme
+                selectThemeSettingsItemView.setSummary(getString(theme.textRes))
+                applyAppTheme(theme)
+                true
+            }
+        }
+        popupMenu.show()
     }
 
-    override fun showLicensesScreen() {
-        startActivity(LicensesActivity.createIntent(this))
-    }
+    private val AppTheme.textRes: Int
+        get() {
+            return when (this) {
+                AppTheme.LIGHT -> R.string.theme_light
+                AppTheme.DARK -> R.string.theme_dark
+                AppTheme.SYSTEM_DEFAULT -> R.string.theme_system_default
+            }
+        }
 
     companion object {
 

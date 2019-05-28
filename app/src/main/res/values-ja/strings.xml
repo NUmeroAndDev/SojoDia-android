@@ -35,9 +35,7 @@
     <string name="settings_view_source_title">View source on GitHub</string>
     <string name="settings_licenses_title">ライセンス</string>
 
-    <string-array name="app_theme_entries">
-        <item>ライト</item>
-        <item>ダーク</item>
-        <item>システムのデフォルト</item>
-    </string-array>
+    <string name="theme_light">ライト</string>
+    <string name="theme_dark">ダーク</string>
+    <string name="theme_system_default">システムのデフォルト</string>
 </resources>

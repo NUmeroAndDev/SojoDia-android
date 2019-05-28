@@ -35,15 +35,7 @@
     <string name="settings_view_source_title">View source on GitHub</string>
     <string name="settings_licenses_title">Licenses</string>
 
-    <string-array name="app_theme_entries">
-        <item>Light</item>
-        <item>Dark</item>
-        <item>System default</item>
-    </string-array>
-
-    <string-array name="app_theme_entry_value" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system_default">System default</string>
 </resources>
