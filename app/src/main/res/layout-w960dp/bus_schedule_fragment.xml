@@ -42,9 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/timetable_label"
-                app:chipBackgroundColor="?attr/colorPrimary"
-                app:chipStrokeColor="?attr/colorDivider"
-                app:chipStrokeWidth="1dp"
+                app:chipStrokeWidth="0.5dp"
                 app:layout_constraintBottom_toBottomOf="@id/tkTitleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tkTitleTextView" />
@@ -165,9 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/timetable_label"
-                app:chipBackgroundColor="?attr/colorPrimary"
-                app:chipStrokeColor="?attr/colorDivider"
-                app:chipStrokeWidth="1dp"
+                app:chipStrokeWidth="0.5dp"
                 app:layout_constraintBottom_toBottomOf="@id/tndTitleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tndTitleTextView" />
