@@ -3,7 +3,7 @@
 
     <attr name="colorDivider" format="color" />
 
-    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimaryDark">?attr/colorPrimaryVariant</item>
         <item name="colorDivider">?android:attr/listDivider</item>
 
