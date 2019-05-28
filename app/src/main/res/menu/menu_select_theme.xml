@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/theme_light"
+        android:title="@string/theme_light" />
+
+    <item
+        android:id="@+id/theme_dark"
+        android:title="@string/theme_dark" />
+
+    <item
+        android:id="@+id/theme_system"
+        android:title="@string/theme_system_default" />
+</menu>

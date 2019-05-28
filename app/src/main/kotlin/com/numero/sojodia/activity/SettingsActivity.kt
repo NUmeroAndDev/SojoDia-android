@@ -4,12 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.net.toUri
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.applyAppTheme
+import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -46,6 +49,14 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
+        selectThemeSettingsItemView.apply {
+            val currentTheme = configRepository.appTheme
+            setSummary(getString(currentTheme.textRes))
+            setOnClickListener {
+                showSelectThemeMenu(it.findViewById(R.id.titleTextView))
+            }
+        }
+
         busDataSettingsItemView.setSummary(configRepository.currentVersion.value.toString())
 
         appVersionSettingsItemView.setSummary(BuildConfig.VERSION_NAME)
@@ -58,6 +69,34 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(LicensesActivity.createIntent(this@SettingsActivity))
         }
     }
+
+    private fun showSelectThemeMenu(anchorView: View) {
+        val popupMenu = PopupMenu(this, anchorView).apply {
+            menuInflater.inflate(R.menu.menu_select_theme, menu)
+            setOnMenuItemClickListener {
+                val theme = when (it.itemId) {
+                    R.id.theme_light -> AppTheme.LIGHT
+                    R.id.theme_dark -> AppTheme.DARK
+                    R.id.theme_system -> AppTheme.SYSTEM_DEFAULT
+                    else -> throw Exception()
+                }
+                configRepository.appTheme = theme
+                selectThemeSettingsItemView.setSummary(getString(theme.textRes))
+                applyAppTheme(theme)
+                true
+            }
+        }
+        popupMenu.show()
+    }
+
+    private val AppTheme.textRes: Int
+        get() {
+            return when (this) {
+                AppTheme.LIGHT -> R.string.theme_light
+                AppTheme.DARK -> R.string.theme_dark
+                AppTheme.SYSTEM_DEFAULT -> R.string.theme_system_default
+            }
+        }
 
     companion object {
 
