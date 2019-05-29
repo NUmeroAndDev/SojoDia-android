@@ -4,6 +4,6 @@
         <color android:color="?attr/colorSecondary" />
     </item>
     <item android:state_activated="false">
-        <color android:color="?android:attr/windowBackground" />
+        <color android:color="@android:color/transparent" />
     </item>
 </selector>
