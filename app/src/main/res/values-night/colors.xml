@@ -14,11 +14,6 @@
     <color name="onSurface">#FFFFFF</color>
     <color name="onError">#FFFFFF</color>
 
-    <color name="textColorPrimary">#DBFFFFFF</color>
-    <color name="textColorSecondary">#8A000000</color>
-
-    <color name="colorControlHighlight">#1A000000</color>
-
     <color name="navigationBar">@color/surface</color>
 
 </resources>

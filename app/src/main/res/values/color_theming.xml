@@ -17,10 +17,6 @@
         <item name="colorOnBackground">@color/onBackground</item>
         <item name="colorOnSurface">@color/onSurface</item>
         <item name="colorOnError">@color/onError</item>
-
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <item name="android:textColorSecondary">@color/textColorSecondary</item>
-        <item name="android:colorControlHighlight">@color/colorControlHighlight</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
