@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:alpha="0.54"
         android:src="@drawable/bottom_sheet_control_bar" />
 
     <FrameLayout
