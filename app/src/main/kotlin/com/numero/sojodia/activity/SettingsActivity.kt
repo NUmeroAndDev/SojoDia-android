@@ -78,6 +78,7 @@ class SettingsActivity : AppCompatActivity() {
                     R.id.theme_light -> AppTheme.LIGHT
                     R.id.theme_dark -> AppTheme.DARK
                     R.id.theme_system -> AppTheme.SYSTEM_DEFAULT
+                    R.id.theme_auto_battery -> AppTheme.AUTO_BATTERY
                     else -> throw Exception()
                 }
                 configRepository.appTheme = theme
@@ -95,6 +96,7 @@ class SettingsActivity : AppCompatActivity() {
                 AppTheme.LIGHT -> R.string.theme_light
                 AppTheme.DARK -> R.string.theme_dark
                 AppTheme.SYSTEM_DEFAULT -> R.string.theme_system_default
+                AppTheme.AUTO_BATTERY -> R.string.theme_auto_battery
             }
         }
 
