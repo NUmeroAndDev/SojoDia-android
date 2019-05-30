@@ -10,6 +10,6 @@
         android:title="@string/theme_dark" />
 
     <item
-        android:id="@+id/theme_auto_battery"
-        android:title="@string/theme_auto_battery" />
+        android:id="@+id/theme_system"
+        android:title="@string/theme_system_default" />
 </menu>
