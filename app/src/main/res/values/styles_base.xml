@@ -3,28 +3,19 @@
 
     <attr name="colorDivider" format="color" />
 
-    <style name="BaseTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimaryDark">?attr/colorPrimaryVariant</item>
         <item name="colorDivider">?android:attr/listDivider</item>
 
         <item name="android:splitMotionEvents">false</item>
         <item name="dialogCornerRadius">@dimen/app_corner_round</item>
 
-        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme.Rounded</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Large.Round</item>
     </style>
 
     <!--TODO Snackbarのボタンの色を変える-->
 
-    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
-
-    <style name="BottomSheetStyle.Rounded" parent="Widget.MaterialComponents.BottomSheet.Modal">
-        <item name="shapeAppearanceOverlay">@style/BottomSheetShapeAppearance</item>
-        <item name="backgroundTint">?android:attr/colorBackground</item>
-    </style>
-
-    <style name="BottomSheetShapeAppearance" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+    <style name="ShapeAppearance.Large.Round" parent="ShapeAppearance.MaterialComponents.LargeComponent">
         <item name="cornerSizeTopRight">16dp</item>
         <item name="cornerSizeTopLeft">16dp</item>
         <item name="cornerFamilyTopLeft">rounded</item>

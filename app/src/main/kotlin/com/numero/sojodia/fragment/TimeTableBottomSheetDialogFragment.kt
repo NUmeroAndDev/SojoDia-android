@@ -41,6 +41,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
     }
 
     override fun setupDialog(dialog: Dialog, style: Int) {
+        super.setupDialog(dialog, style)
         val view = View.inflate(context, R.layout.dialog_time_table, null)
         toolbar = view.toolbar
         view.timeTableRecyclerView.apply {
