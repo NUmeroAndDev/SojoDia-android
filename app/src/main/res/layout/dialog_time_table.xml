@@ -34,6 +34,7 @@
             android:layout_marginEnd="16dp"
             android:text="@string/not_school_term"
             app:checkedIconEnabled="false"
+            app:chipBackgroundColor="@color/bg_chip_color"
             app:chipIcon="@drawable/ic_check"
             app:chipIconEnabled="true"
             app:chipIconTint="?attr/colorOnSurface"
