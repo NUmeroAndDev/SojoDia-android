@@ -21,12 +21,10 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
-                style="@style/Widget.MaterialComponents.TabLayout.Colored"
+                style="@style/Widget.MaterialComponents.TabLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                app:tabIndicatorColor="?attr/colorSecondary"
-                app:tabSelectedTextColor="?attr/colorSecondary" />
+                android:layout_gravity="center" />
 
         </com.google.android.material.appbar.MaterialToolbar>
 

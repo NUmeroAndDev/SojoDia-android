@@ -22,8 +22,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:subtitleTextColor="?attr/colorSecondary"
-            app:titleTextColor="?attr/colorSecondary" />
+            app:subtitleTextColor="?attr/colorPrimary"
+            app:titleTextColor="?attr/colorPrimary" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/notSchoolTermChip"
