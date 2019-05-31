@@ -18,12 +18,12 @@ import com.numero.sojodia.model.TimeTableRow
 import com.numero.sojodia.repository.BusDataRepository
 import kotlinx.android.synthetic.main.dialog_time_table.view.*
 
-class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTableContract.View {
+class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTableView {
 
     private lateinit var toolbar: Toolbar
     private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
 
-    private lateinit var presenter: TimeTableContract.Presenter
+    private lateinit var presenter: TimeTablePresenter
 
     private val busDataRepository: BusDataRepository
         get() = app.busDataRepository
@@ -34,7 +34,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         val arguments = arguments ?: return
         val route = arguments.getSerializable(ARG_ROUTE) as Route
         val reciprocate = arguments.getSerializable(ARG_RECIPROCATE) as Reciprocate
-        TimeTablePresenter(this, busDataRepository, route, reciprocate)
+        TimeTablePresenterImpl(this, busDataRepository, route, reciprocate)
     }
 
     override fun setupDialog(dialog: Dialog, style: Int) {
@@ -64,11 +64,11 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         presenter.unSubscribe()
     }
 
-    override fun setPresenter(presenter: TimeTableContract.Presenter) {
+    override fun setPresenter(presenter: TimeTablePresenter) {
         this.presenter = presenter
     }
 
-    override fun showTimeTableRowList(timeTableRowList: MutableList<TimeTableRow>) {
+    override fun showTimeTableRowList(timeTableRowList: List<TimeTableRow>) {
         adapter.tableRowList = timeTableRowList
     }
 
