@@ -10,8 +10,6 @@
         <item name="colorSurface">@color/surface</item>
         <item name="colorError">@color/error</item>
 
-        <item name="colorDivider">@color/divider</item>
-
         <item name="colorOnPrimary">@color/onPrimary</item>
         <item name="colorOnSecondary">@color/onSecondary</item>
         <item name="colorOnBackground">@color/onBackground</item>

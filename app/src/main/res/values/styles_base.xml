@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="colorDivider" format="color" />
-
     <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:statusBarColor">?attr/colorSurface</item>
-        <item name="colorDivider">?android:attr/listDivider</item>
 
         <item name="android:splitMotionEvents">false</item>
         <item name="dialogCornerRadius">@dimen/app_corner_round</item>
