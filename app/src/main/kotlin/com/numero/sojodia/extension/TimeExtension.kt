@@ -37,22 +37,3 @@ fun Time.createCountTime(currentTime: Time): Time {
     }
     return Time(hour, min)
 }
-
-/**
- * @param time 比較用のTime
- *
- * @return this > time -> true
- */
-fun Time.isOverTime(time: Time): Boolean {
-    var min = this.min - time.min
-    var hour = this.hour - time.hour
-
-    if (min < 0) {
-        min += 60
-        hour--
-    }
-
-    return if (hour == 0 && min == 0) {
-        false
-    } else hour >= 0
-}

@@ -17,4 +17,11 @@ class Time {
         this.hour = hour
         this.min = min
     }
+
+    operator fun compareTo(time: Time): Int {
+        if (hour == time.hour && min == time.min) return 0
+        if ((hour == time.hour && min <= time.min) or
+                (hour < time.hour)) return -1
+        return 1
+    }
 }

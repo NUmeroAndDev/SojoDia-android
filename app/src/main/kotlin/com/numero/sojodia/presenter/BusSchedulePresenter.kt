@@ -1,7 +1,6 @@
 package com.numero.sojodia.presenter
 
 import com.numero.sojodia.contract.BusScheduleContract
-import com.numero.sojodia.extension.isOverTime
 import com.numero.sojodia.model.*
 import com.numero.sojodia.repository.BusDataRepository
 
@@ -202,7 +201,7 @@ class BusSchedulePresenter(
 
     private fun findBusPosition(busTimeList: List<BusTime>): Int {
         busTimeList.forEachIndexed { index, busTime ->
-            if (busTime.time.isOverTime(Time())) {
+            if (busTime.time > Time()) {
                 return index
             }
         }
@@ -214,7 +213,7 @@ class BusSchedulePresenter(
             return false
         }
         val busTime = tkTimeList[tkBusPosition - 1]
-        return busTime.time.isOverTime(Time())
+        return busTime.time > Time()
     }
 
     private fun canPreviewTndTime(): Boolean {
@@ -222,7 +221,7 @@ class BusSchedulePresenter(
             return false
         }
         val busTime = tndTimeList[tndBusPosition - 1]
-        return busTime.time.isOverTime(Time())
+        return busTime.time > Time()
     }
 
     companion object {
