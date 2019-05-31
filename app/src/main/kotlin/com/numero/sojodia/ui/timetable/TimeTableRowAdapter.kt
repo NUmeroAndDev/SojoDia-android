@@ -12,7 +12,7 @@ import java.util.*
 
 class TimeTableRowAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var tableRowList: List<TimeTableRow>? = null
+    var tableRowList: List<TimeTableRow> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -30,63 +30,55 @@ class TimeTableRowAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         setHasStableIds(true)
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
-        return when (ViewHolderType.findType(i)) {
-            ViewHolderType.TIME_TABLE_ROW -> {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_CELL -> {
                 val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.holder_time_table_row, viewGroup, false)
                 TimeTableRowHolder(view)
             }
-            ViewHolderType.BOTTOM_DESCRIPTION -> {
+            VIEW_TYPE_FOOTER -> {
                 val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.holder_time_table_description, viewGroup, false)
                 DescriptionViewHolder(view)
             }
+            else -> throw IllegalArgumentException("Not defined viewType")
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        val size = tableRowList?.size ?: return super.getItemViewType(position)
+        val size = tableRowList.size
         return if (size <= position) {
-            ViewHolderType.BOTTOM_DESCRIPTION.typeId
+            VIEW_TYPE_FOOTER
         } else {
-            ViewHolderType.TIME_TABLE_ROW.typeId
+            VIEW_TYPE_CELL
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val list = tableRowList ?: return
         if (holder is TimeTableRowHolder) {
             holder.apply {
-                setTimeTableRow(list[position], isNotSchoolTerm)
+                setTimeTableRow(tableRowList[position], isNotSchoolTerm)
                 isCurrentHour = position == currentHour
             }
         }
     }
 
     override fun getItemId(position: Int): Long {
-        val list = tableRowList ?: return 0
-        if (list.size <= position) {
+        if (tableRowList.size <= position) {
             return 0
         }
-        return list[position].hour.toLong()
+        return tableRowList[position].hour.toLong()
     }
 
     override fun getItemCount(): Int {
-        val size = tableRowList?.size ?: return 0
-        return size + 1
+        return tableRowList.size + 1
     }
 
-    enum class ViewHolderType(val typeId: Int) {
-        TIME_TABLE_ROW(0),
-        BOTTOM_DESCRIPTION(1);
-
-        companion object {
-            fun findType(typeId: Int): ViewHolderType {
-                return checkNotNull(values().find { it.typeId == typeId })
-            }
-        }
+    companion object {
+        private const val VIEW_TYPE_CELL = 0
+        private const val VIEW_TYPE_FOOTER = 1
     }
 
-    class DescriptionViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    class DescriptionViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
 
     class TimeTableRowHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
