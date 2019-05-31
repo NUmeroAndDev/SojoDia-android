@@ -66,7 +66,7 @@
             android:id="@+id/divider"
             android:layout_width="@dimen/time_table_dialog_row_divider"
             android:layout_height="0dp"
-            android:background="?attr/colorDivider"
+            android:background="@drawable/divider"
             app:layout_constraintBottom_toBottomOf="@+id/headerHourTextView"
             app:layout_constraintStart_toEndOf="@+id/headerHourTextView"
             app:layout_constraintTop_toTopOf="@+id/headerHourTextView" />
@@ -126,7 +126,7 @@
         android:id="@+id/bottomDivider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/time_table_dialog_row_divider"
-        android:background="?attr/colorDivider" />
+        android:background="@drawable/divider" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/timeTableRecyclerView"
