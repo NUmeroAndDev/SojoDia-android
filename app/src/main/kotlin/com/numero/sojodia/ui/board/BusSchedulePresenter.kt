@@ -1,6 +1,5 @@
-package com.numero.sojodia.presenter
+package com.numero.sojodia.ui.board
 
-import com.numero.sojodia.contract.BusScheduleContract
 import com.numero.sojodia.model.*
 import com.numero.sojodia.repository.BusDataRepository
 

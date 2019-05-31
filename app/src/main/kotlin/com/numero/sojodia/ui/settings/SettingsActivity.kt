@@ -10,7 +10,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.net.toUri
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
-import com.numero.sojodia.activity.MainActivity
+import com.numero.sojodia.ui.board.MainActivity
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.model.AppTheme

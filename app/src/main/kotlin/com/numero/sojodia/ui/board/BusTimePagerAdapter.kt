@@ -1,4 +1,4 @@
-package com.numero.sojodia.view.adapter
+package com.numero.sojodia.ui.board
 
 import android.view.LayoutInflater
 import android.view.View

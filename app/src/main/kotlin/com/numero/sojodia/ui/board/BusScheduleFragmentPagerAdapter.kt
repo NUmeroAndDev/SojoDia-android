@@ -1,4 +1,4 @@
-package com.numero.sojodia.view.adapter
+package com.numero.sojodia.ui.board
 
 import android.content.Context
 import androidx.fragment.app.Fragment
@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.numero.sojodia.extension.titleStringRes
 
-import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.model.Reciprocate
 
 class BusScheduleFragmentPagerAdapter(private val context: Context, fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {

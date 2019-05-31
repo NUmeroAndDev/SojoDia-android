@@ -1,4 +1,4 @@
-package com.numero.sojodia.contract
+package com.numero.sojodia.ui.board
 
 import com.numero.sojodia.model.BusTime
 import com.numero.sojodia.model.Reciprocate

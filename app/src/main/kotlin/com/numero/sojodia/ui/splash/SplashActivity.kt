@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.numero.sojodia.R
-import com.numero.sojodia.activity.MainActivity
+import com.numero.sojodia.ui.board.MainActivity
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.repository.BusDataRepository
