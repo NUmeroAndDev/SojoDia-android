@@ -48,7 +48,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tkTitleTextView" />
 
-            <com.numero.sojodia.view.NotSwipeViewPager
+            <com.numero.sojodia.ui.widget.NotSwipeViewPager
                 android:id="@+id/tkBusTimeViewPager"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/bus_time_view_pager_height"
@@ -60,7 +60,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tkCountdownTextView" />
 
-            <com.numero.sojodia.widget.CountDownClockTextView
+            <com.numero.sojodia.ui.widget.CountDownClockTextView
                 android:id="@+id/tkCountdownTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -151,7 +151,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tndTitleTextView" />
 
-            <com.numero.sojodia.view.NotSwipeViewPager
+            <com.numero.sojodia.ui.widget.NotSwipeViewPager
                 android:id="@+id/tndBusTimeViewPager"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/bus_time_view_pager_height"
@@ -163,7 +163,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tndCountdownTextView" />
 
-            <com.numero.sojodia.widget.CountDownClockTextView
+            <com.numero.sojodia.ui.widget.CountDownClockTextView
                 android:id="@+id/tndCountdownTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

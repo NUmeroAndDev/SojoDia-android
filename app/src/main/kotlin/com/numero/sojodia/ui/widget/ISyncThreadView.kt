@@ -1,4 +1,4 @@
-package com.numero.sojodia.widget
+package com.numero.sojodia.ui.widget
 
 interface ISyncThreadView {
 

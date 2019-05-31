@@ -1,4 +1,4 @@
-package com.numero.sojodia.activity
+package com.numero.sojodia.ui.licenses
 
 import android.content.Context
 import android.content.Intent

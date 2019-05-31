@@ -1,4 +1,4 @@
-package com.numero.sojodia.widget
+package com.numero.sojodia.ui.settings.item
 
 import android.content.Context
 import android.util.AttributeSet
