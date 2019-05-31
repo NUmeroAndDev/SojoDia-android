@@ -1,4 +1,4 @@
-package com.numero.sojodia.activity
+package com.numero.sojodia.ui.board
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -14,7 +14,6 @@ import com.numero.sojodia.R
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.extension.getTodayString
-import com.numero.sojodia.fragment.BusScheduleFragment
 import com.numero.sojodia.ui.timetable.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
@@ -24,7 +23,6 @@ import com.numero.sojodia.service.UpdateBusDataService
 import com.numero.sojodia.ui.settings.SettingsActivity
 import com.numero.sojodia.ui.splash.SplashActivity
 import com.numero.sojodia.util.BroadCastUtil
-import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -86,7 +84,8 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> {
-                val adapter = viewPager.adapter as? BusScheduleFragmentPagerAdapter ?: return false
+                val adapter = viewPager.adapter as? BusScheduleFragmentPagerAdapter
+                        ?: return false
                 val reciprocate = adapter.reciprocateList[viewPager.currentItem]
                 startActivity(SettingsActivity.createIntent(this, reciprocate))
             }
