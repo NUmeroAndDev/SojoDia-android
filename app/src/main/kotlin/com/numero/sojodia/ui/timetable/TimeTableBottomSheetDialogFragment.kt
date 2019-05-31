@@ -1,4 +1,4 @@
-package com.numero.sojodia.fragment
+package com.numero.sojodia.ui.timetable
 
 import android.app.Dialog
 import android.os.Bundle
@@ -9,16 +9,13 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.R
-import com.numero.sojodia.contract.TimeTableContract
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.stationTitleRes
 import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.TimeTableRow
-import com.numero.sojodia.presenter.TimeTablePresenter
 import com.numero.sojodia.repository.BusDataRepository
-import com.numero.sojodia.view.adapter.TimeTableRowAdapter
 import kotlinx.android.synthetic.main.dialog_time_table.view.*
 
 class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTableContract.View {

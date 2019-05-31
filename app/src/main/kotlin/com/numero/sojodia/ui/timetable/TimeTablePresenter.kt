@@ -1,6 +1,5 @@
-package com.numero.sojodia.presenter
+package com.numero.sojodia.ui.timetable
 
-import com.numero.sojodia.contract.TimeTableContract
 import com.numero.sojodia.model.*
 import com.numero.sojodia.repository.BusDataRepository
 
