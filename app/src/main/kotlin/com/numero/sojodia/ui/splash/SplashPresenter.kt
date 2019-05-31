@@ -1,9 +1,8 @@
-package com.numero.sojodia.presenter
+package com.numero.sojodia.ui.splash
 
 import com.numero.sojodia.model.Result
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
-import com.numero.sojodia.view.ISplashView
 import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
