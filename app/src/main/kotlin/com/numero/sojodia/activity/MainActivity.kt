@@ -21,6 +21,7 @@ import com.numero.sojodia.model.Route
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import com.numero.sojodia.service.UpdateBusDataService
+import com.numero.sojodia.ui.settings.SettingsActivity
 import com.numero.sojodia.util.BroadCastUtil
 import com.numero.sojodia.view.adapter.BusScheduleFragmentPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*

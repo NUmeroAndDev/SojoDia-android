@@ -1,4 +1,4 @@
-package com.numero.sojodia.activity
+package com.numero.sojodia.ui.settings
 
 import android.content.Context
 import android.content.Intent
@@ -10,11 +10,13 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.net.toUri
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
+import com.numero.sojodia.activity.MainActivity
 import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.repository.IConfigRepository
+import com.numero.sojodia.ui.licenses.LicensesActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {

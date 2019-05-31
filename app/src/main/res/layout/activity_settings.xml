@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activity.SettingsActivity">
+    tools:context=".ui.settings.SettingsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.numero.sojodia.widget.SettingsItemView
+            <com.numero.sojodia.ui.settings.item.SettingsItemView
                 android:id="@+id/selectThemeSettingsItemView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:title="@string/settings_select_app_theme_title" />
 
-            <com.numero.sojodia.widget.SettingsItemView
+            <com.numero.sojodia.ui.settings.item.SettingsItemView
                 android:id="@+id/busDataSettingsItemView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toBottomOf="@id/selectThemeSettingsItemView"
                 app:title="@string/settings_data_version_title" />
 
-            <com.numero.sojodia.widget.SettingsItemView
+            <com.numero.sojodia.ui.settings.item.SettingsItemView
                 android:id="@+id/appVersionSettingsItemView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 app:layout_constraintTop_toBottomOf="@id/busDataSettingsItemView"
                 app:title="@string/settings_app_version_title" />
 
-            <com.numero.sojodia.widget.SettingsItemView
+            <com.numero.sojodia.ui.settings.item.SettingsItemView
                 android:id="@+id/viewSourceSettingsItemView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 app:layout_constraintTop_toBottomOf="@id/appVersionSettingsItemView"
                 app:title="@string/settings_view_source_title" />
 
-            <com.numero.sojodia.widget.SettingsItemView
+            <com.numero.sojodia.ui.settings.item.SettingsItemView
                 android:id="@+id/licensesSettingsItemView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

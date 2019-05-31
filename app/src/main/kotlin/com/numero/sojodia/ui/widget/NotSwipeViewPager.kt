@@ -1,4 +1,4 @@
-package com.numero.sojodia.view
+package com.numero.sojodia.ui.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
