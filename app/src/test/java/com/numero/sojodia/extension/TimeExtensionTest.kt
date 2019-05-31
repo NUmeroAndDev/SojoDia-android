@@ -27,18 +27,4 @@ class TimeExtensionTest {
             TestCase.assertEquals(min, 15)
         }
     }
-
-    @Test
-    fun overTime() {
-        Time(10, 30).apply {
-            TestCase.assertFalse(Time(10, 29).isOverTime(this))
-            TestCase.assertFalse(Time(10, 30).isOverTime(this))
-            TestCase.assertTrue(Time(10, 31).isOverTime(this))
-        }
-
-        Time(23, 59).apply {
-            TestCase.assertFalse(Time(23, 58).isOverTime(this))
-            TestCase.assertFalse(Time(0, 0).isOverTime(this))
-        }
-    }
 }
