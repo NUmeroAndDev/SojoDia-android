@@ -21,11 +21,9 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            style="@style/Widget.MaterialComponents.TabLayout.Colored"
+            style="@style/Widget.MaterialComponents.TabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="?attr/colorSecondary"
-            app:tabSelectedTextColor="?attr/colorSecondary" />
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
