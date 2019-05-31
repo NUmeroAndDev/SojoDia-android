@@ -68,7 +68,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         this.presenter = presenter
     }
 
-    override fun showTimeTableRowList(timeTableRowList: MutableList<TimeTableRow>) {
+    override fun showTimeTableRowList(timeTableRowList: List<TimeTableRow>) {
         adapter.tableRowList = timeTableRowList
     }
 

@@ -7,7 +7,7 @@ import com.numero.sojodia.view.IView
 
 interface TimeTableView : IView<TimeTablePresenter> {
 
-    fun showTimeTableRowList(timeTableRowList: MutableList<TimeTableRow>)
+    fun showTimeTableRowList(timeTableRowList: List<TimeTableRow>)
 
     fun showCurrentRoute(route: Route)
 

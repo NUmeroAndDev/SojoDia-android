@@ -12,7 +12,7 @@ import java.util.*
 
 class TimeTableRowAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var tableRowList: MutableList<TimeTableRow>? = null
+    var tableRowList: List<TimeTableRow>? = null
         set(value) {
             field = value
             notifyDataSetChanged()
