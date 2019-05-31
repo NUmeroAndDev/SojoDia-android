@@ -1,4 +1,4 @@
-package com.numero.sojodia.contract
+package com.numero.sojodia.ui.timetable
 
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route

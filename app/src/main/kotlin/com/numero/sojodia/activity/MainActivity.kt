@@ -15,7 +15,7 @@ import com.numero.sojodia.extension.app
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.fragment.BusScheduleFragment
-import com.numero.sojodia.fragment.TimeTableBottomSheetDialogFragment
+import com.numero.sojodia.ui.timetable.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.repository.BusDataRepository
