@@ -3,7 +3,6 @@ package com.numero.sojodia.ui.timetable
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,33 +13,37 @@ import com.numero.sojodia.extension.stationTitleRes
 import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
-import com.numero.sojodia.model.TimeTableRow
+import com.numero.sojodia.model.TimeTableRowList
 import com.numero.sojodia.repository.BusDataRepository
 import kotlinx.android.synthetic.main.dialog_time_table.view.*
 
 class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTableView {
 
-    private lateinit var toolbar: Toolbar
     private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
 
     private lateinit var presenter: TimeTablePresenter
+    private val route: Route by lazy {
+        arguments?.getSerializable(ARG_ROUTE) as Route
+    }
+    private val reciprocate: Reciprocate by lazy {
+        arguments?.getSerializable(ARG_RECIPROCATE) as Reciprocate
+    }
 
     private val busDataRepository: BusDataRepository
         get() = app.busDataRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val arguments = arguments ?: return
-        val route = arguments.getSerializable(ARG_ROUTE) as Route
-        val reciprocate = arguments.getSerializable(ARG_RECIPROCATE) as Reciprocate
         TimeTablePresenterImpl(this, busDataRepository, route, reciprocate)
     }
 
     override fun setupDialog(dialog: Dialog, style: Int) {
         super.setupDialog(dialog, style)
         val view = View.inflate(context, R.layout.dialog_time_table, null)
-        toolbar = view.toolbar
+        view.toolbar.apply {
+            setTitle(route.stationTitleRes)
+            toolbar.setSubtitle(reciprocate.titleStringRes)
+        }
         view.timeTableRecyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
@@ -68,16 +71,8 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         this.presenter = presenter
     }
 
-    override fun showTimeTableRowList(timeTableRowList: List<TimeTableRow>) {
-        adapter.tableRowList = timeTableRowList
-    }
-
-    override fun showCurrentRoute(route: Route) {
-        toolbar.setTitle(route.stationTitleRes)
-    }
-
-    override fun showCurrentReciprocate(reciprocate: Reciprocate) {
-        toolbar.setSubtitle(reciprocate.titleStringRes)
+    override fun showTimeTableRowList(timeTableRowList: TimeTableRowList) {
+        adapter.tableRowList = timeTableRowList.value
     }
 
     fun showIfNeed(fragmentManager: FragmentManager) {
