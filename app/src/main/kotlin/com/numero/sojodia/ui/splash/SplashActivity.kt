@@ -8,7 +8,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.numero.sojodia.R
 import com.numero.sojodia.ui.board.MainActivity
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
@@ -17,9 +17,9 @@ import kotlinx.android.synthetic.main.activity_splash.*
 class SplashActivity : AppCompatActivity(), ISplashView {
 
     private val configRepository: IConfigRepository
-        get() = app.configRepository
+        get() = module.configRepository
     private val busDataRepository: BusDataRepository
-        get() = app.busDataRepository
+        get() = module.busDataRepository
 
     private lateinit var presenter: ISplashPresenter
 

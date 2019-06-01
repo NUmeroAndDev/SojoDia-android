@@ -11,7 +11,7 @@ import androidx.core.net.toUri
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.ui.board.MainActivity
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.Reciprocate
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 class SettingsActivity : AppCompatActivity() {
 
     private val configRepository: IConfigRepository
-        get() = app.configRepository
+        get() = module.configRepository
 
     private val reciprocate by lazy { intent.getSerializableExtra(BUNDLE_RECIPROCATE) as Reciprocate }
 

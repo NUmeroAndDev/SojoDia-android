@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.snackbar.Snackbar
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.ui.timetable.TimeTableBottomSheetDialogFragment
@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     private val busDataRepository: BusDataRepository
-        get() = app.busDataRepository
+        get() = module.busDataRepository
     private val configRepository: IConfigRepository
-        get() = app.configRepository
+        get() = module.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_licenses.*
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_licenses.*
 class LicensesActivity : AppCompatActivity() {
 
     private val configRepository: IConfigRepository
-        get() = app.configRepository
+        get() = module.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
