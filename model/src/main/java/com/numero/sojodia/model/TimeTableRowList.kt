@@ -35,15 +35,15 @@ data class TimeTableRow(val hour: Int) {
     private val onSaturdayBusTime: MutableList<BusTime> = mutableListOf()
     private val onSundayBusTime: MutableList<BusTime> = mutableListOf()
 
-    fun createOnWeekdayText(isNotSchoolTerm: Boolean): String {
+    fun getOnWeekdayText(isNotSchoolTerm: Boolean): String {
         return onWeekdayBusTime.createBusMinTimeString(isNotSchoolTerm)
     }
 
-    fun createOnSaturdayText(isNotSchoolTerm: Boolean): String {
+    fun getOnSaturdayText(isNotSchoolTerm: Boolean): String {
         return onSaturdayBusTime.createBusMinTimeString(isNotSchoolTerm)
     }
 
-    fun createOnSundayText(isNotSchoolTerm: Boolean): String {
+    fun getOnSundayText(isNotSchoolTerm: Boolean): String {
         return onSundayBusTime.createBusMinTimeString(isNotSchoolTerm)
     }
 
