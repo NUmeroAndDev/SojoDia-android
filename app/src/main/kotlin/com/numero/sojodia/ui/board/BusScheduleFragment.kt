@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.createCountTime
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.model.BusTime
@@ -23,7 +23,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
 
     private val busDataRepository: BusDataRepository
-        get() = app.busDataRepository
+        get() = module.busDataRepository
 
     private lateinit var presenter: BusScheduleContract.Presenter
 

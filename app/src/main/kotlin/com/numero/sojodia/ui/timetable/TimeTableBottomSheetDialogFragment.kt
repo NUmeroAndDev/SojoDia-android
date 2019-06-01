@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.app
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.stationTitleRes
 import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.Reciprocate
@@ -30,7 +30,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
     }
 
     private val busDataRepository: BusDataRepository
-        get() = app.busDataRepository
+        get() = module.busDataRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

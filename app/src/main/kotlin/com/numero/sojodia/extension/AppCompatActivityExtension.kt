@@ -2,11 +2,11 @@ package com.numero.sojodia.extension
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.numero.sojodia.IApplication
+import com.numero.sojodia.Module
 import com.numero.sojodia.model.AppTheme
 
-val AppCompatActivity.app: IApplication
-    get() = application as IApplication
+val AppCompatActivity.module: Module
+    get() = application as Module
 
 fun AppCompatActivity.applyAppTheme(appTheme: AppTheme) {
     val mode = when (appTheme) {
