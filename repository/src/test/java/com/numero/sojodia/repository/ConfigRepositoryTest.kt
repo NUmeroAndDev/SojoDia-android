@@ -12,17 +12,17 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ConfigRepositoryTest {
 
-    private lateinit var configRepository: ConfigRepository
+    private lateinit var configRepository: ConfigRepositoryImpl
 
     @Before
     fun setup() {
         val context = InstrumentationRegistry.getInstrumentation().context
-        configRepository = ConfigRepository(context)
+        configRepository = ConfigRepositoryImpl(context)
     }
 
     @Test
     fun `currentVersion_デフォルトのバージョンコードが返って来ること`() {
-        assertEquals(configRepository.currentVersion, CurrentVersion(ConfigRepository.DEFAULT_DATA_VERSION))
+        assertEquals(configRepository.currentVersion, CurrentVersion(ConfigRepositoryImpl.DEFAULT_DATA_VERSION))
     }
 
     @Test

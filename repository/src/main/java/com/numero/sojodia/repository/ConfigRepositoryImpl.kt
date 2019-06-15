@@ -2,14 +2,14 @@ package com.numero.sojodia.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.text.format.DateFormat
 import androidx.core.content.edit
-import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.CurrentVersion
 import com.numero.sojodia.model.LatestVersion
 import java.util.*
 
-class ConfigRepository(context: Context) : IConfigRepository {
+class ConfigRepositoryImpl(context: Context) : ConfigRepository {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
 
@@ -46,6 +46,10 @@ class ConfigRepository(context: Context) : IConfigRepository {
             val entry = sharedPreferences.getString(KEY_APP_THEME, AppTheme.LIGHT.key)
             return AppTheme.from(entry)
         }
+
+    private fun Calendar.getTodayStringOnlyFigure(): String {
+        return DateFormat.format("yyyyMMdd", this).toString()
+    }
 
     companion object {
 
