@@ -23,4 +23,4 @@
     public <methods>;
 }
 
--keep class com.numero.sojodia.resource.remote.BusDataApi { *; }
+-keep class com.numero.sojodia.data.remote.BusDataApi { *; }
