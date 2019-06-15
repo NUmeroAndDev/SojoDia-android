@@ -1,6 +1,6 @@
-package com.numero.sojodia.view
+package com.numero.sojodia.service
 
-interface IUpdateBusDataView {
+interface UpdateBusDataView {
     fun successUpdate()
 
     fun noNeedUpdate()

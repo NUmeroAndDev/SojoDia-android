@@ -4,11 +4,9 @@ import android.app.IntentService
 import android.content.Intent
 import android.os.IBinder
 import com.numero.sojodia.Module
-import com.numero.sojodia.presenter.UpdateBusDataPresenter
 import com.numero.sojodia.util.BroadCastUtil
-import com.numero.sojodia.view.IUpdateBusDataView
 
-class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName), IUpdateBusDataView {
+class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simpleName), UpdateBusDataView {
 
     private lateinit var presenter: UpdateBusDataPresenter
 
@@ -18,7 +16,7 @@ class UpdateBusDataService : IntentService(UpdateBusDataService::class.java.simp
         val configRepository = (application as Module).configRepository
         val busDataRepository = (application as Module).busDataRepository
 
-        presenter = UpdateBusDataPresenter(this, configRepository, busDataRepository)
+        presenter = UpdateBusDataPresenterImpl(this, configRepository, busDataRepository)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
