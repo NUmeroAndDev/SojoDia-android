@@ -4,12 +4,10 @@ import com.numero.sojodia.model.BusTime
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.Week
-import com.numero.sojodia.presenter.IPresenter
-import com.numero.sojodia.view.IView
 
 interface BusScheduleContract {
 
-    interface View : IView<Presenter> {
+    interface View : com.numero.sojodia.core.View<Presenter> {
 
         fun showTkBusTimeList(busTimeList: MutableList<BusTime>)
 
@@ -50,7 +48,7 @@ interface BusScheduleContract {
         fun showTimeTableDialog(route: Route, reciprocate: Reciprocate)
     }
 
-    interface Presenter : IPresenter {
+    interface Presenter : com.numero.sojodia.core.Presenter {
         fun onTimeChanged(week: Week)
 
         fun nextTkBus()

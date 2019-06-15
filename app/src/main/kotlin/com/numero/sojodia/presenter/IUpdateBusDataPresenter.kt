@@ -1,5 +1,7 @@
 package com.numero.sojodia.presenter
 
-interface IUpdateBusDataPresenter : IPresenter {
+import com.numero.sojodia.core.Presenter
+
+interface IUpdateBusDataPresenter : Presenter {
     fun checkUpdate()
 }

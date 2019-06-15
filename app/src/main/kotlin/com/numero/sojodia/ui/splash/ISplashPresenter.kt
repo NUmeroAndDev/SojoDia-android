@@ -1,5 +1,5 @@
 package com.numero.sojodia.ui.splash
 
-import com.numero.sojodia.presenter.IPresenter
+import com.numero.sojodia.core.Presenter
 
-interface ISplashPresenter : IPresenter
+interface ISplashPresenter : Presenter

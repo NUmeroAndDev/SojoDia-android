@@ -1,5 +1,5 @@
 package com.numero.sojodia.ui.timetable
 
-import com.numero.sojodia.presenter.IPresenter
+import com.numero.sojodia.core.Presenter
 
-interface TimeTablePresenter : IPresenter
+interface TimeTablePresenter : Presenter
