@@ -4,7 +4,7 @@ import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.model.CurrentVersion
 import com.numero.sojodia.model.LatestVersion
 
-interface IConfigRepository {
+interface ConfigRepository {
 
     val currentVersion: CurrentVersion
 

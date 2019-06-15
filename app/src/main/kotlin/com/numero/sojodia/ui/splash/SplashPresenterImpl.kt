@@ -2,7 +2,7 @@ package com.numero.sojodia.ui.splash
 
 import com.numero.sojodia.model.Result
 import com.numero.sojodia.repository.BusDataRepository
-import com.numero.sojodia.repository.IConfigRepository
+import com.numero.sojodia.repository.ConfigRepository
 import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
@@ -10,7 +10,7 @@ import kotlin.coroutines.CoroutineContext
 class SplashPresenterImpl(
         private val view: SplashView,
         private val busDataRepository: BusDataRepository,
-        private val configRepository: IConfigRepository
+        private val configRepository: ConfigRepository
 ) : SplashPresenter {
 
     private val job = Job()

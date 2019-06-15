@@ -11,12 +11,12 @@ import com.numero.sojodia.ui.board.MainActivity
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.repository.BusDataRepository
-import com.numero.sojodia.repository.IConfigRepository
+import com.numero.sojodia.repository.ConfigRepository
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity(), SplashView {
 
-    private val configRepository: IConfigRepository
+    private val configRepository: ConfigRepository
         get() = module.configRepository
     private val busDataRepository: BusDataRepository
         get() = module.busDataRepository

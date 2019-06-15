@@ -13,13 +13,13 @@ import com.numero.sojodia.R
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.AppTheme
-import com.numero.sojodia.repository.IConfigRepository
+import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.ui.licenses.LicensesActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
 
-    private val configRepository: IConfigRepository
+    private val configRepository: ConfigRepository
         get() = module.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {

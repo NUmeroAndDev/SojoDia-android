@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.applyAppTheme
-import com.numero.sojodia.repository.IConfigRepository
+import com.numero.sojodia.repository.ConfigRepository
 import kotlinx.android.synthetic.main.activity_licenses.*
 
 class LicensesActivity : AppCompatActivity() {
 
-    private val configRepository: IConfigRepository
+    private val configRepository: ConfigRepository
         get() = module.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
