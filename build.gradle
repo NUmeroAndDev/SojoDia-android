@@ -19,20 +19,14 @@ enum VersionSuffix {
 }
 
 ext {
-    def suffix = VersionSuffix.PRODUCT
+    def suffix = VersionSuffix.ALPHA
 
-    def appVersionMajor = 8
-    def appVersionMinor = 1
+    def appVersionMajor = 9
+    def appVersionMinor = 0
     def appVersionPatch = 0
     def appVersionBuild = 0
-    /**
-     * device number
-     * 0 = phone
-     * 1 = wear
-     */
-    def appTargetDevice = 0
 
-    appVersionCode = appVersionMajor * 100000 + appVersionMinor * 10000 + appVersionPatch * 1000 + suffix.code * 100 + appVersionBuild * 10 + appTargetDevice
+    appVersionCode = appVersionMajor * 100000 + appVersionMinor * 10000 + appVersionPatch * 1000 + suffix.code * 100 + appVersionBuild
     appVersionName = suffix == VersionSuffix.PRODUCT ?
             "${appVersionMajor}.${appVersionMinor}.${appVersionPatch}" :
             "${appVersionMajor}.${appVersionMinor}.${appVersionPatch}-${suffix.name} ${appVersionBuild}"
