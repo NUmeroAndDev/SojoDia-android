@@ -8,13 +8,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.createCountTime
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.extension.module
-import com.numero.sojodia.model.BusTime
-import com.numero.sojodia.model.Reciprocate
-import com.numero.sojodia.model.Route
-import com.numero.sojodia.model.Week
+import com.numero.sojodia.model.*
 import com.numero.sojodia.repository.BusDataRepository
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
@@ -147,7 +143,7 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun startTkCountDown(busTime: BusTime) {
-        val time = busTime.time.createCountTime()
+        val time = busTime.time - Time()
         tkCountdownTextView.setTime(time.hour, time.min)
     }
 
@@ -156,7 +152,7 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun startTndCountDown(busTime: BusTime) {
-        val time = busTime.time.createCountTime()
+        val time = busTime.time - Time()
         tndCountdownTextView.setTime(time.hour, time.min)
     }
 
