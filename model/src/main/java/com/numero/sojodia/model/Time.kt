@@ -24,4 +24,19 @@ class Time {
                 (hour < time.hour)) return -1
         return 1
     }
+
+    operator fun minus(time: Time): Time {
+        var hour = this.hour - time.hour
+        var min = this.min - time.min
+
+        if (min < 0) {
+            min += 60
+            hour -= 1
+        }
+
+        if (hour < 0) {
+            hour += 24
+        }
+        return Time(hour, min)
+    }
 }

@@ -1,5 +1,6 @@
 package com.numero.sojodia.model
 
+import junit.framework.TestCase
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -30,5 +31,28 @@ class TimeTest {
         assertTrue(time > Time(12, 11))
         assertTrue(time > Time(11, 12))
         assertTrue(time > Time(11, 14))
+    }
+
+    @Test
+    fun `test_minus`() {
+        (Time(10, 30) - Time(0, 0)).apply {
+            assertEquals(hour, 10)
+            assertEquals(min, 30)
+        }
+
+        (Time(8, 25) - Time(8, 10)).apply {
+            assertEquals(hour, 0)
+            assertEquals(min, 15)
+        }
+
+        (Time(12, 25)- Time(11, 10)).apply {
+            assertEquals(hour, 1)
+            assertEquals(min, 15)
+        }
+
+        (Time(12, 25) - Time(11, 10)).apply {
+            assertEquals(hour, 1)
+            assertEquals(min, 15)
+        }
     }
 }
