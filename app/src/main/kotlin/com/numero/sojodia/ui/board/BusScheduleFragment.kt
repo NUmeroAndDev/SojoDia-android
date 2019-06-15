@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.createCountTime
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.BusTime
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
@@ -19,13 +19,12 @@ import com.numero.sojodia.repository.BusDataRepository
 import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
 
-class BusScheduleFragment : Fragment(), BusScheduleContract.View {
-
+class BusScheduleFragment : Fragment(), BusScheduleView {
 
     private val busDataRepository: BusDataRepository
         get() = module.busDataRepository
 
-    private lateinit var presenter: BusScheduleContract.Presenter
+    private lateinit var presenter: BusSchedulePresenter
 
     private var listener: BusScheduleFragmentListener? = null
     private var currentDateString: String? = null
@@ -46,7 +45,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
 
         val arguments = arguments ?: return
         val reciprocate = arguments.getSerializable(ARG_RECIPROCATE) as Reciprocate
-        BusSchedulePresenter(this, busDataRepository, reciprocate)
+        BusSchedulePresenterImpl(this, busDataRepository, reciprocate)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -76,7 +75,7 @@ class BusScheduleFragment : Fragment(), BusScheduleContract.View {
         tndCountdownTextView.stop()
     }
 
-    override fun setPresenter(presenter: BusScheduleContract.Presenter) {
+    override fun setPresenter(presenter: BusSchedulePresenter) {
         this.presenter = presenter
     }
 

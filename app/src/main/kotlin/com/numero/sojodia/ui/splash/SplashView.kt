@@ -1,6 +1,6 @@
 package com.numero.sojodia.ui.splash
 
-interface ISplashView {
+interface SplashView {
 
     fun successDownloadedBusData()
 

@@ -1,19 +1,18 @@
-package com.numero.sojodia.presenter
+package com.numero.sojodia.service
 
 import com.numero.sojodia.model.LatestVersion
 import com.numero.sojodia.model.Result
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
-import com.numero.sojodia.view.IUpdateBusDataView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
-class UpdateBusDataPresenter(
-        private val view: IUpdateBusDataView,
+class UpdateBusDataPresenterImpl(
+        private val view: UpdateBusDataView,
         private val configRepository: IConfigRepository,
         private val busDataRepository: BusDataRepository
-) : IUpdateBusDataPresenter {
+) : UpdateBusDataPresenter {
 
     override fun subscribe() {
     }

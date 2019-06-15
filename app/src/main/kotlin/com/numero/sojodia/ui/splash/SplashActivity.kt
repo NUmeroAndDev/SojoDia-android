@@ -14,21 +14,21 @@ import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.IConfigRepository
 import kotlinx.android.synthetic.main.activity_splash.*
 
-class SplashActivity : AppCompatActivity(), ISplashView {
+class SplashActivity : AppCompatActivity(), SplashView {
 
     private val configRepository: IConfigRepository
         get() = module.configRepository
     private val busDataRepository: BusDataRepository
         get() = module.busDataRepository
 
-    private lateinit var presenter: ISplashPresenter
+    private lateinit var presenter: SplashPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         applyAppTheme(configRepository.appTheme)
         setContentView(R.layout.activity_splash)
 
-        presenter = SplashPresenter(this, busDataRepository, configRepository)
+        presenter = SplashPresenterImpl(this, busDataRepository, configRepository)
 
         retryButton.setOnClickListener {
             loadBusData()
