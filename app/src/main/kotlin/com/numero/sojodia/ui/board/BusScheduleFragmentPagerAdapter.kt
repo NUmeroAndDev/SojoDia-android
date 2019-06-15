@@ -8,7 +8,10 @@ import com.numero.sojodia.extension.titleStringRes
 
 import com.numero.sojodia.model.Reciprocate
 
-class BusScheduleFragmentPagerAdapter(private val context: Context, fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class BusScheduleFragmentPagerAdapter(
+        private val context: Context,
+        fragmentManager: FragmentManager
+) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val reciprocateList: List<Reciprocate> = listOf(Reciprocate.GOING, Reciprocate.RETURN)
 
