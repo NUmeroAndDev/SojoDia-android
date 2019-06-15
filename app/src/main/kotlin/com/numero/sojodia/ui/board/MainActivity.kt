@@ -83,12 +83,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_settings -> {
-                val adapter = viewPager.adapter as? BusScheduleFragmentPagerAdapter
-                        ?: return false
-                val reciprocate = adapter.reciprocateList[viewPager.currentItem]
-                startActivity(SettingsActivity.createIntent(this, reciprocate))
-            }
+            R.id.action_settings -> startActivity(SettingsActivity.createIntent(this))
         }
         return super.onOptionsItemSelected(item)
     }

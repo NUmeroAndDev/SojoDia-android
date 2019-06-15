@@ -10,7 +10,7 @@ import com.numero.sojodia.model.Reciprocate
 
 class BusScheduleFragmentPagerAdapter(private val context: Context, fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
-    val reciprocateList: List<Reciprocate> = listOf(Reciprocate.GOING, Reciprocate.RETURN)
+    private val reciprocateList: List<Reciprocate> = listOf(Reciprocate.GOING, Reciprocate.RETURN)
 
     override fun getItem(position: Int): Fragment {
         return BusScheduleFragment.newInstance(reciprocateList[position])
