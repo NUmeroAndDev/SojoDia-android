@@ -24,7 +24,6 @@ import com.numero.sojodia.model.Route
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.service.UpdateDataWorker
-import com.numero.sojodia.service.UpdateResult
 import com.numero.sojodia.ui.settings.SettingsActivity
 import com.numero.sojodia.ui.splash.SplashActivity
 import com.numero.sojodia.ui.timetable.TimeTableBottomSheetDialogFragment
@@ -119,9 +118,9 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
             if (it.isEmpty()) return@observe
             val info = it[0]
             if (info.state == WorkInfo.State.SUCCEEDED) {
-                val resultKey = info.outputData.getString(UpdateDataWorker.KEY_RESULT)
-                val result = UpdateResult.find(resultKey!!)
-                if (result == UpdateResult.SUCCESS_UPDATE) {
+                val result = info.outputData.getString(UpdateDataWorker.KEY_RESULT)
+                        ?: return@observe
+                if (result == UpdateDataWorker.SUCCESS_UPDATE) {
                     showNeedRestartNotice()
                 }
             }
