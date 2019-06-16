@@ -9,6 +9,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.material.snackbar.Snackbar
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.module
@@ -20,6 +23,7 @@ import com.numero.sojodia.model.Route
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.service.UpdateBusDataService
+import com.numero.sojodia.service.UpdateDataWorker
 import com.numero.sojodia.ui.settings.SettingsActivity
 import com.numero.sojodia.ui.splash.SplashActivity
 import com.numero.sojodia.util.BroadCastUtil
@@ -102,7 +106,13 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     private fun startCheckUpdateService() {
-        startService(Intent(this, UpdateBusDataService::class.java))
+        val request = OneTimeWorkRequestBuilder<UpdateDataWorker>()
+                .build()
+        WorkManager.getInstance().beginUniqueWork(
+                UPDATE_WORKER_NAME,
+                ExistingWorkPolicy.KEEP,
+                request
+        ).enqueue()
     }
 
     private fun showNeedRestartNotice() {
@@ -117,6 +127,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     companion object {
 
         private const val BUNDLE_RECIPROCATE = "BUNDLE_RECIPROCATE"
+        private const val UPDATE_WORKER_NAME = "UPDATE_WORKER_NAME"
 
         fun createClearTopIntent(context: Context, reciprocate: Reciprocate? = null) = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
