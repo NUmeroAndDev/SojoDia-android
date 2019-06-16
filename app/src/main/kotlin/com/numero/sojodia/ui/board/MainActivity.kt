@@ -133,6 +133,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
                     busDataRepository.reloadBusData()
                     this.recreate()
                 }
+                .setAnchorView(R.id.tabCardView)
                 .show()
     }
 
