@@ -2,6 +2,7 @@ package com.numero.sojodia.service
 
 import android.content.Context
 import androidx.work.CoroutineWorker
+import androidx.work.Data
 import androidx.work.WorkerParameters
 import com.numero.sojodia.Module
 import com.numero.sojodia.model.LatestVersion
@@ -13,7 +14,8 @@ class UpdateDataWorker(context: Context, workerParams: WorkerParameters) : Corou
 
     override suspend fun doWork(): Result {
         if (configRepository.isTodayUpdateChecked) {
-            return Result.success()
+            val resultData = Data.Builder().putString(KEY_RESULT, UpdateResult.NO_NEED_UPDATE.key).build()
+            return Result.success(resultData)
         }
 
         val result = busDataRepository.fetchConfig()
@@ -24,7 +26,8 @@ class UpdateDataWorker(context: Context, workerParams: WorkerParameters) : Corou
                 if (config.checkUpdate(configRepository.currentVersion)) {
                     executeUpdate(config.latestVersion)
                 } else {
-                    executeUpdate(config.latestVersion)
+                    val resultData = Data.Builder().putString(KEY_RESULT, UpdateResult.NO_NEED_UPDATE.key).build()
+                    Result.success(resultData)
                 }
             }
             is com.numero.sojodia.model.Result.Error -> {
@@ -39,12 +42,28 @@ class UpdateDataWorker(context: Context, workerParams: WorkerParameters) : Corou
         when (result) {
             is com.numero.sojodia.model.Result.Success -> {
                 configRepository.updateBusDataVersion(latestVersion)
-                return Result.success()
+                val resultData = Data.Builder().putString(KEY_RESULT, UpdateResult.SUCCESS_UPDATE.key).build()
+                return Result.success(resultData)
             }
             is com.numero.sojodia.model.Result.Error -> {
                 result.throwable.printStackTrace()
                 return Result.failure()
             }
+        }
+    }
+
+    companion object {
+        const val KEY_RESULT = "KEY_RESULT"
+    }
+}
+
+enum class UpdateResult(val key: String) {
+    NO_NEED_UPDATE("NO_NEED_UPDATE"),
+    SUCCESS_UPDATE("SUCCESS_UPDATE");
+
+    companion object {
+        fun find(key: String): UpdateResult {
+            return requireNotNull(values().find { it.key == key })
         }
     }
 }

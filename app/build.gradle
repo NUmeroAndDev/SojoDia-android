@@ -67,6 +67,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
     implementation "androidx.work:work-runtime:$workVersion"
     implementation "androidx.work:work-runtime-ktx:$workVersion"
 
