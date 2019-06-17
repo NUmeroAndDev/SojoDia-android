@@ -133,9 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:fitsSystemWindows="true"
         android:overScrollMode="never"
-        android:paddingBottom="8dp"
         tools:listitem="@layout/holder_time_table_row" />
 
 </LinearLayout>

@@ -5,11 +5,13 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.updatePadding
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.requestApplyInsetsWhenAttached
 import com.numero.sojodia.extension.stationTitleRes
 import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.Reciprocate
@@ -49,6 +51,12 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = this@TimeTableBottomSheetDialogFragment.adapter
+
+            setOnApplyWindowInsetsListener { v, insets ->
+                v.updatePadding(bottom = v.paddingBottom + insets.systemWindowInsetBottom)
+                insets
+            }
+            requestApplyInsetsWhenAttached()
         }
         view.notSchoolTermChip.setOnCheckedChangeListener { _, isChecked ->
             view.notSchoolTermChip.isChipIconVisible = isChecked
