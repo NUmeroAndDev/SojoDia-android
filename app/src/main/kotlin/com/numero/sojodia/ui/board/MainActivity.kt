@@ -1,15 +1,12 @@
 package com.numero.sojodia.ui.board
 
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkInfo
@@ -27,17 +24,10 @@ import com.numero.sojodia.service.UpdateDataWorker
 import com.numero.sojodia.ui.settings.SettingsActivity
 import com.numero.sojodia.ui.splash.SplashActivity
 import com.numero.sojodia.ui.timetable.TimeTableBottomSheetDialogFragment
-import com.numero.sojodia.util.BroadCastUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmentListener {
-
-    private val finishDownloadReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            showNeedRestartNotice()
-        }
-    }
 
     private val busDataRepository: BusDataRepository
         get() = module.busDataRepository
@@ -69,16 +59,6 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     override fun onResume() {
         super.onResume()
         toolbar.subtitle = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
-    }
-
-    override fun onStart() {
-        super.onStart()
-        LocalBroadcastManager.getInstance(this).registerReceiver(finishDownloadReceiver, IntentFilter(BroadCastUtil.ACTION_FINISH_DOWNLOAD))
-    }
-
-    public override fun onStop() {
-        super.onStop()
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(finishDownloadReceiver)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
