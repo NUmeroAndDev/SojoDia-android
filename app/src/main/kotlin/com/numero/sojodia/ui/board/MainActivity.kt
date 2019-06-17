@@ -8,20 +8,25 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
 import com.google.android.material.snackbar.Snackbar
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.extension.getTodayString
-import com.numero.sojodia.ui.timetable.TimeTableBottomSheetDialogFragment
+import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
-import com.numero.sojodia.service.UpdateBusDataService
+import com.numero.sojodia.service.UpdateDataWorker
 import com.numero.sojodia.ui.settings.SettingsActivity
 import com.numero.sojodia.ui.splash.SplashActivity
+import com.numero.sojodia.ui.timetable.TimeTableBottomSheetDialogFragment
 import com.numero.sojodia.util.BroadCastUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -102,7 +107,24 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     private fun startCheckUpdateService() {
-        startService(Intent(this, UpdateBusDataService::class.java))
+        val request = OneTimeWorkRequestBuilder<UpdateDataWorker>()
+                .build()
+        WorkManager.getInstance().beginUniqueWork(
+                UPDATE_WORKER_NAME,
+                ExistingWorkPolicy.KEEP,
+                request
+        ).enqueue()
+        WorkManager.getInstance().getWorkInfosForUniqueWorkLiveData(UPDATE_WORKER_NAME).observe(this) {
+            if (it.isEmpty()) return@observe
+            val info = it[0]
+            if (info.state == WorkInfo.State.SUCCEEDED) {
+                val result = info.outputData.getString(UpdateDataWorker.KEY_RESULT)
+                        ?: return@observe
+                if (result == UpdateDataWorker.SUCCESS_UPDATE) {
+                    showNeedRestartNotice()
+                }
+            }
+        }
     }
 
     private fun showNeedRestartNotice() {
@@ -111,12 +133,14 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
                     busDataRepository.reloadBusData()
                     this.recreate()
                 }
+                .setAnchorView(R.id.tabCardView)
                 .show()
     }
 
     companion object {
 
         private const val BUNDLE_RECIPROCATE = "BUNDLE_RECIPROCATE"
+        private const val UPDATE_WORKER_NAME = "UPDATE_WORKER_NAME"
 
         fun createClearTopIntent(context: Context, reciprocate: Reciprocate? = null) = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
