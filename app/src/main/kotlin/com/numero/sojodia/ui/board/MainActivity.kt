@@ -13,7 +13,6 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.google.android.material.snackbar.Snackbar
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.Reciprocate
@@ -36,7 +35,6 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        applyAppTheme(configRepository.appTheme)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 

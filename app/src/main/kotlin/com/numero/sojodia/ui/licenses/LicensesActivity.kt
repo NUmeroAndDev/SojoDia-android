@@ -6,19 +6,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.module
-import com.numero.sojodia.extension.applyAppTheme
-import com.numero.sojodia.repository.ConfigRepository
 import kotlinx.android.synthetic.main.activity_licenses.*
 
 class LicensesActivity : AppCompatActivity() {
 
-    private val configRepository: ConfigRepository
-        get() = module.configRepository
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        applyAppTheme(configRepository.appTheme)
         setContentView(R.layout.activity_licenses)
         setSupportActionBar(toolbar)
 

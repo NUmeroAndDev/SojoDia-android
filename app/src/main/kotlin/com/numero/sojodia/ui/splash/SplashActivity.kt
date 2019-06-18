@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.numero.sojodia.R
-import com.numero.sojodia.ui.board.MainActivity
 import com.numero.sojodia.extension.module
-import com.numero.sojodia.extension.applyAppTheme
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.ui.board.MainActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity(), SplashView {
@@ -25,7 +24,6 @@ class SplashActivity : AppCompatActivity(), SplashView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        applyAppTheme(configRepository.appTheme)
         setContentView(R.layout.activity_splash)
 
         presenter = SplashPresenterImpl(this, busDataRepository, configRepository)
