@@ -10,7 +10,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.net.toUri
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.applyAppTheme
+import com.numero.sojodia.extension.applyApplication
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.ConfigRepository
@@ -24,7 +24,6 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        applyAppTheme(configRepository.appTheme)
         setContentView(R.layout.activity_settings)
         setSupportActionBar(toolbar)
 
@@ -77,7 +76,7 @@ class SettingsActivity : AppCompatActivity() {
                 }
                 configRepository.appTheme = theme
                 selectThemeSettingsItemView.setSummary(getString(theme.textRes))
-                applyAppTheme(theme)
+                theme.applyApplication()
                 true
             }
         }
