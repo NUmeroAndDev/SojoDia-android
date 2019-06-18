@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
@@ -165,7 +166,9 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun showTkNoBusLayout() {
-        tkNoBusLayout.visibility = View.VISIBLE
+        tkNoBusTextView.isVisible = true
+        tkCountdownTextView.isVisible = false
+        tkBusTimeViewPager.isVisible = false
     }
 
     override fun showTndNextButton() {
@@ -177,7 +180,9 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun showTndNoBusLayout() {
-        tndNoBusLayout.visibility = View.VISIBLE
+        tndNoBusTextView.isVisible = true
+        tndCountdownTextView.isVisible = false
+        tndBusTimeViewPager.isVisible = false
     }
 
     override fun hideTkNextButton() {
@@ -189,7 +194,9 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun hideTkNoBusLayout() {
-        tkNoBusLayout.visibility = View.GONE
+        tkNoBusTextView.isVisible = false
+        tkCountdownTextView.isVisible = true
+        tkBusTimeViewPager.isVisible = true
     }
 
     override fun hideTndNextButton() {
@@ -201,7 +208,9 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun hideTndNoBusLayout() {
-        tndNoBusLayout.visibility = View.GONE
+        tndNoBusTextView.isVisible = false
+        tndCountdownTextView.isVisible = true
+        tndBusTimeViewPager.isVisible = true
     }
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {

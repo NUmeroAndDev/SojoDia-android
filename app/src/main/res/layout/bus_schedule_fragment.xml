@@ -82,27 +82,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView"
                 app:safeTextColor="@color/count_safe_text" />
 
-            <FrameLayout
-                android:id="@+id/tkNoBusLayout"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+            <TextView
+                android:id="@+id/tkNoBusTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="?attr/colorSurface"
+                android:text="@string/no_bus"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="@dimen/no_bus_text"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/no_bus"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textSize="@dimen/no_bus_text" />
-
-            </FrameLayout>
+                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -185,27 +178,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView"
                 app:safeTextColor="@color/count_safe_text" />
 
-            <FrameLayout
-                android:id="@+id/tndNoBusLayout"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+            <TextView
+                android:id="@+id/tndNoBusTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="?attr/colorSurface"
+                android:text="@string/no_bus"
+                android:textSize="@dimen/no_bus_text"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/no_bus"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textSize="@dimen/no_bus_text" />
-
-            </FrameLayout>
+                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
