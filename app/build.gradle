@@ -35,6 +35,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     androidExtensions {
         experimental = true
     }
@@ -63,6 +67,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.activity:activity:$activityVersion"
+    implementation "androidx.fragment:fragment:$fragmentVersion"
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
