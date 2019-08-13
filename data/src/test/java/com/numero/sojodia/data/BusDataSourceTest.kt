@@ -1,5 +1,6 @@
 package com.numero.sojodia.data
 
+import android.os.Build
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.numero.sojodia.model.Result
 import com.numero.sojodia.data.remote.BusDataApi
@@ -12,10 +13,12 @@ import okhttp3.mockwebserver.MockWebServer
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @RunWith(AndroidJUnit4::class)
+@Config(sdk = [Build.VERSION_CODES.P])  // FIXME とりあえずの対応
 class BusDataSourceTest {
 
     private lateinit var busDataSource: BusDataSource

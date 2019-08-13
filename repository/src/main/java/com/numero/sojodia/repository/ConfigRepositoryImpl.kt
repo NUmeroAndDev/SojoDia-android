@@ -43,12 +43,16 @@ class ConfigRepositoryImpl(context: Context) : ConfigRepository {
             }
         }
         get() {
-            val entry = sharedPreferences.getString(KEY_APP_THEME, AppTheme.LIGHT.key)
+            val entry = sharedPreferences.getStringOrThrow(KEY_APP_THEME, AppTheme.LIGHT.key)
             return AppTheme.from(entry)
         }
 
     private fun Calendar.getTodayStringOnlyFigure(): String {
         return DateFormat.format("yyyyMMdd", this).toString()
+    }
+
+    private fun SharedPreferences.getStringOrThrow(key: String, default: String): String {
+        return getString(key, default) ?: throw IllegalArgumentException()
     }
 
     companion object {

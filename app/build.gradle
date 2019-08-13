@@ -7,11 +7,11 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.cookpad.android.licensetools'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.numero.sojodia"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
         versionCode rootProject.appVersionCode
         versionName rootProject.appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
