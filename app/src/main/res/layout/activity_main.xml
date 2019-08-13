@@ -37,7 +37,6 @@
                     android:layout_marginEnd="8dp"
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/settingsImageButton"
                     app:layout_constraintStart_toStartOf="parent"
