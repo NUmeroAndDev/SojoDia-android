@@ -3,8 +3,6 @@ package com.numero.sojodia.ui.board
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import androidx.work.ExistingWorkPolicy
@@ -36,7 +34,6 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
 
         if (busDataRepository.getBusData().isNoBusData) {
             startActivity(SplashActivity.createIntent(this))
@@ -56,23 +53,11 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     override fun onResume() {
         super.onResume()
-        toolbar.subtitle = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_settings -> startActivity(SettingsActivity.createIntent(this))
-        }
-        return super.onOptionsItemSelected(item)
+        dateTextView.text = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
     }
 
     override fun onDataChanged() {
-        toolbar.subtitle = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
+        dateTextView.text = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
     }
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
@@ -82,6 +67,9 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     private fun initViews() {
         viewPager.adapter = BusScheduleFragmentPagerAdapter(this, supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
+        settingsImageButton.setOnClickListener {
+            startActivity(SettingsActivity.createIntent(this))
+        }
     }
 
     private fun startCheckUpdateService() {
