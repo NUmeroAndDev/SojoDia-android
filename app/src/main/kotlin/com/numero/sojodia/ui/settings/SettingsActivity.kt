@@ -8,6 +8,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.net.toUri
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.applyApplication
@@ -22,13 +26,22 @@ class SettingsActivity : AppCompatActivity() {
     private val configRepository: ConfigRepository
         get() = module.configRepository
 
+    private lateinit var appUpdateManager: AppUpdateManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         setSupportActionBar(toolbar)
 
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setupViews()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkHasUpdate()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -38,6 +51,32 @@ class SettingsActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun checkHasUpdate() {
+        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+            when (appUpdateInfo.updateAvailability()) {
+                UpdateAvailability.UPDATE_AVAILABLE -> {
+                    appVersionSettingsItemView.apply {
+                        setVisibleIcon(true)
+                        setSummary(getString(R.string.settings_newer_version_available))
+                        setOnClickListener {
+                            appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this@SettingsActivity, UPDATE_REQUEST_CODE)
+                        }
+                    }
+                }
+                UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
+                    appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this, UPDATE_REQUEST_CODE)
+                }
+                else -> {
+                    appVersionSettingsItemView.apply {
+                        setVisibleIcon(false)
+                        setSummary(BuildConfig.VERSION_NAME)
+                        setOnClickListener(null)
+                    }
+                }
+            }
         }
     }
 
@@ -52,7 +91,10 @@ class SettingsActivity : AppCompatActivity() {
 
         busDataSettingsItemView.setSummary(configRepository.currentVersion.value.toString())
 
-        appVersionSettingsItemView.setSummary(BuildConfig.VERSION_NAME)
+        appVersionSettingsItemView.apply {
+            setVisibleIcon(false)
+            setSummary(BuildConfig.VERSION_NAME)
+        }
 
         viewSourceSettingsItemView.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, SOURCE_URL.toUri()))
@@ -94,6 +136,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
     companion object {
+        private const val UPDATE_REQUEST_CODE = 1
 
         private const val SOURCE_URL = "https://github.com/NUmeroAndDev/SojoDia-android"
 
