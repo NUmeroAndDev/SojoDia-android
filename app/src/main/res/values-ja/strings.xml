@@ -35,6 +35,8 @@
     <string name="settings_view_source_title">View source on GitHub</string>
     <string name="settings_licenses_title">ライセンス</string>
 
+    <string name="settings_newer_version_available">新しいバージョンがあります</string>
+
     <string name="theme_light">ライト</string>
     <string name="theme_dark">ダーク</string>
     <string name="theme_system_default">システムのデフォルト</string>

@@ -35,6 +35,8 @@
     <string name="settings_view_source_title">View source on GitHub</string>
     <string name="settings_licenses_title">Licenses</string>
 
+    <string name="settings_newer_version_available">Newer version is available</string>
+
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="theme_system_default">System default</string>

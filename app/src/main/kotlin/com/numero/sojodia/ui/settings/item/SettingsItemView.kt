@@ -18,7 +18,9 @@ class SettingsItemView @JvmOverloads constructor(context: Context, attrs: Attrib
             val summary = getString(R.styleable.SettingsItemView_summary)
             setSummary(summary)
             val icon = getDrawable(R.styleable.SettingsItemView_icon)
+            val iconTintColor = getColorStateList(R.styleable.SettingsItemView_iconTint)
             iconImageView.setImageDrawable(icon)
+            iconImageView.imageTintList = iconTintColor
         }
     }
 
@@ -30,6 +32,10 @@ class SettingsItemView @JvmOverloads constructor(context: Context, attrs: Attrib
     fun setSummary(summary: String?) {
         summaryTextView.text = summary
         summaryTextView.isVisible = summary.isNullOrEmpty().not()
+    }
+
+    fun setVisibleIcon(isVisible: Boolean) {
+        iconImageView.isVisible = isVisible
     }
 
     override fun setOnClickListener(l: OnClickListener?) {

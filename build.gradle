@@ -60,6 +60,8 @@ buildscript {
         kotshiVersion = '1.0.6'
         retrofitVersion = '2.5.0'
 
+        playCoreVersion = '1.6.1'
+
         junitVersion = '4.12'
         robolectricVersion = '4.3'
         testRunnerVersion = '1.1.0'
