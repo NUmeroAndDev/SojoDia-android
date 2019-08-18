@@ -61,7 +61,7 @@
                     android:layout_width="6dp"
                     android:layout_height="6dp"
                     android:layout_margin="12dp"
-                    android:contentDescription="通知あり"
+                    android:contentDescription="@string/badge_description"
                     android:src="@drawable/notification_badge"
                     android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
