@@ -1,7 +1,7 @@
 
 #  SojoDia
 ![Android Studio](https://img.shields.io/badge/Android%20Studio-3.5.0-green.svg)
-![Kotlin](https://img.shields.io/badge/kotlin-1.3.41-yellow.svg)
+![Kotlin](https://img.shields.io/badge/kotlin-1.3.50-yellow.svg)
 [![CircleCI](https://circleci.com/gh/NUmeroAndDev/SojoDia-android.svg?style=svg)](https://circleci.com/gh/NUmeroAndDev/SojoDia-android)  
 
 ## About  
