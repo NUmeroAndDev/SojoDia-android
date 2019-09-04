@@ -4,8 +4,7 @@ enum class AppTheme(val key: String) {
 
     LIGHT("LIGHT"),
     DARK("DARK"),
-    SYSTEM_DEFAULT("SYSTEM_DEFAULT"),
-    AUTO_BATTERY("AUTO_BATTERY");
+    SYSTEM_DEFAULT("SYSTEM_DEFAULT");
 
     companion object {
         fun from(key: String): AppTheme {
