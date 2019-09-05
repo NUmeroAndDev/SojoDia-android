@@ -19,7 +19,7 @@ enum VersionSuffix {
 }
 
 ext {
-    def suffix = VersionSuffix.ALPHA
+    def suffix = VersionSuffix.PRODUCT
 
     def appVersionMajor = 9
     def appVersionMinor = 0
