@@ -10,7 +10,7 @@
 alt="Get it on Google Play" height="80">](https://play.google.com/store/apps/details?id=com.numero.sojodia)
 
 ### Support  
-API Level 21 ( Android 5.0 )
+API Level 23 ( Android 6.0 )
 
 ### Architecture  
 
