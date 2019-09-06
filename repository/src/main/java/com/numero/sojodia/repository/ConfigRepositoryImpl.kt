@@ -43,7 +43,7 @@ class ConfigRepositoryImpl(context: Context) : ConfigRepository {
             }
         }
         get() {
-            val entry = sharedPreferences.getStringOrThrow(KEY_APP_THEME, AppTheme.LIGHT.key)
+            val entry = sharedPreferences.getStringOrThrow(KEY_APP_THEME, AppTheme.SYSTEM_DEFAULT.key)
             return AppTheme.from(entry)
         }
 
