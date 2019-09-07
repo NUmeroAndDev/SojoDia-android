@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="@style/BaseTheme">
+    <style name="ColorTheme" parent="BaseTheme">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primaryVariant</item>
         <item name="colorSecondary">@color/secondary</item>
@@ -15,10 +15,5 @@
         <item name="colorOnBackground">@color/onBackground</item>
         <item name="colorOnSurface">@color/onSurface</item>
         <item name="colorOnError">@color/onError</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 </resources>

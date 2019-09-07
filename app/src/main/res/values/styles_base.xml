@@ -7,6 +7,9 @@
         <item name="android:splitMotionEvents">false</item>
         <item name="dialogCornerRadius">@dimen/app_corner_round</item>
 
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Large.Round</item>
     </style>
 
