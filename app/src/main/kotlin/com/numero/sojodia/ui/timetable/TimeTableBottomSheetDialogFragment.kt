@@ -66,14 +66,6 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         dialog.setContentView(view)
     }
 
-    override fun onStart() {
-        super.onStart()
-        val dialog = dialog ?: return
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            dialog.window?.findViewById<View>(com.google.android.material.R.id.container)?.fitsSystemWindows = false
-        }
-    }
-
     override fun onResume() {
         super.onResume()
         presenter.subscribe()
