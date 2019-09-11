@@ -12,6 +12,14 @@ sealed class BusTimeList(val value: List<BusTime>) {
     fun isEmpty(): Boolean = value.isEmpty()
 
     val size: Int = value.size
+
+    fun findNearBusTimePosition(time: Time): Int {
+        return value.asSequence().indexOfFirst { it.time > time }
+    }
+
+    companion object {
+        const val NO_BUS_POSITION = -1
+    }
 }
 
 class TkBusTimeList(

@@ -39,8 +39,8 @@ class BusSchedulePresenterImpl(
         view.showTkBusTimeList(tkTimeList)
         view.showTndBusTimeList(tndTimeList)
 
-        tkBusPosition = findBusPosition(tkTimeList.value)
-        tndBusPosition = findBusPosition(tndTimeList.value)
+        tkBusPosition = tkTimeList.findNearBusTimePosition(Time())
+        tndBusPosition = tndTimeList.findNearBusTimePosition(Time())
 
         if (tkBusPosition == NO_BUS_POSITION) {
             view.showTkNoBusLayout()
@@ -87,11 +87,11 @@ class BusSchedulePresenterImpl(
             val list = when (reciprocate) {
                 Reciprocate.GOING -> busData.tkBusTimeListGoing
                         .asSequence()
-                        .filter { busTime -> busTime.week == week }
+                        .filter { it.week == week }
                         .toList()
                 Reciprocate.RETURN -> busData.tkBusTimeListReturn
                         .asSequence()
-                        .filter { busTime -> busTime.week == week }
+                        .filter { it.week == week }
                         .toList()
             }
             tkTimeList = TkBusTimeList(list)
@@ -206,15 +206,6 @@ class BusSchedulePresenterImpl(
         view.showTimeTableDialog(route, reciprocate)
     }
 
-    private fun findBusPosition(busTimeList: List<BusTime>): Int {
-        busTimeList.forEachIndexed { index, busTime ->
-            if (busTime.time > Time()) {
-                return index
-            }
-        }
-        return NO_BUS_POSITION
-    }
-
     private fun canPreviewTkTime(): Boolean {
         if (tkBusPosition == NO_BUS_POSITION || tkBusPosition == 0) {
             return false
@@ -232,6 +223,7 @@ class BusSchedulePresenterImpl(
     }
 
     companion object {
-        private const val NO_BUS_POSITION = -1
+        // TODO remove
+        private const val NO_BUS_POSITION = BusTimeList.NO_BUS_POSITION
     }
 }
