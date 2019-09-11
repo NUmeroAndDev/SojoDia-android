@@ -8,51 +8,16 @@ class BusSchedulePresenterImpl(
         busDataRepository: BusDataRepository,
         private val reciprocate: Reciprocate
 ) : BusSchedulePresenter {
-    private lateinit var week: Week
+
+    private var week: Week = Week.getCurrentWeek()
 
     private var tkBusPosition = 0
     private var tndBusPosition = 0
     private val busData: BusData = busDataRepository.getBusData()
 
-    private var tkTimeList: MutableList<BusTime> = mutableListOf()
-        get() {
-            return if (field.isEmpty()) {
-                when (reciprocate) {
-                    Reciprocate.GOING -> busData.tkBusTimeListGoing
-                            .filter { busTime -> busTime.week == week }.toMutableList()
-                            .apply {
-                                field = this
-                            }
-                    Reciprocate.RETURN -> busData.tkBusTimeListReturn
-                            .filter { busTime -> busTime.week == week }.toMutableList()
-                            .apply {
-                                field = this
-                            }
-                }
-            } else {
-                field
-            }
-        }
+    private var tkTimeList: TkBusTimeList = TkBusTimeList.emptyList()
 
-    private var tndTimeList: MutableList<BusTime> = mutableListOf()
-        get() {
-            return if (field.isEmpty()) {
-                when (reciprocate) {
-                    Reciprocate.GOING -> busData.tndBusTimeListGoing
-                            .filter { busTime -> busTime.week == week }.toMutableList()
-                            .apply {
-                                field = this
-                            }
-                    Reciprocate.RETURN -> busData.tndBusTimeListReturn
-                            .filter { busTime -> busTime.week == week }.toMutableList()
-                            .apply {
-                                field = this
-                            }
-                }
-            } else {
-                field
-            }
-        }
+    private var tndTimeList: TndBusTimeList = TndBusTimeList.emptyList()
 
     init {
         this.view.setPresenter(this)
@@ -62,15 +27,20 @@ class BusSchedulePresenterImpl(
 
     override fun unSubscribe() {}
 
-    override fun onTimeChanged(week: Week) {
-        this.week = week
-        tkTimeList.clear()
-        tndTimeList.clear()
+    override fun setupBusTime(week: Week) {
+        if (this.week != week) {
+            this.week = week
+            tkTimeList = TkBusTimeList.emptyList()
+            tndTimeList = TndBusTimeList.emptyList()
+        }
+        tkTimeList = setupTkList()
+        tndTimeList = setupTndList()
+
         view.showTkBusTimeList(tkTimeList)
         view.showTndBusTimeList(tndTimeList)
 
-        tkBusPosition = findBusPosition(tkTimeList)
-        tndBusPosition = findBusPosition(tndTimeList)
+        tkBusPosition = findBusPosition(tkTimeList.value)
+        tndBusPosition = findBusPosition(tndTimeList.value)
 
         if (tkBusPosition == NO_BUS_POSITION) {
             view.showTkNoBusLayout()
@@ -79,7 +49,7 @@ class BusSchedulePresenterImpl(
         } else {
             view.hideTkNoBusLayout()
             view.selectTkCurrentBusPosition(tkBusPosition)
-            view.startTkCountDown(tkTimeList[tkBusPosition])
+            view.startTkCountDown(tkTimeList.value[tkBusPosition])
             if (tkBusPosition >= tkTimeList.size - 1) {
                 view.hideTkNextButton()
             } else {
@@ -98,7 +68,7 @@ class BusSchedulePresenterImpl(
         } else {
             view.hideTndNoBusLayout()
             view.selectTndCurrentBusPosition(tndBusPosition)
-            view.startTndCountDown(tndTimeList[tndBusPosition])
+            view.startTndCountDown(tndTimeList.value[tndBusPosition])
             if (tndBusPosition >= tndTimeList.size - 1) {
                 view.hideTndNextButton()
             } else {
@@ -109,6 +79,44 @@ class BusSchedulePresenterImpl(
             } else {
                 view.hideTndPreviewButton()
             }
+        }
+    }
+
+    private fun setupTkList(): TkBusTimeList {
+        return if (tkTimeList.isEmpty()) {
+            val list = when (reciprocate) {
+                Reciprocate.GOING -> busData.tkBusTimeListGoing
+                        .asSequence()
+                        .filter { busTime -> busTime.week == week }
+                        .toList()
+                Reciprocate.RETURN -> busData.tkBusTimeListReturn
+                        .asSequence()
+                        .filter { busTime -> busTime.week == week }
+                        .toList()
+            }
+            tkTimeList = TkBusTimeList(list)
+            tkTimeList
+        } else {
+            tkTimeList
+        }
+    }
+
+    private fun setupTndList(): TndBusTimeList {
+        return if (tndTimeList.isEmpty()) {
+            val list = when (reciprocate) {
+                Reciprocate.GOING -> busData.tndBusTimeListGoing
+                        .asSequence()
+                        .filter { busTime -> busTime.week == week }
+                        .toList()
+                Reciprocate.RETURN -> busData.tndBusTimeListReturn
+                        .asSequence()
+                        .filter { busTime -> busTime.week == week }
+                        .toList()
+            }
+            tndTimeList = TndBusTimeList(list)
+            tndTimeList
+        } else {
+            tndTimeList
         }
     }
 
@@ -134,13 +142,13 @@ class BusSchedulePresenterImpl(
             view.hideTkPreviewButton()
         }
         view.selectTkCurrentBusPosition(tkBusPosition)
-        view.startTkCountDown(tkTimeList[tkBusPosition])
+        view.startTkCountDown(tkTimeList.value[tkBusPosition])
     }
 
     override fun previewTkBus() {
         tkBusPosition -= 1
         view.selectTkCurrentBusPosition(tkBusPosition)
-        view.startTkCountDown(tkTimeList[tkBusPosition])
+        view.startTkCountDown(tkTimeList.value[tkBusPosition])
         if (canPreviewTkTime()) {
             view.showTkPreviewButton()
         } else {
@@ -175,13 +183,13 @@ class BusSchedulePresenterImpl(
             view.hideTndPreviewButton()
         }
         view.selectTndCurrentBusPosition(tndBusPosition)
-        view.startTndCountDown(tndTimeList[tndBusPosition])
+        view.startTndCountDown(tndTimeList.value[tndBusPosition])
     }
 
     override fun previewTndBus() {
         tndBusPosition -= 1
         view.selectTndCurrentBusPosition(tndBusPosition)
-        view.startTndCountDown(tndTimeList[tndBusPosition])
+        view.startTndCountDown(tndTimeList.value[tndBusPosition])
         if (canPreviewTndTime()) {
             view.showTndPreviewButton()
         } else {
@@ -211,7 +219,7 @@ class BusSchedulePresenterImpl(
         if (tkBusPosition == NO_BUS_POSITION || tkBusPosition == 0) {
             return false
         }
-        val busTime = tkTimeList[tkBusPosition - 1]
+        val busTime = tkTimeList.value[tkBusPosition - 1]
         return busTime.time > Time()
     }
 
@@ -219,7 +227,7 @@ class BusSchedulePresenterImpl(
         if (tndBusPosition == NO_BUS_POSITION || tndBusPosition == 0) {
             return false
         }
-        val busTime = tndTimeList[tndBusPosition - 1]
+        val busTime = tndTimeList.value[tndBusPosition - 1]
         return busTime.time > Time()
     }
 

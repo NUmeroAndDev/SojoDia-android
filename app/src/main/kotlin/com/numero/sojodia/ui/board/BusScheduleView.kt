@@ -1,14 +1,12 @@
 package com.numero.sojodia.ui.board
 
 import com.numero.sojodia.core.View
-import com.numero.sojodia.model.BusTime
-import com.numero.sojodia.model.Reciprocate
-import com.numero.sojodia.model.Route
+import com.numero.sojodia.model.*
 
 interface BusScheduleView : View<BusSchedulePresenter> {
-    fun showTkBusTimeList(busTimeList: MutableList<BusTime>)
+    fun showTkBusTimeList(busTimeList: TkBusTimeList)
 
-    fun showTndBusTimeList(busTimeList: MutableList<BusTime>)
+    fun showTndBusTimeList(busTimeList: TndBusTimeList)
 
     fun selectTkCurrentBusPosition(position: Int)
 

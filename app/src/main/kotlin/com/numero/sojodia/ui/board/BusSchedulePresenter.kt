@@ -4,8 +4,8 @@ import com.numero.sojodia.core.Presenter
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.Week
 
-interface BusSchedulePresenter:Presenter {
-    fun onTimeChanged(week: Week)
+interface BusSchedulePresenter : Presenter {
+    fun setupBusTime(week: Week)
 
     fun nextTkBus()
 
