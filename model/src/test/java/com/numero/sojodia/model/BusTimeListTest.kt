@@ -55,6 +55,6 @@ class BusTimeListTest {
         assertEquals(position_12_30, 2)
 
         val position_17_00 = busTimeList.findNearBusTimePosition(Time(hour = 17, min = 0))
-        assertEquals(position_17_00, BusTimeList.NO_BUS_POSITION)
+        assertEquals(position_17_00, -1)
     }
 }

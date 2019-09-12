@@ -16,10 +16,6 @@ sealed class BusTimeList(val value: List<BusTime>) {
     fun findNearBusTimePosition(time: Time): Int {
         return value.asSequence().indexOfFirst { it.time > time }
     }
-
-    companion object {
-        const val NO_BUS_POSITION = -1
-    }
 }
 
 class TkBusTimeList(
