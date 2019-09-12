@@ -143,6 +143,7 @@ class BusSchedulePresenterImpl(
             return
         }
         tkBusTimeListPosition.next()
+        tkBusTimeListPosition.setMinPosition(tkBusTimeListPosition.value)
         if (tkBusTimeListPosition.canNext()) {
             view.showTkNextButton()
         } else {
@@ -185,6 +186,7 @@ class BusSchedulePresenterImpl(
             return
         }
         tndBusTimeListPosition.next()
+        tndBusTimeListPosition.setMinPosition(tndBusTimeListPosition.value)
         if (tndBusTimeListPosition.canNext()) {
             view.showTndNextButton()
         } else {
