@@ -37,6 +37,8 @@ class BusTimeListTest {
     @Test
     fun isEmpty() {
         assertFalse(busTimeList.isEmpty())
+        assertTrue(TkBusTimeList.emptyList().isEmpty())
+        assertTrue(TndBusTimeList.emptyList().isEmpty())
     }
 
     @Test
