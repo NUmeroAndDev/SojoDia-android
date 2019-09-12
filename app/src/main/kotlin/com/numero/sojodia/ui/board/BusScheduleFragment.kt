@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.numero.sojodia.R
@@ -158,11 +159,11 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun showTkNextButton() {
-        tkNextImageButton?.visibility = View.VISIBLE
+        tkNextImageButton?.isInvisible = false
     }
 
     override fun showTkPreviewButton() {
-        tkPreviewImageButton?.visibility = View.VISIBLE
+        tkPreviewImageButton?.isInvisible = false
     }
 
     override fun showTkNoBusLayout() {
@@ -172,11 +173,11 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun showTndNextButton() {
-        tndNextImageButton?.visibility = View.VISIBLE
+        tndNextImageButton?.isInvisible = false
     }
 
     override fun showTndPreviewButton() {
-        tndPreviewImageButton?.visibility = View.VISIBLE
+        tndPreviewImageButton?.isInvisible = false
     }
 
     override fun showTndNoBusLayout() {
@@ -186,11 +187,11 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun hideTkNextButton() {
-        tkNextImageButton?.visibility = View.INVISIBLE
+        tkNextImageButton?.isInvisible = true
     }
 
     override fun hideTkPreviewButton() {
-        tkPreviewImageButton?.visibility = View.INVISIBLE
+        tkPreviewImageButton?.isInvisible = true
     }
 
     override fun hideTkNoBusLayout() {
@@ -200,11 +201,11 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun hideTndNextButton() {
-        tndNextImageButton?.visibility = View.INVISIBLE
+        tndNextImageButton?.isInvisible = true
     }
 
     override fun hideTndPreviewButton() {
-        tndPreviewImageButton?.visibility = View.INVISIBLE
+        tndPreviewImageButton?.isInvisible = true
     }
 
     override fun hideTndNoBusLayout() {
