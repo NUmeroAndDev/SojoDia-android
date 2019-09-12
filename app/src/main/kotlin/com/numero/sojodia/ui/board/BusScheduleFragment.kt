@@ -60,7 +60,7 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     override fun onResume() {
         super.onResume()
         presenter.subscribe()
-        presenter.onTimeChanged(Week.getCurrentWeek())
+        presenter.setupBusTime(Week.getCurrentWeek())
         tkCountdownTextView.start()
         tndCountdownTextView.start()
     }
@@ -119,22 +119,22 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
         if (isDateChanged) {
             listener?.onDataChanged()
             currentDateString = Calendar.getInstance().getTodayStringOnlyFigure()
-            presenter.onTimeChanged(Week.getCurrentWeek())
+            presenter.setupBusTime(Week.getCurrentWeek())
         }
     }
 
-    override fun showTkBusTimeList(busTimeList: MutableList<BusTime>) {
+    override fun showTkBusTimeList(busTimeList: TkBusTimeList) {
         tkBusTimeViewPager.apply {
             adapter = BusTimePagerAdapter().apply {
-                setBusTimeList(busTimeList)
+                setBusTimeList(busTimeList.value)
             }
         }
     }
 
-    override fun showTndBusTimeList(busTimeList: MutableList<BusTime>) {
+    override fun showTndBusTimeList(busTimeList: TndBusTimeList) {
         tndBusTimeViewPager.apply {
             adapter = BusTimePagerAdapter().apply {
-                setBusTimeList(busTimeList)
+                setBusTimeList(busTimeList.value)
             }
         }
     }
