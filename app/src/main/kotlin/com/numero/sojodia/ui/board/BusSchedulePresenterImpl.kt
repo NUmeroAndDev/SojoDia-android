@@ -59,18 +59,7 @@ class BusSchedulePresenterImpl(
             view.hideTkPreviewButton()
         } else {
             view.hideTkNoBusLayout()
-            view.selectTkCurrentBusPosition(tkBusTimeListPosition.value)
-            view.startTkCountDown(tkTimeList.value[tkBusTimeListPosition.value])
-            if (tkBusTimeListPosition.canNext()) {
-                view.showTkNextButton()
-            } else {
-                view.hideTkNextButton()
-            }
-            if (tkBusTimeListPosition.canPrevious()) {
-                view.showTkPreviewButton()
-            } else {
-                view.hideTkPreviewButton()
-            }
+            updateTkBusView()
         }
         if (tndBusTimeListPosition.isNoNextAndPrevious) {
             view.showTndNoBusLayout()
@@ -78,18 +67,7 @@ class BusSchedulePresenterImpl(
             view.hideTndPreviewButton()
         } else {
             view.hideTndNoBusLayout()
-            view.selectTndCurrentBusPosition(tndBusTimeListPosition.value)
-            view.startTndCountDown(tndTimeList.value[tndBusTimeListPosition.value])
-            if (tndBusTimeListPosition.canNext()) {
-                view.showTndNextButton()
-            } else {
-                view.hideTndNextButton()
-            }
-            if (tndBusTimeListPosition.canPrevious()) {
-                view.showTndPreviewButton()
-            } else {
-                view.hideTndPreviewButton()
-            }
+            updateTndBusView()
         }
     }
 
@@ -144,34 +122,12 @@ class BusSchedulePresenterImpl(
         }
         tkBusTimeListPosition.next()
         tkBusTimeListPosition.setMinPosition(tkBusTimeListPosition.value)
-        if (tkBusTimeListPosition.canNext()) {
-            view.showTkNextButton()
-        } else {
-            view.hideTkNextButton()
-        }
-        if (tkBusTimeListPosition.canPrevious()) {
-            view.showTkPreviewButton()
-        } else {
-            view.hideTkPreviewButton()
-        }
-        view.selectTkCurrentBusPosition(tkBusTimeListPosition.value)
-        view.startTkCountDown(tkTimeList.value[tkBusTimeListPosition.value])
+        updateTkBusView()
     }
 
     override fun previewTkBus() {
         tkBusTimeListPosition.previous()
-        view.selectTkCurrentBusPosition(tkBusTimeListPosition.value)
-        view.startTkCountDown(tkTimeList.value[tkBusTimeListPosition.value])
-        if (tkBusTimeListPosition.canPrevious()) {
-            view.showTkPreviewButton()
-        } else {
-            view.hideTkPreviewButton()
-        }
-        if (tkBusTimeListPosition.canNext()) {
-            view.showTkNextButton()
-        } else {
-            view.hideTkNextButton()
-        }
+        updateTkBusView()
     }
 
     override fun nextTndBus() {
@@ -187,37 +143,45 @@ class BusSchedulePresenterImpl(
         }
         tndBusTimeListPosition.next()
         tndBusTimeListPosition.setMinPosition(tndBusTimeListPosition.value)
-        if (tndBusTimeListPosition.canNext()) {
-            view.showTndNextButton()
-        } else {
-            view.hideTndNextButton()
-        }
-        if (tndBusTimeListPosition.canPrevious()) {
-            view.showTndPreviewButton()
-        } else {
-            view.hideTndPreviewButton()
-        }
-        view.selectTndCurrentBusPosition(tndBusTimeListPosition.value)
-        view.startTndCountDown(tndTimeList.value[tndBusTimeListPosition.value])
+        updateTndBusView()
     }
 
     override fun previewTndBus() {
         tndBusTimeListPosition.previous()
-        view.selectTndCurrentBusPosition(tndBusTimeListPosition.value)
-        view.startTndCountDown(tndTimeList.value[tndBusTimeListPosition.value])
-        if (tndBusTimeListPosition.canPrevious()) {
-            view.showTndPreviewButton()
+        updateTndBusView()
+    }
+
+    override fun showTimeTableDialog(route: Route) {
+        view.showTimeTableDialog(route, reciprocate)
+    }
+
+    private fun updateTkBusView() {
+        if (tkBusTimeListPosition.canNext()) {
+            view.showTkNextButton()
         } else {
-            view.hideTndPreviewButton()
+            view.hideTkNextButton()
         }
+        if (tkBusTimeListPosition.canPrevious()) {
+            view.showTkPreviewButton()
+        } else {
+            view.hideTkPreviewButton()
+        }
+        view.selectTkCurrentBusPosition(tkBusTimeListPosition.value)
+        view.startTkCountDown(tkTimeList.value[tkBusTimeListPosition.value])
+    }
+
+    private fun updateTndBusView() {
         if (tndBusTimeListPosition.canNext()) {
             view.showTndNextButton()
         } else {
             view.hideTndNextButton()
         }
-    }
-
-    override fun showTimeTableDialog(route: Route) {
-        view.showTimeTableDialog(route, reciprocate)
+        if (tndBusTimeListPosition.canPrevious()) {
+            view.showTndPreviewButton()
+        } else {
+            view.hideTndPreviewButton()
+        }
+        view.selectTndCurrentBusPosition(tndBusTimeListPosition.value)
+        view.startTndCountDown(tndTimeList.value[tndBusTimeListPosition.value])
     }
 }
