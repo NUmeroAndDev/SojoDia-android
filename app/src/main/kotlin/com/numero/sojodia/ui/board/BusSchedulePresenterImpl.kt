@@ -121,7 +121,7 @@ class BusSchedulePresenterImpl(
             return
         }
         tkBusTimeListPosition.next()
-        tkBusTimeListPosition.setMinPosition(tkBusTimeListPosition.value)
+        tkBusTimeListPosition.setMinPosition(tkTimeList.findNearBusTimePosition(Time()))
         updateTkBusView()
     }
 
@@ -142,7 +142,7 @@ class BusSchedulePresenterImpl(
             return
         }
         tndBusTimeListPosition.next()
-        tndBusTimeListPosition.setMinPosition(tndBusTimeListPosition.value)
+        tndBusTimeListPosition.setMinPosition(tndTimeList.findNearBusTimePosition(Time()))
         updateTndBusView()
     }
 
