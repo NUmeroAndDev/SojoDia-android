@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="settings_button_description">Settings</string>
     <string name="badge_description">With notification</string>
 </resources>
