@@ -40,17 +40,21 @@ class BusSchedulePresenterImpl(
         view.showTndBusTimeList(tndTimeList)
 
         val nearTkBusTimePosition = tkTimeList.findNearBusTimePosition(Time())
-        tkBusTimeListPosition.apply {
-            set(nearTkBusTimePosition)
-            setMaxPosition(tkTimeList.size - 1)
-            setMinPosition(nearTkBusTimePosition)
+        if (nearTkBusTimePosition > tkBusTimeListPosition.value || nearTkBusTimePosition == BusTimeListPosition.NO_BUS_POSITION) {
+            tkBusTimeListPosition.apply {
+                set(nearTkBusTimePosition)
+                setMaxPosition(tkTimeList.size - 1)
+                setMinPosition(nearTkBusTimePosition)
+            }
         }
 
         val nearTndBusTimePosition = tndTimeList.findNearBusTimePosition(Time())
-        tndBusTimeListPosition.apply {
-            set(nearTndBusTimePosition)
-            setMaxPosition(tndTimeList.size - 1)
-            setMinPosition(nearTndBusTimePosition)
+        if (nearTndBusTimePosition > tndBusTimeListPosition.value || nearTndBusTimePosition == BusTimeListPosition.NO_BUS_POSITION) {
+            tndBusTimeListPosition.apply {
+                set(nearTndBusTimePosition)
+                setMaxPosition(tndTimeList.size - 1)
+                setMinPosition(nearTndBusTimePosition)
+            }
         }
 
         if (tkBusTimeListPosition.isNoNextAndPrevious) {
