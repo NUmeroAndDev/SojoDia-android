@@ -5,19 +5,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.numero.sojodia.R
-import kotlinx.android.synthetic.main.activity_licenses.*
+import com.numero.sojodia.databinding.ActivityLicensesBinding
 
 class LicensesActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityLicensesBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_licenses)
-        setSupportActionBar(toolbar)
+        binding = ActivityLicensesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        webView.apply {
+        binding.webView.apply {
             settings.loadWithOverviewMode = true
             settings.useWideViewPort = true
             loadUrl(LICENSES_HTML_PATH)

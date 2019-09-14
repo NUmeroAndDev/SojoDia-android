@@ -2,16 +2,18 @@ package com.numero.sojodia.ui.settings.item
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
+import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.isVisible
 import com.numero.sojodia.R
-import kotlinx.android.synthetic.main.view_settings_item.view.*
+import com.numero.sojodia.databinding.ViewSettingsItemBinding
 
 class SettingsItemView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ConstraintLayout(context, attrs, defStyleAttr) {
+
+    private val binding = ViewSettingsItemBinding.inflate(LayoutInflater.from(context), this, true)
+
     init {
-        View.inflate(context, R.layout.view_settings_item, this)
         context.withStyledAttributes(attrs, R.styleable.SettingsItemView) {
             val title = getString(R.styleable.SettingsItemView_title)
             setTitle(title)
@@ -19,26 +21,26 @@ class SettingsItemView @JvmOverloads constructor(context: Context, attrs: Attrib
             setSummary(summary)
             val icon = getDrawable(R.styleable.SettingsItemView_icon)
             val iconTintColor = getColorStateList(R.styleable.SettingsItemView_iconTint)
-            iconImageView.setImageDrawable(icon)
-            iconImageView.imageTintList = iconTintColor
+            binding.iconImageView.setImageDrawable(icon)
+            binding.iconImageView.imageTintList = iconTintColor
         }
     }
 
     fun setTitle(title: String?) {
-        titleTextView.text = title
-        titleTextView.isVisible = title.isNullOrEmpty().not()
+        binding.titleTextView.text = title
+        binding.titleTextView.isVisible = title.isNullOrEmpty().not()
     }
 
     fun setSummary(summary: String?) {
-        summaryTextView.text = summary
-        summaryTextView.isVisible = summary.isNullOrEmpty().not()
+        binding.summaryTextView.text = summary
+        binding.summaryTextView.isVisible = summary.isNullOrEmpty().not()
     }
 
     fun setVisibleIcon(isVisible: Boolean) {
-        iconImageView.isVisible = isVisible
+        binding.iconImageView.isVisible = isVisible
     }
 
     override fun setOnClickListener(l: OnClickListener?) {
-        itemView.setOnClickListener(l)
+        binding.root.setOnClickListener(l)
     }
 }

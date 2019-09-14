@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/itemView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
@@ -11,7 +10,7 @@
     android:minHeight="64dp">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iconImageView"
+        android:id="@+id/icon_image_view"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
@@ -22,7 +21,7 @@
         tools:src="@mipmap/ic_launcher" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/title_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -31,7 +30,7 @@
         android:maxLines="1"
         android:textAppearance="?attr/textAppearanceSubtitle1"
         android:textColor="?attr/colorOnBackground"
-        app:layout_constraintBottom_toTopOf="@id/summaryTextView"
+        app:layout_constraintBottom_toTopOf="@id/summary_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +38,7 @@
         tools:text="Title" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/summaryTextView"
+        android:id="@+id/summary_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -52,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@id/title_text_view"
         tools:text="Summary"
         tools:visibility="visible" />
 
