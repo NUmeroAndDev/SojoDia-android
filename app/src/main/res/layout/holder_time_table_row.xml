@@ -2,12 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rowLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/bgView"
+        android:id="@+id/bg_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0.48"
@@ -18,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/hourTextView"
+        android:id="@+id/hour_text_view"
         android:layout_width="@dimen/time_table_dialog_hour_text_width"
         android:layout_height="wrap_content"
         android:alpha="0.54"
@@ -30,7 +29,7 @@
         android:textSize="@dimen/time_table_dialog_row_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/weekdayTextView"
+        app:layout_constraintEnd_toStartOf="@+id/weekday_text_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="09" />
@@ -40,11 +39,11 @@
         android:layout_height="0dp"
         android:background="@drawable/divider"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/hourTextView"
+        app:layout_constraintStart_toEndOf="@+id/hour_text_view"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/weekdayTextView"
+        android:id="@+id/weekday_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
@@ -56,14 +55,14 @@
         android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/saturdayTextView"
-        app:layout_constraintStart_toEndOf="@+id/hourTextView"
+        app:layout_constraintEnd_toStartOf="@+id/saturday_text_view"
+        app:layout_constraintStart_toEndOf="@+id/hour_text_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         tools:text="04 12 ★57" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/saturdayTextView"
+        android:id="@+id/saturday_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
@@ -75,14 +74,14 @@
         android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sundayTextView"
-        app:layout_constraintStart_toEndOf="@+id/weekdayTextView"
+        app:layout_constraintEnd_toStartOf="@+id/sunday_text_view"
+        app:layout_constraintStart_toEndOf="@+id/weekday_text_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         tools:text="04 12 ★57" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/sundayTextView"
+        android:id="@+id/sunday_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -96,7 +95,7 @@
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/saturdayTextView"
+        app:layout_constraintStart_toEndOf="@+id/saturday_text_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         tools:text="04 12 ★57" />

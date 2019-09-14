@@ -2,12 +2,12 @@ package com.numero.sojodia.ui.timetable
 
 import android.app.Dialog
 import android.os.Bundle
-import android.view.View
+import android.view.LayoutInflater
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.numero.sojodia.R
+import com.numero.sojodia.databinding.DialogTimeTableBinding
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.extension.stationTitleRes
 import com.numero.sojodia.extension.titleStringRes
@@ -15,12 +15,12 @@ import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.model.TimeTableRowList
 import com.numero.sojodia.repository.BusDataRepository
-import kotlinx.android.synthetic.main.dialog_time_table.view.*
 
 class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTableView {
 
     private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
 
+    private lateinit var binding: DialogTimeTableBinding
     private lateinit var presenter: TimeTablePresenter
     private val route: Route by lazy {
         arguments?.getSerializable(ARG_ROUTE) as Route
@@ -37,23 +37,24 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         TimeTablePresenterImpl(this, busDataRepository, route, reciprocate)
     }
 
-    override fun setupDialog(dialog: Dialog, style: Int) {
-        super.setupDialog(dialog, style)
-        val view = View.inflate(context, R.layout.dialog_time_table, null)
-        view.toolbar.apply {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        binding = DialogTimeTableBinding.inflate(LayoutInflater.from(context))
+        binding.toolbar.apply {
             setTitle(route.stationTitleRes)
-            toolbar.setSubtitle(reciprocate.titleStringRes)
+            binding.toolbar.setSubtitle(reciprocate.titleStringRes)
         }
-        view.timeTableRecyclerView.apply {
+        binding.timeTableRecyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = this@TimeTableBottomSheetDialogFragment.adapter
         }
-        view.notSchoolTermChip.setOnCheckedChangeListener { _, isChecked ->
-            view.notSchoolTermChip.isChipIconVisible = isChecked
+        binding.notSchoolTermChip.setOnCheckedChangeListener { _, isChecked ->
+            binding.notSchoolTermChip.isChipIconVisible = isChecked
             adapter.isNotSchoolTerm = isChecked
         }
-        dialog.setContentView(view)
+        dialog.setContentView(binding.root)
+        return dialog
     }
 
     override fun onResume() {
