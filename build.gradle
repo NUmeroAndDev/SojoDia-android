@@ -23,7 +23,7 @@ ext {
 
     def appVersionMajor = 9
     def appVersionMinor = 0
-    def appVersionPatch = 0
+    def appVersionPatch = 1
     def appVersionBuild = 0
 
     appVersionCode = appVersionMajor * 100000 + appVersionMinor * 10000 + appVersionPatch * 1000 + suffix.code * 100 + appVersionBuild
