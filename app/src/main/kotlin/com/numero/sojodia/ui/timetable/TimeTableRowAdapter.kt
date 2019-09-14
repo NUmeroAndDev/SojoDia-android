@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.numero.sojodia.R
+import com.numero.sojodia.databinding.HolderTimeTableDescriptionBinding
+import com.numero.sojodia.databinding.HolderTimeTableRowBinding
 import com.numero.sojodia.model.TimeTableRow
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.holder_time_table_row.*
@@ -31,14 +33,15 @@ class TimeTableRowAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val layoutInflater = LayoutInflater.from(viewGroup.context)
         return when (viewType) {
             VIEW_TYPE_CELL -> {
-                val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.holder_time_table_row, viewGroup, false)
-                TimeTableRowHolder(view)
+                val binding = HolderTimeTableRowBinding.inflate(layoutInflater, viewGroup, false)
+                TimeTableRowHolder(binding)
             }
             VIEW_TYPE_FOOTER -> {
-                val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.holder_time_table_description, viewGroup, false)
-                DescriptionViewHolder(view)
+                val binding = HolderTimeTableDescriptionBinding.inflate(layoutInflater, viewGroup, false)
+                DescriptionViewHolder(binding)
             }
             else -> throw IllegalArgumentException("Not defined viewType")
         }
@@ -78,21 +81,23 @@ class TimeTableRowAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private const val VIEW_TYPE_FOOTER = 1
     }
 
-    class DescriptionViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+    class DescriptionViewHolder(binding: HolderTimeTableDescriptionBinding) : RecyclerView.ViewHolder(binding.root)
 
-    class TimeTableRowHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+    class TimeTableRowHolder(
+            private val binding: HolderTimeTableRowBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         var isCurrentHour: Boolean = false
             set(value) {
                 field = value
-                rowLayout.isActivated = value
+                binding.root.isActivated = value
             }
 
         fun setTimeTableRow(timeTableRow: TimeTableRow, isNotSchoolTerm: Boolean) {
-            hourTextView.text = "%02d".format(Locale.ENGLISH, timeTableRow.hour)
-            weekdayTextView.text = timeTableRow.getOnWeekdayText(isNotSchoolTerm)
-            saturdayTextView.text = timeTableRow.getOnSaturdayText(isNotSchoolTerm)
-            sundayTextView.text = timeTableRow.getOnSundayText(isNotSchoolTerm)
+            binding.hourTextView.text = "%02d".format(Locale.ENGLISH, timeTableRow.hour)
+            binding.weekdayTextView.text = timeTableRow.getOnWeekdayText(isNotSchoolTerm)
+            binding.saturdayTextView.text = timeTableRow.getOnSaturdayText(isNotSchoolTerm)
+            binding.sundayTextView.text = timeTableRow.getOnSundayText(isNotSchoolTerm)
         }
     }
 }
