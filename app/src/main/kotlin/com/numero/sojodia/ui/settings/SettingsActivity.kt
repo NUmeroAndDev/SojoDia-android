@@ -88,7 +88,7 @@ class SettingsActivity : AppCompatActivity() {
             val currentTheme = configRepository.appTheme
             setSummary(getString(currentTheme.textRes))
             setOnClickListener {
-                showSelectThemeMenu(it.findViewById(R.id.titleTextView))
+                showSelectThemeMenu(it.findViewById(R.id.title_text_view))
             }
         }
 
