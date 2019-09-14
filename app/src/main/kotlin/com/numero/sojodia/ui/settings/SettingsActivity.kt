@@ -15,24 +15,26 @@ import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
+import com.numero.sojodia.databinding.ActivitySettingsBinding
 import com.numero.sojodia.extension.applyApplication
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.ui.licenses.LicensesActivity
-import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
 
     private val configRepository: ConfigRepository
         get() = module.configRepository
 
+    private lateinit var binding: ActivitySettingsBinding
     private lateinit var appUpdateManager: AppUpdateManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
-        setSupportActionBar(toolbar)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
         appUpdateManager = AppUpdateManagerFactory.create(this)
 
@@ -59,7 +61,7 @@ class SettingsActivity : AppCompatActivity() {
         appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
             when (appUpdateInfo.updateAvailability()) {
                 UpdateAvailability.UPDATE_AVAILABLE -> {
-                    appVersionSettingsItemView.apply {
+                    binding.appVersionSettingsItemView.apply {
                         setVisibleIcon(true)
                         setSummary(getString(R.string.settings_newer_version_available))
                         setOnClickListener {
@@ -71,7 +73,7 @@ class SettingsActivity : AppCompatActivity() {
                     appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this, UPDATE_REQUEST_CODE)
                 }
                 else -> {
-                    appVersionSettingsItemView.apply {
+                    binding.appVersionSettingsItemView.apply {
                         setVisibleIcon(false)
                         setSummary(BuildConfig.VERSION_NAME)
                         setOnClickListener(null)
@@ -82,7 +84,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        selectThemeSettingsItemView.apply {
+        binding.selectThemeSettingsItemView.apply {
             val currentTheme = configRepository.appTheme
             setSummary(getString(currentTheme.textRes))
             setOnClickListener {
@@ -90,18 +92,18 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        busDataSettingsItemView.setSummary(configRepository.currentVersion.value.toString())
+        binding.busDataSettingsItemView.setSummary(configRepository.currentVersion.value.toString())
 
-        appVersionSettingsItemView.apply {
+        binding.appVersionSettingsItemView.apply {
             setVisibleIcon(false)
             setSummary(BuildConfig.VERSION_NAME)
         }
 
-        viewSourceSettingsItemView.setOnClickListener {
+        binding.viewSourceSettingsItemView.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, SOURCE_URL.toUri()))
         }
 
-        licensesSettingsItemView.setOnClickListener {
+        binding.licensesSettingsItemView.setOnClickListener {
             startActivity(LicensesActivity.createIntent(this@SettingsActivity))
         }
     }
@@ -118,7 +120,7 @@ class SettingsActivity : AppCompatActivity() {
                     else -> throw Exception()
                 }
                 configRepository.appTheme = theme
-                selectThemeSettingsItemView.setSummary(getString(theme.textRes))
+                binding.selectThemeSettingsItemView.setSummary(getString(theme.textRes))
                 theme.applyApplication()
                 true
             }
