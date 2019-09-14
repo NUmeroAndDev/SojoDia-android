@@ -12,4 +12,15 @@
         <attr name="icon" format="reference" />
         <attr name="iconTint" format="color" />
     </declare-styleable>
+
+    <!--
+        FIXME remove under attrs when fixed this issue.
+        https://issuetracker.google.com/issues/136103084
+      -->
+    <attr name="flow_horizontalSeparator" />
+    <attr name="flow_verticalSeparator" />
+    <attr name="motionProgress" />
+    <attr name="waveDecay" />
+    <attr name="motionPathRotate" />
+    <attr name="duration" />
 </resources>
