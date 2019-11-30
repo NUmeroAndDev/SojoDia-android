@@ -1,6 +1,5 @@
 package com.numero.sojodia.model
 
-import junit.framework.TestCase
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
