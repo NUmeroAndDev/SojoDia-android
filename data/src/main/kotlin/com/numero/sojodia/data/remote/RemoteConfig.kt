@@ -11,7 +11,11 @@ object RemoteConfig {
     private fun createRetrofit(): Retrofit {
         val okHttpClient = OkHttpClient.Builder().apply {
             if (BuildConfig.DEBUG) {
-                addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                addInterceptor(
+                        HttpLoggingInterceptor().apply {
+                            level = HttpLoggingInterceptor.Level.BODY
+                        }
+                )
             }
         }.build()
         return Retrofit.Builder()
