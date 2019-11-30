@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--TODO Snackbarのボタンの色を変える-->
 
-    <style name="CustomBottomSheetDialogTheme" parent="ThemeOverlay.MaterialComponents.Light.BottomSheetDialog">
+    <style name="Theme.SojoDia.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowIsFloating">false</item>
