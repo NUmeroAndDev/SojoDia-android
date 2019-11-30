@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.SojoDia" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+
+        <item name="android:splitMotionEvents">false</item>
+        <item name="dialogCornerRadius">@dimen/app_corner_round</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.SojoDia.Large</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.SojoDia.BottomSheetDialog</item>
+    </style>
+
+    <style name="Theme.SojoDia" parent="Base.SojoDia">
+        <item name="colorPrimary">@color/sojodia_green</item>
+        <item name="colorPrimaryVariant">@color/sojodia_green</item>
+        <item name="colorSecondary">@color/sojodia_green</item>
+        <item name="colorSecondaryVariant">@color/sojodia_green</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorError">@color/error</item>
+
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnBackground">@color/pure_black</item>
+        <item name="colorOnSurface">@color/pure_black</item>
+        <item name="colorOnError">@color/white</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.SojoDia.DayNight" parent="Theme.SojoDia" />
+
+
+</resources>

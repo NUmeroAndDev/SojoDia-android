@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#8BC34A</color>
-    <color name="primaryVariant">#8BC34A</color>
-    <color name="secondary">#8BC34A</color>
-    <color name="background">#FFFFFF</color>
-    <color name="surface">#FFFFFF</color>
+
+    <color name="sojodia_green">#8BC34A</color>
+    <color name="white">#FFFFFF</color>
+    <color name="pure_black">#000000</color>
+    <color name="black">#121212</color>
+
     <color name="error">#B00020</color>
     <color name="divider">#1E000000</color>
 
-    <color name="onPrimary">#FFFFFF</color>
-    <color name="onSecondary">#FFFFFF</color>
-    <color name="onBackground">#000000</color>
-    <color name="onSurface">#000000</color>
-    <color name="onError">#FFFFFF</color>
-
-    <color name="navigationBar">@color/background</color>
+    <color name="navigationBar">@color/white</color>
 
     <!--Fragment-->
     <color name="count_attention_text">#f44336</color>
