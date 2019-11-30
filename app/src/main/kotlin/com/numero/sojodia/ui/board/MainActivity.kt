@@ -83,12 +83,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     private fun startCheckUpdateService() {
         val request = OneTimeWorkRequestBuilder<UpdateDataWorker>()
                 .build()
-        WorkManager.getInstance().beginUniqueWork(
+        WorkManager.getInstance(this).beginUniqueWork(
                 UPDATE_WORKER_NAME,
                 ExistingWorkPolicy.KEEP,
                 request
         ).enqueue()
-        WorkManager.getInstance().getWorkInfosForUniqueWorkLiveData(UPDATE_WORKER_NAME).observe(this) {
+        WorkManager.getInstance(this).getWorkInfosForUniqueWorkLiveData(UPDATE_WORKER_NAME).observe(this) {
             if (it.isEmpty()) return@observe
             val info = it[0]
             if (info.state == WorkInfo.State.SUCCEEDED) {
