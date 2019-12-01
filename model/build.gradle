@@ -1,28 +1,9 @@
-apply plugin: 'com.android.library'
+apply plugin: 'kotlin'
 
-apply plugin: 'kotlin-android'
-
-android {
-    compileSdkVersion versions.compileSdk
-    defaultConfig {
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.targetSdk
-        versionCode 1
-        versionName "1.0"
-
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
-
-    buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
 }
 
 dependencies {
@@ -31,5 +12,4 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     testImplementation "junit:junit:$junitVersion"
-    testImplementation "androidx.test.ext:junit:$testJunitVersion"
 }
