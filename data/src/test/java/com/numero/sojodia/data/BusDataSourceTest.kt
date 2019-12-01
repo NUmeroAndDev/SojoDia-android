@@ -46,7 +46,7 @@ class BusDataSourceTest {
         assertTrue(result is Result.Success)
 
         val config = (result as Result.Success).value
-        assertEquals(config.latestVersion.value, 20180331)
+        assertEquals(config.latestVersion.value, 20180431)
     }
 
     @Test
