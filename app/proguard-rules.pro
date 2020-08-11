@@ -1,17 +1,3 @@
-# Okhttp
--dontwarn okhttp3.**
--dontwarn okio.**
--dontwarn javax.annotation.**
--dontwarn org.conscrypt.**
--keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
-
-# Retrofit
--keepattributes Signature
--keepclassmembernames,allowobfuscation interface * {
-    @retrofit2.http.* <methods>;
-}
--dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-
 # moshi
 -dontwarn okio.**
 -dontwarn javax.annotation.**
