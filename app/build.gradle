@@ -60,29 +60,29 @@ dependencies {
     implementation project(':model')
     implementation project(':repository')
 
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.robolectric:robolectric:$robolectricVersion"
-    testImplementation "androidx.test.ext:junit:$testJunitVersion"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
-    androidTestImplementation "androidx.test.ext:junit:$testJunitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    testImplementation junit
+    testImplementation robolectric
+    testImplementation androidx.test
+    testImplementation okhttp.mock
+    androidTestImplementation androidx.test
+    androidTestImplementation espresso
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation kotlinAndroid.stdlib
+    implementation kotlinAndroid.coroutines
 
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "androidx.activity:activity-ktx:$activityVersion"
-    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
-    implementation "androidx.core:core-ktx:$coreVersion"
-    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation androidx.appcompat
+    implementation androidx.activity
+    implementation androidx.fragment
+    implementation androidx.core
+    implementation androidx.recyclerview
+    implementation androidx.constraintlayout
 
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation androidx.lifecycle.runtime
+    implementation androidx.lifecycle.livedata
 
-    implementation "com.google.android.play:core:$playCoreVersion"
+    implementation play
 
-    implementation "androidx.work:work-runtime:$workVersion"
-    implementation "androidx.work:work-runtime-ktx:$workVersion"
+    implementation androidx.work
 
-    implementation "com.google.android.material:material:$materialVersion"
+    implementation material
 }
