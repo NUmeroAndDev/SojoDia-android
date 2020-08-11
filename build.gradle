@@ -97,6 +97,7 @@ buildscript {
     repositories {
         jcenter()
         google()
+        mavenCentral()
     }
 
     dependencies {
@@ -105,6 +106,8 @@ buildscript {
         classpath kotlinAndroid.plugin
 
         classpath 'com.cookpad.android.licensetools:license-tools-plugin:1.5.0'
+
+        classpath 'com.releaseshub:releases-hub-gradle-plugin:1.6.0'
     }
 }
 

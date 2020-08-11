@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.cookpad.android.licensetools'
 
+apply plugin: "com.releaseshub.gradle.plugin"
+
 android {
     compileSdkVersion versions.compileSdk
     defaultConfig {
@@ -85,4 +87,13 @@ dependencies {
     implementation androidx.work
 
     implementation material
+}
+
+releasesHub {
+    dependenciesBasePath = "."
+    dependenciesClassNames = ["build.gradle"]
+    pullRequestEnabled = true
+    gitHubRepositoryOwner = "NUmeroAndDev"
+    gitHubRepositoryName = "SojoDia-android"
+    pullRequestsMax = 10
 }
