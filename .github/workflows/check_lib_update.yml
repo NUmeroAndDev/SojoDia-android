@@ -3,7 +3,7 @@ name: Check library update
 on:
   repository_dispatch:
   schedule:
-    - cron:  '*/15 * * * *'
+    - cron:  '0 0,6,12,18 * * *'
 
 jobs:
   check_lib_update:
