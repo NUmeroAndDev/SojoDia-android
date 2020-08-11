@@ -56,9 +56,9 @@ buildscript {
         lifecycleVersion = '2.3.0-alpha06'
         workVersion = '2.4.0'
 
-        okhttpVersion = '4.2.2'
+        okhttpVersion = '4.8.1'
         kotshiVersion = '1.0.6'
-        retrofitVersion = '2.6.2'
+        retrofitVersion = '2.9.0'
 
         playCoreVersion = '1.6.1'
 
