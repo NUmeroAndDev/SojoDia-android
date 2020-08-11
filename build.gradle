@@ -90,7 +90,7 @@ buildscript {
         play = "com.google.android.play:core:1.6.1"
 
         junit = "junit:junit:4.12"
-        robolectric = "org.robolectric:robolectric:4.3"
+        robolectric = "org.robolectric:robolectric:4.3.1"
         espresso = "androidx.test.espresso:espresso-core:3.1.0"
     }
 
