@@ -39,8 +39,6 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        retainInstance = true
-
         val arguments = arguments ?: return
         val reciprocate = arguments.getSerializable(ARG_RECIPROCATE) as Reciprocate
         BusSchedulePresenterImpl(this, busDataRepository, reciprocate)
