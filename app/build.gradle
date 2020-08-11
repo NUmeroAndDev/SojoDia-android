@@ -96,4 +96,6 @@ releasesHub {
     gitHubRepositoryOwner = "NUmeroAndDev"
     gitHubRepositoryName = "SojoDia-android"
     pullRequestsMax = 10
+    gitHubUserName = "NUmeroAndDev"
+    gitHubUserEmail = "numero.dev.and@gmail.com"
 }
