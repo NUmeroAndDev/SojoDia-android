@@ -38,23 +38,23 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':model')
 
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.robolectric:robolectric:$robolectricVersion"
-    testImplementation "androidx.test.ext:junit:$testJunitVersion"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
+    testImplementation junit
+    testImplementation robolectric
+    testImplementation androidx.test
+    testImplementation okhttp.mock
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation kotlinAndroid.stdlib
+    implementation kotlinAndroid.coroutines
 
-    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    implementation okhttp.core
+    implementation okhttp.logging
 
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation retrofit.core
+    implementation retrofit.moshi
 
-    implementation "se.ansman.kotshi:api:$kotshiVersion"
-    kapt "se.ansman.kotshi:compiler:$kotshiVersion"
+    implementation kotshi.api
+    kapt kotshi.compiler
 
-    implementation "androidx.room:room-runtime:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation androidx.room.runtime
+    kapt androidx.room.compiler
 }

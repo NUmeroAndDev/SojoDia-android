@@ -9,7 +9,7 @@ compileKotlin {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation kotlinAndroid.stdlib
 
-    testImplementation "junit:junit:$junitVersion"
+    testImplementation junit
 }

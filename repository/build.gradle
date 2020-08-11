@@ -41,13 +41,13 @@ dependencies {
     implementation project(':model')
     implementation project(':data')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation kotlinAndroid.stdlib
+    implementation kotlinAndroid.coroutines
 
-    implementation "androidx.core:core-ktx:$coreVersion"
+    implementation androidx.core
 
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "org.robolectric:robolectric:$robolectricVersion"
-    testImplementation "androidx.test.ext:junit:$testJunitVersion"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttpVersion"
+    testImplementation junit
+    testImplementation robolectric
+    testImplementation androidx.test
+    testImplementation okhttp.mock
 }
