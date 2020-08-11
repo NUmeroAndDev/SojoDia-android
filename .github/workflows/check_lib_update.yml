@@ -1,0 +1,18 @@
+name: Check library update
+
+on:
+  repository_dispatch:
+  schedule:
+    - cron:  '0 */6 * * *'
+
+jobs:
+  check_lib_update:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: check update
+      run: ./gradlew upgradeDependencies
+      env:
+        gitHubWriteToken: ${{ secrets.GITHUB_TOKEN }}
