@@ -15,4 +15,4 @@ jobs:
     - name: check update
       run: ./gradlew upgradeDependencies
       env:
-        gitHubWriteToken: ${{ secrets.GITHUB_TOKEN }}
+        gitHubWriteToken: ${{ secrets.SCOPED_TOKEN }}
