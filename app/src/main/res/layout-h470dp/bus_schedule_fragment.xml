@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,7 +14,7 @@
         android:layout_marginRight="@dimen/card_margin"
         app:cardCornerRadius="16dp"
         app:cardElevation="@dimen/bus_schedule_card_elevation"
-        app:layout_constraintBottom_toTopOf="@+id/tndScheduleCardView"
+        app:layout_constraintBottom_toTopOf="@id/tndScheduleCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,14 +25,16 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tkTitleTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/station_tk"
-                android:textColor="?attr/colorSecondary"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="@dimen/bus_toolbar_text"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tkTimetableActionChip"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,9 +48,10 @@
                 app:chipBackgroundColor="@color/bg_chip_color"
                 app:chipIcon="@drawable/ic_schedule"
                 app:chipIconTint="?attr/colorOnSurface"
-                app:chipStrokeWidth="0.5dp"
-                app:layout_constraintBottom_toBottomOf="@id/tkTitleTextView"
+                app:chipStrokeWidth="1dp"
+                app:ensureMinTouchTargetSize="false"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tkTitleTextView"
                 app:layout_constraintTop_toTopOf="@id/tkTitleTextView" />
 
             <com.numero.sojodia.ui.widget.NotSwipeViewPager
@@ -56,9 +60,9 @@
                 android:layout_height="@dimen/bus_time_view_pager_height"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tkNextImageButton"
-                app:layout_constraintStart_toEndOf="@+id/tkPreviewImageButton"
-                app:layout_constraintTop_toBottomOf="@+id/tkCountdownTextView" />
+                app:layout_constraintEnd_toStartOf="@id/tkNextImageButton"
+                app:layout_constraintStart_toEndOf="@id/tkPreviewImageButton"
+                app:layout_constraintTop_toBottomOf="@id/tkCountdownTextView" />
 
             <com.numero.sojodia.ui.widget.CountDownClockTextView
                 android:id="@+id/tkCountdownTextView"
@@ -72,12 +76,13 @@
                 app:autoSizeMinTextSize="2sp"
                 app:autoSizeStepGranularity="1sp"
                 app:autoSizeTextType="uniform"
-                app:defaultTextColor="?attr/colorOnSurface"
+                app:defaultTextColor="?android:attr/textColorPrimary"
                 app:fontFamily="@font/lato_light"
-                app:layout_constraintBottom_toTopOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintBottom_toTopOf="@id/tkBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView"
+                app:layout_constraintTop_toBottomOf="@id/tkTimetableActionChip"
                 app:safeTextColor="@color/count_safe_text" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -89,10 +94,10 @@
                 android:padding="12dp"
                 android:src="@drawable/ic_arrow_right"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintBottom_toBottomOf="@id/tkBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tkBusTimeViewPager"
-                app:layout_constraintTop_toTopOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintStart_toEndOf="@id/tkBusTimeViewPager"
+                app:layout_constraintTop_toTopOf="@id/tkBusTimeViewPager"
                 app:tint="?attr/colorOnSurface" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -104,10 +109,10 @@
                 android:padding="12dp"
                 android:src="@drawable/ic_arrow_left"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintBottom_toBottomOf="@id/tkBusTimeViewPager"
                 app:layout_constraintEnd_toStartOf="@id/tkBusTimeViewPager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintTop_toTopOf="@id/tkBusTimeViewPager"
                 app:tint="?attr/colorOnSurface" />
 
             <TextView
@@ -116,13 +121,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/no_bus"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="@dimen/no_bus_text"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
+                app:layout_constraintTop_toBottomOf="@id/tkTitleTextView"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -141,7 +147,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tkScheduleCardView">
+        app:layout_constraintTop_toBottomOf="@id/tkScheduleCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -149,14 +155,16 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tndTitleTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/station_tnd"
-                android:textColor="?attr/colorSecondary"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="@dimen/bus_toolbar_text"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tndTimetableActionChip"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -170,8 +178,8 @@
                 app:chipBackgroundColor="@color/bg_chip_color"
                 app:chipIcon="@drawable/ic_schedule"
                 app:chipIconTint="?attr/colorOnSurface"
-                app:chipStrokeWidth="0.5dp"
-                app:layout_constraintBottom_toBottomOf="@id/tndTitleTextView"
+                app:chipStrokeWidth="1dp"
+                app:ensureMinTouchTargetSize="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tndTitleTextView" />
 
@@ -181,9 +189,9 @@
                 android:layout_height="@dimen/bus_time_view_pager_height"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tndNextImageButton"
-                app:layout_constraintStart_toEndOf="@+id/tndPreviewImageButton"
-                app:layout_constraintTop_toBottomOf="@+id/tndCountdownTextView" />
+                app:layout_constraintEnd_toStartOf="@id/tndNextImageButton"
+                app:layout_constraintStart_toEndOf="@id/tndPreviewImageButton"
+                app:layout_constraintTop_toBottomOf="@id/tndCountdownTextView" />
 
             <com.numero.sojodia.ui.widget.CountDownClockTextView
                 android:id="@+id/tndCountdownTextView"
@@ -197,12 +205,13 @@
                 app:autoSizeMinTextSize="2sp"
                 app:autoSizeStepGranularity="1sp"
                 app:autoSizeTextType="uniform"
-                app:defaultTextColor="?attr/colorOnSurface"
+                app:defaultTextColor="?android:attr/textColorPrimary"
                 app:fontFamily="@font/lato_light"
-                app:layout_constraintBottom_toTopOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintBottom_toTopOf="@id/tndBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView"
+                app:layout_constraintTop_toBottomOf="@id/tndTimetableActionChip"
                 app:safeTextColor="@color/count_safe_text" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -214,10 +223,10 @@
                 android:padding="12dp"
                 android:src="@drawable/ic_arrow_right"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintBottom_toBottomOf="@id/tndBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tndBusTimeViewPager"
-                app:layout_constraintTop_toTopOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintStart_toEndOf="@id/tndBusTimeViewPager"
+                app:layout_constraintTop_toTopOf="@id/tndBusTimeViewPager"
                 app:tint="?attr/colorOnSurface" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -229,10 +238,10 @@
                 android:padding="12dp"
                 android:src="@drawable/ic_arrow_left"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintBottom_toBottomOf="@id/tndBusTimeViewPager"
                 app:layout_constraintEnd_toStartOf="@id/tndBusTimeViewPager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintTop_toTopOf="@id/tndBusTimeViewPager"
                 app:tint="?attr/colorOnSurface" />
 
             <TextView
@@ -241,13 +250,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/no_bus"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="@dimen/no_bus_text"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
+                app:layout_constraintTop_toBottomOf="@id/tndTitleTextView"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
