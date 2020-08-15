@@ -9,12 +9,11 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.numero.sojodia.R
+import com.numero.sojodia.databinding.BusScheduleFragmentBinding
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.*
 import com.numero.sojodia.repository.BusDataRepository
-import kotlinx.android.synthetic.main.bus_schedule_fragment.*
 import java.util.*
 
 class BusScheduleFragment : Fragment(), BusScheduleView {
@@ -23,6 +22,9 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
         get() = module.busDataRepository
 
     private lateinit var presenter: BusSchedulePresenter
+
+    private var _binding: BusScheduleFragmentBinding? = null
+    private val binding get() = _binding!!
 
     private var listener: BusScheduleFragmentListener? = null
     private var currentDateString: String? = null
@@ -46,7 +48,8 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         currentDateString = Calendar.getInstance().getTodayStringOnlyFigure()
-        return inflater.inflate(R.layout.bus_schedule_fragment, container, false)
+        _binding = BusScheduleFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,15 +63,20 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
         super.onResume()
         presenter.subscribe()
         presenter.setupBusTime(Week.getCurrentWeek())
-        tkCountdownTextView.start()
-        tndCountdownTextView.start()
+        binding.tkCountdownTextView.start()
+        binding.tndCountdownTextView.start()
     }
 
     override fun onPause() {
         super.onPause()
         presenter.unSubscribe()
-        tkCountdownTextView.stop()
-        tndCountdownTextView.stop()
+        binding.tkCountdownTextView.stop()
+        binding.tndCountdownTextView.stop()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun setPresenter(presenter: BusSchedulePresenter) {
@@ -76,7 +84,7 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     private fun initCountDownClockTextView() {
-        tkCountdownTextView.apply {
+        binding.tkCountdownTextView.apply {
             setOnTimeLimitListener {
                 presenter.nextTkBus()
             }
@@ -84,32 +92,32 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
                 checkDateChange()
             }
         }
-        tndCountdownTextView.setOnTimeLimitListener {
+        binding.tndCountdownTextView.setOnTimeLimitListener {
             presenter.nextTndBus()
         }
-        tkCountdownTextView.setSyncView(tndCountdownTextView)
+        binding.tkCountdownTextView.setSyncView(binding.tndCountdownTextView)
     }
 
     private fun initTimeTableButton() {
-        tkTimetableActionChip.setOnClickListener {
+        binding.tkTimetableActionChip.setOnClickListener {
             presenter.showTimeTableDialog(Route.TK)
         }
-        tndTimetableActionChip.setOnClickListener {
+        binding.tndTimetableActionChip.setOnClickListener {
             presenter.showTimeTableDialog(Route.TND)
         }
     }
 
     private fun initNextPreviewButton() {
-        tkNextImageButton?.setOnClickListener {
+        binding.tkNextImageButton?.setOnClickListener {
             presenter.nextTkBus()
         }
-        tkPreviewImageButton?.setOnClickListener {
+        binding.tkPreviewImageButton?.setOnClickListener {
             presenter.previewTkBus()
         }
-        tndNextImageButton?.setOnClickListener {
+        binding.tndNextImageButton?.setOnClickListener {
             presenter.nextTndBus()
         }
-        tndPreviewImageButton?.setOnClickListener {
+        binding.tndPreviewImageButton?.setOnClickListener {
             presenter.previewTndBus()
         }
     }
@@ -123,7 +131,7 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun showTkBusTimeList(busTimeList: TkBusTimeList) {
-        tkBusTimeViewPager.apply {
+        binding.tkBusTimeViewPager.apply {
             adapter = BusTimePagerAdapter().apply {
                 setBusTimeList(busTimeList.value)
             }
@@ -131,7 +139,7 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun showTndBusTimeList(busTimeList: TndBusTimeList) {
-        tndBusTimeViewPager.apply {
+        binding.tndBusTimeViewPager.apply {
             adapter = BusTimePagerAdapter().apply {
                 setBusTimeList(busTimeList.value)
             }
@@ -139,77 +147,77 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
     }
 
     override fun selectTkCurrentBusPosition(position: Int) {
-        tkBusTimeViewPager.setCurrentItem(position, true)
+        binding.tkBusTimeViewPager.setCurrentItem(position, true)
     }
 
     override fun startTkCountDown(busTime: BusTime) {
         val time = busTime.time - Time()
-        tkCountdownTextView.setTime(time.hour, time.min)
+        binding.tkCountdownTextView.setTime(time.hour, time.min)
     }
 
     override fun selectTndCurrentBusPosition(position: Int) {
-        tndBusTimeViewPager.setCurrentItem(position, true)
+        binding.tndBusTimeViewPager.setCurrentItem(position, true)
     }
 
     override fun startTndCountDown(busTime: BusTime) {
         val time = busTime.time - Time()
-        tndCountdownTextView.setTime(time.hour, time.min)
+        binding.tndCountdownTextView.setTime(time.hour, time.min)
     }
 
     override fun showTkNextButton() {
-        tkNextImageButton?.isInvisible = false
+        binding.tkNextImageButton?.isInvisible = false
     }
 
     override fun showTkPreviewButton() {
-        tkPreviewImageButton?.isInvisible = false
+        binding.tkPreviewImageButton?.isInvisible = false
     }
 
     override fun showTkNoBusLayout() {
-        tkNoBusTextView.isVisible = true
-        tkCountdownTextView.isVisible = false
-        tkBusTimeViewPager.isVisible = false
+        binding.tkNoBusTextView.isVisible = true
+        binding.tkCountdownTextView.isVisible = false
+        binding.tkBusTimeViewPager.isVisible = false
     }
 
     override fun showTndNextButton() {
-        tndNextImageButton?.isInvisible = false
+        binding.tndNextImageButton?.isInvisible = false
     }
 
     override fun showTndPreviewButton() {
-        tndPreviewImageButton?.isInvisible = false
+        binding.tndPreviewImageButton?.isInvisible = false
     }
 
     override fun showTndNoBusLayout() {
-        tndNoBusTextView.isVisible = true
-        tndCountdownTextView.isVisible = false
-        tndBusTimeViewPager.isVisible = false
+        binding.tndNoBusTextView.isVisible = true
+        binding.tndCountdownTextView.isVisible = false
+        binding.tndBusTimeViewPager.isVisible = false
     }
 
     override fun hideTkNextButton() {
-        tkNextImageButton?.isInvisible = true
+        binding.tkNextImageButton?.isInvisible = true
     }
 
     override fun hideTkPreviewButton() {
-        tkPreviewImageButton?.isInvisible = true
+        binding.tkPreviewImageButton?.isInvisible = true
     }
 
     override fun hideTkNoBusLayout() {
-        tkNoBusTextView.isVisible = false
-        tkCountdownTextView.isVisible = true
-        tkBusTimeViewPager.isVisible = true
+        binding.tkNoBusTextView.isVisible = false
+        binding.tkCountdownTextView.isVisible = true
+        binding.tkBusTimeViewPager.isVisible = true
     }
 
     override fun hideTndNextButton() {
-        tndNextImageButton?.isInvisible = true
+        binding.tndNextImageButton?.isInvisible = true
     }
 
     override fun hideTndPreviewButton() {
-        tndPreviewImageButton?.isInvisible = true
+        binding.tndPreviewImageButton?.isInvisible = true
     }
 
     override fun hideTndNoBusLayout() {
-        tndNoBusTextView.isVisible = false
-        tndCountdownTextView.isVisible = true
-        tndBusTimeViewPager.isVisible = true
+        binding.tndNoBusTextView.isVisible = false
+        binding.tndCountdownTextView.isVisible = true
+        binding.tndBusTimeViewPager.isVisible = true
     }
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
