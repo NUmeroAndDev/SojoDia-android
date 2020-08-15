@@ -37,9 +37,9 @@ buildscript {
     ext {
 
         versions = [
-                compileSdk: 29,
+                compileSdk: 30,
                 minSdk    : 23,
-                targetSdk : 29
+                targetSdk : 30
         ]
 
         kotlinAndroid = [
