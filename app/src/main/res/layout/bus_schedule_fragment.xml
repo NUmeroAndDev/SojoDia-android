@@ -14,7 +14,7 @@
         app:cardCornerRadius="16dp"
         app:cardElevation="@dimen/bus_schedule_card_elevation"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tndScheduleCardView"
+        app:layout_constraintEnd_toStartOf="@id/tndScheduleCardView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,14 +24,16 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tkTitleTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/station_tk"
-                android:textColor="?attr/colorSecondary"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="@dimen/bus_toolbar_text"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tkTimetableActionChip"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,8 +45,8 @@
                 android:layout_marginEnd="8dp"
                 android:text="@string/timetable_label"
                 app:chipBackgroundColor="@color/bg_chip_color"
-                app:chipStrokeWidth="0.5dp"
-                app:layout_constraintBottom_toBottomOf="@id/tkTitleTextView"
+                app:chipStrokeWidth="1dp"
+                app:ensureMinTouchTargetSize="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tkTitleTextView" />
 
@@ -58,7 +60,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tkCountdownTextView" />
+                app:layout_constraintTop_toBottomOf="@id/tkCountdownTextView" />
 
             <com.numero.sojodia.ui.widget.CountDownClockTextView
                 android:id="@+id/tkCountdownTextView"
@@ -74,12 +76,12 @@
                 app:autoSizeMinTextSize="2sp"
                 app:autoSizeStepGranularity="1sp"
                 app:autoSizeTextType="uniform"
-                app:defaultTextColor="?attr/colorOnSurface"
+                app:defaultTextColor="?android:attr/textColorPrimary"
                 app:fontFamily="@font/lato_light"
-                app:layout_constraintBottom_toTopOf="@+id/tkBusTimeViewPager"
+                app:layout_constraintBottom_toTopOf="@id/tkBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView"
+                app:layout_constraintTop_toBottomOf="@id/tkTimetableActionChip"
                 app:safeTextColor="@color/count_safe_text" />
 
             <TextView
@@ -88,13 +90,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/no_bus"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="@dimen/no_bus_text"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tkTitleTextView" />
+                app:layout_constraintTop_toBottomOf="@id/tkTitleTextView"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -109,7 +112,7 @@
         app:cardElevation="@dimen/bus_schedule_card_elevation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tkScheduleCardView"
+        app:layout_constraintStart_toEndOf="@id/tkScheduleCardView"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,15 +121,16 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tndTitleTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:gravity="center"
+                android:layout_marginEnd="4dp"
                 android:text="@string/station_tnd"
-                android:textColor="?attr/colorSecondary"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="@dimen/bus_toolbar_text"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tndTimetableActionChip"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -138,8 +142,8 @@
                 android:layout_marginEnd="8dp"
                 android:text="@string/timetable_label"
                 app:chipBackgroundColor="@color/bg_chip_color"
-                app:chipStrokeWidth="0.5dp"
-                app:layout_constraintBottom_toBottomOf="@id/tndTitleTextView"
+                app:chipStrokeWidth="1dp"
+                app:ensureMinTouchTargetSize="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tndTitleTextView" />
 
@@ -153,7 +157,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tndCountdownTextView" />
+                app:layout_constraintTop_toBottomOf="@id/tndCountdownTextView" />
 
             <com.numero.sojodia.ui.widget.CountDownClockTextView
                 android:id="@+id/tndCountdownTextView"
@@ -169,12 +173,12 @@
                 app:autoSizeMinTextSize="2sp"
                 app:autoSizeStepGranularity="1sp"
                 app:autoSizeTextType="uniform"
-                app:defaultTextColor="?attr/colorOnSurface"
+                app:defaultTextColor="?android:attr/textColorPrimary"
                 app:fontFamily="@font/lato_light"
-                app:layout_constraintBottom_toTopOf="@+id/tndBusTimeViewPager"
+                app:layout_constraintBottom_toTopOf="@id/tndBusTimeViewPager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView"
+                app:layout_constraintTop_toBottomOf="@id/tndTimetableActionChip"
                 app:safeTextColor="@color/count_safe_text" />
 
             <TextView
@@ -183,12 +187,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/no_bus"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="@dimen/no_bus_text"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tndTitleTextView" />
+                app:layout_constraintTop_toBottomOf="@id/tndTitleTextView"
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
