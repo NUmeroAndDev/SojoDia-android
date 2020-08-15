@@ -3,33 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <View
-        android:id="@+id/bg_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="0.48"
-        android:background="@drawable/bg_time_table_row"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_time_table_row">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/hour_text_view"
         android:layout_width="@dimen/time_table_dialog_hour_text_width"
         android:layout_height="wrap_content"
-        android:alpha="0.54"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:textColor="?attr/colorOnSurface"
+        android:paddingVertical="@dimen/time_table_dialog_vertical_text_margin"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/time_table_dialog_row_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/weekday_text_view"
+        app:layout_constraintEnd_toStartOf="@id/weekday_text_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="09" />
@@ -39,7 +27,7 @@
         android:layout_height="0dp"
         android:background="@drawable/divider"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/hour_text_view"
+        app:layout_constraintStart_toEndOf="@id/hour_text_view"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -48,15 +36,13 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
         android:gravity="top"
-        android:paddingStart="@dimen/time_table_dialog_horizontal_text_margin"
-        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-        android:paddingEnd="@dimen/time_table_dialog_horizontal_text_margin"
-        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:textColor="?attr/colorOnSurface"
+        android:paddingHorizontal="@dimen/time_table_dialog_horizontal_text_margin"
+        android:paddingVertical="@dimen/time_table_dialog_vertical_text_margin"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/saturday_text_view"
-        app:layout_constraintStart_toEndOf="@+id/hour_text_view"
+        app:layout_constraintEnd_toStartOf="@id/saturday_text_view"
+        app:layout_constraintStart_toEndOf="@id/hour_text_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         tools:text="04 12 ★57" />
@@ -67,15 +53,13 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
         android:gravity="top"
-        android:paddingStart="@dimen/time_table_dialog_horizontal_text_margin"
-        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-        android:paddingEnd="@dimen/time_table_dialog_horizontal_text_margin"
-        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:textColor="?attr/colorOnSurface"
+        android:paddingHorizontal="@dimen/time_table_dialog_horizontal_text_margin"
+        android:paddingVertical="@dimen/time_table_dialog_vertical_text_margin"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sunday_text_view"
-        app:layout_constraintStart_toEndOf="@+id/weekday_text_view"
+        app:layout_constraintEnd_toStartOf="@id/sunday_text_view"
+        app:layout_constraintStart_toEndOf="@id/weekday_text_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         tools:text="04 12 ★57" />
@@ -87,25 +71,15 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif-light"
         android:gravity="top"
-        android:paddingStart="@dimen/time_table_dialog_horizontal_text_margin"
-        android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-        android:paddingEnd="@dimen/time_table_dialog_horizontal_text_margin"
-        android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
-        android:textColor="?attr/colorOnSurface"
+        android:paddingHorizontal="@dimen/time_table_dialog_horizontal_text_margin"
+        android:paddingVertical="@dimen/time_table_dialog_vertical_text_margin"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/time_table_dialog_row_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/saturday_text_view"
+        app:layout_constraintStart_toEndOf="@id/saturday_text_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         tools:text="04 12 ★57" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="@dimen/time_table_dialog_row_divider"
-        android:background="@drawable/divider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

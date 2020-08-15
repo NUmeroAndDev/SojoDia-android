@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.databinding.DialogTimeTableBinding
 import com.numero.sojodia.extension.module
@@ -18,7 +19,7 @@ import com.numero.sojodia.repository.BusDataRepository
 
 class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTableView {
 
-    private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
+    private val timeTableRowAdapter: TimeTableRowAdapter = TimeTableRowAdapter()
 
     private var _binding: DialogTimeTableBinding? = null
     private val binding get() = requireNotNull(_binding)
@@ -45,10 +46,13 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
             setTitle(route.stationTitleRes)
             binding.toolbar.setSubtitle(reciprocate.titleStringRes)
         }
-        binding.timeTableRecyclerView.adapter = adapter
+        binding.timeTableRecyclerView.apply {
+            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+            adapter = timeTableRowAdapter
+        }
         binding.notSchoolTermChip.setOnCheckedChangeListener { _, isChecked ->
             binding.notSchoolTermChip.isChipIconVisible = isChecked
-            adapter.isNotSchoolTerm = isChecked
+            timeTableRowAdapter.isNotSchoolTerm = isChecked
         }
         return binding.root
     }
@@ -68,7 +72,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
     }
 
     override fun showTimeTableRowList(timeTableRowList: TimeTableRowList) {
-        adapter.tableRowList = timeTableRowList.value
+        timeTableRowAdapter.tableRowList = timeTableRowList.value
     }
 
     fun showIfNeed(fragmentManager: FragmentManager) {
