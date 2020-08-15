@@ -90,7 +90,7 @@ class TimeTableRowAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
 
         fun setTimeTableRow(timeTableRow: TimeTableRow, isNotSchoolTerm: Boolean) {
-            binding.hourTextView.text = "%02d".format(Locale.ENGLISH, timeTableRow.hour)
+            binding.hourTextView.text = "%02d".format(timeTableRow.hour)
             binding.weekdayTextView.text = timeTableRow.getOnWeekdayText(isNotSchoolTerm)
             binding.saturdayTextView.text = timeTableRow.getOnSaturdayText(isNotSchoolTerm)
             binding.sundayTextView.text = timeTableRow.getOnSundayText(isNotSchoolTerm)

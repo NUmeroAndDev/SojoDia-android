@@ -1,11 +1,12 @@
 package com.numero.sojodia.ui.timetable
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.databinding.DialogTimeTableBinding
 import com.numero.sojodia.extension.module
@@ -18,15 +19,17 @@ import com.numero.sojodia.repository.BusDataRepository
 
 class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTableView {
 
-    private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
+    private val timeTableRowAdapter: TimeTableRowAdapter = TimeTableRowAdapter()
 
-    private lateinit var binding: DialogTimeTableBinding
+    private var _binding: DialogTimeTableBinding? = null
+    private val binding get() = requireNotNull(_binding)
+
     private lateinit var presenter: TimeTablePresenter
-    private val route: Route by lazy {
-        arguments?.getSerializable(ARG_ROUTE) as Route
+    private val route by lazy {
+        requireArguments().getSerializable(ARG_ROUTE) as Route
     }
-    private val reciprocate: Reciprocate by lazy {
-        arguments?.getSerializable(ARG_RECIPROCATE) as Reciprocate
+    private val reciprocate by lazy {
+        requireArguments().getSerializable(ARG_RECIPROCATE) as Reciprocate
     }
 
     private val busDataRepository: BusDataRepository
@@ -37,24 +40,21 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         TimeTablePresenterImpl(this, busDataRepository, route, reciprocate)
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState)
-        binding = DialogTimeTableBinding.inflate(LayoutInflater.from(context))
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = DialogTimeTableBinding.inflate(LayoutInflater.from(context))
         binding.toolbar.apply {
             setTitle(route.stationTitleRes)
             binding.toolbar.setSubtitle(reciprocate.titleStringRes)
         }
         binding.timeTableRecyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
-            adapter = this@TimeTableBottomSheetDialogFragment.adapter
+            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+            adapter = timeTableRowAdapter
         }
         binding.notSchoolTermChip.setOnCheckedChangeListener { _, isChecked ->
             binding.notSchoolTermChip.isChipIconVisible = isChecked
-            adapter.isNotSchoolTerm = isChecked
+            timeTableRowAdapter.isNotSchoolTerm = isChecked
         }
-        dialog.setContentView(binding.root)
-        return dialog
+        return binding.root
     }
 
     override fun onResume() {
@@ -72,7 +72,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
     }
 
     override fun showTimeTableRowList(timeTableRowList: TimeTableRowList) {
-        adapter.tableRowList = timeTableRowList.value
+        timeTableRowAdapter.tableRowList = timeTableRowList.value
     }
 
     fun showIfNeed(fragmentManager: FragmentManager) {
@@ -88,7 +88,10 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
 
         private const val TAG = "TimeTableBottomSheetDialogFragment"
 
-        fun newInstance(route: Route, reciprocate: Reciprocate): TimeTableBottomSheetDialogFragment = TimeTableBottomSheetDialogFragment().apply {
+        fun newInstance(
+                route: Route,
+                reciprocate: Reciprocate
+        ) = TimeTableBottomSheetDialogFragment().apply {
             arguments = bundleOf(ARG_ROUTE to route, ARG_RECIPROCATE to reciprocate)
         }
     }

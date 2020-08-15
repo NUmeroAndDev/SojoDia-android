@@ -12,13 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:alpha="0.54"
+        android:contentDescription="@null"
         android:src="@drawable/bottom_sheet_control_bar" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -34,7 +35,7 @@
             android:layout_marginEnd="16dp"
             android:text="@string/not_school_term"
             app:checkedIconEnabled="false"
-            app:chipBackgroundColor="@color/bg_chip_color"
+            app:chipBackgroundColor="@android:color/transparent"
             app:chipIcon="@drawable/ic_check"
             app:chipIconEnabled="true"
             app:chipIconTint="?attr/colorOnSurface"
@@ -52,10 +53,9 @@
             android:layout_width="@dimen/time_table_dialog_hour_text_width"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-            android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+            android:paddingVertical="@dimen/time_table_dialog_vertical_text_margin"
             android:text="@string/hour"
-            android:textColor="?android:attr/textColorSecondary"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="@dimen/time_table_dialog_header_text"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/header_weekday_text_view"
@@ -76,10 +76,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-            android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+            android:paddingVertical="@dimen/time_table_dialog_vertical_text_margin"
             android:text="@string/weekday"
-            android:textColor="?android:attr/textColorSecondary"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="@dimen/time_table_dialog_header_text"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/header_hour_text_view"
@@ -92,8 +91,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-            android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+            android:paddingVertical="@dimen/time_table_dialog_vertical_text_margin"
             android:text="@string/saturday"
             android:textColor="@color/time_table_dialog_saturday_text"
             android:textSize="@dimen/time_table_dialog_header_text"
@@ -109,8 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:paddingTop="@dimen/time_table_dialog_vertical_text_margin"
-            android:paddingBottom="@dimen/time_table_dialog_vertical_text_margin"
+            android:paddingVertical="@dimen/time_table_dialog_vertical_text_margin"
             android:text="@string/sunday"
             android:textColor="@color/time_table_dialog_sunday_text"
             android:textSize="@dimen/time_table_dialog_header_text"
@@ -133,7 +130,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
+        android:orientation="vertical"
         android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/holder_time_table_row" />
 
 </LinearLayout>
