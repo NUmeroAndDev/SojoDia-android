@@ -11,6 +11,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
@@ -19,6 +20,7 @@ import com.numero.sojodia.R
 import com.numero.sojodia.databinding.ActivityMainBinding
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
 import com.numero.sojodia.repository.BusDataRepository
@@ -75,8 +77,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     private fun initViews() {
-        binding.viewPager.adapter = BusScheduleFragmentPagerAdapter(this, supportFragmentManager)
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        val reciprocateList = listOf(Reciprocate.GOING, Reciprocate.RETURN)
+        binding.viewPager.adapter = BusSchedulePagerAdapter(this, reciprocateList)
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            val reciprocate = reciprocateList[position]
+            tab.text = getString(reciprocate.titleStringRes)
+        }.attach()
         binding.settingsImageButton.setOnClickListener {
             startActivity(SettingsActivity.createIntent(this))
         }
