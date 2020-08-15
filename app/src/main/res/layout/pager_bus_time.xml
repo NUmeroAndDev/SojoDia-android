@@ -6,12 +6,12 @@
     android:layout_height="@dimen/bus_time_view_pager_height">
 
     <TextView
-        android:id="@+id/busDescriptionTextView"
+        android:id="@+id/bus_description_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/bus_description_text"
-        app:layout_constraintBottom_toTopOf="@+id/busTimeTextView"
+        app:layout_constraintBottom_toTopOf="@+id/bus_time_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,7 +19,7 @@
         tools:text="直行便" />
 
     <TextView
-        android:id="@+id/busTimeTextView"
+        android:id="@+id/bus_time_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
@@ -28,23 +28,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/busDescriptionTextView"
+        app:layout_constraintTop_toBottomOf="@+id/bus_description_text_view"
         tools:text="00:00" />
 
     <TextView
-        android:id="@+id/nextBusDescriptionTextView"
+        android:id="@+id/next_bus_description_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="?attr/colorOnSurface"
         android:textSize="@dimen/next_bus_description_text"
-        app:layout_constraintBottom_toTopOf="@+id/nextBusTimeTextView"
+        app:layout_constraintBottom_toTopOf="@+id/next_bus_time_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="直行便" />
 
     <TextView
-        android:id="@+id/nextBusTimeTextView"
+        android:id="@+id/next_bus_time_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
@@ -52,7 +52,7 @@
         android:textSize="@dimen/next_bus_time_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nextBusDescriptionTextView"
+        app:layout_constraintTop_toBottomOf="@+id/next_bus_description_text_view"
         tools:text="00:00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.numero.sojodia.R
+import com.numero.sojodia.databinding.PagerBusTimeBinding
 import com.numero.sojodia.model.BusTime
-import kotlinx.android.synthetic.main.pager_bus_time.view.*
 
 class BusTimePagerAdapter : PagerAdapter() {
 
@@ -17,17 +17,17 @@ class BusTimePagerAdapter : PagerAdapter() {
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val view = LayoutInflater.from(container.context).inflate(R.layout.pager_bus_time, container, false)
+        val binding = PagerBusTimeBinding.inflate(LayoutInflater.from(container.context), container, false)
 
-        val busTimeList = busTimeList ?: return view
+        val busTimeList = busTimeList ?: return binding.root
 
         if (position >= busTimeList.size) {
-            return view
+            return binding.root
         }
 
         val busTime = busTimeList[position]
-        view.busTimeTextView.text = "%02d:%02d".format(busTime.time.hour, busTime.time.min)
-        view.busDescriptionTextView.apply {
+        binding.busTimeTextView.text = "%02d:%02d".format(busTime.time.hour, busTime.time.min)
+        binding.busDescriptionTextView.apply {
             if (busTime.isNonstop) {
                 visibility = View.VISIBLE
                 setText(R.string.bus_type_nonstop)
@@ -43,8 +43,8 @@ class BusTimePagerAdapter : PagerAdapter() {
 
         if (position != busTimeList.size - 1) {
             val nextBusTime = busTimeList[position + 1]
-            view.nextBusTimeTextView.text = "%02d:%02d".format(nextBusTime.time.hour, nextBusTime.time.min)
-            view.nextBusDescriptionTextView.apply {
+            binding.nextBusTimeTextView.text = "%02d:%02d".format(nextBusTime.time.hour, nextBusTime.time.min)
+            binding.nextBusDescriptionTextView.apply {
                 if (nextBusTime.isNonstop) {
                     visibility = View.VISIBLE
                     setText(R.string.bus_type_nonstop)
@@ -54,8 +54,8 @@ class BusTimePagerAdapter : PagerAdapter() {
             }
         }
 
-        container.addView(view)
-        return view
+        container.addView(binding.root)
+        return binding.root
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, any: Any) {
