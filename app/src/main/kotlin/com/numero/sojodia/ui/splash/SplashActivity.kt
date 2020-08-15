@@ -6,12 +6,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
-import com.numero.sojodia.R
+import com.numero.sojodia.databinding.ActivitySplashBinding
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.ui.board.MainActivity
-import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity(), SplashView {
 
@@ -21,14 +20,16 @@ class SplashActivity : AppCompatActivity(), SplashView {
         get() = module.busDataRepository
 
     private lateinit var presenter: SplashPresenter
+    private lateinit var binding: ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         presenter = SplashPresenterImpl(this, busDataRepository, configRepository)
 
-        retryButton.setOnClickListener {
+        binding.retryButton.setOnClickListener {
             loadBusData()
         }
     }
@@ -49,13 +50,13 @@ class SplashActivity : AppCompatActivity(), SplashView {
     }
 
     override fun onError(throwable: Throwable) {
-        errorGroup.isVisible = true
-        progress.isInvisible = true
+        binding.errorGroup.isVisible = true
+        binding.progress.isInvisible = true
     }
 
     private fun loadBusData() {
-        errorGroup.isVisible = false
-        progress.isInvisible = false
+        binding.errorGroup.isVisible = false
+        binding.progress.isInvisible = false
         presenter.subscribe()
     }
 
