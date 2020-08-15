@@ -3,6 +3,8 @@ package com.numero.sojodia.ui.timetable
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,8 +39,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
         TimeTablePresenterImpl(this, busDataRepository, route, reciprocate)
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DialogTimeTableBinding.inflate(LayoutInflater.from(context))
         binding.toolbar.apply {
             setTitle(route.stationTitleRes)
@@ -53,8 +54,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
             binding.notSchoolTermChip.isChipIconVisible = isChecked
             adapter.isNotSchoolTerm = isChecked
         }
-        dialog.setContentView(binding.root)
-        return dialog
+        return binding.root
     }
 
     override fun onResume() {
