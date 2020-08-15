@@ -1,15 +1,11 @@
 package com.numero.sojodia.ui.timetable
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.numero.sojodia.R
 import com.numero.sojodia.databinding.HolderTimeTableDescriptionBinding
 import com.numero.sojodia.databinding.HolderTimeTableRowBinding
 import com.numero.sojodia.model.TimeTableRow
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.holder_time_table_row.*
 import java.util.*
 
 class TimeTableRowAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

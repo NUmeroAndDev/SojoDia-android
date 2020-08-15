@@ -16,6 +16,7 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.numero.sojodia.R
+import com.numero.sojodia.databinding.ActivityMainBinding
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.Reciprocate
@@ -25,7 +26,6 @@ import com.numero.sojodia.service.UpdateDataWorker
 import com.numero.sojodia.ui.settings.SettingsActivity
 import com.numero.sojodia.ui.splash.SplashActivity
 import com.numero.sojodia.ui.timetable.TimeTableBottomSheetDialogFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmentListener {
@@ -34,10 +34,12 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         get() = module.busDataRepository
 
     private lateinit var appUpdateManager: AppUpdateManager
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         appUpdateManager = AppUpdateManagerFactory.create(this)
 
@@ -50,10 +52,10 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         initViews()
 
         val shortcutIntent = intent.getStringExtra("shortcut")
-        val reciprocate = intent.getSerializableExtra(BUNDLE_RECIPROCATE) as?Reciprocate
+        val reciprocate = intent.getSerializableExtra(BUNDLE_RECIPROCATE) as? Reciprocate
                 ?: Reciprocate.from(shortcutIntent)
         // FIXME
-        viewPager.currentItem = reciprocate.ordinal
+        binding.viewPager.currentItem = reciprocate.ordinal
         startCheckUpdateService()
         checkHasUpdate()
     }
@@ -61,11 +63,11 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     override fun onResume() {
         super.onResume()
         checkProgressUpdate()
-        dateTextView.text = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
+        binding.dateTextView.text = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
     }
 
     override fun onDataChanged() {
-        dateTextView.text = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
+        binding.dateTextView.text = Calendar.getInstance().getTodayString(getString(R.string.date_pattern))
     }
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
@@ -73,9 +75,9 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     }
 
     private fun initViews() {
-        viewPager.adapter = BusScheduleFragmentPagerAdapter(this, supportFragmentManager)
-        tabLayout.setupWithViewPager(viewPager)
-        settingsImageButton.setOnClickListener {
+        binding.viewPager.adapter = BusScheduleFragmentPagerAdapter(this, supportFragmentManager)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.settingsImageButton.setOnClickListener {
             startActivity(SettingsActivity.createIntent(this))
         }
     }
@@ -113,18 +115,18 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
     private fun checkHasUpdate() {
         appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
-                badgeView.isVisible = true
+                binding.badgeView.isVisible = true
             }
         }
     }
 
     private fun showNeedRestartNotice() {
-        Snackbar.make(rootLayout, R.string.message_need_update, Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(binding.rootLayout, R.string.message_need_update, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.positive_button_need_update) {
                     busDataRepository.reloadBusData()
                     this.recreate()
                 }
-                .setAnchorView(R.id.tabCardView)
+                .setAnchorView(R.id.tab_card_view)
                 .show()
     }
 

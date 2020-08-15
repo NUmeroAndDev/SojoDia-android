@@ -13,12 +13,12 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/applicationIconImageView"
+            android:id="@+id/application_icon_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="64dp"
             android:src="@drawable/ic_launcher_foreground"
-            app:layout_constraintBottom_toTopOf="@+id/progress"
+            app:layout_constraintBottom_toTopOf="@id/progress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,10 +31,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/applicationIconImageView" />
+            app:layout_constraintTop_toBottomOf="@id/application_icon_image_view" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/errorTextView"
+            android:id="@+id/error_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -47,25 +47,25 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/applicationIconImageView"
+            app:layout_constraintTop_toBottomOf="@id/application_icon_image_view"
             app:layout_constraintVertical_bias="0" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/retryButton"
+            android:id="@+id/retry_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/error_retry_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/errorTextView" />
+            app:layout_constraintTop_toBottomOf="@id/error_text_view" />
 
         <androidx.constraintlayout.widget.Group
-            android:id="@+id/errorGroup"
+            android:id="@+id/error_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="errorTextView,retryButton" />
+            app:constraint_referenced_ids="error_text_view,retry_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

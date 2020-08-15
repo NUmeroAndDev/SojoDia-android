@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootLayout"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -15,7 +15,7 @@
         app:elevation="0dp">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/searchBarCardView"
+            android:id="@+id/search_bar_card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -30,7 +30,7 @@
                 android:layout_height="?attr/actionBarSize">
 
                 <TextView
-                    android:id="@+id/dateTextView"
+                    android:id="@+id/date_text_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -38,13 +38,13 @@
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/settingsImageButton"
+                    app:layout_constraintEnd_toStartOf="@id/settings_image_button"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="MM/dd (E)" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/settingsImageButton"
+                    android:id="@+id/settings_image_button"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
@@ -76,14 +76,14 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/tabCardView"
+        android:id="@+id/tab_card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
@@ -92,7 +92,7 @@
         app:cardElevation="8dp">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+            android:id="@+id/tab_layout"
             style="@style/Widget.MaterialComponents.TabLayout"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
