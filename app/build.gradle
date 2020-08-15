@@ -69,6 +69,7 @@ dependencies {
     implementation androidx.fragment
     implementation androidx.core
     implementation androidx.recyclerview
+    implementation androidx.viewpager2
     implementation androidx.constraintlayout
 
     implementation androidx.lifecycle.runtime
