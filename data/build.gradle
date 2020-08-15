@@ -16,6 +16,12 @@ android {
         testOptions.unitTests.includeAndroidResources = true
 
         buildConfigField("String", "BUS_DATA_URL", "\"https://raw.githubusercontent.com\"")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
