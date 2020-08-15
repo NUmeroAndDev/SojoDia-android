@@ -1,13 +1,11 @@
 package com.numero.sojodia.ui.timetable
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.databinding.DialogTimeTableBinding
 import com.numero.sojodia.extension.module
@@ -22,13 +20,15 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
 
     private val adapter: TimeTableRowAdapter = TimeTableRowAdapter()
 
-    private lateinit var binding: DialogTimeTableBinding
+    private var _binding: DialogTimeTableBinding? = null
+    private val binding get() = requireNotNull(_binding)
+
     private lateinit var presenter: TimeTablePresenter
-    private val route: Route by lazy {
-        arguments?.getSerializable(ARG_ROUTE) as Route
+    private val route by lazy {
+        requireArguments().getSerializable(ARG_ROUTE) as Route
     }
-    private val reciprocate: Reciprocate by lazy {
-        arguments?.getSerializable(ARG_RECIPROCATE) as Reciprocate
+    private val reciprocate by lazy {
+        requireArguments().getSerializable(ARG_RECIPROCATE) as Reciprocate
     }
 
     private val busDataRepository: BusDataRepository
@@ -40,16 +40,12 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DialogTimeTableBinding.inflate(LayoutInflater.from(context))
+        _binding = DialogTimeTableBinding.inflate(LayoutInflater.from(context))
         binding.toolbar.apply {
             setTitle(route.stationTitleRes)
             binding.toolbar.setSubtitle(reciprocate.titleStringRes)
         }
-        binding.timeTableRecyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
-            adapter = this@TimeTableBottomSheetDialogFragment.adapter
-        }
+        binding.timeTableRecyclerView.adapter = adapter
         binding.notSchoolTermChip.setOnCheckedChangeListener { _, isChecked ->
             binding.notSchoolTermChip.isChipIconVisible = isChecked
             adapter.isNotSchoolTerm = isChecked
@@ -88,7 +84,10 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment(), TimeTabl
 
         private const val TAG = "TimeTableBottomSheetDialogFragment"
 
-        fun newInstance(route: Route, reciprocate: Reciprocate): TimeTableBottomSheetDialogFragment = TimeTableBottomSheetDialogFragment().apply {
+        fun newInstance(
+                route: Route,
+                reciprocate: Reciprocate
+        ) = TimeTableBottomSheetDialogFragment().apply {
             arguments = bundleOf(ARG_ROUTE to route, ARG_RECIPROCATE to reciprocate)
         }
     }
