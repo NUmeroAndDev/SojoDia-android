@@ -104,6 +104,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         binding.licensesSettingsItemView.setOnClickListener {
+            OssLicensesMenuActivity.setActivityTitle(getString(R.string.licenses_label))
             startActivity(Intent(this, OssLicensesMenuActivity::class.java))
         }
     }

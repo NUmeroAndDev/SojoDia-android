@@ -107,8 +107,6 @@ buildscript {
 
         classpath kotlinAndroid.plugin
 
-        classpath 'com.cookpad.android.licensetools:license-tools-plugin:1.5.0'
-
         classpath 'com.google.android.gms:oss-licenses-plugin:0.10.2'
     }
 }

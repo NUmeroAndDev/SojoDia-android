@@ -2,8 +2,6 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'com.cookpad.android.licensetools'
-
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 android {

@@ -39,10 +39,6 @@
             android:label="@string/settings_label" />
 
         <activity
-            android:name=".ui.licenses.LicensesActivity"
-            android:label="@string/licenses_label" />
-
-        <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
             android:theme="@style/Theme.SojoDia.DayNight.ActionBar" />
         <activity
