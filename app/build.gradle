@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'com.cookpad.android.licensetools'
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -80,4 +80,6 @@ dependencies {
     implementation androidx.work
 
     implementation material
+
+    implementation licenses
 }

@@ -11,6 +11,8 @@
 
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.SojoDia.Large</item>
         <item name="bottomSheetDialogTheme">@style/Theme.SojoDia.BottomSheetDialog</item>
+        <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
     </style>
 
     <style name="Theme.SojoDia" parent="Base.SojoDia">
@@ -33,5 +35,9 @@
 
     <style name="Theme.SojoDia.DayNight" parent="Theme.SojoDia" />
 
+    <style name="Theme.SojoDia.DayNight.ActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+    </style>
 
 </resources>

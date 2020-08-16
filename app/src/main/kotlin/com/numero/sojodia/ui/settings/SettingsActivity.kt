@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.net.toUri
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
@@ -20,7 +21,6 @@ import com.numero.sojodia.extension.applyApplication
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.ConfigRepository
-import com.numero.sojodia.ui.licenses.LicensesActivity
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -104,7 +104,8 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         binding.licensesSettingsItemView.setOnClickListener {
-            startActivity(LicensesActivity.createIntent(this@SettingsActivity))
+            OssLicensesMenuActivity.setActivityTitle(getString(R.string.licenses_label))
+            startActivity(Intent(this, OssLicensesMenuActivity::class.java))
         }
     }
 
