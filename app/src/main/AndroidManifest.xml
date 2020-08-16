@@ -42,6 +42,13 @@
             android:name=".ui.licenses.LicensesActivity"
             android:label="@string/licenses_label" />
 
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:theme="@style/Theme.SojoDia.DayNight.ActionBar" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:theme="@style/Theme.SojoDia.DayNight.ActionBar" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
