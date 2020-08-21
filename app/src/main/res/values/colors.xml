@@ -3,8 +3,8 @@
 
     <color name="sojodia_green">#8BC34A</color>
     <color name="white">#FFFFFF</color>
-    <color name="pure_black">#000000</color>
-    <color name="black">#121212</color>
+    <color name="black">#000000</color>
+    <color name="dark_grey">#121212</color>
 
     <!--Fragment-->
     <color name="count_attention_text">#f44336</color>

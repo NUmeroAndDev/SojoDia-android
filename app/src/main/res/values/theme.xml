@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Base.SojoDia" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
 
         <item name="android:splitMotionEvents">false</item>
-        <item name="dialogCornerRadius">@dimen/app_corner_round</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.SojoDia.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.SojoDia.Medium</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.SojoDia.Large</item>
+
+        <item name="textAppearanceHeadline5">@style/TextAppearance.SojoDia.Headline5</item>
+
         <item name="bottomSheetDialogTheme">@style/Theme.SojoDia.BottomSheetDialog</item>
         <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
-
-        <item name="textAppearanceHeadline5">@style/TextAppearance.SojoDia.Headline5</item>
     </style>
 
     <style name="Theme.SojoDia" parent="Base.SojoDia">
@@ -27,8 +30,8 @@
 
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorOnSecondary">@color/white</item>
-        <item name="colorOnBackground">@color/pure_black</item>
-        <item name="colorOnSurface">@color/pure_black</item>
+        <item name="colorOnBackground">@color/black</item>
+        <item name="colorOnSurface">@color/black</item>
         <item name="colorOnError">@color/white</item>
 
         <item name="android:windowLightStatusBar">true</item>
