@@ -13,6 +13,8 @@
         <item name="bottomSheetDialogTheme">@style/Theme.SojoDia.BottomSheetDialog</item>
         <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
+
+        <item name="textAppearanceHeadline5">@style/TextAppearance.SojoDia.Headline5</item>
     </style>
 
     <style name="Theme.SojoDia" parent="Base.SojoDia">
