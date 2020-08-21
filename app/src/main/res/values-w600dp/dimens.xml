@@ -1,8 +1,10 @@
 <resources>
+
     <!-- Top -->
     <dimen name="tab_bottom_margin">16dp</dimen>
 
     <!-- Board -->
     <dimen name="bus_time_view_pager_height">64dp</dimen>
     <dimen name="bus_time_text">28sp</dimen>
+
 </resources>
