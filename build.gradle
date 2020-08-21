@@ -74,6 +74,8 @@ buildscript {
 
         material = "com.google.android.material:material:1.3.0-alpha02"
 
+        insetter = "dev.chrisbanes:insetter-ktx:0.3.1"
+
         okhttp = [
                 core   : "com.squareup.okhttp3:okhttp:4.8.1",
                 logging: "com.squareup.okhttp3:logging-interceptor:4.8.1",

@@ -1,5 +1,7 @@
 <resources>
     <dimen name="app_corner_round">16dp</dimen>
+    <!-- Top -->
+    <dimen name="tab_bottom_margin">8dp</dimen>
 
     <dimen name="bus_schedule_card_elevation">4dp</dimen>
 

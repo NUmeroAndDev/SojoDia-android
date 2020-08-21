@@ -3,7 +3,6 @@
 
     <style name="Theme.SojoDia.DayNight">
         <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:navigationBarColor">@color/navigationBar</item>
-        <item name="android:navigationBarDividerColor">@color/divider</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 </resources>

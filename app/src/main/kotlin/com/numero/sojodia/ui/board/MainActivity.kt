@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.observe
 import androidx.work.ExistingWorkPolicy
@@ -28,6 +29,7 @@ import com.numero.sojodia.service.UpdateDataWorker
 import com.numero.sojodia.ui.settings.SettingsActivity
 import com.numero.sojodia.ui.splash.SplashActivity
 import com.numero.sojodia.ui.timetable.TimeTableBottomSheetDialogFragment
+import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 import java.util.*
 
 class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmentListener {
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
             return
         }
 
+        setupInset()
         initViews()
 
         val shortcutIntent = intent.getStringExtra("shortcut")
@@ -74,6 +77,11 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     override fun showTimeTableDialog(route: Route, reciprocate: Reciprocate) {
         TimeTableBottomSheetDialogFragment.newInstance(route, reciprocate).showIfNeed(supportFragmentManager)
+    }
+
+    private fun setupInset() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        binding.rootLayout.applySystemWindowInsetsToPadding(bottom = true, right = true, left = true)
     }
 
     private fun initViews() {
