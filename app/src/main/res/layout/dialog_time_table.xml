@@ -23,6 +23,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
             app:subtitleTextColor="?attr/colorPrimary"
             app:titleTextColor="?attr/colorPrimary" />
 
@@ -31,7 +32,7 @@
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="end|center"
             android:layout_marginEnd="16dp"
             android:text="@string/not_school_term"
             app:checkedIconEnabled="false"
