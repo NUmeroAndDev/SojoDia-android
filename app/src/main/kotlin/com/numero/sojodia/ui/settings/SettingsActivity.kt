@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.net.toUri
+import androidx.core.view.WindowCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -21,6 +22,7 @@ import com.numero.sojodia.extension.applyApplication
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.ConfigRepository
+import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -39,6 +41,7 @@ class SettingsActivity : AppCompatActivity() {
         appUpdateManager = AppUpdateManagerFactory.create(this)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setupInset()
         setupViews()
     }
 
@@ -81,6 +84,12 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun setupInset() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        binding.root.applySystemWindowInsetsToPadding(left = true, right = true)
+        binding.scrollView.applySystemWindowInsetsToPadding(bottom = true)
     }
 
     private fun setupViews() {
