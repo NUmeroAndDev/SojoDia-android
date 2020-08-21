@@ -24,7 +24,6 @@
         <item name="colorSecondaryVariant">@color/sojodia_green</item>
         <item name="android:colorBackground">@color/white</item>
         <item name="colorSurface">@color/white</item>
-        <item name="colorError">@color/error</item>
 
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorOnSecondary">@color/white</item>

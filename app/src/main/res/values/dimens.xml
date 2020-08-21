@@ -3,27 +3,15 @@
     <!-- Top -->
     <dimen name="tab_bottom_margin">8dp</dimen>
 
-    <dimen name="bus_schedule_card_elevation">4dp</dimen>
-
-    <!--Fragment-->
-    <dimen name="card_margin">8dp</dimen>
-
+    <!-- Board -->
     <dimen name="bus_time_view_pager_height">48dp</dimen>
-
-    <dimen name="bus_toolbar_text">22sp</dimen>
-    <dimen name="bus_time_text">18sp</dimen>
-    <dimen name="bus_description_text">12sp</dimen>
-    <dimen name="next_bus_description_text">8sp</dimen>
-    <dimen name="next_bus_time_text">12sp</dimen>
+    <dimen name="bus_time_text">20sp</dimen>
     <dimen name="count_time_text">56sp</dimen>
-    <dimen name="no_bus_text">22sp</dimen>
 
-    <!--TimeTableDialog-->
+    <!-- TimeTable -->
     <dimen name="time_table_dialog_hour_text_width">52dp</dimen>
     <dimen name="time_table_dialog_row_divider">1dp</dimen>
     <dimen name="time_table_dialog_vertical_text_margin">4dp</dimen>
     <dimen name="time_table_dialog_horizontal_text_margin">8dp</dimen>
-    <dimen name="time_table_dialog_header_text">14sp</dimen>
-    <dimen name="time_table_dialog_row_text">14sp</dimen>
 
 </resources>
