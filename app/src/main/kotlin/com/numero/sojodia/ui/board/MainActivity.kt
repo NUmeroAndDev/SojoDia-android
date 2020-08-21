@@ -2,7 +2,6 @@ package com.numero.sojodia.ui.board
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -82,7 +81,6 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
 
     private fun setupInset() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = Color.TRANSPARENT
         binding.rootLayout.applySystemWindowInsetsToPadding(bottom = true, right = true, left = true)
     }
 
