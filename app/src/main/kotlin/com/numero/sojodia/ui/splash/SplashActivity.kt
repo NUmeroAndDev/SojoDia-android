@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.numero.sojodia.databinding.ActivitySplashBinding
@@ -11,6 +12,7 @@ import com.numero.sojodia.extension.module
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.ui.board.MainActivity
+import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 
 class SplashActivity : AppCompatActivity(), SplashView {
 
@@ -29,6 +31,8 @@ class SplashActivity : AppCompatActivity(), SplashView {
 
         presenter = SplashPresenterImpl(this, busDataRepository, configRepository)
 
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        binding.root.applySystemWindowInsetsToPadding(bottom = true, left = true, right = true)
         binding.retryButton.setOnClickListener {
             loadBusData()
         }
