@@ -81,5 +81,7 @@ dependencies {
 
     implementation material
 
+    implementation insetter
+
     implementation licenses
 }
