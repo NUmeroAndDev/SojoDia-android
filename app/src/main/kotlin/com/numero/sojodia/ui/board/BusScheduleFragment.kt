@@ -174,7 +174,7 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
 
     override fun showTkNoBusLayout() {
         binding.tkNoBusTextView.isVisible = true
-        binding.tkCountdownTextView.isVisible = false
+        binding.tkCountdownTextView.isInvisible = true
         binding.tkBusTimeViewPager.isVisible = false
     }
 
@@ -188,7 +188,7 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
 
     override fun showTndNoBusLayout() {
         binding.tndNoBusTextView.isVisible = true
-        binding.tndCountdownTextView.isVisible = false
+        binding.tndCountdownTextView.isInvisible = true
         binding.tndBusTimeViewPager.isVisible = false
     }
 
