@@ -8,8 +8,25 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.VectorAsset
+import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
+import androidx.ui.tooling.preview.Preview
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -22,6 +39,7 @@ import com.numero.sojodia.extension.applyApplication
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.ui.theme.SojoDiaTheme
 import dev.chrisbanes.insetter.applySystemWindowInsetsToPadding
 
 class SettingsActivity : AppCompatActivity() {
@@ -68,12 +86,22 @@ class SettingsActivity : AppCompatActivity() {
                         setVisibleIcon(true)
                         setSummary(getString(R.string.settings_newer_version_available))
                         setOnClickListener {
-                            appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this@SettingsActivity, UPDATE_REQUEST_CODE)
+                            appUpdateManager.startUpdateFlowForResult(
+                                appUpdateInfo,
+                                AppUpdateType.IMMEDIATE,
+                                this@SettingsActivity,
+                                UPDATE_REQUEST_CODE
+                            )
                         }
                     }
                 }
                 UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
-                    appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this, UPDATE_REQUEST_CODE)
+                    appUpdateManager.startUpdateFlowForResult(
+                        appUpdateInfo,
+                        AppUpdateType.IMMEDIATE,
+                        this,
+                        UPDATE_REQUEST_CODE
+                    )
                 }
                 else -> {
                     binding.appVersionSettingsItemView.apply {
@@ -157,5 +185,121 @@ class SettingsActivity : AppCompatActivity() {
         private const val SOURCE_URL = "https://github.com/NUmeroAndDev/SojoDia-android"
 
         fun createIntent(context: Context): Intent = Intent(context, SettingsActivity::class.java)
+    }
+}
+
+@Composable
+fun SettingsScreen(
+    configRepository: ConfigRepository,
+    onBack: () -> Unit
+) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    val context = ContextAmbient.current
+                    Text(text = context.getString(R.string.settings_label))
+                },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.Filled.ArrowBack)
+                    }
+                }
+            )
+        },
+        bodyContent = { innerPadding ->
+            val modifier = Modifier.padding(innerPadding)
+            SettingsContent()
+        }
+    )
+}
+
+@Composable
+fun SettingsContent(
+    modifier: Modifier = Modifier
+) {
+    val context = ContextAmbient.current
+    Column(
+        modifier = modifier
+    ) {
+        SettingsItem(
+            title = context.getString(R.string.settings_select_app_theme_title)
+        )
+        SettingsItem(
+            title = context.getString(R.string.settings_data_version_title)
+        )
+        SettingsItem(
+            icon = vectorResource(id = R.drawable.ic_attention),
+            iconTint = MaterialTheme.colors.error,
+            title = context.getString(R.string.settings_app_version_title),
+            subtitle = BuildConfig.VERSION_NAME
+        )
+        SettingsItem(
+            icon = vectorResource(id = R.drawable.ic_github),
+            title = context.getString(R.string.settings_view_source_title)
+        )
+        SettingsItem(
+            title = context.getString(R.string.settings_licenses_title)
+        )
+    }
+}
+
+// TODO click item
+@Composable
+fun SettingsItem(
+    icon: VectorAsset? = null,
+    iconTint: Color = contentColor(),
+    title: String,
+    subtitle: String? = null
+) {
+    val modifier = Modifier.preferredHeightIn(min = 64.dp)
+        .clickable(onClick = { })
+        .padding(horizontal = 16.dp)
+    Row(
+        modifier = modifier
+    ) {
+        Box(
+            modifier = Modifier.preferredSize(24.dp)
+                .align(alignment = Alignment.CenterVertically)
+        ) {
+            if (icon != null) {
+                Icon(
+                    asset = icon,
+                    tint = iconTint,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+        }
+        Spacer(modifier = Modifier.preferredWidth(16.dp))
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .align(alignment = Alignment.CenterVertically)
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.subtitle1,
+                color = MaterialTheme.colors.onBackground
+            )
+            if (subtitle != null) {
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.body2,
+                    color = MaterialTheme.colors.onBackground.copy(alpha = 0.54f)
+                )
+            }
+        }
+    }
+}
+
+@Preview("Settings Item")
+@Composable
+fun SettingsItemPreview() {
+    SojoDiaTheme() {
+        SettingsItem(
+            icon = vectorResource(id = R.drawable.ic_github),
+            title = "Title",
+            subtitle = "Subtitle"
+        )
     }
 }
