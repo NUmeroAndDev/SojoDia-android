@@ -2,10 +2,11 @@
 .gradle
 /local.properties
 /.idea/*
+!.idea/codeStyles
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 *.apk
-output.json
+output-metadata.json
 *.aab
