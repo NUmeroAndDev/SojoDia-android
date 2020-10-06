@@ -8,15 +8,15 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.contentColor
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,6 +36,7 @@ import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.databinding.ActivitySettingsBinding
 import com.numero.sojodia.extension.applyApplication
+import com.numero.sojodia.extension.getTitle
 import com.numero.sojodia.extension.module
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.ConfigRepository
@@ -209,22 +210,24 @@ fun SettingsScreen(
         },
         bodyContent = { innerPadding ->
             val modifier = Modifier.padding(innerPadding)
-            SettingsContent()
+            SettingsContent(
+                modifier = modifier,
+                configRepository = configRepository
+            )
         }
     )
 }
 
 @Composable
 fun SettingsContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    configRepository: ConfigRepository
 ) {
     val context = ContextAmbient.current
     Column(
         modifier = modifier
     ) {
-        SettingsItem(
-            title = context.getString(R.string.settings_select_app_theme_title)
-        )
+        SelectThemeItem(configRepository = configRepository)
         SettingsItem(
             title = context.getString(R.string.settings_data_version_title)
         )
@@ -244,16 +247,60 @@ fun SettingsContent(
     }
 }
 
-// TODO click item
+@Composable
+fun SelectThemeItem(
+    configRepository: ConfigRepository
+) {
+    var isShownDropdown by remember { mutableStateOf(false) }
+    var currentAppTheme by remember { mutableStateOf(configRepository.appTheme) }
+
+    val context = ContextAmbient.current
+
+    DropdownMenu(
+        toggle = {
+            SettingsItem(
+                title = context.getString(R.string.settings_select_app_theme_title),
+                subtitle = currentAppTheme.getTitle(context),
+                onClick = {
+                    isShownDropdown = true
+                }
+            )
+        },
+        expanded = isShownDropdown,
+        onDismissRequest = {
+            isShownDropdown = false
+        },
+        dropdownContent = {
+            listOf(
+                AppTheme.LIGHT, AppTheme.DARK, AppTheme.SYSTEM_DEFAULT
+            ).forEach {
+                DropdownMenuItem(
+                    onClick = {
+                        configRepository.appTheme = it
+                        currentAppTheme = it
+                        currentAppTheme.applyApplication()
+                        isShownDropdown = false
+                    }
+                ) {
+                    // TODO show icon if current selected
+                    Text(text = it.getTitle(context))
+                }
+            }
+        },
+        dropdownModifier = Modifier.fillMaxWidth()
+    )
+}
+
 @Composable
 fun SettingsItem(
     icon: VectorAsset? = null,
     iconTint: Color = contentColor(),
     title: String,
-    subtitle: String? = null
+    subtitle: String? = null,
+    onClick: () -> Unit = {}
 ) {
     val modifier = Modifier.preferredHeightIn(min = 64.dp)
-        .clickable(onClick = { })
+        .clickable(onClick = onClick)
         .padding(horizontal = 16.dp)
     Row(
         modifier = modifier
