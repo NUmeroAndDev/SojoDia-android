@@ -67,6 +67,12 @@ buildscript {
                         compiler: "androidx.room:room-compiler:2.3.0-alpha02"
                 ],
 
+                compose         : [
+                        ui        : "androidx.compose.ui:ui:1.0.0-alpha03",
+                        material  : "androidx.compose.material:material:1.0.0-alpha03",
+                        ui_tooling: "androidx.ui:ui-tooling:1.0.0-alpha03"
+                ],
+
                 work            : "androidx.work:work-runtime-ktx:2.4.0",
 
                 test            : "androidx.test.ext:junit:1.1.2"
