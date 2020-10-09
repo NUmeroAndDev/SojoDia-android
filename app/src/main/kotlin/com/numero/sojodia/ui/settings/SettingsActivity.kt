@@ -277,7 +277,7 @@ fun SettingsItem(
                 )
             }
         }
-        Spacer(modifier = Modifier.preferredWidth(16.dp))
+        Spacer(modifier = Modifier.preferredWidth(32.dp))
         Column(
             modifier = Modifier
                 .weight(1f)
