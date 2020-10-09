@@ -130,7 +130,8 @@ fun SettingsContent(
     ) {
         SelectThemeItem(configRepository = configRepository)
         SettingsItem(
-            title = context.getString(R.string.settings_data_version_title)
+            title = context.getString(R.string.settings_data_version_title),
+            subtitle = configRepository.currentVersion.value.toString()
         )
         AppVersionItem(
             onUpdate = onUpdate
