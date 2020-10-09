@@ -103,7 +103,8 @@ fun SettingsScreen(
                     IconButton(onClick = onBack) {
                         Icon(Icons.Filled.ArrowBack)
                     }
-                }
+                },
+                backgroundColor = MaterialTheme.colors.surface
             )
         },
         bodyContent = { innerPadding ->
