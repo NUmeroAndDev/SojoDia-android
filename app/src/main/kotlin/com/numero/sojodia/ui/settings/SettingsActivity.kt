@@ -22,12 +22,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.platform.LifecycleOwnerAmbient
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.ui.tooling.preview.Preview
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
@@ -192,7 +196,9 @@ class SettingsActivity : AppCompatActivity() {
 @Composable
 fun SettingsScreen(
     configRepository: ConfigRepository,
-    onBack: () -> Unit
+    appUpdateManager: AppUpdateManager,
+    onBack: () -> Unit,
+    onUpdate: (AppUpdateInfo) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -212,7 +218,9 @@ fun SettingsScreen(
             val modifier = Modifier.padding(innerPadding)
             SettingsContent(
                 modifier = modifier,
-                configRepository = configRepository
+                configRepository = configRepository,
+                appUpdateManager = appUpdateManager,
+                onUpdate = onUpdate
             )
         }
     )
@@ -221,7 +229,9 @@ fun SettingsScreen(
 @Composable
 fun SettingsContent(
     modifier: Modifier = Modifier,
-    configRepository: ConfigRepository
+    configRepository: ConfigRepository,
+    appUpdateManager: AppUpdateManager,
+    onUpdate: (AppUpdateInfo) -> Unit
 ) {
     val context = ContextAmbient.current
     Column(
@@ -231,11 +241,9 @@ fun SettingsContent(
         SettingsItem(
             title = context.getString(R.string.settings_data_version_title)
         )
-        SettingsItem(
-            icon = vectorResource(id = R.drawable.ic_attention),
-            iconTint = MaterialTheme.colors.error,
-            title = context.getString(R.string.settings_app_version_title),
-            subtitle = BuildConfig.VERSION_NAME
+        AppVersionItem(
+            appUpdateManager = appUpdateManager,
+            onUpdate = onUpdate
         )
         SettingsItem(
             icon = vectorResource(id = R.drawable.ic_github),
@@ -289,6 +297,58 @@ fun SelectThemeItem(
         },
         dropdownModifier = Modifier.fillMaxWidth()
     )
+}
+
+@Composable
+fun AppVersionItem(
+    appUpdateManager: AppUpdateManager,
+    onUpdate: (AppUpdateInfo) -> Unit
+) {
+    val context = ContextAmbient.current
+    var versionState by remember { mutableStateOf<VersionState>(VersionState.NoUpdate) }
+    LifecycleOwnerAmbient.current.lifecycle.addObserver(object: DefaultLifecycleObserver {
+        override fun onResume(owner: LifecycleOwner) {
+            super.onResume(owner)
+            appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+                when (appUpdateInfo.updateAvailability()) {
+                    UpdateAvailability.UPDATE_AVAILABLE -> {
+                        versionState = VersionState.AvailableUpdate(appUpdateInfo)
+                    }
+                    else -> versionState = VersionState.NoUpdate
+                }
+            }
+        }
+    })
+    SettingsItem(
+        icon = when (versionState) {
+            is VersionState.AvailableUpdate -> {
+                vectorResource(id = R.drawable.ic_attention)
+            }
+            is VersionState.NoUpdate -> null
+        },
+        iconTint = MaterialTheme.colors.error,
+        title = context.getString(
+            when (versionState) {
+                is VersionState.AvailableUpdate -> R.string.settings_newer_version_available
+                is VersionState.NoUpdate -> R.string.settings_app_version_title
+            }
+        ),
+        subtitle = BuildConfig.VERSION_NAME,
+        onClick = {
+            val state = versionState
+            if (state is VersionState.AvailableUpdate) {
+                onUpdate(state.appUpdateInfo)
+            }
+        }
+    )
+}
+
+private sealed class VersionState {
+    data class AvailableUpdate(
+        val appUpdateInfo: AppUpdateInfo
+    ) : VersionState()
+
+    object NoUpdate : VersionState()
 }
 
 @Composable
