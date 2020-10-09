@@ -81,6 +81,7 @@ dependencies {
 
     implementation androidx.lifecycle.runtime
     implementation androidx.lifecycle.livedata
+    implementation androidx.lifecycle.common
 
     implementation androidx.compose.ui
     implementation androidx.compose.material
