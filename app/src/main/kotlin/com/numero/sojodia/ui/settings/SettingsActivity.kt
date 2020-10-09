@@ -187,7 +187,7 @@ class SettingsActivity : AppCompatActivity() {
     companion object {
         private const val UPDATE_REQUEST_CODE = 1
 
-        private const val SOURCE_URL = "https://github.com/NUmeroAndDev/SojoDia-android"
+        const val SOURCE_URL = "https://github.com/NUmeroAndDev/SojoDia-android"
 
         fun createIntent(context: Context): Intent = Intent(context, SettingsActivity::class.java)
     }
@@ -247,10 +247,19 @@ fun SettingsContent(
         )
         SettingsItem(
             icon = vectorResource(id = R.drawable.ic_github),
-            title = context.getString(R.string.settings_view_source_title)
+            title = context.getString(R.string.settings_view_source_title),
+            onClick = {
+                context.startActivity(
+                    Intent(Intent.ACTION_VIEW, SettingsActivity.SOURCE_URL.toUri())
+                )
+            }
         )
         SettingsItem(
-            title = context.getString(R.string.settings_licenses_title)
+            title = context.getString(R.string.settings_licenses_title),
+            onClick = {
+                OssLicensesMenuActivity.setActivityTitle(context.getString(R.string.licenses_label))
+                context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
+            }
         )
     }
 }
@@ -306,7 +315,7 @@ fun AppVersionItem(
 ) {
     val context = ContextAmbient.current
     var versionState by remember { mutableStateOf<VersionState>(VersionState.NoUpdate) }
-    LifecycleOwnerAmbient.current.lifecycle.addObserver(object: DefaultLifecycleObserver {
+    LifecycleOwnerAmbient.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onResume(owner: LifecycleOwner) {
             super.onResume(owner)
             appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
