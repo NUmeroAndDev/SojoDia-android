@@ -193,10 +193,11 @@ class SettingsActivity : AppCompatActivity() {
     }
 }
 
+val AppUpdateManagerAmbient = staticAmbientOf<AppUpdateManager>()
+
 @Composable
 fun SettingsScreen(
     configRepository: ConfigRepository,
-    appUpdateManager: AppUpdateManager,
     onBack: () -> Unit,
     onUpdate: (AppUpdateInfo) -> Unit
 ) {
@@ -219,7 +220,6 @@ fun SettingsScreen(
             SettingsContent(
                 modifier = modifier,
                 configRepository = configRepository,
-                appUpdateManager = appUpdateManager,
                 onUpdate = onUpdate
             )
         }
@@ -230,7 +230,6 @@ fun SettingsScreen(
 fun SettingsContent(
     modifier: Modifier = Modifier,
     configRepository: ConfigRepository,
-    appUpdateManager: AppUpdateManager,
     onUpdate: (AppUpdateInfo) -> Unit
 ) {
     val context = ContextAmbient.current
@@ -242,7 +241,6 @@ fun SettingsContent(
             title = context.getString(R.string.settings_data_version_title)
         )
         AppVersionItem(
-            appUpdateManager = appUpdateManager,
             onUpdate = onUpdate
         )
         SettingsItem(
@@ -310,10 +308,10 @@ fun SelectThemeItem(
 
 @Composable
 fun AppVersionItem(
-    appUpdateManager: AppUpdateManager,
     onUpdate: (AppUpdateInfo) -> Unit
 ) {
     val context = ContextAmbient.current
+    val appUpdateManager = AppUpdateManagerAmbient.current
     var versionState by remember { mutableStateOf<VersionState>(VersionState.NoUpdate) }
     LifecycleOwnerAmbient.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onResume(owner: LifecycleOwner) {
