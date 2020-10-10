@@ -12,9 +12,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.LifecycleOwnerAmbient
 import androidx.compose.ui.text.font.FontWeight
@@ -36,6 +38,7 @@ import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.ui.theme.SojoDiaTheme
 import com.numero.sojodia.ui.theme.saturdayBlue
 import com.numero.sojodia.ui.theme.sundayRed
+import java.util.*
 
 class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
@@ -131,13 +134,15 @@ fun TimetableContent(
         TimetableHeader()
         TimetableDivider()
         ScrollableColumn {
+            val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
             timetableRowList.value.forEachIndexed { index, timeTableRow ->
                 if (index != 0) {
                     TimetableDivider()
                 }
                 TimetableRowItem(
                     timeTableRow = timeTableRow,
-                    isNotSchoolTerm = false
+                    isNotSchoolTerm = false,
+                    isCurrentHourItem = timeTableRow.hour == currentHour
                 )
                 if (index == timetableRowList.value.lastIndex) {
                     TimetableDivider()
@@ -232,40 +237,49 @@ fun TimetableHeader() {
 @Composable
 fun TimetableRowItem(
     timeTableRow: TimeTableRow,
-    isNotSchoolTerm: Boolean
+    isNotSchoolTerm: Boolean,
+    isCurrentHourItem: Boolean
 ) {
-    Row {
-        Text(
-            text = "%02d".format(timeTableRow.hour),
-            style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold),
-            color = MaterialTheme.colors.onSurface,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.width(56.dp).padding(vertical = 4.dp)
-        )
-        Text(
-            text = timeTableRow.getOnWeekdayText(isNotSchoolTerm),
-            style = MaterialTheme.typography.subtitle1,
-            color = MaterialTheme.colors.onSurface,
-            modifier = Modifier.fillMaxWidth()
-                .weight(1f)
-                .padding(vertical = 4.dp, horizontal = 8.dp)
-        )
-        Text(
-            text = timeTableRow.getOnSaturdayText(isNotSchoolTerm),
-            style = MaterialTheme.typography.subtitle1,
-            color = MaterialTheme.colors.onSurface,
-            modifier = Modifier.fillMaxWidth()
-                .weight(1f)
-                .padding(vertical = 4.dp, horizontal = 8.dp)
-        )
-        Text(
-            text = timeTableRow.getOnSundayText(isNotSchoolTerm),
-            style = MaterialTheme.typography.subtitle1,
-            color = MaterialTheme.colors.onSurface,
-            modifier = Modifier.fillMaxWidth()
-                .weight(1f)
-                .padding(vertical = 4.dp, horizontal = 8.dp)
-        )
+    Surface(
+        color = if (isCurrentHourItem) {
+            MaterialTheme.colors.primary.copy(alpha = 0.24f)
+        } else {
+            Color.Transparent
+        }
+    ) {
+        Row {
+            Text(
+                text = "%02d".format(timeTableRow.hour),
+                style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold),
+                color = MaterialTheme.colors.onSurface,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.width(56.dp).padding(vertical = 4.dp)
+            )
+            Text(
+                text = timeTableRow.getOnWeekdayText(isNotSchoolTerm),
+                style = MaterialTheme.typography.subtitle1,
+                color = MaterialTheme.colors.onSurface,
+                modifier = Modifier.fillMaxWidth()
+                    .weight(1f)
+                    .padding(vertical = 4.dp, horizontal = 8.dp)
+            )
+            Text(
+                text = timeTableRow.getOnSaturdayText(isNotSchoolTerm),
+                style = MaterialTheme.typography.subtitle1,
+                color = MaterialTheme.colors.onSurface,
+                modifier = Modifier.fillMaxWidth()
+                    .weight(1f)
+                    .padding(vertical = 4.dp, horizontal = 8.dp)
+            )
+            Text(
+                text = timeTableRow.getOnSundayText(isNotSchoolTerm),
+                style = MaterialTheme.typography.subtitle1,
+                color = MaterialTheme.colors.onSurface,
+                modifier = Modifier.fillMaxWidth()
+                    .weight(1f)
+                    .padding(vertical = 4.dp, horizontal = 8.dp)
+            )
+        }
     }
 }
 
@@ -339,7 +353,8 @@ fun TimetableRowItemPreview() {
                     )
                 )
             },
-            isNotSchoolTerm = false
+            isNotSchoolTerm = false,
+            isCurrentHourItem = false
         )
     }
 }
