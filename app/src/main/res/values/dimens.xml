@@ -7,10 +7,4 @@
     <dimen name="bus_time_text">20sp</dimen>
     <dimen name="count_time_text">56sp</dimen>
 
-    <!-- TimeTable -->
-    <dimen name="time_table_dialog_hour_text_width">52dp</dimen>
-    <dimen name="time_table_dialog_row_divider">1dp</dimen>
-    <dimen name="time_table_dialog_vertical_text_margin">4dp</dimen>
-    <dimen name="time_table_dialog_horizontal_text_margin">8dp</dimen>
-
 </resources>
