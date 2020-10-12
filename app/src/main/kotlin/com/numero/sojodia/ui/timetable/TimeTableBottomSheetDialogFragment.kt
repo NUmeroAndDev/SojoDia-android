@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
@@ -17,10 +18,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.onPositioned
 import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.platform.DensityAmbient
 import androidx.compose.ui.platform.LifecycleOwnerAmbient
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
@@ -98,7 +102,6 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment() {
 /*
  * TODO
  *  - Filter only school
- *  - Horizontal divider
  */
 @Composable
 fun TimetableContent(
@@ -196,7 +199,11 @@ fun TimetableToolbar(
 fun TimetableHeader() {
     val context = ContextAmbient.current
     val headerTextStyle = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold)
-    Row {
+    val density = DensityAmbient.current.density
+    var height by remember { mutableStateOf(0f) }
+    Row(modifier = Modifier.wrapContentHeight().onPositioned {
+        height = it.size.height / density
+    }) {
         Text(
             text = context.getString(R.string.hour),
             style = headerTextStyle,
@@ -204,6 +211,7 @@ fun TimetableHeader() {
             textAlign = TextAlign.Center,
             modifier = Modifier.width(56.dp).padding(vertical = 4.dp)
         )
+        HorizontalDivider(height = height.dp)
         Text(
             text = context.getString(R.string.weekday),
             style = headerTextStyle,
@@ -213,6 +221,7 @@ fun TimetableHeader() {
                 .weight(1f)
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         )
+        HorizontalDivider(height = height.dp)
         Text(
             text = context.getString(R.string.saturday),
             style = headerTextStyle,
@@ -222,6 +231,7 @@ fun TimetableHeader() {
                 .weight(1f)
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         )
+        HorizontalDivider(height = height.dp)
         Text(
             text = context.getString(R.string.sunday),
             style = headerTextStyle,
@@ -247,7 +257,11 @@ fun TimetableRowItem(
             Color.Transparent
         }
     ) {
-        Row {
+        val density = DensityAmbient.current.density
+        var height by remember { mutableStateOf(0f) }
+        Row(modifier = Modifier.wrapContentHeight().onPositioned {
+            height = it.size.height / density
+        }) {
             Text(
                 text = "%02d".format(timeTableRow.hour),
                 style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold),
@@ -255,6 +269,7 @@ fun TimetableRowItem(
                 textAlign = TextAlign.Center,
                 modifier = Modifier.width(56.dp).padding(vertical = 4.dp)
             )
+            HorizontalDivider(height = height.dp)
             Text(
                 text = timeTableRow.getOnWeekdayText(isNotSchoolTerm),
                 style = MaterialTheme.typography.subtitle1,
@@ -263,6 +278,7 @@ fun TimetableRowItem(
                     .weight(1f)
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
+            HorizontalDivider(height = height.dp)
             Text(
                 text = timeTableRow.getOnSaturdayText(isNotSchoolTerm),
                 style = MaterialTheme.typography.subtitle1,
@@ -271,6 +287,7 @@ fun TimetableRowItem(
                     .weight(1f)
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
+            HorizontalDivider(height = height.dp)
             Text(
                 text = timeTableRow.getOnSundayText(isNotSchoolTerm),
                 style = MaterialTheme.typography.subtitle1,
@@ -298,6 +315,22 @@ fun TimetableFooter() {
 private fun TimetableDivider() {
     Divider(
         color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f)
+    )
+}
+
+/**
+ * FIXME
+ * FillMaxHeight is higher than the Item's Height, so the Item's Height is set.
+ */
+@Composable
+private fun HorizontalDivider(
+    height: Dp
+) {
+    Spacer(
+        modifier = Modifier
+            .preferredWidth(1.dp)
+            .preferredHeight(height = height)
+            .background(color = MaterialTheme.colors.onSurface.copy(0.12f))
     )
 }
 
