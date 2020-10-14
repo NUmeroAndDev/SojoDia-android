@@ -14,8 +14,6 @@ class TimeTablePresenterImpl(
     private val busData: BusData = busDataRepository.getBusData()
 
     init {
-        view.setPresenter(this)
-
         val list = if (route == Route.TK) {
             setupTkBusTimeList()
         } else {

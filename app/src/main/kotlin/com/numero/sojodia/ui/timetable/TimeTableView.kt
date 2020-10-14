@@ -1,9 +1,8 @@
 package com.numero.sojodia.ui.timetable
 
 import com.numero.sojodia.model.TimeTableRowList
-import com.numero.sojodia.core.View
 
-interface TimeTableView : View<TimeTablePresenter> {
+interface TimeTableView {
 
-    fun showTimeTableRowList(timeTableRowList: TimeTableRowList)
+    fun showTimeTableRowList(list: TimeTableRowList)
 }
