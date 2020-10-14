@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ScrollableColumn
-import androidx.compose.foundation.Text
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -99,10 +98,6 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 }
 
-/*
- * TODO
- *  - Filter only school
- */
 @Composable
 fun TimetableContent(
     route: Route,
@@ -110,6 +105,8 @@ fun TimetableContent(
     busDataRepository: BusDataRepository
 ) {
     var timetableRowList by remember { mutableStateOf(TimeTableRowList(emptyList())) }
+    var isFilteredNotSchoolTerm by remember { mutableStateOf(false) }
+
     val presenter = TimeTablePresenterImpl(object : TimeTableView {
         override fun showTimeTableRowList(list: TimeTableRowList) {
             timetableRowList = list
@@ -129,10 +126,15 @@ fun TimetableContent(
             presenter.unSubscribe()
         }
     })
+
     Column {
         TimetableToolbar(
             route = route,
-            reciprocate = reciprocate
+            reciprocate = reciprocate,
+            isNotSchoolTerm = isFilteredNotSchoolTerm,
+            onToggledNotSchoolTerm = {
+                isFilteredNotSchoolTerm = it
+            }
         )
         TimetableHeader()
         TimetableDivider()
@@ -144,7 +146,7 @@ fun TimetableContent(
                 }
                 TimetableRowItem(
                     timeTableRow = timeTableRow,
-                    isNotSchoolTerm = false,
+                    isNotSchoolTerm = isFilteredNotSchoolTerm,
                     isCurrentHourItem = timeTableRow.hour == currentHour
                 )
                 if (index == timetableRowList.value.lastIndex) {
@@ -159,7 +161,9 @@ fun TimetableContent(
 @Composable
 fun TimetableToolbar(
     route: Route,
-    reciprocate: Reciprocate
+    reciprocate: Reciprocate,
+    isNotSchoolTerm: Boolean,
+    onToggledNotSchoolTerm: (Boolean) -> Unit
 ) {
     val context = ContextAmbient.current
     Row(
@@ -181,13 +185,21 @@ fun TimetableToolbar(
         }
         Button(
             modifier = Modifier.align(Alignment.CenterVertically),
+            contentPadding = PaddingValues(start = 12.dp, top = 4.dp, end = 12.dp, bottom = 4.dp),
             border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.onSurface),
             backgroundColor = MaterialTheme.colors.surface,
             shape = CircleShape,
             onClick = {
-                // TODO click event
+                onToggledNotSchoolTerm(!isNotSchoolTerm)
             }
         ) {
+            if (isNotSchoolTerm) {
+                Icon(
+                    asset = Icons.Filled.Check,
+                    modifier = Modifier.size(20.dp)
+                )
+                Spacer(modifier = Modifier.preferredWidth(4.dp))
+            }
             Text(
                 text = context.getString(R.string.not_school_term)
             )
@@ -340,7 +352,9 @@ fun TimetableToolbarPreview() {
     SojoDiaTheme {
         TimetableToolbar(
             route = Route.TK,
-            reciprocate = Reciprocate.GOING
+            reciprocate = Reciprocate.GOING,
+            isNotSchoolTerm = true,
+            onToggledNotSchoolTerm = {}
         )
     }
 }
