@@ -16,6 +16,9 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Radius
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.onPositioned
 import androidx.compose.ui.platform.ContextAmbient
@@ -63,6 +66,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // TODO replace BottomSheetScaffold
         _binding = DialogTimeTableBinding.inflate(LayoutInflater.from(context))
         binding.composeView.setContent {
             SojoDiaTheme {
@@ -128,6 +132,10 @@ fun TimetableContent(
     })
 
     Column {
+        Spacer(modifier = Modifier.preferredHeight(8.dp))
+        BottomSheetControlBar(
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
         TimetableToolbar(
             route = route,
             reciprocate = reciprocate,
@@ -344,6 +352,29 @@ private fun HorizontalDivider(
             .preferredHeight(height = height)
             .background(color = MaterialTheme.colors.onSurface.copy(0.12f))
     )
+}
+
+@Composable
+fun BottomSheetControlBar(
+    modifier: Modifier = Modifier
+) {
+    val color = MaterialTheme.colors.onSurface.copy(alpha = 0.54f)
+    Canvas(modifier = modifier.preferredWidth(32.dp).preferredHeight(4.dp)) {
+        drawRoundRect(
+            color = color,
+            topLeft = Offset.Zero,
+            size = Size(size.width, size.height),
+            radius = Radius(size.height / 2)
+        )
+    }
+}
+
+@Preview("BottomSheetControlBar")
+@Composable
+fun BottomSheetControlBarPreview() {
+    SojoDiaTheme {
+        BottomSheetControlBar()
+    }
 }
 
 @Preview("TimetableToolbar")
