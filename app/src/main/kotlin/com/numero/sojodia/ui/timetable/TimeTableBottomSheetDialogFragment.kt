@@ -238,7 +238,6 @@ fun TimetableHeader() {
                 .weight(1f)
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         )
-        HorizontalDivider(height = height.dp)
         Text(
             text = context.getString(R.string.saturday),
             style = headerTextStyle,
@@ -248,7 +247,6 @@ fun TimetableHeader() {
                 .weight(1f)
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         )
-        HorizontalDivider(height = height.dp)
         Text(
             text = context.getString(R.string.sunday),
             style = headerTextStyle,
@@ -295,7 +293,6 @@ fun TimetableRowItem(
                     .weight(1f)
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
-            HorizontalDivider(height = height.dp)
             Text(
                 text = timeTableRow.getOnSaturdayText(isNotSchoolTerm),
                 style = MaterialTheme.typography.subtitle1,
@@ -304,7 +301,6 @@ fun TimetableRowItem(
                     .weight(1f)
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
-            HorizontalDivider(height = height.dp)
             Text(
                 text = timeTableRow.getOnSundayText(isNotSchoolTerm),
                 style = MaterialTheme.typography.subtitle1,
