@@ -71,7 +71,7 @@ buildscript {
                 compose         : [
                         ui        : "androidx.compose.ui:ui:1.0.0-alpha04",
                         material  : "androidx.compose.material:material:1.0.0-alpha04",
-                        ui_tooling: "androidx.ui:ui-tooling:1.0.0-alpha04"
+                        ui_tooling: "androidx.ui:ui-tooling:1.0.0-alpha05"
                 ],
 
                 work            : "androidx.work:work-runtime-ktx:2.4.0",
