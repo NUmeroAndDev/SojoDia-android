@@ -115,9 +115,6 @@ fun TimetableContent(
         override fun showTimeTableRowList(list: TimeTableRowList) {
             timetableRowList = list
         }
-
-        override fun setPresenter(presenter: TimeTablePresenter) {
-        }
     }, busDataRepository, route, reciprocate)
     LifecycleOwnerAmbient.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onResume(owner: LifecycleOwner) {
