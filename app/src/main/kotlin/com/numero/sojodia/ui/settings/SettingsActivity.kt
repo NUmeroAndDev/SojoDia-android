@@ -4,11 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.contentColor
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -254,7 +252,7 @@ private sealed class VersionState {
 @Composable
 fun SettingsItem(
     icon: VectorAsset? = null,
-    iconTint: Color = contentColor(),
+    iconTint: Color = AmbientContentColor.current,
     title: String,
     subtitle: String? = null,
     onClick: () -> Unit = {}
