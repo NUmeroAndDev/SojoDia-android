@@ -20,7 +20,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Radius
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.onPositioned
+import androidx.compose.ui.onGloballyPositioned
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.DensityAmbient
 import androidx.compose.ui.platform.LifecycleOwnerAmbient
@@ -218,7 +218,7 @@ fun TimetableHeader() {
     val headerTextStyle = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold)
     val density = DensityAmbient.current.density
     var height by remember { mutableStateOf(0f) }
-    Row(modifier = Modifier.wrapContentHeight().onPositioned {
+    Row(modifier = Modifier.wrapContentHeight().onGloballyPositioned {
         height = it.size.height / density
     }) {
         Text(
@@ -274,7 +274,7 @@ fun TimetableRowItem(
     ) {
         val density = DensityAmbient.current.density
         var height by remember { mutableStateOf(0f) }
-        Row(modifier = Modifier.wrapContentHeight().onPositioned {
+        Row(modifier = Modifier.wrapContentHeight().onGloballyPositioned {
             height = it.size.height / density
         }) {
             Text(
