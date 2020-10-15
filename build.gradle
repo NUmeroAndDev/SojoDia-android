@@ -64,8 +64,8 @@ buildscript {
                 ],
 
                 room            : [
-                        runtime : "androidx.room:room-runtime:2.3.0-alpha02",
-                        compiler: "androidx.room:room-compiler:2.3.0-alpha02"
+                        runtime : "androidx.room:room-runtime:2.3.0-alpha03",
+                        compiler: "androidx.room:room-compiler:2.3.0-alpha03"
                 ],
 
                 compose         : [
