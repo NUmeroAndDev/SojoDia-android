@@ -19,7 +19,7 @@ import com.google.android.play.core.install.model.UpdateAvailability
 import com.numero.sojodia.R
 import com.numero.sojodia.databinding.ActivityMainBinding
 import com.numero.sojodia.extension.getTodayString
-import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.component
 import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
@@ -34,7 +34,7 @@ import java.util.*
 class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmentListener {
 
     private val busDataRepository: BusDataRepository
-        get() = module.busDataRepository
+        get() = component.busDataRepository
 
     private lateinit var appUpdateManager: AppUpdateManager
     private lateinit var binding: ActivityMainBinding

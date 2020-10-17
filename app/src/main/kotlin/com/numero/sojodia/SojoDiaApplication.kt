@@ -7,7 +7,7 @@ import com.numero.sojodia.repository.BusDataRepositoryImpl
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.repository.ConfigRepositoryImpl
 
-class SojoDiaApplication : Application(), Module {
+class SojoDiaApplication : Application(), Component {
 
     override lateinit var configRepository: ConfigRepository
 

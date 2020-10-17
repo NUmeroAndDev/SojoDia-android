@@ -36,7 +36,7 @@ import androidx.ui.tooling.preview.Preview
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.R
 import com.numero.sojodia.databinding.DialogTimeTableBinding
-import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.component
 import com.numero.sojodia.extension.stationTitleRes
 import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.*
@@ -59,7 +59,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     private val busDataRepository: BusDataRepository
-        get() = module.busDataRepository
+        get() = component.busDataRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
