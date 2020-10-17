@@ -22,7 +22,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.ui.tooling.preview.Preview
 import com.numero.sojodia.R
-import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.component
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.ui.board.MainActivity
@@ -31,9 +31,9 @@ import com.numero.sojodia.ui.theme.SojoDiaTheme
 class SplashActivity : AppCompatActivity() {
 
     private val configRepository: ConfigRepository
-        get() = module.configRepository
+        get() = component.configRepository
     private val busDataRepository: BusDataRepository
-        get() = module.busDataRepository
+        get() = component.busDataRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

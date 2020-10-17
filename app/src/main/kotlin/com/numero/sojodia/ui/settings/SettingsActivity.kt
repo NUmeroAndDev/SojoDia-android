@@ -34,7 +34,7 @@ import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.applyApplication
 import com.numero.sojodia.extension.getTitle
-import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.component
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.ui.theme.SojoDiaTheme
@@ -42,7 +42,7 @@ import com.numero.sojodia.ui.theme.SojoDiaTheme
 class SettingsActivity : AppCompatActivity() {
 
     private val configRepository: ConfigRepository
-        get() = module.configRepository
+        get() = component.configRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

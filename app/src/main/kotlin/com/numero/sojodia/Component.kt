@@ -3,7 +3,7 @@ package com.numero.sojodia
 import com.numero.sojodia.repository.BusDataRepository
 import com.numero.sojodia.repository.ConfigRepository
 
-interface Module {
+interface Component {
     val configRepository: ConfigRepository
 
     val busDataRepository: BusDataRepository

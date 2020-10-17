@@ -11,7 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.numero.sojodia.databinding.BusScheduleFragmentBinding
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
-import com.numero.sojodia.extension.module
+import com.numero.sojodia.extension.component
 import com.numero.sojodia.model.*
 import com.numero.sojodia.repository.BusDataRepository
 import java.util.*
@@ -19,7 +19,7 @@ import java.util.*
 class BusScheduleFragment : Fragment(), BusScheduleView {
 
     private val busDataRepository: BusDataRepository
-        get() = module.busDataRepository
+        get() = component.busDataRepository
 
     private lateinit var presenter: BusSchedulePresenter
 

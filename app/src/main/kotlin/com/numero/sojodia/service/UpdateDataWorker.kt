@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
-import com.numero.sojodia.Module
+import com.numero.sojodia.Component
 import com.numero.sojodia.model.LatestVersion
 
 class UpdateDataWorker(context: Context, workerParams: WorkerParameters) : CoroutineWorker(context, workerParams) {
 
-    private val configRepository = (applicationContext as Module).configRepository
-    private val busDataRepository = (applicationContext as Module).busDataRepository
+    private val configRepository = (applicationContext as Component).configRepository
+    private val busDataRepository = (applicationContext as Component).busDataRepository
 
     override suspend fun doWork(): Result {
         if (configRepository.isTodayUpdateChecked) {
