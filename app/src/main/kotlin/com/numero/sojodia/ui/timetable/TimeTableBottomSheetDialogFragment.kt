@@ -289,7 +289,7 @@ fun TimetableRowItem(
                 text = timeTableRow.getOnWeekdayText(isNotSchoolTerm),
                 style = MaterialTheme.typography.subtitle1,
                 color = MaterialTheme.colors.onSurface,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.wrapContentWidth(Alignment.Start)
                     .weight(1f)
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
@@ -297,7 +297,7 @@ fun TimetableRowItem(
                 text = timeTableRow.getOnSaturdayText(isNotSchoolTerm),
                 style = MaterialTheme.typography.subtitle1,
                 color = MaterialTheme.colors.onSurface,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.wrapContentWidth(Alignment.Start)
                     .weight(1f)
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
@@ -305,7 +305,7 @@ fun TimetableRowItem(
                 text = timeTableRow.getOnSundayText(isNotSchoolTerm),
                 style = MaterialTheme.typography.subtitle1,
                 color = MaterialTheme.colors.onSurface,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.wrapContentWidth(Alignment.Start)
                     .weight(1f)
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
