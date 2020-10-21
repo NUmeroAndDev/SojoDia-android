@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -20,13 +21,10 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Radius
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.onGloballyPositioned
 import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.DensityAmbient
 import androidx.compose.ui.platform.LifecycleOwnerAmbient
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
@@ -212,15 +210,12 @@ fun TimetableToolbar(
     }
 }
 
+@OptIn(ExperimentalLayout::class)
 @Composable
 fun TimetableHeader() {
     val context = ContextAmbient.current
     val headerTextStyle = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold)
-    val density = DensityAmbient.current.density
-    var height by remember { mutableStateOf(0f) }
-    Row(modifier = Modifier.wrapContentHeight().onGloballyPositioned {
-        height = it.size.height / density
-    }) {
+    Row(modifier = Modifier.preferredHeight(IntrinsicSize.Min)) {
         Text(
             text = context.getString(R.string.hour),
             style = headerTextStyle,
@@ -228,7 +223,7 @@ fun TimetableHeader() {
             textAlign = TextAlign.Center,
             modifier = Modifier.width(56.dp).padding(vertical = 4.dp)
         )
-        HorizontalDivider(height = height.dp)
+        HorizontalDivider()
         Text(
             text = context.getString(R.string.weekday),
             style = headerTextStyle,
@@ -259,6 +254,7 @@ fun TimetableHeader() {
     }
 }
 
+@OptIn(ExperimentalLayout::class)
 @Composable
 fun TimetableRowItem(
     timeTableRow: TimeTableRow,
@@ -272,11 +268,8 @@ fun TimetableRowItem(
             Color.Transparent
         }
     ) {
-        val density = DensityAmbient.current.density
-        var height by remember { mutableStateOf(0f) }
-        Row(modifier = Modifier.wrapContentHeight().onGloballyPositioned {
-            height = it.size.height / density
-        }) {
+        // FIXME not update row height when toggled isNotSchoolTerm
+        Row(modifier = Modifier.preferredHeight(IntrinsicSize.Min).animateContentSize()) {
             Text(
                 text = "%02d".format(timeTableRow.hour),
                 style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold),
@@ -284,7 +277,7 @@ fun TimetableRowItem(
                 textAlign = TextAlign.Center,
                 modifier = Modifier.width(56.dp).padding(vertical = 4.dp)
             )
-            HorizontalDivider(height = height.dp)
+            HorizontalDivider()
             Text(
                 text = timeTableRow.getOnWeekdayText(isNotSchoolTerm),
                 style = MaterialTheme.typography.subtitle1,
@@ -331,18 +324,14 @@ private fun TimetableDivider() {
     )
 }
 
-/**
- * FIXME
- * FillMaxHeight is higher than the Item's Height, so the Item's Height is set.
- */
 @Composable
 private fun HorizontalDivider(
-    height: Dp
+    modifier: Modifier = Modifier
 ) {
     Spacer(
-        modifier = Modifier
+        modifier = modifier
             .preferredWidth(1.dp)
-            .preferredHeight(height = height)
+            .fillMaxHeight()
             .background(color = MaterialTheme.colors.onSurface.copy(0.12f))
     )
 }
