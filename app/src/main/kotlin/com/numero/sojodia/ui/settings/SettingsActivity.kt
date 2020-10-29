@@ -4,9 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.*
+import androidx.compose.foundation.AmbientContentColor
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Box
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -33,8 +34,8 @@ import com.google.android.play.core.install.model.UpdateAvailability
 import com.numero.sojodia.BuildConfig
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.applyApplication
-import com.numero.sojodia.extension.getTitle
 import com.numero.sojodia.extension.component
+import com.numero.sojodia.extension.getTitle
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.ConfigRepository
 import com.numero.sojodia.ui.theme.SojoDiaTheme

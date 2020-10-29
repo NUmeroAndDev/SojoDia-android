@@ -8,17 +8,15 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.*
+import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Radius
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ContextAmbient
@@ -190,7 +188,7 @@ fun TimetableToolbar(
             modifier = Modifier.align(Alignment.CenterVertically),
             contentPadding = PaddingValues(start = 12.dp, top = 4.dp, end = 12.dp, bottom = 4.dp),
             border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.onSurface),
-            backgroundColor = MaterialTheme.colors.surface,
+            colors = ButtonConstants.defaultButtonColors(backgroundColor = MaterialTheme.colors.surface),
             shape = CircleShape,
             onClick = {
                 onToggledNotSchoolTerm(!isNotSchoolTerm)
@@ -346,7 +344,7 @@ fun BottomSheetControlBar(
             color = color,
             topLeft = Offset.Zero,
             size = Size(size.width, size.height),
-            radius = Radius(size.height / 2)
+            cornerRadius = CornerRadius(size.height / 2)
         )
     }
 }
