@@ -97,7 +97,7 @@ buildscript {
                 compiler: "se.ansman.kotshi:compiler:1.0.6"
         ]
 
-        play = "com.google.android.play:core:1.8.2"
+        play = "com.google.android.play:core:1.8.3"
 
         licenses = "com.google.android.gms:play-services-oss-licenses:17.0.0"
 
