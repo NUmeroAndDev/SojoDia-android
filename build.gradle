@@ -70,7 +70,7 @@ buildscript {
 
                 compose         : [
                         ui        : "androidx.compose.ui:ui:1.0.0-alpha06",
-                        material  : "androidx.compose.material:material:1.0.0-alpha06",
+                        material  : "androidx.compose.material:material:1.0.0-alpha07",
                         ui_tooling: "androidx.ui:ui-tooling:1.0.0-alpha06"
                 ],
 
