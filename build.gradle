@@ -74,6 +74,10 @@ buildscript {
                         ui_tooling: "androidx.ui:ui-tooling:1.0.0-alpha07"
                 ],
 
+                navigation      : [
+                        compose: "androidx.navigation:navigation-compose:1.0.0-alpha02"
+                ],
+
                 work            : "androidx.work:work-runtime-ktx:2.4.0",
 
                 test            : "androidx.test.ext:junit:1.1.2"

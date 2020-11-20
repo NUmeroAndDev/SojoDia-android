@@ -88,6 +88,8 @@ dependencies {
     implementation androidx.compose.material
     implementation androidx.compose.ui_tooling
 
+    implementation androidx.navigation.compose
+
     implementation play
 
     implementation androidx.work
