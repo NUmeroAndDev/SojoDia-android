@@ -10,3 +10,7 @@ fun Calendar.getTodayStringOnlyFigure(): String {
 fun Calendar.getTodayString(pattern: String): String {
     return DateFormat.format(pattern, this).toString()
 }
+
+fun Date.format(format: String): String {
+    return DateFormat.format(format, this).toString()
+}
