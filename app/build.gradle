@@ -52,7 +52,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion "1.0.0-alpha06"
+        kotlinCompilerExtensionVersion "1.0.0-alpha07"
         kotlinCompilerVersion '1.4.10'
     }
 }
@@ -87,6 +87,8 @@ dependencies {
     implementation androidx.compose.ui
     implementation androidx.compose.material
     implementation androidx.compose.ui_tooling
+
+    implementation androidx.navigation.compose
 
     implementation play
 

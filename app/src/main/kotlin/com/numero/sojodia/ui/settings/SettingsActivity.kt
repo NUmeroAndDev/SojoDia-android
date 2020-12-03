@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.AmbientContentColor
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -18,12 +16,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.LifecycleOwnerAmbient
+import androidx.compose.ui.platform.UriHandlerAmbient
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.NavController
+import androidx.navigation.activity
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.ui.tooling.preview.Preview
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.play.core.appupdate.AppUpdateInfo
@@ -38,6 +41,7 @@ import com.numero.sojodia.extension.component
 import com.numero.sojodia.extension.getTitle
 import com.numero.sojodia.model.AppTheme
 import com.numero.sojodia.repository.ConfigRepository
+import com.numero.sojodia.ui.Screen
 import com.numero.sojodia.ui.theme.SojoDiaTheme
 
 class SettingsActivity : AppCompatActivity() {
@@ -54,21 +58,37 @@ class SettingsActivity : AppCompatActivity() {
             Providers(
                 AppUpdateManagerAmbient provides appUpdateManager
             ) {
+                val navController = rememberNavController()
                 SojoDiaTheme {
-                    SettingsScreen(
-                        configRepository = configRepository,
-                        onBack = {
-                            onBackPressed()
-                        },
-                        onUpdate = {
-                            appUpdateManager.startUpdateFlowForResult(
-                                it,
-                                AppUpdateType.IMMEDIATE,
-                                this,
-                                UPDATE_REQUEST_CODE
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.Settings.name
+                    ) {
+                        composable(
+                            route = Screen.Settings.route
+                        ) {
+                            SettingsScreen(
+                                configRepository = configRepository,
+                                navController = navController,
+                                onBack = {
+                                    onBackPressed()
+                                },
+                                onUpdate = {
+                                    appUpdateManager.startUpdateFlowForResult(
+                                        it,
+                                        AppUpdateType.IMMEDIATE,
+                                        this@SettingsActivity,
+                                        UPDATE_REQUEST_CODE
+                                    )
+                                }
                             )
                         }
-                    )
+                        activity(
+                            id = Screen.License.routeId
+                        ) {
+                            activityClass = OssLicensesMenuActivity::class
+                        }
+                    }
                 }
             }
         }
@@ -88,14 +108,15 @@ val AppUpdateManagerAmbient = staticAmbientOf<AppUpdateManager>()
 @Composable
 fun SettingsScreen(
     configRepository: ConfigRepository,
+    navController: NavController,
     onBack: () -> Unit,
     onUpdate: (AppUpdateInfo) -> Unit
 ) {
+    val context = ContextAmbient.current
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    val context = ContextAmbient.current
                     Text(text = context.getString(R.string.settings_label))
                 },
                 navigationIcon = {
@@ -111,7 +132,11 @@ fun SettingsScreen(
             SettingsContent(
                 modifier = modifier,
                 configRepository = configRepository,
-                onUpdate = onUpdate
+                onUpdate = onUpdate,
+                onClickLicenses = {
+                    OssLicensesMenuActivity.setActivityTitle(context.getString(R.string.licenses_label))
+                    navController.navigate(Screen.License.routeId)
+                }
             )
         }
     )
@@ -121,9 +146,11 @@ fun SettingsScreen(
 fun SettingsContent(
     modifier: Modifier = Modifier,
     configRepository: ConfigRepository,
-    onUpdate: (AppUpdateInfo) -> Unit
+    onUpdate: (AppUpdateInfo) -> Unit,
+    onClickLicenses: () -> Unit
 ) {
     val context = ContextAmbient.current
+    val uriHandler = UriHandlerAmbient.current
     Column(
         modifier = modifier
     ) {
@@ -139,17 +166,12 @@ fun SettingsContent(
             icon = vectorResource(id = R.drawable.ic_github),
             title = context.getString(R.string.settings_view_source_title),
             onClick = {
-                context.startActivity(
-                    Intent(Intent.ACTION_VIEW, SettingsActivity.SOURCE_URL.toUri())
-                )
+                uriHandler.openUri(SettingsActivity.SOURCE_URL)
             }
         )
         SettingsItem(
             title = context.getString(R.string.settings_licenses_title),
-            onClick = {
-                OssLicensesMenuActivity.setActivityTitle(context.getString(R.string.licenses_label))
-                context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
-            }
+            onClick = onClickLicenses
         )
     }
 }
