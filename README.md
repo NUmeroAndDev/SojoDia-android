@@ -1,6 +1,6 @@
 
 #  SojoDia
-![Android Studio](https://img.shields.io/badge/Android%20Studio%20Arctic%20Fox%20Canary1-green.svg)
+![Android Studio](https://img.shields.io/badge/Android%20Studio%20Arctic%20Fox%20Canary2-green.svg)
 ![Kotlin](https://img.shields.io/badge/kotlin-1.4.20-yellow.svg)
 [![Actions Status](https://github.com/NUmeroAndDev/SojoDia-android/workflows/Test/badge.svg)](https://github.com/NUmeroAndDev/SojoDia-android/actions)
 
