@@ -45,7 +45,7 @@ buildscript {
         kotlinAndroid = [
                 plugin    : "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.20",
                 stdlib    : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.20",
-                coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+                coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
         ]
 
         androidx = [
