@@ -13,12 +13,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.VectorAsset
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.LifecycleOwnerAmbient
-import androidx.compose.ui.platform.UriHandlerAmbient
-import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -27,7 +25,6 @@ import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.ui.tooling.preview.Preview
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -56,7 +53,7 @@ class SettingsActivity : AppCompatActivity() {
 
         setContent {
             Providers(
-                AppUpdateManagerAmbient provides appUpdateManager
+                AmbientAppUpdateManager provides appUpdateManager
             ) {
                 val navController = rememberNavController()
                 SojoDiaTheme {
@@ -103,7 +100,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 }
 
-val AppUpdateManagerAmbient = staticAmbientOf<AppUpdateManager>()
+val AmbientAppUpdateManager = staticAmbientOf<AppUpdateManager>()
 
 @Composable
 fun SettingsScreen(
@@ -112,7 +109,7 @@ fun SettingsScreen(
     onBack: () -> Unit,
     onUpdate: (AppUpdateInfo) -> Unit
 ) {
-    val context = ContextAmbient.current
+    val context = AmbientContext.current
     Scaffold(
         topBar = {
             TopAppBar(
@@ -149,8 +146,8 @@ fun SettingsContent(
     onUpdate: (AppUpdateInfo) -> Unit,
     onClickLicenses: () -> Unit
 ) {
-    val context = ContextAmbient.current
-    val uriHandler = UriHandlerAmbient.current
+    val context = AmbientContext.current
+    val uriHandler = AmbientUriHandler.current
     Column(
         modifier = modifier
     ) {
@@ -183,7 +180,7 @@ fun SelectThemeItem(
     var isShownDropdown by remember { mutableStateOf(false) }
     var currentAppTheme by remember { mutableStateOf(configRepository.appTheme) }
 
-    val context = ContextAmbient.current
+    val context = AmbientContext.current
 
     DropdownMenu(
         toggle = {
@@ -224,10 +221,10 @@ fun SelectThemeItem(
 fun AppVersionItem(
     onUpdate: (AppUpdateInfo) -> Unit
 ) {
-    val context = ContextAmbient.current
-    val appUpdateManager = AppUpdateManagerAmbient.current
+    val context = AmbientContext.current
+    val appUpdateManager = AmbientAppUpdateManager.current
     var versionState by remember { mutableStateOf<VersionState>(VersionState.NoUpdate) }
-    LifecycleOwnerAmbient.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
+    AmbientLifecycleOwner.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onResume(owner: LifecycleOwner) {
             super.onResume(owner)
             appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
@@ -274,7 +271,7 @@ private sealed class VersionState {
 
 @Composable
 fun SettingsItem(
-    icon: VectorAsset? = null,
+    icon: ImageVector? = null,
     iconTint: Color = AmbientContentColor.current,
     title: String,
     subtitle: String? = null,
@@ -292,7 +289,7 @@ fun SettingsItem(
         ) {
             if (icon != null) {
                 Icon(
-                    asset = icon,
+                    imageVector = icon,
                     tint = iconTint,
                     modifier = Modifier.fillMaxSize()
                 )

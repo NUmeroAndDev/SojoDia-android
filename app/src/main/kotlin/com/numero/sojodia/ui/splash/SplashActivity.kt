@@ -13,14 +13,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.LifecycleOwnerAmbient
-import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.ui.tooling.preview.Preview
 import com.numero.sojodia.R
 import com.numero.sojodia.extension.component
 import com.numero.sojodia.repository.BusDataRepository
@@ -73,7 +71,7 @@ fun SplashContent(
             hasError = true
         }
     }, busDataRepository, configRepository)
-    LifecycleOwnerAmbient.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
+    AmbientLifecycleOwner.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onResume(owner: LifecycleOwner) {
             super.onResume(owner)
             presenter.subscribe()
@@ -113,7 +111,7 @@ fun SplashIndicatorContent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            asset = vectorResource(id = R.drawable.ic_launcher_foreground)
+            imageVector = vectorResource(id = R.drawable.ic_launcher_foreground)
         )
         Spacer(modifier = Modifier.preferredHeight(64.dp))
         CircularProgressIndicator(
@@ -132,7 +130,7 @@ fun SplashErrorContent(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val context = ContextAmbient.current
+        val context = AmbientContext.current
         Text(
             text = context.getString(R.string.error_load_bus_data_message),
             color = MaterialTheme.colors.onBackground,
