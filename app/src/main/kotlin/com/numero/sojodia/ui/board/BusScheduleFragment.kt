@@ -17,13 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.core.os.bundleOf
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.ui.tooling.preview.Preview
 import com.numero.sojodia.R
 import com.numero.sojodia.databinding.BusScheduleFragmentBinding
 import com.numero.sojodia.extension.component
@@ -330,7 +330,7 @@ fun CountdownCard(
                     onClick = {}
                 ) {
                     Icon(
-                        asset = vectorResource(id = R.drawable.ic_schedule),
+                        imageVector = vectorResource(id = R.drawable.ic_schedule),
                         modifier = Modifier.size(ButtonConstants.DefaultIconSize)
                     )
                     Spacer(modifier = Modifier.preferredWidth(4.dp))
