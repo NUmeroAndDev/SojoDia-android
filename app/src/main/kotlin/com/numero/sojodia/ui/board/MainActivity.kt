@@ -182,10 +182,10 @@ fun BusBoardScreen(
         },
         bodyContent = { innerPadding ->
             val modifier = Modifier.padding(innerPadding)
-            BusBoardContent(
-                modifier = modifier,
-                busBoardUiState = busBoardUiState
-            )
+//            BusBoardContent(
+//                modifier = modifier,
+//                busBoardUiState = busBoardUiState
+//            )
         }
     )
 }

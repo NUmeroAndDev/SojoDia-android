@@ -37,12 +37,16 @@ class BusBoardViewModel : ViewModel() {
                         tkBusBoardSchedule = BusBoardSchedule(
                             route = Route.TK,
                             nearBusTime = nearTkBusTime,
-                            nextBusTime = nextTkBusTime
+                            nextBusTime = nextTkBusTime,
+                            canPrevBusTime = true,
+                            canNextBusTime = true
                         ),
                         tndBusBoardSchedule = BusBoardSchedule(
                             route = Route.TND,
                             nearBusTime = nearTndBusTime,
-                            nextBusTime = nextTndBusTime
+                            nextBusTime = nextTndBusTime,
+                            canPrevBusTime = true,
+                            canNextBusTime = true
                         )
                     )
                 }
@@ -56,6 +60,16 @@ class BusBoardViewModel : ViewModel() {
     }
 
     fun nextTkBusTime() {
+        // FIXME example
+        val tkBusSchedule = uiState.value.tkBusBoardSchedule
+        _uiState.value = uiState.value.copy(
+            tkBusBoardSchedule = tkBusSchedule.copy(
+                nearBusTime = tkBusSchedule.nextBusTime,
+                nextBusTime = null,
+                canPrevBusTime = false,
+                canNextBusTime = false
+            )
+        )
     }
 
     fun prevTndBusTime() {

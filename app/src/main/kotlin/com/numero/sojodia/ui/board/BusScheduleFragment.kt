@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -74,13 +77,9 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
         val reciprocate = checkNotNull(arguments?.getSerializable(ARG_RECIPROCATE)) as Reciprocate
         binding.composeView?.setContent {
             SojoDiaTheme {
-                val vm = viewModel<BusBoardViewModel>()
-                val uiState by vm.uiState.collectAsState()
-                LaunchedEffect(Unit) {
-                    vm.fetchBusData(busDataRepository, reciprocate)
-                }
                 BusBoardContent(
-                    busBoardUiState = uiState
+                    reciprocate = reciprocate,
+                    repository = busDataRepository
                 )
             }
         }
@@ -279,27 +278,54 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
 @Composable
 fun BusBoardContent(
     modifier: Modifier = Modifier,
-    busBoardUiState: BusBoardUiState
+    reciprocate: Reciprocate,
+    repository: BusDataRepository
 ) {
+    val viewModel = viewModel<BusBoardViewModel>()
+    val busBoardUiState by viewModel.uiState.collectAsState()
+    LaunchedEffect(Unit) {
+        viewModel.fetchBusData(repository, reciprocate)
+    }
     Column(
         modifier = modifier.fillMaxSize()
     ) {
-        CountdownCard(
+        BusTimeCard(
             modifier = Modifier.fillMaxSize().weight(1f),
-            busBoardSchedule = busBoardUiState.tkBusBoardSchedule
+            busBoardSchedule = busBoardUiState.tkBusBoardSchedule,
+            showTimeTable = {
+                // TODO 時刻表を表示させる
+            },
+            onPrevBusTime = {
+                viewModel.prevTkBusTime()
+            },
+            onNextBusTime = {
+                viewModel.nextTkBusTime()
+            }
         )
         Spacer(modifier = Modifier.preferredHeight(8.dp))
-        CountdownCard(
+        BusTimeCard(
             modifier = Modifier.fillMaxSize().weight(1f),
-            busBoardSchedule = busBoardUiState.tndBusBoardSchedule
+            busBoardSchedule = busBoardUiState.tndBusBoardSchedule,
+            showTimeTable = {
+                // TODO 時刻表を表示させる
+            },
+            onPrevBusTime = {
+                viewModel.prevTndBusTime()
+            },
+            onNextBusTime = {
+                viewModel.nextTndBusTime()
+            }
         )
     }
 }
 
 @Composable
-fun CountdownCard(
+fun BusTimeCard(
     modifier: Modifier = Modifier,
-    busBoardSchedule: BusBoardSchedule
+    busBoardSchedule: BusBoardSchedule,
+    showTimeTable: () -> Unit,
+    onPrevBusTime: () -> Unit,
+    onNextBusTime: () -> Unit
 ) {
     Card(
         modifier = modifier.padding(16.dp),
@@ -309,50 +335,95 @@ fun CountdownCard(
             modifier = Modifier.padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = stringResource(id = busBoardSchedule.route.stationTitleRes),
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.h6,
-                    color = MaterialTheme.colors.primary
-                )
-                OutlinedButton(
-                    shape = CircleShape,
-                    colors = ButtonConstants.defaultOutlinedButtonColors(
-                        contentColor = MaterialTheme.colors.onSurface
-                    ),
-                    contentPadding = ButtonConstants.DefaultContentPadding.copy(
-                        start = 12.dp
-                    ),
-                    onClick = {}
-                ) {
-                    Icon(
-                        imageVector = vectorResource(id = R.drawable.ic_schedule),
-                        modifier = Modifier.size(ButtonConstants.DefaultIconSize)
-                    )
-                    Spacer(modifier = Modifier.preferredWidth(4.dp))
-                    Text(text = stringResource(id = R.string.timetable_label))
-                }
-            }
+            BusTimeCardHeader(
+                route = busBoardSchedule.route,
+                showTimeTable = showTimeTable
+            )
 
             Box(
                 modifier = Modifier.weight(1f)
             ) {
                 // TODO Replace countdown
+                // TODO call onNextBusTime when countdown is 0:0
                 Text(
                     modifier = Modifier.align(Alignment.Center),
                     text = "HH:mm:ss"
                 )
             }
 
-            BusDepartureTime(
-                modifier = Modifier.fillMaxWidth(),
-                nearBusTime = busBoardSchedule.nearBusTime,
-                nextBusTime = busBoardSchedule.nextBusTime
+            BusTimeCardFooter(
+                busBoardSchedule = busBoardSchedule,
+                onPrevBusTime = onPrevBusTime,
+                onNextBusTime = onNextBusTime
             )
+        }
+    }
+}
+
+@Composable
+fun BusTimeCardHeader(
+    modifier: Modifier = Modifier,
+    route: Route,
+    showTimeTable: () -> Unit
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = stringResource(id = route.stationTitleRes),
+            modifier = Modifier.weight(1f),
+            style = MaterialTheme.typography.h6,
+            color = MaterialTheme.colors.primary
+        )
+        OutlinedButton(
+            shape = CircleShape,
+            colors = ButtonConstants.defaultOutlinedButtonColors(
+                contentColor = MaterialTheme.colors.onSurface
+            ),
+            contentPadding = ButtonConstants.DefaultContentPadding.copy(
+                start = 12.dp
+            ),
+            onClick = showTimeTable
+        ) {
+            Icon(
+                imageVector = vectorResource(id = R.drawable.ic_schedule),
+                modifier = Modifier.size(ButtonConstants.DefaultIconSize)
+            )
+            Spacer(modifier = Modifier.preferredWidth(4.dp))
+            Text(text = stringResource(id = R.string.timetable_label))
+        }
+    }
+}
+
+@Composable
+fun BusTimeCardFooter(
+    modifier: Modifier = Modifier,
+    busBoardSchedule: BusBoardSchedule,
+    onPrevBusTime: () -> Unit,
+    onNextBusTime: () -> Unit
+) {
+    Row(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        if (busBoardSchedule.canPrevBusTime) {
+            IconButton(
+                onClick = onPrevBusTime
+            ) {
+                Icon(imageVector = Icons.Filled.KeyboardArrowLeft)
+            }
+        }
+        BusDepartureTime(
+            modifier = Modifier.weight(1f),
+            nearBusTime = busBoardSchedule.nearBusTime,
+            nextBusTime = busBoardSchedule.nextBusTime
+        )
+        if (busBoardSchedule.canNextBusTime) {
+            IconButton(
+                onClick = onNextBusTime
+            ) {
+                Icon(imageVector = Icons.Filled.KeyboardArrowRight)
+            }
         }
     }
 }
@@ -389,11 +460,11 @@ fun Time.format(format: String = "%02d:%02d"): String {
     return format.format(hour, min)
 }
 
-@Preview("CountdownCard")
+@Preview("BusTimeCard")
 @Composable
-fun CountdownCardPreview() {
+fun BusTimePreview() {
     SojoDiaTheme {
-        CountdownCard(
+        BusTimeCard(
             busBoardSchedule = BusBoardSchedule(
                 route = Route.TK,
                 nearBusTime = BusTime(
@@ -407,8 +478,13 @@ fun CountdownCardPreview() {
                     week = Week.WEEKDAY,
                     isNonstop = false,
                     isOnlyOnSchooldays = false
-                )
-            )
+                ),
+                canPrevBusTime = true,
+                canNextBusTime = true
+            ),
+            showTimeTable = {},
+            onNextBusTime = {},
+            onPrevBusTime = {}
         )
     }
 }
