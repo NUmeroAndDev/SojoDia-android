@@ -21,16 +21,16 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.LifecycleOwnerAmbient
+import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.AmbientLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.ui.tooling.preview.Preview
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.numero.sojodia.R
 import com.numero.sojodia.databinding.DialogTimeTableBinding
@@ -63,7 +63,7 @@ class TimeTableBottomSheetDialogFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // TODO replace BottomSheetScaffold
         _binding = DialogTimeTableBinding.inflate(LayoutInflater.from(context))
         binding.composeView.setContent {
@@ -114,7 +114,7 @@ fun TimetableContent(
             timetableRowList = list
         }
     }, busDataRepository, route, reciprocate)
-    LifecycleOwnerAmbient.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
+    AmbientLifecycleOwner.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onResume(owner: LifecycleOwner) {
             super.onResume(owner)
             presenter.subscribe()
@@ -168,7 +168,7 @@ fun TimetableToolbar(
     isNotSchoolTerm: Boolean,
     onToggledNotSchoolTerm: (Boolean) -> Unit
 ) {
-    val context = ContextAmbient.current
+    val context = AmbientContext.current
     Row(
         modifier = Modifier.padding(horizontal = 16.dp)
     ) {
@@ -198,7 +198,7 @@ fun TimetableToolbar(
         ) {
             if (isNotSchoolTerm) {
                 Icon(
-                    asset = Icons.Filled.Check,
+                    imageVector = Icons.Filled.Check,
                     modifier = Modifier.size(20.dp)
                 )
                 Spacer(modifier = Modifier.preferredWidth(4.dp))
@@ -213,7 +213,7 @@ fun TimetableToolbar(
 @OptIn(ExperimentalLayout::class)
 @Composable
 fun TimetableHeader() {
-    val context = ContextAmbient.current
+    val context = AmbientContext.current
     val headerTextStyle = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold)
     Row(modifier = Modifier.preferredHeight(IntrinsicSize.Min)) {
         Text(
@@ -308,7 +308,7 @@ fun TimetableRowItem(
 
 @Composable
 fun TimetableFooter() {
-    val context = ContextAmbient.current
+    val context = AmbientContext.current
     Text(
         text = context.getString(R.string.time_table_dialog_description),
         color = MaterialTheme.colors.onSurface,
