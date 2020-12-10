@@ -24,22 +24,25 @@ class BusBoardViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.Main) {
+                    val current = Time()
                     val busData = busDataRepository.getBusData()
                     val tkTimeList = busData.filterTkList(reciprocate, week)
                     val tndTimeList = busData.filterTndList(reciprocate, week)
-                    val nearTkBusTime = tkTimeList.findNearBusTime(Time())
-                    val nearTndBusTime = tndTimeList.findNearBusTime(Time())
+                    val nearTkBusTime = tkTimeList.findNearBusTime(current)
+                    val nearTndBusTime = tndTimeList.findNearBusTime(current)
+                    val nextTkBusTime = tkTimeList.findNextBusTime(current)
+                    val nextTndBusTime = tndTimeList.findNextBusTime(current)
 
                     _uiState.value = uiState.value.copy(
                         tkBusBoardSchedule = BusBoardSchedule(
                             route = Route.TK,
                             nearBusTime = nearTkBusTime,
-                            null
+                            nextBusTime = nextTkBusTime
                         ),
                         tndBusBoardSchedule = BusBoardSchedule(
                             route = Route.TND,
                             nearBusTime = nearTndBusTime,
-                            null
+                            nextBusTime = nextTndBusTime
                         )
                     )
                 }
@@ -47,6 +50,18 @@ class BusBoardViewModel : ViewModel() {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun prevTkBusTime() {
+    }
+
+    fun nextTkBusTime() {
+    }
+
+    fun prevTndBusTime() {
+    }
+
+    fun nextTndBusTime() {
     }
 
     private fun BusData.filterTkList(
