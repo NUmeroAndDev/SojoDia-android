@@ -14,7 +14,11 @@ sealed class BusTimeList(val value: List<BusTime>) {
     val size: Int = value.size
 
     fun findNearBusTimePosition(time: Time): Int {
-        return value.asSequence().indexOfFirst { it.time > time }
+        return value.indexOfFirst { it.time > time }
+    }
+
+    fun findNearBusTime(time: Time): BusTime? {
+        return value.firstOrNull { it.time > time }
     }
 }
 

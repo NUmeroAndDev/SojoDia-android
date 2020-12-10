@@ -9,12 +9,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.viewModel
 import androidx.core.os.bundleOf
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -64,45 +68,19 @@ class BusScheduleFragment : Fragment(), BusScheduleView {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         currentDateString = Calendar.getInstance().getTodayStringOnlyFigure()
         _binding = BusScheduleFragmentBinding.inflate(inflater, container, false)
+        val reciprocate = checkNotNull(arguments?.getSerializable(ARG_RECIPROCATE)) as Reciprocate
         binding.composeView?.setContent {
             SojoDiaTheme {
+                val vm = viewModel<BusBoardViewModel>()
+                val uiState by vm.uiState.collectAsState()
+                LaunchedEffect(Unit) {
+                    vm.fetchBusData(busDataRepository, reciprocate)
+                }
                 BusBoardContent(
-                    busBoardUiState = BusBoardUiState(
-                        tkBusBoardSchedule = BusBoardSchedule(
-                            route = Route.TK,
-                            nearBusTime = BusTime(
-                                Time(9, 1),
-                                week = Week.WEEKDAY,
-                                isNonstop = false,
-                                isOnlyOnSchooldays = false
-                            ),
-                            nextBusTime = BusTime(
-                                Time(10, 10),
-                                week = Week.WEEKDAY,
-                                isNonstop = false,
-                                isOnlyOnSchooldays = false
-                            )
-                        ),
-                        tndBusBoardSchedule = BusBoardSchedule(
-                            route = Route.TND,
-                            nearBusTime = BusTime(
-                                Time(9, 1),
-                                week = Week.WEEKDAY,
-                                isNonstop = false,
-                                isOnlyOnSchooldays = false
-                            ),
-                            nextBusTime = BusTime(
-                                Time(10, 10),
-                                week = Week.WEEKDAY,
-                                isNonstop = false,
-                                isOnlyOnSchooldays = false
-                            )
-                        ),
-                        currentDate = Calendar.getInstance().time
-                    )
+                    busBoardUiState = uiState
                 )
             }
         }
@@ -382,24 +360,28 @@ fun CountdownCard(
 @Composable
 fun BusDepartureTime(
     modifier: Modifier = Modifier,
-    nearBusTime: BusTime,
-    nextBusTime: BusTime
+    nearBusTime: BusTime?,
+    nextBusTime: BusTime?
 ) {
     Box(
         modifier = modifier.preferredHeight(48.dp)
     ) {
-        Text(
-            modifier = Modifier.align(Alignment.Center),
-            text = nearBusTime.time.format(),
-            style = MaterialTheme.typography.h6.copy(
-                fontWeight = FontWeight.Normal
+        if (nearBusTime != null) {
+            Text(
+                modifier = Modifier.align(Alignment.Center),
+                text = nearBusTime.time.format(),
+                style = MaterialTheme.typography.h6.copy(
+                    fontWeight = FontWeight.Normal
+                )
             )
-        )
-        Text(
-            modifier = Modifier.align(Alignment.CenterEnd),
-            text = nextBusTime.time.format(),
-            style = MaterialTheme.typography.body2
-        )
+        }
+        if (nextBusTime != null) {
+            Text(
+                modifier = Modifier.align(Alignment.CenterEnd),
+                text = nextBusTime.time.format(),
+                style = MaterialTheme.typography.body2
+            )
+        }
     }
 }
 
