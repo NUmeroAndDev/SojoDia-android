@@ -60,7 +60,7 @@ buildscript {
                 lifecycle       : [
                         livedata: "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-beta01",
                         runtime : "androidx.lifecycle:lifecycle-runtime:2.3.0-beta01",
-                        common  : "androidx.lifecycle:lifecycle-common-java8:2.3.0-beta01"
+                        common  : "androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha01"
                 ],
 
                 room            : [
