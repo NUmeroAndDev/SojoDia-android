@@ -71,7 +71,7 @@ buildscript {
                 compose         : [
                         ui        : "androidx.compose.ui:ui:1.0.0-alpha08",
                         material  : "androidx.compose.material:material:1.0.0-alpha08",
-                        ui_tooling: "androidx.compose.ui:ui-tooling:1.0.0-alpha08"
+                        ui_tooling: "androidx.compose.ui:ui-tooling:1.0.0-beta04"
                 ],
 
                 navigation      : [
