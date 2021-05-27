@@ -48,7 +48,7 @@ buildscript {
                 lifecycle : "2.4.0-alpha01",
                 room      : "2.3.0-alpha03",
 
-                okhttp    : "4.9.0",
+                okhttp    : "4.9.1",
                 retrofit  : "2.9.0",
         ]
 
