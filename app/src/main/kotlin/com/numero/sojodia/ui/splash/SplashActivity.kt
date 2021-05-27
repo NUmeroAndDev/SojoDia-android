@@ -3,6 +3,7 @@ package com.numero.sojodia.ui.splash
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -14,7 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.*
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -71,7 +72,7 @@ fun SplashContent(
             hasError = true
         }
     }, busDataRepository, configRepository)
-    AmbientLifecycleOwner.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
+    LocalLifecycleOwner.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onResume(owner: LifecycleOwner) {
             super.onResume(owner)
             presenter.subscribe()
@@ -111,12 +112,13 @@ fun SplashIndicatorContent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            imageVector = vectorResource(id = R.drawable.ic_launcher_foreground)
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = null,
         )
-        Spacer(modifier = Modifier.preferredHeight(64.dp))
+        Spacer(modifier = Modifier.height(64.dp))
         CircularProgressIndicator(
             modifier = Modifier
-                .preferredSize(36.dp)
+                .size(36.dp)
         )
     }
 }
@@ -130,13 +132,13 @@ fun SplashErrorContent(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val context = AmbientContext.current
+        val context = LocalContext.current
         Text(
             text = context.getString(R.string.error_load_bus_data_message),
             color = MaterialTheme.colors.onBackground,
             style = MaterialTheme.typography.subtitle1
         )
-        Spacer(modifier = Modifier.preferredHeight(64.dp))
+        Spacer(modifier = Modifier.height(64.dp))
         Button(onClick = {
             onRetry()
         }) {
