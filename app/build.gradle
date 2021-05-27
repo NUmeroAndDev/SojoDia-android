@@ -52,7 +52,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion "1.0.0-alpha08"
+        kotlinCompilerExtensionVersion versions.compose
     }
 }
 
@@ -61,41 +61,41 @@ dependencies {
     implementation project(':model')
     implementation project(':repository')
 
-    testImplementation junit
-    testImplementation robolectric
-    testImplementation androidx.test
-    testImplementation okhttp.mock
-    androidTestImplementation androidx.test
-    androidTestImplementation espresso
+    testImplementation libs.junit
+    testImplementation libs.robolectric
+    testImplementation libs.androidx.test
+    testImplementation libs.okhttp.mock
+    androidTestImplementation libs.androidx.test
+    androidTestImplementation libs.espresso
 
-    implementation kotlinAndroid.stdlib
-    implementation kotlinAndroid.coroutines
+    implementation libs.kotlin.stdlib
+    implementation libs.kotlin.coroutines
 
-    implementation androidx.appcompat
-    implementation androidx.activity
-    implementation androidx.fragment
-    implementation androidx.core
-    implementation androidx.recyclerview
-    implementation androidx.viewpager2
-    implementation androidx.constraintlayout
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.activity
+    implementation libs.androidx.fragment
+    implementation libs.androidx.core
+    implementation libs.androidx.recyclerview
+    implementation libs.androidx.viewpager2
+    implementation libs.androidx.constraintlayout
 
-    implementation androidx.lifecycle.runtime
-    implementation androidx.lifecycle.livedata
-    implementation androidx.lifecycle.common
+    implementation libs.androidx.lifecycle.runtime
+    implementation libs.androidx.lifecycle.livedata
+    implementation libs.androidx.lifecycle.common
 
-    implementation androidx.compose.ui
-    implementation androidx.compose.material
-    implementation androidx.compose.ui_tooling
+    implementation libs.androidx.compose.ui
+    implementation libs.androidx.compose.material
+    implementation libs.androidx.compose.ui_tooling
 
-    implementation androidx.navigation.compose
+    implementation libs.androidx.navigation.compose
 
-    implementation play
+    implementation libs.play
 
-    implementation androidx.work
+    implementation libs.androidx.work
 
-    implementation material
+    implementation libs.material
 
-    implementation insetter
+    implementation libs.insetter
 
-    implementation licenses
+    implementation libs.licenses
 }
