@@ -89,7 +89,7 @@ buildscript {
                                 compose: "androidx.navigation:navigation-compose:2.4.0-alpha01"
                         ],
 
-                        work            : "androidx.work:work-runtime-ktx:2.4.0",
+                        work            : "androidx.work:work-runtime-ktx:2.5.0",
 
                         test            : "androidx.test.ext:junit:1.1.2"
                 ],
