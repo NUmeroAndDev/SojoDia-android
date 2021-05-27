@@ -20,6 +20,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -171,7 +172,6 @@ fun TimetableToolbar(
     isNotSchoolTerm: Boolean,
     onToggledNotSchoolTerm: (Boolean) -> Unit
 ) {
-    val context = LocalContext.current
     Row(
         modifier = Modifier.padding(horizontal = 16.dp)
     ) {
@@ -181,12 +181,12 @@ fun TimetableToolbar(
                 .weight(1f)
         ) {
             Text(
-                text = context.getString(route.stationTitleRes),
+                text = stringResource(route.stationTitleRes),
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.primary
             )
             Text(
-                text = context.getString(reciprocate.titleStringRes),
+                text = stringResource(reciprocate.titleStringRes),
                 style = MaterialTheme.typography.subtitle2,
                 color = MaterialTheme.colors.primary
             )
@@ -210,7 +210,7 @@ fun TimetableToolbar(
                 Spacer(modifier = Modifier.width(4.dp))
             }
             Text(
-                text = context.getString(R.string.not_school_term)
+                text = stringResource(R.string.not_school_term)
             )
         }
     }
@@ -218,11 +218,10 @@ fun TimetableToolbar(
 
 @Composable
 fun TimetableHeader() {
-    val context = LocalContext.current
     val headerTextStyle = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold)
     Row(modifier = Modifier.height(IntrinsicSize.Min)) {
         Text(
-            text = context.getString(R.string.hour),
+            text = stringResource(R.string.hour),
             style = headerTextStyle,
             color = MaterialTheme.colors.onSurface,
             textAlign = TextAlign.Center,
@@ -232,7 +231,7 @@ fun TimetableHeader() {
         )
         HorizontalDivider()
         Text(
-            text = context.getString(R.string.weekday),
+            text = stringResource(R.string.weekday),
             style = headerTextStyle,
             color = MaterialTheme.colors.onSurface,
             textAlign = TextAlign.Center,
@@ -242,7 +241,7 @@ fun TimetableHeader() {
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         )
         Text(
-            text = context.getString(R.string.saturday),
+            text = stringResource(R.string.saturday),
             style = headerTextStyle,
             color = saturdayBlue,
             textAlign = TextAlign.Center,
@@ -252,7 +251,7 @@ fun TimetableHeader() {
                 .padding(vertical = 4.dp, horizontal = 8.dp)
         )
         Text(
-            text = context.getString(R.string.sunday),
+            text = stringResource(R.string.sunday),
             style = headerTextStyle,
             color = sundayRed,
             textAlign = TextAlign.Center,
@@ -277,10 +276,10 @@ fun TimetableRowItem(
             Color.Transparent
         }
     ) {
-        // FIXME not update row height when toggled isNotSchoolTerm
-        Row(modifier = Modifier
-            .height(IntrinsicSize.Min)
-            .animateContentSize()) {
+        Row(
+            modifier = Modifier
+                .height(IntrinsicSize.Min)
+        ) {
             Text(
                 text = "%02d".format(timeTableRow.hour),
                 style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold),
@@ -298,6 +297,7 @@ fun TimetableRowItem(
                 modifier = Modifier
                     .wrapContentWidth(Alignment.Start)
                     .weight(1f)
+                    .animateContentSize()
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
             Text(
@@ -307,6 +307,7 @@ fun TimetableRowItem(
                 modifier = Modifier
                     .wrapContentWidth(Alignment.Start)
                     .weight(1f)
+                    .animateContentSize()
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
             Text(
@@ -316,6 +317,7 @@ fun TimetableRowItem(
                 modifier = Modifier
                     .wrapContentWidth(Alignment.Start)
                     .weight(1f)
+                    .animateContentSize()
                     .padding(vertical = 4.dp, horizontal = 8.dp)
             )
         }
@@ -324,9 +326,8 @@ fun TimetableRowItem(
 
 @Composable
 fun TimetableFooter() {
-    val context = LocalContext.current
     Text(
-        text = context.getString(R.string.time_table_dialog_description),
+        text = stringResource(R.string.time_table_dialog_description),
         color = MaterialTheme.colors.onSurface,
         textAlign = TextAlign.End,
         modifier = Modifier
@@ -336,21 +337,21 @@ fun TimetableFooter() {
 }
 
 @Composable
-private fun TimetableDivider() {
+fun TimetableDivider() {
     Divider(
         color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f)
     )
 }
 
 @Composable
-private fun HorizontalDivider(
+fun HorizontalDivider(
     modifier: Modifier = Modifier
 ) {
-    Spacer(
+    Divider(
+        color = MaterialTheme.colors.onSurface.copy(0.12f),
         modifier = modifier
             .width(1.dp)
             .fillMaxHeight()
-            .background(color = MaterialTheme.colors.onSurface.copy(0.12f))
     )
 }
 
