@@ -86,7 +86,7 @@ buildscript {
                         ],
 
                         navigation      : [
-                                compose: "androidx.navigation:navigation-compose:1.0.0-alpha03"
+                                compose: "androidx.navigation:navigation-compose:2.4.0-alpha01"
                         ],
 
                         work            : "androidx.work:work-runtime-ktx:2.4.0",
