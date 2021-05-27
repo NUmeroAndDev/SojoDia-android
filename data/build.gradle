@@ -42,23 +42,23 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':model')
 
-    testImplementation junit
-    testImplementation robolectric
-    testImplementation androidx.test
-    testImplementation okhttp.mock
+    testImplementation libs.junit
+    testImplementation libs.robolectric
+    testImplementation libs.androidx.test
+    testImplementation libs.okhttp.mock
 
-    implementation kotlinAndroid.stdlib
-    implementation kotlinAndroid.coroutines
+    implementation libs.kotlin.stdlib
+    implementation libs.kotlin.coroutines
 
-    implementation okhttp.core
-    implementation okhttp.logging
+    implementation libs.okhttp.core
+    implementation libs.okhttp.logging
 
-    implementation retrofit.core
-    implementation retrofit.moshi
+    implementation libs.retrofit.core
+    implementation libs.retrofit.moshi
 
-    implementation kotshi.api
-    kapt kotshi.compiler
+    implementation libs.kotshi.api
+    kapt libs.kotshi.compiler
 
-    implementation androidx.room.runtime
-    kapt androidx.room.compiler
+    implementation libs.androidx.room.runtime
+    kapt libs.androidx.room.compiler
 }
