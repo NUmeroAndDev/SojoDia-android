@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -117,7 +118,7 @@ fun SettingsScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = context.getString(R.string.settings_label))
+                    Text(text = stringResource(R.string.settings_label))
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
@@ -149,14 +150,13 @@ fun SettingsContent(
     onUpdate: (AppUpdateInfo) -> Unit,
     onClickLicenses: () -> Unit
 ) {
-    val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
     Column(
         modifier = modifier
     ) {
         SelectThemeItem(configRepository = configRepository)
         SettingsItem(
-            title = context.getString(R.string.settings_data_version_title),
+            title = stringResource(R.string.settings_data_version_title),
             subtitle = configRepository.currentVersion.value.toString()
         )
         AppVersionItem(
@@ -164,13 +164,13 @@ fun SettingsContent(
         )
         SettingsItem(
             icon = painterResource(id = R.drawable.ic_github),
-            title = context.getString(R.string.settings_view_source_title),
+            title = stringResource(R.string.settings_view_source_title),
             onClick = {
                 uriHandler.openUri(SettingsActivity.SOURCE_URL)
             }
         )
         SettingsItem(
-            title = context.getString(R.string.settings_licenses_title),
+            title = stringResource(R.string.settings_licenses_title),
             onClick = onClickLicenses
         )
     }
@@ -186,7 +186,7 @@ fun SelectThemeItem(
     val context = LocalContext.current
     Box {
         SettingsItem(
-            title = context.getString(R.string.settings_select_app_theme_title),
+            title = stringResource(R.string.settings_select_app_theme_title),
             subtitle = currentAppTheme.getTitle(context),
             onClick = {
                 isShownDropdown = true
@@ -222,7 +222,6 @@ fun SelectThemeItem(
 fun AppVersionItem(
     onUpdate: (AppUpdateInfo) -> Unit
 ) {
-    val context = LocalContext.current
     val appUpdateManager = LocalAppUpdateManager.current
     var versionState by remember { mutableStateOf<VersionState>(VersionState.NoUpdate) }
     LocalLifecycleOwner.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
@@ -246,7 +245,7 @@ fun AppVersionItem(
             is VersionState.NoUpdate -> null
         },
         iconTint = MaterialTheme.colors.error,
-        title = context.getString(
+        title = stringResource(
             when (versionState) {
                 is VersionState.AvailableUpdate -> R.string.settings_newer_version_available
                 is VersionState.NoUpdate -> R.string.settings_app_version_title
