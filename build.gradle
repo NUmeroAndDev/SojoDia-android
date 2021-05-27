@@ -109,7 +109,7 @@ buildscript {
                 ],
                 kotshi     : [
                         api     : "se.ansman.kotshi:api:1.0.6",
-                        compiler: "se.ansman.kotshi:compiler:1.0.6"
+                        compiler: "se.ansman.kotshi:compiler:2.4.0"
                 ],
 
                 play       : "com.google.android.play:core:1.8.3",
