@@ -1,4 +1,6 @@
-apply plugin: 'kotlin'
+plugins {
+    id 'kotlin'
+}
 
 compileKotlin {
     kotlinOptions {
@@ -9,7 +11,7 @@ compileKotlin {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation kotlinAndroid.stdlib
+    implementation libs.kotlin.stdlib
 
-    testImplementation junit
+    testImplementation libs.junit
 }

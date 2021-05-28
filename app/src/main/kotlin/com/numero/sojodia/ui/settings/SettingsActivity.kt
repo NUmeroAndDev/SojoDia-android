@@ -3,6 +3,7 @@ package com.numero.sojodia.ui.settings
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -13,9 +14,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.*
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -52,8 +54,8 @@ class SettingsActivity : AppCompatActivity() {
         val appUpdateManager = AppUpdateManagerFactory.create(this)
 
         setContent {
-            Providers(
-                AmbientAppUpdateManager provides appUpdateManager
+            CompositionLocalProvider(
+                LocalAppUpdateManager provides appUpdateManager
             ) {
                 val navController = rememberNavController()
                 SojoDiaTheme {
@@ -100,7 +102,9 @@ class SettingsActivity : AppCompatActivity() {
     }
 }
 
-val AmbientAppUpdateManager = staticAmbientOf<AppUpdateManager>()
+val LocalAppUpdateManager = staticCompositionLocalOf<AppUpdateManager> {
+    error("CompositionLocal AppUpdateManager not present")
+}
 
 @Composable
 fun SettingsScreen(
@@ -109,22 +113,22 @@ fun SettingsScreen(
     onBack: () -> Unit,
     onUpdate: (AppUpdateInfo) -> Unit
 ) {
-    val context = AmbientContext.current
+    val context = LocalContext.current
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = context.getString(R.string.settings_label))
+                    Text(text = stringResource(R.string.settings_label))
                 },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Filled.ArrowBack)
+                        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
                     }
                 },
                 backgroundColor = MaterialTheme.colors.surface
             )
         },
-        bodyContent = { innerPadding ->
+        content = { innerPadding ->
             val modifier = Modifier.padding(innerPadding)
             SettingsContent(
                 modifier = modifier,
@@ -146,28 +150,27 @@ fun SettingsContent(
     onUpdate: (AppUpdateInfo) -> Unit,
     onClickLicenses: () -> Unit
 ) {
-    val context = AmbientContext.current
-    val uriHandler = AmbientUriHandler.current
+    val uriHandler = LocalUriHandler.current
     Column(
         modifier = modifier
     ) {
         SelectThemeItem(configRepository = configRepository)
         SettingsItem(
-            title = context.getString(R.string.settings_data_version_title),
+            title = stringResource(R.string.settings_data_version_title),
             subtitle = configRepository.currentVersion.value.toString()
         )
         AppVersionItem(
             onUpdate = onUpdate
         )
         SettingsItem(
-            icon = vectorResource(id = R.drawable.ic_github),
-            title = context.getString(R.string.settings_view_source_title),
+            icon = painterResource(id = R.drawable.ic_github),
+            title = stringResource(R.string.settings_view_source_title),
             onClick = {
                 uriHandler.openUri(SettingsActivity.SOURCE_URL)
             }
         )
         SettingsItem(
-            title = context.getString(R.string.settings_licenses_title),
+            title = stringResource(R.string.settings_licenses_title),
             onClick = onClickLicenses
         )
     }
@@ -180,51 +183,48 @@ fun SelectThemeItem(
     var isShownDropdown by remember { mutableStateOf(false) }
     var currentAppTheme by remember { mutableStateOf(configRepository.appTheme) }
 
-    val context = AmbientContext.current
-
-    DropdownMenu(
-        toggle = {
-            SettingsItem(
-                title = context.getString(R.string.settings_select_app_theme_title),
-                subtitle = currentAppTheme.getTitle(context),
-                onClick = {
-                    isShownDropdown = true
-                }
-            )
-        },
-        expanded = isShownDropdown,
-        onDismissRequest = {
-            isShownDropdown = false
-        },
-        dropdownContent = {
-            listOf(
-                AppTheme.LIGHT, AppTheme.DARK, AppTheme.SYSTEM_DEFAULT
-            ).forEach {
-                DropdownMenuItem(
-                    onClick = {
-                        configRepository.appTheme = it
-                        currentAppTheme = it
-                        currentAppTheme.applyApplication()
-                        isShownDropdown = false
+    val context = LocalContext.current
+    Box {
+        SettingsItem(
+            title = stringResource(R.string.settings_select_app_theme_title),
+            subtitle = currentAppTheme.getTitle(context),
+            onClick = {
+                isShownDropdown = true
+            }
+        )
+        DropdownMenu(
+            expanded = isShownDropdown,
+            onDismissRequest = {
+                isShownDropdown = false
+            },
+            content = {
+                listOf(
+                    AppTheme.LIGHT, AppTheme.DARK, AppTheme.SYSTEM_DEFAULT
+                ).forEach {
+                    DropdownMenuItem(
+                        onClick = {
+                            configRepository.appTheme = it
+                            currentAppTheme = it
+                            currentAppTheme.applyApplication()
+                            isShownDropdown = false
+                        }
+                    ) {
+                        // TODO show icon if current selected
+                        Text(text = it.getTitle(context))
                     }
-                ) {
-                    // TODO show icon if current selected
-                    Text(text = it.getTitle(context))
                 }
             }
-        },
-        dropdownModifier = Modifier.fillMaxWidth()
-    )
+        )
+    }
 }
 
 @Composable
 fun AppVersionItem(
     onUpdate: (AppUpdateInfo) -> Unit
 ) {
-    val context = AmbientContext.current
-    val appUpdateManager = AmbientAppUpdateManager.current
+    val appUpdateManager = LocalAppUpdateManager.current
     var versionState by remember { mutableStateOf<VersionState>(VersionState.NoUpdate) }
-    AmbientLifecycleOwner.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
+    LocalLifecycleOwner.current.lifecycle.addObserver(object : DefaultLifecycleObserver {
         override fun onResume(owner: LifecycleOwner) {
             super.onResume(owner)
             appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
@@ -240,12 +240,12 @@ fun AppVersionItem(
     SettingsItem(
         icon = when (versionState) {
             is VersionState.AvailableUpdate -> {
-                vectorResource(id = R.drawable.ic_attention)
+                painterResource(id = R.drawable.ic_attention)
             }
             is VersionState.NoUpdate -> null
         },
         iconTint = MaterialTheme.colors.error,
-        title = context.getString(
+        title = stringResource(
             when (versionState) {
                 is VersionState.AvailableUpdate -> R.string.settings_newer_version_available
                 is VersionState.NoUpdate -> R.string.settings_app_version_title
@@ -271,31 +271,34 @@ private sealed class VersionState {
 
 @Composable
 fun SettingsItem(
-    icon: ImageVector? = null,
-    iconTint: Color = AmbientContentColor.current,
+    icon: Painter? = null,
+    iconTint: Color = LocalContentColor.current,
     title: String,
     subtitle: String? = null,
     onClick: () -> Unit = {}
 ) {
-    val modifier = Modifier.preferredHeightIn(min = 64.dp)
+    val modifier = Modifier
+        .heightIn(min = 64.dp)
         .clickable(onClick = onClick)
         .padding(horizontal = 16.dp)
     Row(
         modifier = modifier
     ) {
         Box(
-            modifier = Modifier.preferredSize(24.dp)
+            modifier = Modifier
+                .size(24.dp)
                 .align(alignment = Alignment.CenterVertically)
         ) {
             if (icon != null) {
                 Icon(
-                    imageVector = icon,
+                    painter = icon,
+                    contentDescription = null,
                     tint = iconTint,
                     modifier = Modifier.fillMaxSize()
                 )
             }
         }
-        Spacer(modifier = Modifier.preferredWidth(32.dp))
+        Spacer(modifier = Modifier.width(32.dp))
         Column(
             modifier = Modifier
                 .weight(1f)
@@ -322,7 +325,7 @@ fun SettingsItem(
 fun SettingsItemPreview() {
     SojoDiaTheme() {
         SettingsItem(
-            icon = vectorResource(id = R.drawable.ic_github),
+            icon = painterResource(id = R.drawable.ic_github),
             title = "Title",
             subtitle = "Subtitle"
         )
