@@ -4,6 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
 import androidx.work.ExistingWorkPolicy
@@ -20,6 +29,7 @@ import com.numero.sojodia.R
 import com.numero.sojodia.databinding.ActivityMainBinding
 import com.numero.sojodia.extension.getTodayString
 import com.numero.sojodia.extension.component
+import com.numero.sojodia.extension.format
 import com.numero.sojodia.extension.titleStringRes
 import com.numero.sojodia.model.Reciprocate
 import com.numero.sojodia.model.Route
@@ -154,3 +164,29 @@ class MainActivity : AppCompatActivity(), BusScheduleFragment.BusScheduleFragmen
         }
     }
 }
+
+
+@Composable
+fun BusBoardScreen(
+    busBoardUiState: BusBoardUiState
+) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = busBoardUiState.currentDate.format(stringResource(id = R.string.date_pattern)))
+                },
+                backgroundColor = MaterialTheme.colors.surface,
+                elevation = 0.dp
+            )
+        },
+        content = { innerPadding ->
+            val modifier = Modifier.padding(innerPadding)
+//            BusBoardContent(
+//                modifier = modifier,
+//                busBoardUiState = busBoardUiState
+//            )
+        }
+    )
+}
+
