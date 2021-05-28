@@ -18,16 +18,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.viewModel
 import androidx.core.os.bundleOf
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.numero.sojodia.R
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.ui.res.painterResource
 import com.numero.sojodia.databinding.BusScheduleFragmentBinding
 import com.numero.sojodia.extension.component
 import com.numero.sojodia.extension.getTodayStringOnlyFigure
@@ -302,7 +303,7 @@ fun BusBoardContent(
                 viewModel.nextTkBusTime()
             }
         )
-        Spacer(modifier = Modifier.preferredHeight(8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         BusTimeCard(
             modifier = Modifier.fillMaxSize().weight(1f),
             busBoardSchedule = busBoardUiState.tndBusBoardSchedule,
@@ -378,19 +379,17 @@ fun BusTimeCardHeader(
         )
         OutlinedButton(
             shape = CircleShape,
-            colors = ButtonConstants.defaultOutlinedButtonColors(
+            colors = ButtonDefaults.outlinedButtonColors(
                 contentColor = MaterialTheme.colors.onSurface
-            ),
-            contentPadding = ButtonConstants.DefaultContentPadding.copy(
-                start = 12.dp
             ),
             onClick = showTimeTable
         ) {
             Icon(
-                imageVector = vectorResource(id = R.drawable.ic_schedule),
-                modifier = Modifier.size(ButtonConstants.DefaultIconSize)
+                painter = painterResource(id = R.drawable.ic_schedule),
+                contentDescription = null,
+                modifier = Modifier.size(ButtonDefaults.IconSize)
             )
-            Spacer(modifier = Modifier.preferredWidth(4.dp))
+            Spacer(modifier = Modifier.width(4.dp))
             Text(text = stringResource(id = R.string.timetable_label))
         }
     }
@@ -410,7 +409,10 @@ fun BusTimeCardFooter(
             IconButton(
                 onClick = onPrevBusTime
             ) {
-                Icon(imageVector = Icons.Filled.KeyboardArrowLeft)
+                Icon(
+                    imageVector = Icons.Filled.KeyboardArrowLeft,
+                    contentDescription = null
+                )
             }
         }
         BusDepartureTime(
@@ -422,7 +424,10 @@ fun BusTimeCardFooter(
             IconButton(
                 onClick = onNextBusTime
             ) {
-                Icon(imageVector = Icons.Filled.KeyboardArrowRight)
+                Icon(
+                    imageVector = Icons.Filled.KeyboardArrowRight,
+                    contentDescription = null
+                )
             }
         }
     }
@@ -435,7 +440,7 @@ fun BusDepartureTime(
     nextBusTime: BusTime?
 ) {
     Box(
-        modifier = modifier.preferredHeight(48.dp)
+        modifier = modifier.height(48.dp)
     ) {
         if (nearBusTime != null) {
             Text(

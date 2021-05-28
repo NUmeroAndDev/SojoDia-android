@@ -180,7 +180,7 @@ fun BusBoardScreen(
                 elevation = 0.dp
             )
         },
-        bodyContent = { innerPadding ->
+        content = { innerPadding ->
             val modifier = Modifier.padding(innerPadding)
 //            BusBoardContent(
 //                modifier = modifier,
