@@ -108,7 +108,7 @@ buildscript {
                         moshi: "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
                 ],
                 kotshi     : [
-                        api     : "se.ansman.kotshi:api:1.0.6",
+                        api     : "se.ansman.kotshi:api:2.10.0",
                         compiler: "se.ansman.kotshi:compiler:1.0.6"
                 ],
 
